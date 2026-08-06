@@ -72,18 +72,14 @@ background:#c9a84c11;
 }
 
 
-
 .hero{
-
 text-align:center;
 padding:80px 40px 60px;
 position:relative;
-
 }
 
 
 .hero::before{
-
 content:'';
 position:absolute;
 top:0;
@@ -92,25 +88,20 @@ transform:translateX(-50%);
 width:1px;
 height:60px;
 background:linear-gradient(to bottom,transparent,#c9a84c);
-
 }
 
 
-
 .hl{
-
 font-size:10px;
 letter-spacing:.35em;
 text-transform:uppercase;
 color:#c9a84c;
 margin-bottom:20px;
-
+margin-top:16px;
 }
 
 
-
 .hero h1{
-
 font-family:'Cormorant Garamond',serif;
 font-size:clamp(32px,5vw,56px);
 font-weight:300;
@@ -118,114 +109,97 @@ color:#fff;
 letter-spacing:.06em;
 line-height:1.2;
 margin-bottom:20px;
-
 }
 
 
-
 .hero p{
-
 font-size:13px;
 color:#888;
 letter-spacing:.08em;
 line-height:1.9;
-max-width:520px;
+max-width:600px;
 margin:auto;
-
 }
 
 
 
 .gl{
-
 height:1px;
-background:linear-gradient(90deg,transparent,#c9a84c 30%,#f5e6a3 50%,#c9a84c 70%,transparent);
+background:
+linear-gradient(
+90deg,
+transparent,
+#c9a84c 30%,
+#f5e6a3 50%,
+#c9a84c 70%,
+transparent
+);
+background-size:200% 100%;
+animation:shimmer 4s ease-in-out infinite;
 margin:0 40px;
-opacity:.5;
-
+opacity:.6;
 }
 
+
+@keyframes shimmer{
+0%{
+background-position:200% center;
+}
+100%{
+background-position:-200% center;
+}
+}
 
 
 .wrap{
-
-max-width:900px;
+max-width:860px;
 margin:auto;
 padding:60px 40px 80px;
-
 }
-
 
 
 .box{
-
 background:#0f0f0f;
 border:1px solid #1a1a1a;
+border-left:2px solid #c9a84c;
 padding:35px;
 margin-bottom:20px;
-
 }
 
 
-
-.badge{
-
+.bt{
 font-size:9px;
 letter-spacing:.3em;
 text-transform:uppercase;
 color:#c9a84c;
 margin-bottom:25px;
-
 }
-
-
-
-.intro{
-
-font-size:13px;
-color:#777;
-line-height:1.9;
-
-}
-
-
-
-.line{
-
-height:1px;
-background:#c9a84c;
-width:80px;
-margin:35px 0;
-
-}
-
 
 
 .grid{
-
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:20px;
-
 }
 
 
 .field{
-
 display:flex;
 flex-direction:column;
 gap:8px;
+}
 
+
+.field.full{
+grid-column:1/-1;
 }
 
 
 label{
-
 font-size:9px;
-letter-spacing:.2em;
+letter-spacing:.18em;
 text-transform:uppercase;
-color:#555;
-
+color:#444;
 }
 
 
@@ -236,8 +210,9 @@ background:#111;
 border:none;
 border-bottom:2px solid #2a2a2a;
 color:#fff;
+font-size:14px;
 padding:16px;
-font-family:'Montserrat';
+font-family:'Montserrat',sans-serif;
 outline:none;
 
 }
@@ -245,39 +220,33 @@ outline:none;
 
 input:focus,
 select:focus{
-
-border-color:#c9a84c;
-
+border-bottom-color:#c9a84c;
 }
 
-
-.full{
-
-grid-column:1/-1;
-
-}
 
 
 .calculate{
 
 margin-top:35px;
 width:100%;
-padding:18px;
 background:#c9a84c;
 color:#0a0a0a;
 border:none;
+padding:18px;
 font-size:10px;
-font-weight:500;
 letter-spacing:.25em;
+font-weight:500;
 text-transform:uppercase;
 cursor:pointer;
+transition:.35s;
 
 }
 
 
 .calculate:hover{
 
-box-shadow:0 0 32px rgba(201,168,76,.4);
+box-shadow:
+0 0 32px rgba(201,168,76,.4);
 
 }
 
@@ -285,18 +254,7 @@ box-shadow:0 0 32px rgba(201,168,76,.4);
 .results{
 
 display:none;
-margin-top:48px;
-
-}
-
-
-.results-title{
-
-font-size:9px;
-letter-spacing:.3em;
-text-transform:uppercase;
-color:#c9a84c;
-margin-bottom:24px;
+margin-top:50px;
 
 }
 
@@ -312,7 +270,7 @@ gap:20px;
 
 .card{
 
-background:#111;
+background:#0f0f0f;
 border:1px solid #1a1a1a;
 padding:30px;
 text-align:center;
@@ -322,7 +280,7 @@ text-align:center;
 
 .card.main{
 
-border-left:2px solid #c9a84c;
+border-color:#c9a84c;
 
 }
 
@@ -331,10 +289,10 @@ border-left:2px solid #c9a84c;
 
 display:block;
 font-size:9px;
-letter-spacing:.2em;
-text-transform:uppercase;
-color:#555;
+letter-spacing:.25em;
+color:#444;
 margin-bottom:15px;
+text-transform:uppercase;
 
 }
 
@@ -355,13 +313,14 @@ color:#c9a84c;
 
 .breakdown{
 
-margin-top:25px;
-background:#111;
+background:#0f0f0f;
 border:1px solid #1a1a1a;
+border-left:2px solid #c9a84c;
 padding:30px;
+margin-top:25px;
+line-height:1.8;
+color:#888;
 font-size:13px;
-line-height:1.9;
-color:#999;
 
 }
 
@@ -369,7 +328,7 @@ color:#999;
 .cta{
 
 text-align:center;
-margin-top:35px;
+margin-top:40px;
 
 }
 
@@ -385,8 +344,9 @@ font-weight:300;
 
 .cta p{
 
-color:#777;
-font-size:13px;
+color:#666;
+margin:20px auto 30px;
+max-width:500px;
 line-height:1.8;
 
 }
@@ -395,8 +355,8 @@ line-height:1.8;
 .btn{
 
 display:inline-block;
-padding:16px 35px;
-margin:15px 5px;
+padding:15px 35px;
+margin:5px;
 text-decoration:none;
 font-size:10px;
 letter-spacing:.25em;
@@ -450,232 +410,149 @@ padding:40px 20px;
 
 <body>
 
+
 <header>
 
 <a class="logo" href="https://apexclusive.nl">
-APEX<span>exclusive</span>
+APEX<span>clusive</span>
 </a>
 
+
 <a class="back" href="https://apexclusive.nl">
-&#8592; Terug naar website
+← Terug naar website
 </a>
 
 </header>
 
 
-
 <div class="hero">
 
 <div class="hl">
-BPM IMPORT ANALYSE
+BPM Import Calculator
 </div>
 
 
 <h1>
-BPM Import Calculator
+Exclusieve Auto Import Analyse
 </h1>
 
 
 <p>
-Bereken een realistische indicatie van de resterende BPM bij import van exclusieve voertuigen binnen Europa.
+Bereken een realistische indicatie van de resterende BPM bij import van uw voertuig binnen Europa.
 </p>
 
-</div>
 
+</div>
 
 
 <div class="gl"></div>
 
 
-
 <div class="wrap">
-
 
 <div class="box">
 
-
-<div class="badge">
-APEXCLUSIVE AUTOMOTIVE ADVISORY
+<div class="bt">
+Voertuiggegevens
 </div>
-
-
-<div class="intro">
-
-Bereken eenvoudig een indicatie van de resterende BPM voor uw importauto.
-Ontwikkeld voor premium voertuigen zoals Lamborghini, Ferrari, Porsche, Bentley en Range Rover.
-
-</div>
-
-
-
-<div class="line"></div>
-
-
 
 
 <div class="grid">
 
 
-
 <div class="field">
 
-<label>
-Brandstof
-</label>
-
+<label>Brandstof</label>
 
 <select id="brandstof">
 
-<option value="benzine">
-Benzine
-</option>
-
-<option value="diesel">
-Diesel
-</option>
-
-<option value="hybride">
-Plug-in Hybride
-</option>
-
-<option value="elektrisch">
-Elektrisch
-</option>
+<option value="benzine">Benzine</option>
+<option value="diesel">Diesel</option>
+<option value="hybride">Plug-in Hybride</option>
+<option value="elektrisch">Elektrisch</option>
 
 </select>
-
 
 </div>
 
 
-
-
 <div class="field">
 
-<label>
-CO₂ uitstoot WLTP (g/km)
-</label>
-
+<label>CO₂ uitstoot WLTP (g/km)</label>
 
 <input id="co2" placeholder="Bijvoorbeeld 280">
 
-
 </div>
-
-
 
 
 <div class="field">
 
-<label>
-Datum eerste toelating
-</label>
-
+<label>Datum eerste toelating</label>
 
 <input id="datum" type="date">
 
-
 </div>
-
-
 
 
 <div class="field">
 
-<label>
-Cataloguswaarde incl. BTW
-</label>
-
+<label>Cataloguswaarde incl. BTW</label>
 
 <input id="waarde" placeholder="Bijvoorbeeld 180000">
 
-
 </div>
-
-
 
 
 <div class="field">
 
-<label>
-Oorspronkelijke BPM (optioneel)
-</label>
+<label>Oorspronkelijke BPM</label>
 
-
-<input id="origineleBPM" placeholder="Bijvoorbeeld 85000">
-
+<input id="origineleBPM" placeholder="Optioneel">
 
 </div>
 
 
+<div class="field">
 
-
-<div class="field full">
-
-<label>
-Land van herkomst
-</label>
-
+<label>Land van herkomst</label>
 
 <select id="land">
 
-<option>
-Duitsland
-</option>
-
-<option>
-België
-</option>
-
-<option>
-Italië
-</option>
-
-<option>
-Spanje
-</option>
-
-<option>
-Overig Europa
-</option>
+<option>Duitsland</option>
+<option>België</option>
+<option>Italië</option>
+<option>Spanje</option>
+<option>Overig Europa</option>
 
 </select>
 
-
 </div>
 
 
-
 </div>
-
-
 
 
 <button class="calculate" onclick="calculateBPM()">
-
-Bereken BPM analyse
-
+Bereken BPM Analyse
 </button>
 
 
+</div>
 
+</div>
 
 
 <div class="results" id="results">
 
 
-<div class="results-title">
+<div class="box">
 
+<div class="bt">
 APEXclusive Import Analyse
-
 </div>
 
 
-
-
-
 <div class="cards">
-
 
 
 <div class="card">
@@ -691,9 +568,6 @@ Bruto BPM indicatie
 </div>
 
 
-
-
-
 <div class="card">
 
 <small>
@@ -705,9 +579,6 @@ Afschrijving
 </strong>
 
 </div>
-
-
-
 
 
 <div class="card main">
@@ -723,18 +594,13 @@ Resterende BPM
 </div>
 
 
-
 </div>
-
-
 
 
 
 <div class="breakdown" id="details">
 
 </div>
-
-
 
 
 
@@ -747,11 +613,8 @@ Persoonlijke importanalyse nodig?
 
 
 <p>
-
 APEXclusive begeleidt u bij aankoop, controle, BPM-optimalisatie en volledige import van exclusieve voertuigen binnen Europa.
-
 </p>
-
 
 
 
@@ -765,7 +628,6 @@ WhatsApp advies
 
 
 
-
 <a class="btn email"
 href="mailto:info@apexclusive.nl">
 
@@ -774,9 +636,6 @@ E-mail contact
 </a>
 
 
-</div>
-
-
 
 </div>
 
@@ -785,6 +644,10 @@ E-mail contact
 
 
 </div>
+
+
+</div>
+
 
 <script>
 
@@ -798,25 +661,19 @@ return "€ " + Math.round(value)
 
 
 
-
-
 function calculateBPM(){
-
 
 
 let brandstof =
 document.getElementById("brandstof").value;
 
 
-
 let co2 =
 Number(document.getElementById("co2").value);
 
 
-
 let datum =
 document.getElementById("datum").value;
-
 
 
 let land =
@@ -835,115 +692,83 @@ return;
 
 
 
-
 let bpm = 0;
 
 
 
-
-
-if(brandstof === "benzine" || brandstof === "hybride"){
+if(
+brandstof === "benzine" ||
+brandstof === "hybride"
+){
 
 
 
 if(co2 > 79)
-
 bpm += (Math.min(co2,106)-79) * 2.5;
 
 
-
 if(co2 > 106)
-
 bpm += (Math.min(co2,156)-106) * 61.50;
 
 
-
 if(co2 > 156)
-
 bpm += (Math.min(co2,176)-156) * 137.00;
 
 
-
 if(co2 > 176)
-
 bpm += (co2-176) * 275.00;
 
 
 
 }
-
-
-
 
 
 
 if(brandstof === "diesel"){
 
 
-
 if(co2 > 79)
-
 bpm += (Math.min(co2,106)-79) * 2.5;
 
 
-
 if(co2 > 106)
-
 bpm += (Math.min(co2,156)-106) * 61.50;
 
 
-
 if(co2 > 156)
-
 bpm += (Math.min(co2,176)-156) * 137.00;
 
 
-
 if(co2 > 176)
-
 bpm += (co2-176) * 275.00;
-
 
 
 
 bpm += 94 + (co2 * 100);
 
 
-
 }
-
-
 
 
 
 if(brandstof === "hybride"){
 
-
 bpm = bpm * 0.5;
 
-
 }
-
-
 
 
 
 if(brandstof === "elektrisch"){
 
-
 bpm = 0;
-
 
 }
 
 
 
-
-
-
 let eersteDatum =
 new Date(datum);
-
 
 
 let vandaag =
@@ -952,12 +777,8 @@ new Date();
 
 
 let maanden =
-
 (vandaag.getFullYear()-eersteDatum.getFullYear())*12 +
-
 (vandaag.getMonth()-eersteDatum.getMonth());
-
-
 
 
 
@@ -1010,12 +831,8 @@ afschrijving = 90;
 
 
 
-
-
 let origineleBPM =
-
 Number(document.getElementById("origineleBPM").value);
-
 
 
 
@@ -1027,10 +844,7 @@ bpm = origineleBPM;
 
 
 
-
-
 let resterendeBPM =
-
 bpm * ((100-afschrijving)/100);
 
 
@@ -1042,112 +856,73 @@ let transport = 1000;
 
 
 if(land==="Duitsland")
-
-transport = 750;
-
+transport=750;
 
 
 if(land==="België")
-
-transport = 350;
-
+transport=350;
 
 
 if(land==="Italië")
-
-transport = 1500;
-
+transport=1500;
 
 
 if(land==="Spanje")
-
-transport = 1800;
-
-
+transport=1800;
 
 
 
 let rdw = 125;
 
-
 let kenteken = 40;
 
 
-
 let importkosten =
-
 transport + rdw + kenteken;
 
 
 
-
-
 document.getElementById("bruto").innerHTML =
-
 euro(bpm);
 
 
 
-
-
 document.getElementById("afschrijving").innerHTML =
-
 Math.round(afschrijving)+"%";
 
 
 
-
-
 document.getElementById("bpm").innerHTML =
-
 euro(resterendeBPM);
-
-
 
 
 
 document.getElementById("details").innerHTML =
 
-
 `
-
 <strong>Importindicatie</strong><br><br>
-
 
 CO₂ uitstoot: ${co2} g/km<br>
 
-
 Brandstof: ${brandstof}<br>
 
-
 Herkomst: ${land}<br>
-
 
 Transport + RDW + kenteken: ${euro(importkosten)}<br><br>
 
 
-
 <strong>Totale geschatte importkosten inclusief BPM:</strong><br>
-
 
 ${euro(resterendeBPM + importkosten)}
 
-
-
 <br><br>
 
-
 <small>
-
 Indicatieve berekening. Exacte BPM kan afwijken door historische BPM-tabellen,
 koerslijsten, voertuigwaarde en gekozen afschrijvingsmethode.
-
 </small>
 
-
 `;
-
-
 
 
 
@@ -1155,15 +930,12 @@ document.getElementById("results").style.display="block";
 
 
 
-
-
-document.getElementById("results").scrollIntoView({
+document.getElementById("results")
+.scrollIntoView({
 
 behavior:"smooth"
 
 });
-
-
 
 }
 
