@@ -448,3 +448,730 @@ padding:40px 20px;
 
 </head>
 
+<body>
+
+<header>
+
+<a class="logo" href="https://apexclusive.nl">
+APEX<span>exclusive</span>
+</a>
+
+<a class="back" href="https://apexclusive.nl">
+&#8592; Terug naar website
+</a>
+
+</header>
+
+
+
+<div class="hero">
+
+<div class="hl">
+BPM IMPORT ANALYSE
+</div>
+
+
+<h1>
+BPM Import Calculator
+</h1>
+
+
+<p>
+Bereken een realistische indicatie van de resterende BPM bij import van exclusieve voertuigen binnen Europa.
+</p>
+
+</div>
+
+
+
+<div class="gl"></div>
+
+
+
+<div class="wrap">
+
+
+<div class="box">
+
+
+<div class="badge">
+APEXCLUSIVE AUTOMOTIVE ADVISORY
+</div>
+
+
+<div class="intro">
+
+Bereken eenvoudig een indicatie van de resterende BPM voor uw importauto.
+Ontwikkeld voor premium voertuigen zoals Lamborghini, Ferrari, Porsche, Bentley en Range Rover.
+
+</div>
+
+
+
+<div class="line"></div>
+
+
+
+
+<div class="grid">
+
+
+
+<div class="field">
+
+<label>
+Brandstof
+</label>
+
+
+<select id="brandstof">
+
+<option value="benzine">
+Benzine
+</option>
+
+<option value="diesel">
+Diesel
+</option>
+
+<option value="hybride">
+Plug-in Hybride
+</option>
+
+<option value="elektrisch">
+Elektrisch
+</option>
+
+</select>
+
+
+</div>
+
+
+
+
+<div class="field">
+
+<label>
+CO₂ uitstoot WLTP (g/km)
+</label>
+
+
+<input id="co2" placeholder="Bijvoorbeeld 280">
+
+
+</div>
+
+
+
+
+<div class="field">
+
+<label>
+Datum eerste toelating
+</label>
+
+
+<input id="datum" type="date">
+
+
+</div>
+
+
+
+
+<div class="field">
+
+<label>
+Cataloguswaarde incl. BTW
+</label>
+
+
+<input id="waarde" placeholder="Bijvoorbeeld 180000">
+
+
+</div>
+
+
+
+
+<div class="field">
+
+<label>
+Oorspronkelijke BPM (optioneel)
+</label>
+
+
+<input id="origineleBPM" placeholder="Bijvoorbeeld 85000">
+
+
+</div>
+
+
+
+
+<div class="field full">
+
+<label>
+Land van herkomst
+</label>
+
+
+<select id="land">
+
+<option>
+Duitsland
+</option>
+
+<option>
+België
+</option>
+
+<option>
+Italië
+</option>
+
+<option>
+Spanje
+</option>
+
+<option>
+Overig Europa
+</option>
+
+</select>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<button class="calculate" onclick="calculateBPM()">
+
+Bereken BPM analyse
+
+</button>
+
+
+
+
+
+<div class="results" id="results">
+
+
+<div class="results-title">
+
+APEXclusive Import Analyse
+
+</div>
+
+
+
+
+
+<div class="cards">
+
+
+
+<div class="card">
+
+<small>
+Bruto BPM indicatie
+</small>
+
+<strong id="bruto">
+-
+</strong>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<small>
+Afschrijving
+</small>
+
+<strong id="afschrijving">
+-
+</strong>
+
+</div>
+
+
+
+
+
+<div class="card main">
+
+<small>
+Resterende BPM
+</small>
+
+<strong class="gold" id="bpm">
+-
+</strong>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="breakdown" id="details">
+
+</div>
+
+
+
+
+
+<div class="cta">
+
+
+<h2>
+Persoonlijke importanalyse nodig?
+</h2>
+
+
+<p>
+
+APEXclusive begeleidt u bij aankoop, controle, BPM-optimalisatie en volledige import van exclusieve voertuigen binnen Europa.
+
+</p>
+
+
+
+
+<a class="btn whatsapp"
+href="https://wa.me/31624735939"
+target="_blank">
+
+WhatsApp advies
+
+</a>
+
+
+
+
+<a class="btn email"
+href="mailto:info@apexclusive.nl">
+
+E-mail contact
+
+</a>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+<script>
+
+
+function euro(value){
+
+return "€ " + Math.round(value)
+.toLocaleString("nl-NL");
+
+}
+
+
+
+
+
+function calculateBPM(){
+
+
+
+let brandstof =
+document.getElementById("brandstof").value;
+
+
+
+let co2 =
+Number(document.getElementById("co2").value);
+
+
+
+let datum =
+document.getElementById("datum").value;
+
+
+
+let land =
+document.getElementById("land").value;
+
+
+
+if(!co2 || !datum){
+
+alert("Vul CO₂-uitstoot en datum eerste toelating in.");
+
+return;
+
+}
+
+
+
+
+
+let bpm = 0;
+
+
+
+
+
+if(brandstof === "benzine" || brandstof === "hybride"){
+
+
+
+if(co2 > 79)
+
+bpm += (Math.min(co2,106)-79) * 2.5;
+
+
+
+if(co2 > 106)
+
+bpm += (Math.min(co2,156)-106) * 61.50;
+
+
+
+if(co2 > 156)
+
+bpm += (Math.min(co2,176)-156) * 137.00;
+
+
+
+if(co2 > 176)
+
+bpm += (co2-176) * 275.00;
+
+
+
+}
+
+
+
+
+
+
+if(brandstof === "diesel"){
+
+
+
+if(co2 > 79)
+
+bpm += (Math.min(co2,106)-79) * 2.5;
+
+
+
+if(co2 > 106)
+
+bpm += (Math.min(co2,156)-106) * 61.50;
+
+
+
+if(co2 > 156)
+
+bpm += (Math.min(co2,176)-156) * 137.00;
+
+
+
+if(co2 > 176)
+
+bpm += (co2-176) * 275.00;
+
+
+
+
+bpm += 94 + (co2 * 100);
+
+
+
+}
+
+
+
+
+
+if(brandstof === "hybride"){
+
+
+bpm = bpm * 0.5;
+
+
+}
+
+
+
+
+
+if(brandstof === "elektrisch"){
+
+
+bpm = 0;
+
+
+}
+
+
+
+
+
+
+let eersteDatum =
+new Date(datum);
+
+
+
+let vandaag =
+new Date();
+
+
+
+let maanden =
+
+(vandaag.getFullYear()-eersteDatum.getFullYear())*12 +
+
+(vandaag.getMonth()-eersteDatum.getMonth());
+
+
+
+
+
+let afschrijving;
+
+
+
+if(maanden <= 3){
+
+afschrijving = 0;
+
+}
+
+else if(maanden <= 12){
+
+afschrijving = 34;
+
+}
+
+else if(maanden <= 24){
+
+afschrijving = 48;
+
+}
+
+else if(maanden <= 36){
+
+afschrijving = 57;
+
+}
+
+else if(maanden <= 60){
+
+afschrijving = 68;
+
+}
+
+else if(maanden <= 120){
+
+afschrijving = 78;
+
+}
+
+else{
+
+afschrijving = 90;
+
+}
+
+
+
+
+
+
+let origineleBPM =
+
+Number(document.getElementById("origineleBPM").value);
+
+
+
+
+if(origineleBPM > 0){
+
+bpm = origineleBPM;
+
+}
+
+
+
+
+
+let resterendeBPM =
+
+bpm * ((100-afschrijving)/100);
+
+
+
+
+
+let transport = 1000;
+
+
+
+if(land==="Duitsland")
+
+transport = 750;
+
+
+
+if(land==="België")
+
+transport = 350;
+
+
+
+if(land==="Italië")
+
+transport = 1500;
+
+
+
+if(land==="Spanje")
+
+transport = 1800;
+
+
+
+
+
+let rdw = 125;
+
+
+let kenteken = 40;
+
+
+
+let importkosten =
+
+transport + rdw + kenteken;
+
+
+
+
+
+document.getElementById("bruto").innerHTML =
+
+euro(bpm);
+
+
+
+
+
+document.getElementById("afschrijving").innerHTML =
+
+Math.round(afschrijving)+"%";
+
+
+
+
+
+document.getElementById("bpm").innerHTML =
+
+euro(resterendeBPM);
+
+
+
+
+
+document.getElementById("details").innerHTML =
+
+
+`
+
+<strong>Importindicatie</strong><br><br>
+
+
+CO₂ uitstoot: ${co2} g/km<br>
+
+
+Brandstof: ${brandstof}<br>
+
+
+Herkomst: ${land}<br>
+
+
+Transport + RDW + kenteken: ${euro(importkosten)}<br><br>
+
+
+
+<strong>Totale geschatte importkosten inclusief BPM:</strong><br>
+
+
+${euro(resterendeBPM + importkosten)}
+
+
+
+<br><br>
+
+
+<small>
+
+Indicatieve berekening. Exacte BPM kan afwijken door historische BPM-tabellen,
+koerslijsten, voertuigwaarde en gekozen afschrijvingsmethode.
+
+</small>
+
+
+`;
+
+
+
+
+
+document.getElementById("results").style.display="block";
+
+
+
+
+
+document.getElementById("results").scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>
