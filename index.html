@@ -2133,6 +2133,9 @@ function nedcBpmDiesel2026(co2){
   return Math.round(b);
 }
 
+**Verplaats de `calcBpmHistorisch` functie** zodat die beschikbaar is voor beide secties. Zet hem direct na `calcBpmCo2`:
+
+```javascript
 function calcBpmCo2(co2,bs,norm){
   if(bs==='elektrisch')return 0;
   if(norm==='wltp'){
@@ -2141,6 +2144,190 @@ function calcBpmCo2(co2,bs,norm){
   }else{
     if(bs==='diesel')return nedcBpmDiesel2026(co2);
     return nedcBpmBenzine2026(co2);
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   BPM HISTORISCHE TARIEVEN PER JAAR
+══════════════════════════════════════════════════ */
+function calcBpmHistorisch(co2, bs, norm, jaar){
+  if(bs==='elektrisch') return 0;
+  if(jaar >= 2026) return calcBpmCo2(co2, bs, norm);
+
+  function benzineWltp(co2, j){
+    let b=0;
+    if(j<=2020){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*66.15;
+      else if(co2<=155) b=1786.05+(co2-106)*132.30;
+      else if(co2<=205) b=8279.55+(co2-155)*264.60;
+      else b=21509.55+(co2-205)*529.20;
+    } else if(j===2021){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*87.49;
+      else if(co2<=155) b=2362.23+(co2-106)*174.98;
+      else if(co2<=205) b=10956.13+(co2-155)*349.96;
+      else b=28454.13+(co2-205)*699.92;
+    } else if(j===2022){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*93.40;
+      else if(co2<=155) b=2521.80+(co2-106)*186.80;
+      else if(co2<=205) b=11693.80+(co2-155)*373.60;
+      else b=30373.80+(co2-205)*747.20;
+    } else if(j===2023){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*99.76;
+      else if(co2<=155) b=2693.52+(co2-106)*199.52;
+      else if(co2<=205) b=12479.52+(co2-155)*399.04;
+      else b=32431.52+(co2-205)*798.08;
+    } else if(j===2024){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*104.74;
+      else if(co2<=155) b=2827.98+(co2-106)*209.48;
+      else if(co2<=205) b=13103.98+(co2-155)*418.96;
+      else b=34051.98+(co2-205)*837.92;
+    } else if(j===2025){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*106.83;
+      else if(co2<=155) b=2884.41+(co2-106)*213.66;
+      else if(co2<=205) b=13363.41+(co2-155)*427.32;
+      else b=34729.41+(co2-205)*854.64;
+    }
+    return Math.round(b);
+  }
+
+  function dieselWltp(co2, j){
+    let b=0;
+    if(j<=2020){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*99.23;
+      else if(co2<=155) b=2679.21+(co2-106)*198.46;
+      else if(co2<=205) b=12414.21+(co2-155)*396.92;
+      else b=32260.21+(co2-205)*793.84;
+    } else if(j===2021){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*131.24;
+      else if(co2<=155) b=3543.48+(co2-106)*262.48;
+      else if(co2<=205) b=16434.28+(co2-155)*524.96;
+      else b=42682.28+(co2-205)*1049.92;
+    } else if(j===2022){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*140.10;
+      else if(co2<=155) b=3782.70+(co2-106)*280.20;
+      else if(co2<=205) b=17540.70+(co2-155)*560.40;
+      else b=45560.70+(co2-205)*1120.80;
+    } else if(j===2023){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*149.64;
+      else if(co2<=155) b=4040.28+(co2-106)*299.28;
+      else if(co2<=205) b=18734.28+(co2-155)*598.56;
+      else b=48662.28+(co2-205)*1197.12;
+    } else if(j===2024){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*157.11;
+      else if(co2<=155) b=4241.97+(co2-106)*314.22;
+      else if(co2<=205) b=19649.97+(co2-155)*628.44;
+      else b=51069.97+(co2-205)*1256.88;
+    } else if(j===2025){
+      if(co2<=79) b=0;
+      else if(co2<=106) b=(co2-79)*160.25;
+      else if(co2<=155) b=4326.75+(co2-106)*320.50;
+      else if(co2<=205) b=20051.25+(co2-155)*641.00;
+      else b=52101.25+(co2-205)*1282.00;
+    }
+    return Math.round(b);
+  }
+
+  function benzineNedc(co2, j){
+    let b=0;
+    if(j<=2020){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*79.22;
+      else if(co2<=131) b=1822.06+(co2-90)*158.44;
+      else if(co2<=173) b=8318.10+(co2-131)*316.88;
+      else b=21627.06+(co2-173)*633.76;
+    } else if(j===2021){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*104.72;
+      else if(co2<=131) b=2408.56+(co2-90)*209.44;
+      else if(co2<=173) b=11000.60+(co2-131)*418.88;
+      else b=28592.76+(co2-173)*837.76;
+    } else if(j===2022){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*111.85;
+      else if(co2<=131) b=2572.55+(co2-90)*223.70;
+      else if(co2<=173) b=11744.05+(co2-131)*447.40;
+      else b=30534.85+(co2-173)*894.80;
+    } else if(j===2023){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*119.40;
+      else if(co2<=131) b=2746.20+(co2-90)*238.80;
+      else if(co2<=173) b=12532.20+(co2-131)*477.60;
+      else b=32591.40+(co2-173)*955.20;
+    } else if(j===2024){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*125.38;
+      else if(co2<=131) b=2883.74+(co2-90)*250.76;
+      else if(co2<=173) b=13163.90+(co2-131)*501.52;
+      else b=34228.54+(co2-173)*1003.04;
+    } else if(j===2025){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*127.88;
+      else if(co2<=131) b=2941.24+(co2-90)*255.76;
+      else if(co2<=173) b=13427.00+(co2-131)*511.52;
+      else b=34910.84+(co2-173)*1023.04;
+    }
+    return Math.round(b);
+  }
+
+  function dieselNedc(co2, j){
+    let b=0;
+    if(j<=2020){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*118.83;
+      else if(co2<=131) b=2733.09+(co2-90)*237.66;
+      else if(co2<=173) b=12477.15+(co2-131)*475.32;
+      else b=32440.59+(co2-173)*950.64;
+    } else if(j===2021){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*157.08;
+      else if(co2<=131) b=3612.84+(co2-90)*314.16;
+      else if(co2<=173) b=16483.40+(co2-131)*628.32;
+      else b=42879.14+(co2-173)*1256.64;
+    } else if(j===2022){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*167.78;
+      else if(co2<=131) b=3858.94+(co2-90)*335.56;
+      else if(co2<=173) b=17601.30+(co2-131)*671.12;
+      else b=45788.34+(co2-173)*1342.24;
+    } else if(j===2023){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*179.10;
+      else if(co2<=131) b=4119.30+(co2-90)*358.20;
+      else if(co2<=173) b=18798.10+(co2-131)*716.40;
+      else b=48887.50+(co2-173)*1432.80;
+    } else if(j===2024){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*188.07;
+      else if(co2<=131) b=4325.61+(co2-90)*376.14;
+      else if(co2<=173) b=19742.49+(co2-131)*752.28;
+      else b=51338.25+(co2-173)*1504.56;
+    } else if(j===2025){
+      if(co2<=67) b=0;
+      else if(co2<=90) b=(co2-67)*191.82;
+      else if(co2<=131) b=4411.86+(co2-90)*383.64;
+      else if(co2<=173) b=20145.42+(co2-131)*767.28;
+      else b=52391.58+(co2-173)*1534.56;
+    }
+    return Math.round(b);
+  }
+
+  if(norm==='wltp'){
+    if(bs==='diesel') return dieselWltp(co2, jaar);
+    return benzineWltp(co2, jaar);
+  } else {
+    if(bs==='diesel') return dieselNedc(co2, jaar);
+    return benzineNedc(co2, jaar);
   }
 }
 
@@ -2226,13 +2413,6 @@ const BTAB=[
   {v:102, t:114, p:22.0},
   {v:114, t:999, p:19.0}
 ];
-
-function getBpmPct(m){
-  for(let i=BTAB.length-1;i>=0;i--){
-    if(m>=BTAB[i].v)return BTAB[i].p/100;
-  }
-  return 1;
-}
 
 /* Maanden vanaf toelatingsdatum berekenen in een specifiek jaar */
 function getMaandenOpJaar(datum,jaar){
@@ -2467,37 +2647,41 @@ function doCalc(){
   const dualWrap=document.getElementById('dual-calc-wrap');
   const dualResults=document.getElementById('dual-results');
 
-  if(bs!=='elektrisch' && co2Used>0 && toelatingsJaar<huidigJaar){
-    // Berekening 1: jaar van toelating (met forfaitaire afschrijving mPos)
-    const bpmToelating=Math.round(calcBpmCo2(co2Used,bs,normUsed)*pct);
-    // Berekening 2: huidig jaar 2026 (idem, zelfde afschrijving — tarieven 2026 zijn hetzelfde)
-    // Het verschil zit hem in dat de Belastingdienst soms de keuze geeft
-    // bij toelatingsjaar vs. aangiftejaar. Hier tonen we dit transparant.
-    const mToelating=getMaandenOpJaar(datum,toelatingsJaar);
-    const pctToelating=getBpmPct(mToelating);
-    const bpmOpToelatingsMoment=Math.round(calcBpmCo2(co2Used,bs,normUsed)*pctToelating);
-    const bpmNu=Math.round(calcBpmCo2(co2Used,bs,normUsed)*pct);
-    const lager=bpmNu<=bpmOpToelatingsMoment;
+  if(bs!=='elektrisch' && co2Used>0 && toelatingsJaar
+      Berekening op toelatingsjaar ${toelatingsJaar}
+      ${fE(bpmOpToelatingsMoment)}
+      
+        Bruto BPM ${toelatingsJaar}: ${fE(bpmBrutoToelating)} · 
+        ${Math.round(pct*100)}% rest · ${mPos} maanden afgeschreven
+      
+      
+        Tarieven ${toelatingsJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km
+      
+      ${!lager?'✓ Laagste uitkomst':''}
+    
+    
+      Berekening op aangiftejaar ${huidigJaar}
+      ${fE(bpmNu)}
+      
+        Bruto BPM ${huidigJaar}: ${fE(bpmBruto2026)} · 
+        ${Math.round(pct*100)}% rest · ${mPos} maanden afgeschreven
+      
+      
+        Tarieven ${huidigJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km
+      
+      ${lager?'✓ Laagste uitkomst':''}
+    
+  `;
 
-    dualWrap.style.display='block';
-    dualResults.innerHTML=`
-      <div class="dual-card year-reg">
-        <div class="dual-card-lbl">Berekening op toelatingsjaar ${toelatingsJaar}</div>
-        <div class="dual-card-val">${fE(bpmOpToelatingsMoment)}</div>
-        <div class="dual-card-sub">BPM per ${toelatingsJaar} · ${Math.round(pctToelating*100)}% rest · ${mToelating} maanden oud bij eerste toelating</div>
-        <div class="dual-card-note">Berekend op moment van eerste toelating in ${toelatingsJaar} · tarieven ${huidigJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km</div>
-      </div>
-      <div class="dual-card year-now${lager?' recommended':''}">
-        <div class="dual-card-lbl">Berekening op aangiftejaar ${huidigJaar}</div>
-        <div class="dual-card-val">${fE(bpmNu)}</div>
-        <div class="dual-card-sub">BPM per ${huidigJaar} · ${Math.round(pct*100)}% rest · ${mPos} maanden oud nu</div>
-        <div class="dual-card-note">Berekend op huidig moment · tarieven ${huidigJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km</div>
-        ${lager?'<div class="rec-tag">✓ Laagste uitkomst</div>':''}
-      </div>
-    `;
-  } else {
-    dualWrap.style.display='none';
-  }
+  // Update restBpm naar laagste uitkomst
+  restBpm = Math.min(bpmNu, bpmOpToelatingsMoment);
+  methodeTekst = !lager
+    ? `${normUsed.toUpperCase()} ${toelatingsJaar} (laagste)`
+    : `${normUsed.toUpperCase()} 2026 (laagste)`;
+
+} else {
+  dualWrap.style.display='none';
+}
 
   /* ─── Hoofd resultaat kaarten ─── */
   document.getElementById('r-bpm').textContent=fE(restBpm);
@@ -2636,22 +2820,22 @@ function doCalc(){
     betalenWrap.style.display = 'block';
 
     // Bepaal laagste BPM uitkomst
-    let teBetalenBpm = restBpm;
-    let teBetalenLabel = 'Op basis van huidige tarieven 2026';
+let teBetalenBpm = restBpm;
+let teBetalenLabel = 'Op basis van huidige tarieven 2026';
 
-    // Als dubbele berekening zichtbaar is, gebruik laagste
-    if(co2Used > 0 && toelatingsJaar < huidigJaar){
-      const bpmNu = Math.round(calcBpmCo2(co2Used,bs,normUsed)*pct);
-      const mToelating = getMaandenOpJaar(datum,toelatingsJaar);
-      const pctToelating = getBpmPct(mToelating);
-      const bpmToelating = Math.round(calcBpmCo2(co2Used,bs,normUsed)*pctToelating);
-      teBetalenBpm = Math.min(bpmNu, bpmToelating);
-      teBetalenLabel = bpmNu <= bpmToelating
-        ? 'Laagste uitkomst: berekening op aangiftejaar 2026'
-        : 'Laagste uitkomst: berekening op toelatingsjaar '+toelatingsJaar;
-    }
+if(co2Used > 0 && toelatingsJaar < huidigJaar){
+  const bpmBruto2026 = calcBpmCo2(co2Used, bs, normUsed);
+  const bpmNu = Math.round(bpmBruto2026 * pct);
+  const bpmBrutoToelating = calcBpmHistorisch(co2Used, bs, normUsed, toelatingsJaar);
+  const bpmOpToelatingsMoment = Math.round(bpmBrutoToelating * pct);
 
-    betalenVal.textContent = fE(teBetalenBpm);
+  teBetalenBpm = Math.min(bpmNu, bpmOpToelatingsMoment);
+  teBetalenLabel = bpmOpToelatingsMoment <= bpmNu
+    ? 'Laagste uitkomst: tarieven ' + toelatingsJaar + ' · ' + Math.round((1-pct)*100) + '% afgeschreven'
+    : 'Laagste uitkomst: tarieven 2026 · ' + Math.round((1-pct)*100) + '% afgeschreven';
+}
+
+betalenVal.textContent = fE(teBetalenBpm);
     betalenSub.textContent = teBetalenLabel
       + ' · ' + (normUsed.toUpperCase()||'Forfaitair')
       + (co2Used > 0 ? ' · ' + co2Used + ' g/km CO₂' : '')
