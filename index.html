@@ -1206,10 +1206,7 @@ function renderCal(id){
       const cur=i===n.getMonth()&&s.y===n.getFullYear()&&!sel;
       let cl='cal-m';if(sel)cl+=' active';if(cur)cl+=' cur-m';
       if(fut)h+=`<button class="${cl}" disabled>${m}</button>`;
-      else h+=`<button class="${
-User: geef restant code
-Model: ```javascript
-cl}" onclick="calSelM(event,'${id}',${i})">${m}</button>`;
+      else h+=`<button class="${cl}" onclick="calSelM(event,'${id}',${i})">${m}</button>`;
     });
     h+=`</div>`;
   }else{
