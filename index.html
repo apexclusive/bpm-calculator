@@ -2081,71 +2081,64 @@ function clearAutoFields(){
 }
 
 /* ══════════════════════════════════════════════════
-   BPM TARIEVEN 2026 — GECORRIGEERD
-   Geverifieerd tegen Autoweek BPM Calculator
+   OFFICIËLE BPM TARIEVEN — BELASTINGDIENST
+   Exact overgenomen uit tarievenlijst Belastingdienst
 ══════════════════════════════════════════════════ */
 
-/* WLTP BPM 2026 — benzine/hybride */
+/* 2026 WLTP benzine/hybride
+   I=0→77: €687+€2/g | 77→100: €841+€82/g | 100→139: €2727+€181/g
+   139→155: €9786+€297/g | >155: €14538+€594/g */
 function wltpBpmBenzine2026(co2){
-  if(co2<=0)return 0;
+  if(co2<=0) return 687;
   let b=0;
-  if(co2<=79)        b=0;
-  else if(co2<=106)  b=(co2-79)*109.16;
-  else if(co2<=155)  b=2947.32+(co2-106)*218.32;
-  else if(co2<=205)  b=13644.80+(co2-155)*436.64;
-  else               b=35476.80+(co2-205)*873.28;
+  if(co2<=77)       b=687+(co2-0)*2;
+  else if(co2<=100) b=841+(co2-77)*82;
+  else if(co2<=139) b=2727+(co2-100)*181;
+  else if(co2<=155) b=9786+(co2-139)*297;
+  else              b=14538+(co2-155)*594;
   return Math.round(b);
 }
 
-/* WLTP BPM 2026 — diesel */
+/* 2026 WLTP diesel: benzine + dieseltoeslag €114,83/g boven 69g */
 function wltpBpmDiesel2026(co2){
-  if(co2<=0)return 0;
-  let b=0;
-  if(co2<=79)        b=0;
-  else if(co2<=106)  b=(co2-79)*163.74;
-  else if(co2<=155)  b=4420.98+(co2-106)*327.48;
-  else if(co2<=205)  b=20467.50+(co2-155)*654.96;
-  else               b=53215.50+(co2-205)*1309.92;
-  return Math.round(b);
+  if(co2<=0) return 687;
+  const base = wltpBpmBenzine2026(co2);
+  const toeslag = co2>69 ? Math.round((co2-69)*114.83) : 0;
+  return base + toeslag;
 }
 
 /* NEDC BPM 2026 — benzine/hybride */
 function nedcBpmBenzine2026(co2){
-  if(co2<=0)return 0;
+  if(co2<=0) return 360;
   let b=0;
-  if(co2<=67)        b=0;
-  else if(co2<=90)   b=(co2-67)*130.14;
-  else if(co2<=131)  b=2993.22+(co2-90)*260.28;
-  else if(co2<=173)  b=13664.70+(co2-131)*520.56;
-  else               b=35528.22+(co2-173)*1041.12;
+  if(co2<=71)       b=360+co2*2;
+  else if(co2<=95)  b=502+(co2-71)*60;
+  else if(co2<=139) b=1942+(co2-95)*131;
+  else if(co2<=156) b=7706+(co2-139)*215;
+  else              b=11361+(co2-156)*429;
   return Math.round(b);
 }
 
-/* NEDC BPM 2026 — diesel */
 function nedcBpmDiesel2026(co2){
-  if(co2<=0)return 0;
-  let b=0;
-  if(co2<=67)        b=0;
-  else if(co2<=90)   b=(co2-67)*195.21;
-  else if(co2<=131)  b=4489.83+(co2-90)*390.42;
-  else if(co2<=173)  b=20497.05+(co2-131)*780.84;
-  else               b=53292.33+(co2-173)*1561.68;
-  return Math.round(b);
+  if(co2<=0) return 360;
+  const base = nedcBpmBenzine2026(co2);
+  const toeslag = co2>61 ? Math.round((co2-61)*88.43) : 0;
+  return base + toeslag;
 }
 
 function calcBpmCo2(co2,bs,norm){
-  if(bs==='elektrisch')return 0;
+  if(bs==='elektrisch') return 0;
   if(norm==='wltp'){
-    if(bs==='diesel')return wltpBpmDiesel2026(co2);
+    if(bs==='diesel') return wltpBpmDiesel2026(co2);
     return wltpBpmBenzine2026(co2);
-  }else{
-    if(bs==='diesel')return nedcBpmDiesel2026(co2);
+  } else {
+    if(bs==='diesel') return nedcBpmDiesel2026(co2);
     return nedcBpmBenzine2026(co2);
   }
 }
 
 /* ══════════════════════════════════════════════════
-   BPM HISTORISCHE TARIEVEN PER JAAR
+   HISTORISCHE TARIEVEN PER JAAR — EXACT BELASTINGDIENST
 ══════════════════════════════════════════════════ */
 function calcBpmHistorisch(co2, bs, norm, jaar){
   if(bs==='elektrisch') return 0;
@@ -2153,178 +2146,101 @@ function calcBpmHistorisch(co2, bs, norm, jaar){
 
   function benzineWltp(co2, j){
     let b=0;
-    if(j<=2020){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*66.15;
-      else if(co2<=155) b=1786.05+(co2-106)*132.30;
-      else if(co2<=205) b=8279.55+(co2-155)*264.60;
-      else b=21509.55+(co2-205)*529.20;
+    if(j<=2019){
+      if(co2<=71)       b=360+co2*2;
+      else if(co2<=95)  b=502+(co2-71)*60;
+      else if(co2<=139) b=1942+(co2-95)*131;
+      else if(co2<=156) b=7706+(co2-139)*215;
+      else              b=11361+(co2-156)*429;
+    } else if(j===2020){
+      if(co2<=90)        b=366+co2*1;
+      else if(co2<=116)  b=456+(co2-90)*57;
+      else if(co2<=162)  b=1938+(co2-116)*124;
+      else if(co2<=180)  b=7642+(co2-162)*204;
+      else               b=11314+(co2-180)*408;
     } else if(j===2021){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*87.49;
-      else if(co2<=155) b=2362.23+(co2-106)*174.98;
-      else if(co2<=205) b=10956.13+(co2-155)*349.96;
-      else b=28454.13+(co2-205)*699.92;
+      if(co2<=86)        b=372+co2*1;
+      else if(co2<=111)  b=458+(co2-86)*60;
+      else if(co2<=155)  b=1958+(co2-111)*132;
+      else if(co2<=172)  b=7766+(co2-155)*216;
+      else               b=11438+(co2-172)*432;
     } else if(j===2022){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*93.40;
-      else if(co2<=155) b=2521.80+(co2-106)*186.80;
-      else if(co2<=205) b=11693.80+(co2-155)*373.60;
-      else b=30373.80+(co2-205)*747.20;
+      if(co2<=84)        b=376+co2*1;
+      else if(co2<=109)  b=460+(co2-84)*62;
+      else if(co2<=152)  b=2010+(co2-109)*137;
+      else if(co2<=168)  b=7901+(co2-152)*224;
+      else               b=11485+(co2-168)*448;
     } else if(j===2023){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*99.76;
-      else if(co2<=155) b=2693.52+(co2-106)*199.52;
-      else if(co2<=205) b=12479.52+(co2-155)*399.04;
-      else b=32431.52+(co2-205)*798.08;
+      if(co2<=82)        b=400+co2*2;
+      else if(co2<=106)  b=564+(co2-82)*68;
+      else if(co2<=148)  b=2196+(co2-106)*149;
+      else if(co2<=165)  b=8454+(co2-148)*244;
+      else               b=12602+(co2-165)*488;
     } else if(j===2024){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*104.74;
-      else if(co2<=155) b=2827.98+(co2-106)*209.48;
-      else if(co2<=205) b=13103.98+(co2-155)*418.96;
-      else b=34051.98+(co2-205)*837.92;
+      if(co2<=80)        b=440+co2*2;
+      else if(co2<=104)  b=600+(co2-80)*76;
+      else if(co2<=145)  b=2424+(co2-104)*167;
+      else if(co2<=161)  b=9271+(co2-145)*274;
+      else               b=13655+(co2-161)*549;
     } else if(j===2025){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*106.83;
-      else if(co2<=155) b=2884.41+(co2-106)*213.66;
-      else if(co2<=205) b=13363.41+(co2-155)*427.32;
-      else b=34729.41+(co2-205)*854.64;
+      if(co2<=79)        b=667+co2*2;
+      else if(co2<=101)  b=825+(co2-79)*79;
+      else if(co2<=141)  b=2563+(co2-101)*173;
+      else if(co2<=157)  b=9483+(co2-141)*284;
+      else               b=14027+(co2-157)*568;
     }
     return Math.round(b);
   }
 
-  function dieselWltp(co2, j){
-    let b=0;
-    if(j<=2020){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*99.23;
-      else if(co2<=155) b=2679.21+(co2-106)*198.46;
-      else if(co2<=205) b=12414.21+(co2-155)*396.92;
-      else b=32260.21+(co2-205)*793.84;
-    } else if(j===2021){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*131.24;
-      else if(co2<=155) b=3543.48+(co2-106)*262.48;
-      else if(co2<=205) b=16434.28+(co2-155)*524.96;
-      else b=42682.28+(co2-205)*1049.92;
-    } else if(j===2022){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*140.10;
-      else if(co2<=155) b=3782.70+(co2-106)*280.20;
-      else if(co2<=205) b=17540.70+(co2-155)*560.40;
-      else b=45560.70+(co2-205)*1120.80;
-    } else if(j===2023){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*149.64;
-      else if(co2<=155) b=4040.28+(co2-106)*299.28;
-      else if(co2<=205) b=18734.28+(co2-155)*598.56;
-      else b=48662.28+(co2-205)*1197.12;
-    } else if(j===2024){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*157.11;
-      else if(co2<=155) b=4241.97+(co2-106)*314.22;
-      else if(co2<=205) b=19649.97+(co2-155)*628.44;
-      else b=51069.97+(co2-205)*1256.88;
-    } else if(j===2025){
-      if(co2<=79) b=0;
-      else if(co2<=106) b=(co2-79)*160.25;
-      else if(co2<=155) b=4326.75+(co2-106)*320.50;
-      else if(co2<=205) b=20051.25+(co2-155)*641.00;
-      else b=52101.25+(co2-205)*1282.00;
-    }
-    return Math.round(b);
+  function dieselToeslag(co2, j){
+    const toeslagDrempel = {2019:61, 2020:80, 2021:77, 2022:75, 2023:73, 2024:71, 2025:70};
+    const toeslagBedrag = {2019:88.43, 2020:78.82, 2021:83.59, 2022:86.67, 2023:94.30, 2024:106.07, 2025:109.87};
+    const jaar2 = Math.min(j, 2025);
+    const drempel = toeslagDrempel[jaar2] || 70;
+    const bedrag = toeslagBedrag[jaar2] || 109.87;
+    return co2 > drempel ? Math.round((co2 - drempel) * bedrag) : 0;
   }
 
   function benzineNedc(co2, j){
     let b=0;
-    if(j<=2020){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*79.22;
-      else if(co2<=131) b=1822.06+(co2-90)*158.44;
-      else if(co2<=173) b=8318.10+(co2-131)*316.88;
-      else b=21627.06+(co2-173)*633.76;
-    } else if(j===2021){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*104.72;
-      else if(co2<=131) b=2408.56+(co2-90)*209.44;
-      else if(co2<=173) b=11000.60+(co2-131)*418.88;
-      else b=28592.76+(co2-173)*837.76;
-    } else if(j===2022){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*111.85;
-      else if(co2<=131) b=2572.55+(co2-90)*223.70;
-      else if(co2<=173) b=11744.05+(co2-131)*447.40;
-      else b=30534.85+(co2-173)*894.80;
-    } else if(j===2023){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*119.40;
-      else if(co2<=131) b=2746.20+(co2-90)*238.80;
-      else if(co2<=173) b=12532.20+(co2-131)*477.60;
-      else b=32591.40+(co2-173)*955.20;
-    } else if(j===2024){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*125.38;
-      else if(co2<=131) b=2883.74+(co2-90)*250.76;
-      else if(co2<=173) b=13163.90+(co2-131)*501.52;
-      else b=34228.54+(co2-173)*1003.04;
-    } else if(j===2025){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*127.88;
-      else if(co2<=131) b=2941.24+(co2-90)*255.76;
-      else if(co2<=173) b=13427.00+(co2-131)*511.52;
-      else b=34910.84+(co2-173)*1023.04;
-    }
-    return Math.round(b);
-  }
-
-  function dieselNedc(co2, j){
-    let b=0;
-    if(j<=2020){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*118.83;
-      else if(co2<=131) b=2733.09+(co2-90)*237.66;
-      else if(co2<=173) b=12477.15+(co2-131)*475.32;
-      else b=32440.59+(co2-173)*950.64;
-    } else if(j===2021){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*157.08;
-      else if(co2<=131) b=3612.84+(co2-90)*314.16;
-      else if(co2<=173) b=16483.40+(co2-131)*628.32;
-      else b=42879.14+(co2-173)*1256.64;
-    } else if(j===2022){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*167.78;
-      else if(co2<=131) b=3858.94+(co2-90)*335.56;
-      else if(co2<=173) b=17601.30+(co2-131)*671.12;
-      else b=45788.34+(co2-173)*1342.24;
-    } else if(j===2023){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*179.10;
-      else if(co2<=131) b=4119.30+(co2-90)*358.20;
-      else if(co2<=173) b=18798.10+(co2-131)*716.40;
-      else b=48887.50+(co2-173)*1432.80;
-    } else if(j===2024){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*188.07;
-      else if(co2<=131) b=4325.61+(co2-90)*376.14;
-      else if(co2<=173) b=19742.49+(co2-131)*752.28;
-      else b=51338.25+(co2-173)*1504.56;
-    } else if(j===2025){
-      if(co2<=67) b=0;
-      else if(co2<=90) b=(co2-67)*191.82;
-      else if(co2<=131) b=4411.86+(co2-90)*383.64;
-      else if(co2<=173) b=20145.42+(co2-131)*767.28;
-      else b=52391.58+(co2-173)*1534.56;
+    if(j<=2018){
+      if(co2<=73)        b=356+co2*2;
+      else if(co2<=98)   b=502+(co2-73)*63;
+      else if(co2<=144)  b=2077+(co2-98)*139;
+      else if(co2<=162)  b=8471+(co2-144)*229;
+      else               b=12593+(co2-162)*458;
+    } else if(j===2019){
+      if(co2<=71)        b=360+co2*2;
+      else if(co2<=95)   b=502+(co2-71)*60;
+      else if(co2<=139)  b=1942+(co2-95)*131;
+      else if(co2<=156)  b=7706+(co2-139)*215;
+      else               b=11361+(co2-156)*429;
+    } else {
+      if(co2<=68)        b=366+co2*2;
+      else if(co2<=91)   b=502+(co2-68)*59;
+      else if(co2<=133)  b=1859+(co2-91)*129;
+      else if(co2<=150)  b=7277+(co2-133)*212;
+      else               b=10881+(co2-150)*424;
     }
     return Math.round(b);
   }
 
   if(norm==='wltp'){
-    if(bs==='diesel') return dieselWltp(co2, jaar);
-    return benzineWltp(co2, jaar);
+    const base = benzineWltp(co2, jaar);
+    if(bs==='diesel') return base + dieselToeslag(co2, jaar);
+    return base;
   } else {
-    if(bs==='diesel') return dieselNedc(co2, jaar);
-    return benzineNedc(co2, jaar);
+    const base = benzineNedc(co2, jaar);
+    if(bs==='diesel'){
+      const toeslagDrempelNedc = {2018:63, 2019:61, 2020:59};
+      const toeslagBedragNedc = {2018:87.38, 2019:88.43, 2020:89.85};
+      const j2 = Math.min(jaar, 2020);
+      const drempel = toeslagDrempelNedc[j2] || 59;
+      const bedrag = toeslagBedragNedc[j2] || 89.85;
+      const toeslag = co2 > drempel ? Math.round((co2-drempel)*bedrag) : 0;
+      return base + toeslag;
+    }
+    return base;
   }
 }
 
