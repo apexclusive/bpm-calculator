@@ -1300,10 +1300,7 @@ function calToday(e,id){
       const cur=i===n.getMonth()&&s.y===n.getFullYear()&&!sel;
       let cl='cal-m';if(sel)cl+=' active';if(cur)cl+=' cur-m';
       if(fut)h+=`<button class="${cl}" disabled>${m}</button>`;
-      else h+=`<button class="${
-User: geef restant code
-Model: ```javascript
-cl}" onclick="calSelM(event,'${id}',${i})">${m}</button>`;
+      else h+=`<button class="${cl}" onclick="calSelM(event,'${id}',${i})">${m}</button>`;
     });
     h+=`</div>`;
   }else{
@@ -2146,3 +2143,4 @@ const io=new IntersectionObserver(entries=>{
 },{threshold:.06});
 document.querySelectorAll('.rv,.ey').forEach(el=>io.observe(el));
   </script> </body> </html>
+
