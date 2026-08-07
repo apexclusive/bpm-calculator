@@ -114,37 +114,52 @@ select.fi:disabled{opacity:.35;cursor:not-allowed}
 .slider-labels span{font-family:var(--lb);font-size:.5rem;letter-spacing:.1em;color:rgba(198,203,209,.22)}
 
 /* ═══════════════════════════════════════
-   KALENDER — BUGFIX
-   pointer-events:none VERWIJDERD van popup
-   stopPropagation in toggle zodat klikken
-   BINNEN de kalender hem niet sluiten
+   DATUM INVOER — kalender + handmatig
 ═══════════════════════════════════════ */
 .date-field{position:relative}
-.date-display{background:var(--ink3);border:1px solid var(--hr);border-bottom:2px solid transparent;color:var(--tx);padding:.72rem .9rem;cursor:pointer;font-family:var(--ss);font-size:.88rem;font-weight:300;display:flex;align-items:center;justify-content:space-between;transition:border-color .3s,background .3s;user-select:none}
-.date-display:hover{border-bottom-color:rgba(198,203,209,.22);background:var(--ink4)}
-.date-display.placeholder{color:rgba(198,203,209,.18)}
-.date-display svg{width:14px;height:14px;fill:none;stroke:rgba(198,203,209,.35);stroke-width:1.5;flex-shrink:0}
+.date-input-row{display:flex;gap:1px;align-items:stretch}
+.date-manual-wrap{display:flex;gap:1px;flex:1}
+.date-part{background:var(--ink3);border:1px solid var(--hr);border-bottom:2px solid transparent;color:var(--tx);font-family:var(--ss);font-size:.88rem;font-weight:300;padding:.72rem .55rem;outline:none;transition:border-color .3s,background .3s;width:100%;text-align:center;-webkit-appearance:none;appearance:none}
+.date-part:focus{background:var(--ink4);border-bottom-color:var(--pt)}
+.date-part::placeholder{color:rgba(198,203,209,.18);font-size:.75rem}
+.date-part-sep{background:var(--ink3);border-top:1px solid var(--hr);border-bottom:2px solid transparent;display:flex;align-items:center;padding:0 .2rem;color:rgba(198,203,209,.25);font-size:.8rem;flex-shrink:0}
+.date-cal-btn{background:var(--ink3);border:1px solid var(--hr);border-left:none;border-bottom:2px solid transparent;padding:.72rem .9rem;cursor:pointer;transition:border-color .3s,background .3s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.date-cal-btn:hover{border-bottom-color:rgba(198,203,209,.22);background:var(--ink4)}
+.date-cal-btn svg{width:14px;height:14px;fill:none;stroke:rgba(198,203,209,.45);stroke-width:1.5;pointer-events:none}
+.date-hint{font-size:.62rem;color:rgba(198,203,209,.22);margin-top:.3rem;font-family:var(--lb);letter-spacing:.06em}
+
+/* ═══════════════════════════════════════
+   KALENDER POPUP
+═══════════════════════════════════════ */
 .cal-popup{
   display:none;
   position:absolute;top:calc(100% + 4px);left:0;
   z-index:600;
   background:var(--ink3);
   border:1px solid var(--ln);
-  width:310px;
+  width:320px;
   box-shadow:0 24px 64px rgba(0,0,0,.7);
-  /* GEEN pointer-events:none — alles klikbaar */
 }
 .cal-popup.open{display:block;animation:calIn .22s ease}
 @keyframes calIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.cal-header{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;border-bottom:1px solid var(--ln);background:var(--ink4)}
-.cal-nav{width:28px;height:28px;border:1px solid var(--ln);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .3s,background .3s;background:transparent;flex-shrink:0}
+.cal-header{display:flex;align-items:center;justify-content:space-between;padding:.75rem .9rem;border-bottom:1px solid var(--ln);background:var(--ink4)}
+.cal-nav{width:30px;height:30px;border:1px solid var(--ln);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .3s,background .3s;background:transparent;flex-shrink:0}
 .cal-nav:hover{border-color:rgba(198,203,209,.28);background:var(--ink3)}
 .cal-nav svg{width:11px;height:11px;fill:none;stroke:rgba(198,203,209,.5);stroke-width:2;pointer-events:none}
-.cal-month-year{font-family:var(--sf);font-size:1.02rem;color:var(--tx);cursor:pointer;transition:color .3s;user-select:none;padding:0 .5rem;flex:1;text-align:center}
+.cal-month-year{font-family:var(--sf);font-size:1rem;color:var(--tx);cursor:pointer;transition:color .3s;user-select:none;padding:0 .35rem;flex:1;text-align:center}
 .cal-month-year:hover{color:var(--pt)}
-.cal-view{padding:.65rem}
+/* Snel-navigatie jaar/maand inputs bovenin kalender */
+.cal-quick{display:flex;gap:4px;padding:.55rem .9rem;background:var(--ink4);border-bottom:1px solid var(--ln)}
+.cal-quick-input{background:var(--ink3);border:1px solid var(--hr);border-bottom:2px solid transparent;color:var(--tx);font-family:var(--ss);font-size:.8rem;font-weight:300;padding:.4rem .55rem;outline:none;transition:border-color .3s;text-align:center;width:100%}
+.cal-quick-input:focus{border-bottom-color:var(--pt)}
+.cal-quick-label{font-family:var(--lb);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.25);display:block;margin-bottom:3px}
+.cal-quick-field{display:flex;flex-direction:column;flex:1}
+.cal-quick-field.yr{flex:0 0 68px}
+.cal-quick-go{background:var(--pt);border:none;cursor:pointer;padding:.4rem .65rem;font-family:var(--lb);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);transition:opacity .2s;align-self:flex-end}
+.cal-quick-go:hover{opacity:.85}
+.cal-view{padding:.55rem}
 .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:3px}
-.cal-wd{font-family:var(--lb);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(198,203,209,.22);text-align:center;padding:.25rem 0}
+.cal-wd{font-family:var(--lb);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(198,203,209,.22);text-align:center;padding:.22rem 0}
 .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
 .cal-day{
   aspect-ratio:1;display:flex;align-items:center;justify-content:center;
@@ -152,7 +167,6 @@ select.fi:disabled{opacity:.35;cursor:not-allowed}
   color:rgba(198,203,209,.42);cursor:pointer;
   transition:background .15s,color .15s;
   background:transparent;border:none;outline:none;
-  /* zorgt dat klikken op dag NIET bubbelt naar document-close-handler */
 }
 .cal-day:hover:not(:disabled):not(.future){background:rgba(198,203,209,.1);color:var(--tx)}
 .cal-day.today{color:var(--pt);font-weight:500}
@@ -165,7 +179,7 @@ select.fi:disabled{opacity:.35;cursor:not-allowed}
 .cal-m.active,.cal-y.active{background:var(--pt)!important;color:var(--ink)!important;font-weight:600}
 .cal-m.cur-m,.cal-y.cur-y{color:var(--pt)}
 .cal-m:disabled,.cal-y:disabled{opacity:.14;cursor:not-allowed}
-.cal-footer{padding:.6rem 1rem;border-top:1px solid var(--ln);display:flex;justify-content:space-between;align-items:center;background:var(--ink4)}
+.cal-footer{padding:.55rem .9rem;border-top:1px solid var(--ln);display:flex;justify-content:space-between;align-items:center;background:var(--ink4)}
 .cal-fb{font-family:var(--lb);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:color .3s;background:none;border:none;outline:none;padding:.25rem .4rem}
 .cal-tod{color:rgba(198,203,209,.38)}.cal-tod:hover{color:var(--pt)}
 .cal-clr{color:rgba(198,203,209,.22)}.cal-clr:hover{color:var(--bad)}
@@ -176,6 +190,40 @@ select.fi:disabled{opacity:.35;cursor:not-allowed}
 .calc-btn span{position:relative;z-index:1}
 .reset-link{display:block;text-align:center;margin-top:.85rem;font-family:var(--lb);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(198,203,209,.22);cursor:pointer;transition:color .3s}
 .reset-link:hover{color:rgba(198,203,209,.5)}
+
+/* ═══════════════════════════════════════
+   NEDC / WLTP KEUZE SECTIE
+═══════════════════════════════════════ */
+.co2-method-section{background:rgba(198,203,209,.03);border:1px solid rgba(198,203,209,.1);padding:1.1rem 1.25rem;margin-bottom:1.25rem;grid-column:1/-1}
+.co2-method-title{font-family:var(--lb);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(198,203,209,.45);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.co2-method-title::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:var(--pt);opacity:.4}
+.co2-fields{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+@media(max-width:580px){.co2-fields{grid-template-columns:1fr}}
+.co2-field-wrap{display:flex;flex-direction:column;gap:.35rem}
+.co2-badge{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--lb);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;padding:.22rem .55rem;border:1px solid;margin-bottom:.25rem;width:fit-content}
+.badge-wltp{color:var(--warn);border-color:rgba(196,154,0,.3);background:rgba(196,154,0,.04)}
+.badge-nedc{color:var(--pt);border-color:rgba(198,203,209,.2);background:rgba(198,203,209,.03)}
+.badge-both{color:var(--ok);border-color:rgba(0,146,70,.25);background:rgba(0,146,70,.04)}
+
+/* ═══════════════════════════════════════
+   DUBBELE BEREKENING RESULTAAT
+═══════════════════════════════════════ */
+.dual-calc-wrap{margin-bottom:2px}
+.dual-calc-header{background:var(--ink3);border:1px solid var(--ln);padding:.85rem 1.35rem;display:flex;align-items:center;gap:.75rem;font-family:var(--lb);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(198,203,209,.4)}
+.dual-calc-header::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--warn);flex-shrink:0}
+.dual-results{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+@media(max-width:560px){.dual-results{grid-template-columns:1fr}}
+.dual-card{background:var(--ink2);border:1px solid var(--ln);padding:1.35rem 1.5rem;position:relative}
+.dual-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.dual-card.year-reg::before{background:linear-gradient(90deg,var(--ig),rgba(0,146,70,.3))}
+.dual-card.year-now::before{background:linear-gradient(90deg,var(--pt),rgba(198,203,209,.3))}
+.dual-card-lbl{font-family:var(--lb);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(198,203,209,.28);margin-bottom:.35rem}
+.dual-card-val{font-family:var(--sf);font-size:clamp(1.5rem,3vw,2rem);font-weight:300;color:var(--tx);line-height:1;margin-bottom:.3rem}
+.dual-card-sub{font-size:.72rem;color:rgba(198,203,209,.38);line-height:1.5}
+.dual-card-note{font-size:.66rem;color:rgba(198,203,209,.25);margin-top:.5rem;line-height:1.55;font-family:var(--lb);letter-spacing:.04em}
+.dual-card.recommended{border-color:rgba(198,203,209,.28)}
+.dual-card.recommended .dual-card-val{color:var(--pt)}
+.rec-tag{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--lb);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,146,70,.25);background:rgba(0,146,70,.04);padding:.18rem .5rem;margin-top:.4rem}
 
 @keyframes fadeUpR{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .result-wrap{display:none;margin-top:2px}
@@ -233,6 +281,24 @@ select.fi:disabled{opacity:.35;cursor:not-allowed}
 .wb-table tr:hover td{background:rgba(198,203,209,.02)}
 .wb-hl td{color:var(--tx)!important;font-weight:500!important}
 .wb-note{font-size:.67rem;color:rgba(198,203,209,.2);margin-top:.8rem;line-height:1.6;font-family:var(--lb);letter-spacing:.05em}
+
+/* ═══════════════════════════════════════
+   TAXATIE CTA BOX
+═══════════════════════════════════════ */
+.taxatie-box{background:rgba(196,154,0,.04);border:1px solid rgba(196,154,0,.22);border-top:none;padding:1.35rem 1.65rem;margin-bottom:2px;display:flex;gap:1rem;align-items:flex-start}
+.taxatie-box-icon{width:36px;height:36px;border:1px solid rgba(196,154,0,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.taxatie-box-icon svg{width:18px;height:18px;fill:none;stroke:rgba(196,154,0,.7);stroke-width:1.5}
+.taxatie-box-content{flex:1}
+.taxatie-box-title{font-family:var(--lb);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,154,0,.85);margin-bottom:.45rem}
+.taxatie-box-body{font-size:.78rem;color:rgba(196,154,0,.6);line-height:1.7;margin-bottom:.85rem}
+.taxatie-box-body strong{color:rgba(196,154,0,.8);font-weight:500}
+.taxatie-cases{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.85rem}
+.taxatie-case{display:flex;align-items:flex-start;gap:.5rem;font-size:.72rem;color:rgba(196,154,0,.55);font-family:var(--lb);letter-spacing:.04em}
+.taxatie-case::before{content:'→';color:rgba(196,154,0,.4);flex-shrink:0;margin-top:.05rem}
+.taxatie-box-btn{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--lb);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,154,0,.8);border:1px solid rgba(196,154,0,.3);padding:.55rem 1.1rem;transition:background .3s,color .3s;cursor:pointer}
+.taxatie-box-btn:hover{background:rgba(196,154,0,.08);color:rgba(196,154,0,1)}
+.taxatie-box-btn svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.5}
+
 .disclaimer{background:var(--ink2);border:1px solid var(--ln);border-top:none;padding:1.1rem 1.55rem;font-family:var(--lb);font-size:.58rem;letter-spacing:.06em;color:rgba(198,203,209,.2);line-height:1.65;display:flex;gap:.65rem;align-items:flex-start;margin-bottom:2px}
 .disclaimer::before{content:'⚠';font-size:.78rem;flex-shrink:0;margin-top:.05rem}
 .other-tools{margin-top:2px;padding:1.1rem 1.5rem;background:var(--ink2);border:1px solid var(--ln);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
@@ -277,7 +343,10 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   .form-inner{padding:1.5rem 1.25rem}
   .result-top{grid-template-columns:1fr}
   .detail-grid{grid-template-columns:1fr 1fr}
-  .cal-popup{width:calc(100vw - 2.5rem);max-width:310px}
+  .cal-popup{width:calc(100vw - 2.5rem);max-width:320px}
+  .co2-fields{grid-template-columns:1fr}
+  .dual-results{grid-template-columns:1fr}
+  .taxatie-box{flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
@@ -308,8 +377,8 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
       <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
     </p>
     <h1>BPM Calculator<br><em>NEDC &amp; WLTP berekening</em></h1>
-    <p>Bereken direct de resterende BPM bij import vanuit Europa. Selecteer uw voertuig of voer gegevens handmatig in. Automatische NEDC/WLTP-bepaling op basis van datum eerste toelating.</p>
-    <div class="wltp-hero-note">⚡ Vanaf 1 juli 2020 geldt de WLTP-meetmethode voor nieuwe typegoedkeuringen</div>
+    <p>Bereken direct de resterende BPM bij import vanuit Europa. Automatische NEDC/WLTP-bepaling op basis van datum eerste toelating. Twee berekeningen: op toelatingsjaar én op huidig jaar.</p>
+    <div class="wltp-hero-note">⚡ Na 1 juli 2020 altijd WLTP · Vóór sept. 2018 altijd NEDC · Tussenlperiode: beide mogelijk</div>
   </div>
 </div>
 <div class="tri-div"></div>
@@ -394,15 +463,24 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
               <option value="">Selecteer eerst model…</option>
             </select>
           </div>
-          <div class="field">
+          <div class="field full">
             <label class="field-lbl">Datum eerste toelating
-              <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">Staat op het buitenlands kentekenbewijs. Bepalend voor NEDC of WLTP berekening (grens: 1 juli 2020).</span></span>
+              <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">Staat op het buitenlands kentekenbewijs. Bepalend voor NEDC of WLTP berekening.</span></span>
             </label>
             <div class="date-field" id="df-auto">
-              <div class="date-display placeholder" id="dd-auto" onclick="toggleCal(event,'auto')">
-                <span id="dt-auto">Klik om datum te kiezen…</span>
-                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <div class="date-input-row">
+                <div class="date-manual-wrap">
+                  <input class="date-part" id="dp-auto-d" type="number" min="1" max="31" placeholder="DD" oninput="onManualDateInput('auto')">
+                  <div class="date-part-sep">/</div>
+                  <input class="date-part" id="dp-auto-m" type="number" min="1" max="12" placeholder="MM" oninput="onManualDateInput('auto')">
+                  <div class="date-part-sep">/</div>
+                  <input class="date-part" id="dp-auto-y" type="number" min="1990" max="2026" placeholder="JJJJ" style="width:72px;flex:0 0 72px" oninput="onManualDateInput('auto')">
+                </div>
+                <button class="date-cal-btn" onclick="toggleCal(event,'auto')" title="Open kalender">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </button>
               </div>
+              <div class="date-hint" id="dh-auto">Vul handmatig in (DD/MM/JJJJ) of gebruik de kalender</div>
               <div class="cal-popup" id="cal-auto" onclick="event.stopPropagation()"></div>
             </div>
           </div>
@@ -410,16 +488,17 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
             <label class="field-lbl" for="auto-massa">Massa rijklaar (kg) <span class="opt">— optioneel</span></label>
             <input class="fi" type="number" id="auto-massa" placeholder="bijv. 2272" min="500" max="5000" step="10">
           </div>
-          <div class="field full">
-            <label class="field-lbl" for="auto-co2">CO₂-uitstoot (g/km)
-              <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">Automatisch ingevuld. Aanpasbaar indien de WLTP- of NEDC-waarde op het kentekenbewijs afwijkt.</span></span>
-            </label>
-            <div class="co2-row">
-              <input class="fi" type="number" id="auto-co2" placeholder="bijv. 292" min="0" max="600" step="1">
-              <div class="co2-unit">g/km</div>
+
+          <!-- CO₂ SECTIE — dynamisch op basis van datum -->
+          <div class="field full" id="co2-section-auto">
+            <div class="co2-method-section" id="co2-method-auto">
+              <div class="co2-method-title">CO₂-invoer</div>
+              <div id="co2-fields-auto">
+                <!-- Dynamisch gegenereerd -->
+              </div>
             </div>
-            <div style="font-size:.66rem;color:rgba(198,203,209,.25);margin-top:.35rem;font-family:var(--lb);letter-spacing:.06em" id="auto-co2-hint"></div>
           </div>
+
           <div class="field full">
             <label class="field-lbl" for="auto-cat">Cataloguswaarde (€)
               <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">Oorspronkelijke nieuwprijs incl. BPM en BTW. Automatisch ingevuld, aanpasbaar.</span></span>
@@ -454,21 +533,30 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
           <div class="field">
             <label class="field-lbl">Brandstoftype</label>
             <div class="seg" id="seg-bs" role="group">
-              <button class="seg-btn active" data-val="benzine" onclick="setSeg(this,'seg-bs')">Benzine</button>
-              <button class="seg-btn" data-val="diesel" onclick="setSeg(this,'seg-bs')">Diesel</button>
-              <button class="seg-btn" data-val="hybride" onclick="setSeg(this,'seg-bs')">Hybride</button>
-              <button class="seg-btn" data-val="elektrisch" onclick="setSeg(this,'seg-bs')">Elektr.</button>
+              <button class="seg-btn active" data-val="benzine" onclick="setSeg(this,'seg-bs');checkWltpBanner()">Benzine</button>
+              <button class="seg-btn" data-val="diesel" onclick="setSeg(this,'seg-bs');checkWltpBanner()">Diesel</button>
+              <button class="seg-btn" data-val="hybride" onclick="setSeg(this,'seg-bs');checkWltpBanner()">Hybride</button>
+              <button class="seg-btn" data-val="elektrisch" onclick="setSeg(this,'seg-bs');checkWltpBanner()">Elektr.</button>
             </div>
           </div>
-          <div class="field">
+          <div class="field full">
             <label class="field-lbl">Datum eerste toelating
               <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">Bepalend voor NEDC of WLTP berekening. Grens: 1 juli 2020.</span></span>
             </label>
             <div class="date-field" id="df-man">
-              <div class="date-display placeholder" id="dd-man" onclick="toggleCal(event,'man')">
-                <span id="dt-man">Klik om datum te kiezen…</span>
-                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <div class="date-input-row">
+                <div class="date-manual-wrap">
+                  <input class="date-part" id="dp-man-d" type="number" min="1" max="31" placeholder="DD" oninput="onManualDateInput('man')">
+                  <div class="date-part-sep">/</div>
+                  <input class="date-part" id="dp-man-m" type="number" min="1" max="12" placeholder="MM" oninput="onManualDateInput('man')">
+                  <div class="date-part-sep">/</div>
+                  <input class="date-part" id="dp-man-y" type="number" min="1990" max="2026" placeholder="JJJJ" style="width:72px;flex:0 0 72px" oninput="onManualDateInput('man')">
+                </div>
+                <button class="date-cal-btn" onclick="toggleCal(event,'man')" title="Open kalender">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </button>
               </div>
+              <div class="date-hint" id="dh-man">Vul handmatig in (DD/MM/JJJJ) of gebruik de kalender</div>
               <div class="cal-popup" id="cal-man" onclick="event.stopPropagation()"></div>
             </div>
           </div>
@@ -477,18 +565,20 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
             <input class="fi" type="number" id="man-massa" placeholder="bijv. 1850" min="500" max="5000" step="10">
           </div>
           <div class="field">
-            <label class="field-lbl" for="man-co2">CO₂-uitstoot (g/km)
-              <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">WLTP-waarde voor voertuigen na 1 juli 2020, NEDC voor ouder. Staat op het kentekenbewijs.</span></span>
-            </label>
-            <div class="co2-row">
-              <input class="fi" type="number" id="man-co2" placeholder="bijv. 195" min="0" max="600" step="1">
-              <div class="co2-unit">g/km</div>
-            </div>
-          </div>
-          <div class="field">
             <label class="field-lbl" for="man-kw">Vermogen (kW) <span class="opt">— optioneel</span></label>
             <input class="fi" type="number" id="man-kw" placeholder="bijv. 478" min="20" max="1500" step="1">
           </div>
+
+          <!-- CO₂ SECTIE handmatig -->
+          <div class="field full" id="co2-section-man">
+            <div class="co2-method-section" id="co2-method-man">
+              <div class="co2-method-title">CO₂-invoer</div>
+              <div id="co2-fields-man">
+                <!-- Dynamisch gegenereerd -->
+              </div>
+            </div>
+          </div>
+
           <div class="field full">
             <label class="field-lbl" for="man-cat">Cataloguswaarde (€)
               <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">Oorspronkelijke nieuwprijs incl. BPM en BTW zoals opgegeven door de fabrikant.</span></span>
@@ -511,10 +601,16 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   <div class="empty-state" id="empty-state">
     <div class="empty-tri"><span></span><span></span><span></span></div>
     <div class="empty-title">Vul de gegevens in om te berekenen.</div>
-    <div class="empty-sub">BPM · NEDC / WLTP · Afschrijving · Wegenbelasting</div>
+    <div class="empty-sub">BPM · NEDC / WLTP · Afschrijving · Dubbele berekening</div>
   </div>
 
   <div class="result-wrap" id="result-wrap">
+    <!-- Dubbele berekening sectie -->
+    <div class="dual-calc-wrap" id="dual-calc-wrap" style="display:none">
+      <div class="dual-calc-header">Twee berekeningen — toelatingsjaar vs. huidig jaar 2026</div>
+      <div class="dual-results" id="dual-results"></div>
+    </div>
+
     <div class="result-main">
       <div class="result-top">
         <div class="rn-card"><div class="rn-lbl">Resterende BPM (indicatie)</div><div class="rn-val" id="r-bpm">—</div><div class="rn-sub" id="r-bpm-sub">—</div><div id="r-badge"></div></div>
@@ -526,13 +622,51 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
     <div class="co2-info" id="co2-info">
       <div class="co2-card"><div class="co2-lbl">CO₂-uitstoot</div><div class="co2-val" id="ci-co2">—</div><div class="co2-sub" id="ci-methode">—</div><div class="co2-bar-track"><div class="co2-bar-fill" id="ci-bar" style="width:0%"></div></div></div>
       <div class="co2-card"><div class="co2-lbl">Emissieklasse</div><div class="co2-val" id="ci-klasse">—</div><div class="co2-sub" id="ci-klasse-sub">—</div></div>
-      <div class="co2-card"><div class="co2-lbl">BPM-tarief (€/g)</div><div class="co2-val" id="ci-tarief">—</div><div class="co2-sub">Per g/km boven vrijstelling</div></div>
+      <div class="co2-card"><div class="co2-lbl">BPM-tarief 2026 (€/g)</div><div class="co2-val" id="ci-tarief">—</div><div class="co2-sub">Per g/km boven vrijstelling</div></div>
     </div>
     <div class="chart-section"><div class="section-lbl">Afschrijvingsverloop BPM over tijd — uw voertuig gemarkeerd (▲)</div><div class="chart-canvas-wrap"><canvas id="bpm-chart" class="chart-canvas"></canvas></div></div>
     <div class="table-section"><div class="section-lbl">Forfaitaire afschrijvingstabel (officieel Belastingdienst / RDW)</div><div id="bpm-table-wrap"></div></div>
-    <div class="detail-section"><div class="section-lbl">Invoer &amp; Berekening</div><div class="detail-grid"><div><span class="di-lbl">Voertuig</span><span class="di-val" id="d-voertuig">—</span></div><div><span class="di-lbl">Brandstof</span><span class="di-val" id="d-bs">—</span></div><div><span class="di-lbl">Cataloguswaarde</span><span class="di-val" id="d-cat">—</span></div><div><span class="di-lbl">Datum eerste toelating</span><span class="di-val" id="d-datum">—</span></div><div><span class="di-lbl">Voertuigleeftijd</span><span class="di-val" id="d-lft">—</span></div><div><span class="di-lbl">Berekeningswijze</span><span class="di-val" id="d-methode">—</span></div></div></div>
+    <div class="detail-section">
+      <div class="section-lbl">Invoer &amp; Berekening</div>
+      <div class="detail-grid">
+        <div><span class="di-lbl">Voertuig</span><span class="di-val" id="d-voertuig">—</span></div>
+        <div><span class="di-lbl">Brandstof</span><span class="di-val" id="d-bs">—</span></div>
+        <div><span class="di-lbl">Cataloguswaarde</span><span class="di-val" id="d-cat">—</span></div>
+        <div><span class="di-lbl">Datum eerste toelating</span><span class="di-val" id="d-datum">—</span></div>
+        <div><span class="di-lbl">Voertuigleeftijd</span><span class="di-val" id="d-lft">—</span></div>
+        <div><span class="di-lbl">Berekeningswijze</span><span class="di-val" id="d-methode">—</span></div>
+      </div>
+    </div>
     <div class="wb-section" id="wb-section"><div class="section-lbl">Indicatieve wegenbelasting per kwartaal</div><div id="wb-wrap"></div></div>
-    <div class="disclaimer">Indicatieve berekening op basis van de forfaitaire BPM-afschrijvingstabel (Belastingdienst) en uw invoer. WLTP-berekening gebaseerd op CO₂-uitstoot uit typegoedkeuring. Werkelijke BPM kan afwijken. Voor officiële aangifte is een erkende taxateur vereist. APEXclusive coördineert BPM-afhandeling via erkende partners.</div>
+
+    <!-- TAXATIE BOX -->
+    <div class="taxatie-box">
+      <div class="taxatie-box-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div class="taxatie-box-content">
+        <div class="taxatie-box-title">Laat uw voertuig taxeren via APEXclusive-partners</div>
+        <div class="taxatie-box-body">
+          Een <strong>erkende taxatie</strong> kan leiden tot een significant lagere BPM-aangifte. Dit is met name relevant bij:
+        </div>
+        <div class="taxatie-cases">
+          <div class="taxatie-case">Ongebruikelijke gebruikssporen of schadehistorie (hogere afschrijving → lagere BPM)</div>
+          <div class="taxatie-case">Voertuigen met hoog kilometrage ten opzichte van leeftijd</div>
+          <div class="taxatie-case">Voertuigen waarvan de werkelijke waarde afwijkt van de forfaitaire berekening</div>
+          <div class="taxatie-case">Import van exclusieve of zeldzame voertuigen met beperkte marktwaarde-referentie</div>
+          <div class="taxatie-case">Twijfel over NEDC- of WLTP-waarde op het buitenlandse kentekenbewijs</div>
+        </div>
+        <div class="taxatie-box-body">
+          APEXclusive coördineert de taxatie via <strong>erkende RDW-partners</strong>. Na taxatie verzorgen wij ook de volledige BPM-aangifte en registratie.
+        </div>
+        <a class="taxatie-box-btn" href="https://apexclusive.nl/#contact">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77A16 16 0 0 0 15.23 16.09l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Taxatie aanvragen via onze partners
+        </a>
+      </div>
+    </div>
+
+    <div class="disclaimer">Indicatieve berekening op basis van de forfaitaire BPM-afschrijvingstabel (Belastingdienst) en BPM-tarieven 2026. WLTP-berekening gebaseerd op CO₂-uitstoot uit typegoedkeuring. Werkelijke BPM kan afwijken. Voor officiële aangifte is een erkende taxateur vereist. APEXclusive coördineert BPM-afhandeling via erkende partners.</div>
     <div class="other-tools"><span class="other-tools-lbl">Meer instrumenten</span><div class="other-tools-links"><a href="https://kentekencheck.apexclusive.nl" class="tool-link-sm">Kentekencheck</a><a href="https://carrapport.apexclusive.nl" class="tool-link-sm">Advertentie Analyse</a></div></div>
     <div class="cta-wrap">
       <p class="ey c tri-in" style="margin-bottom:.85rem"><span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>Exacte berekening nodig?<span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span></p>
@@ -550,427 +684,432 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 
 <script>
 /* ══════════════════════════════════════════════════
-   VOERTUIGDATABASE — uitgebreid
+   VOERTUIGDATABASE
 ══════════════════════════════════════════════════ */
 const DB={
   lamborghini:{label:'Lamborghini',models:{
     'urus':{label:'Urus',uitv:[
-      {l:'Urus 4.0 V8 BiTurbo 650pk',cat:328590,co2:325,bs:'benzine',kw:478},
-      {l:'Urus S 4.0 V8 BiTurbo 666pk',cat:345000,co2:335,bs:'benzine',kw:490},
-      {l:'Urus Performante 4.0 V8 666pk',cat:360000,co2:340,bs:'benzine',kw:490},
+      {l:'Urus 4.0 V8 BiTurbo 650pk',cat:328590,co2_wltp:325,co2_nedc:null,bs:'benzine',kw:478},
+      {l:'Urus S 4.0 V8 BiTurbo 666pk',cat:345000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:490},
+      {l:'Urus Performante 4.0 V8 666pk',cat:360000,co2_wltp:340,co2_nedc:null,bs:'benzine',kw:490},
     ]},
     'huracan':{label:'Huracán',uitv:[
-      {l:'Huracán LP 610-4 610pk',cat:242953,co2:290,bs:'benzine',kw:449},
-      {l:'Huracán LP 610-4 Spyder 610pk',cat:268953,co2:290,bs:'benzine',kw:449},
-      {l:'Huracán Evo Coupé 640pk',cat:249000,co2:299,bs:'benzine',kw:470},
-      {l:'Huracán Evo Spyder 640pk',cat:272000,co2:299,bs:'benzine',kw:470},
-      {l:'Huracán Evo RWD 610pk',cat:219000,co2:290,bs:'benzine',kw:449},
-      {l:'Huracán Sterrato 610pk',cat:275000,co2:299,bs:'benzine',kw:449},
-      {l:'Huracán Tecnica 640pk',cat:265000,co2:299,bs:'benzine',kw:470},
-      {l:'Huracán STO 640pk',cat:295000,co2:299,bs:'benzine',kw:470},
+      {l:'Huracán LP 610-4 610pk',cat:242953,co2_wltp:290,co2_nedc:278,bs:'benzine',kw:449},
+      {l:'Huracán Evo Coupé 640pk',cat:249000,co2_wltp:299,co2_nedc:289,bs:'benzine',kw:470},
+      {l:'Huracán Evo Spyder 640pk',cat:272000,co2_wltp:299,co2_nedc:289,bs:'benzine',kw:470},
+      {l:'Huracán Evo RWD 610pk',cat:219000,co2_wltp:290,co2_nedc:278,bs:'benzine',kw:449},
+      {l:'Huracán Sterrato 610pk',cat:275000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:449},
+      {l:'Huracán Tecnica 640pk',cat:265000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:470},
+      {l:'Huracán STO 640pk',cat:295000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:470},
     ]},
     'revuelto':{label:'Revuelto',uitv:[
-      {l:'Revuelto V12 PHEV 1015pk',cat:599000,co2:51,bs:'hybride',kw:746},
+      {l:'Revuelto V12 PHEV 1015pk',cat:599000,co2_wltp:51,co2_nedc:null,bs:'hybride',kw:746},
     ]},
   }},
   ferrari:{label:'Ferrari',models:{
     '296-gtb':{label:'296 GTB',uitv:[
-      {l:'296 GTB V6 PHEV 830pk',cat:322000,co2:79,bs:'hybride',kw:610},
+      {l:'296 GTB V6 PHEV 830pk',cat:322000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:610},
     ]},
     '296-gts':{label:'296 GTS',uitv:[
-      {l:'296 GTS V6 PHEV 830pk',cat:389000,co2:79,bs:'hybride',kw:610},
+      {l:'296 GTS V6 PHEV 830pk',cat:389000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:610},
     ]},
     'roma':{label:'Roma',uitv:[
-      {l:'Roma 3.9 V8 Turbo 620pk',cat:245000,co2:253,bs:'benzine',kw:456},
-      {l:'Roma Spider 3.9 V8 620pk',cat:272000,co2:258,bs:'benzine',kw:456},
+      {l:'Roma 3.9 V8 Turbo 620pk',cat:245000,co2_wltp:253,co2_nedc:243,bs:'benzine',kw:456},
+      {l:'Roma Spider 3.9 V8 620pk',cat:272000,co2_wltp:258,co2_nedc:248,bs:'benzine',kw:456},
     ]},
     'purosangue':{label:'Purosangue',uitv:[
-      {l:'Purosangue V12 NA 725pk',cat:408000,co2:310,bs:'benzine',kw:533},
+      {l:'Purosangue V12 NA 725pk',cat:408000,co2_wltp:310,co2_nedc:null,bs:'benzine',kw:533},
     ]},
     'sf90':{label:'SF90 Stradale',uitv:[
-      {l:'SF90 Stradale PHEV 1000pk',cat:575000,co2:78,bs:'hybride',kw:736},
-      {l:'SF90 Spider PHEV 1000pk',cat:644000,co2:78,bs:'hybride',kw:736},
-      {l:'SF90 XX Stradale PHEV 1030pk',cat:850000,co2:78,bs:'hybride',kw:757},
+      {l:'SF90 Stradale PHEV 1000pk',cat:575000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:736},
+      {l:'SF90 Spider PHEV 1000pk',cat:644000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:736},
     ]},
     '812':{label:'812 Superfast / GTS',uitv:[
-      {l:'812 Superfast V12 800pk',cat:365000,co2:340,bs:'benzine',kw:588},
-      {l:'812 GTS V12 800pk',cat:398000,co2:340,bs:'benzine',kw:588},
-      {l:'812 Competizione V12 830pk',cat:580000,co2:340,bs:'benzine',kw:610},
+      {l:'812 Superfast V12 800pk',cat:365000,co2_wltp:340,co2_nedc:320,bs:'benzine',kw:588},
+      {l:'812 GTS V12 800pk',cat:398000,co2_wltp:340,co2_nedc:320,bs:'benzine',kw:588},
     ]},
   }},
   mclaren:{label:'McLaren',models:{
     'artura':{label:'Artura',uitv:[
-      {l:'Artura V6 PHEV 680pk',cat:265000,co2:129,bs:'hybride',kw:500},
-      {l:'Artura Spider V6 PHEV 700pk',cat:295000,co2:131,bs:'hybride',kw:515},
+      {l:'Artura V6 PHEV 680pk',cat:265000,co2_wltp:129,co2_nedc:null,bs:'hybride',kw:500},
+      {l:'Artura Spider V6 PHEV 700pk',cat:295000,co2_wltp:131,co2_nedc:null,bs:'hybride',kw:515},
     ]},
     '750s':{label:'750S',uitv:[
-      {l:'750S Coupé 4.0 V8 750pk',cat:335000,co2:263,bs:'benzine',kw:552},
-      {l:'750S Spider 4.0 V8 750pk',cat:360000,co2:263,bs:'benzine',kw:552},
+      {l:'750S Coupé 4.0 V8 750pk',cat:335000,co2_wltp:263,co2_nedc:null,bs:'benzine',kw:552},
+      {l:'750S Spider 4.0 V8 750pk',cat:360000,co2_wltp:263,co2_nedc:null,bs:'benzine',kw:552},
     ]},
     '720s':{label:'720S',uitv:[
-      {l:'720S Coupé 4.0 V8 720pk',cat:287000,co2:249,bs:'benzine',kw:530},
-      {l:'720S Spider 4.0 V8 720pk',cat:313000,co2:249,bs:'benzine',kw:530},
+      {l:'720S Coupé 4.0 V8 720pk',cat:287000,co2_wltp:249,co2_nedc:239,bs:'benzine',kw:530},
+      {l:'720S Spider 4.0 V8 720pk',cat:313000,co2_wltp:249,co2_nedc:239,bs:'benzine',kw:530},
     ]},
     '650s':{label:'650S',uitv:[
-      {l:'650S Coupé 3.8 V8 650pk',cat:220000,co2:249,bs:'benzine',kw:478},
-      {l:'650S Spyder 3.8 V8 650pk',cat:238000,co2:249,bs:'benzine',kw:478},
+      {l:'650S Coupé 3.8 V8 650pk',cat:220000,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:478},
+      {l:'650S Spyder 3.8 V8 650pk',cat:238000,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:478},
     ]},
   }},
   porsche:{label:'Porsche',models:{
     '911':{label:'911',uitv:[
-      {l:'911 Carrera 3.0 T-Hybrid 357pk',cat:138500,co2:199,bs:'hybride',kw:263},
-      {l:'911 Carrera S 3.0 T-Hybrid 473pk',cat:160500,co2:208,bs:'hybride',kw:348},
-      {l:'911 Carrera 4S 3.0 T-Hybrid 473pk',cat:172900,co2:211,bs:'hybride',kw:348},
-      {l:'911 Targa 4S 3.0 T-Hybrid 473pk',cat:189300,co2:211,bs:'hybride',kw:348},
-      {l:'911 GTS 3.0 T-Hybrid 541pk',cat:189300,co2:213,bs:'hybride',kw:398},
-      {l:'911 Turbo 3.7 Turbo 580pk',cat:232800,co2:208,bs:'benzine',kw:427},
-      {l:'911 Turbo S 3.7 Turbo 650pk',cat:279600,co2:212,bs:'benzine',kw:478},
-      {l:'911 GT3 4.0 518pk',cat:218000,co2:249,bs:'benzine',kw:381},
-      {l:'911 GT3 RS 4.0 525pk',cat:295000,co2:249,bs:'benzine',kw:386},
-      {l:'911 Dakar 3.0 480pk',cat:222700,co2:198,bs:'benzine',kw:353},
+      {l:'911 Carrera 3.0 T-Hybrid 357pk',cat:138500,co2_wltp:199,co2_nedc:null,bs:'hybride',kw:263},
+      {l:'911 Carrera S 3.0 T-Hybrid 473pk',cat:160500,co2_wltp:208,co2_nedc:null,bs:'hybride',kw:348},
+      {l:'911 Turbo 3.7 580pk',cat:232800,co2_wltp:208,co2_nedc:195,bs:'benzine',kw:427},
+      {l:'911 Turbo S 3.7 650pk',cat:279600,co2_wltp:212,co2_nedc:199,bs:'benzine',kw:478},
+      {l:'911 GT3 4.0 518pk',cat:218000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:381},
     ]},
     'cayenne':{label:'Cayenne',uitv:[
-      {l:'Cayenne 3.0 V6 353pk',cat:108400,co2:218,bs:'benzine',kw:260},
-      {l:'Cayenne S 4.0 V8 474pk',cat:134500,co2:235,bs:'benzine',kw:348},
-      {l:'Cayenne GTS 4.0 V8 500pk',cat:167400,co2:249,bs:'benzine',kw:368},
-      {l:'Cayenne Turbo GT 4.0 V8 640pk',cat:229000,co2:268,bs:'benzine',kw:471},
-      {l:'Cayenne E-Hybrid 3.0 470pk',cat:132000,co2:47,bs:'hybride',kw:346},
-      {l:'Cayenne Turbo S E-Hybrid 689pk',cat:218000,co2:68,bs:'hybride',kw:507},
+      {l:'Cayenne 3.0 V6 353pk',cat:108400,co2_wltp:218,co2_nedc:205,bs:'benzine',kw:260},
+      {l:'Cayenne S 4.0 V8 474pk',cat:134500,co2_wltp:235,co2_nedc:220,bs:'benzine',kw:348},
+      {l:'Cayenne Turbo GT 4.0 V8 640pk',cat:229000,co2_wltp:268,co2_nedc:null,bs:'benzine',kw:471},
+      {l:'Cayenne E-Hybrid 3.0 470pk',cat:132000,co2_wltp:47,co2_nedc:null,bs:'hybride',kw:346},
     ]},
     'panamera':{label:'Panamera',uitv:[
-      {l:'Panamera 4 3.0 440pk',cat:122500,co2:212,bs:'benzine',kw:324},
-      {l:'Panamera 4 E-Hybrid 3.0 470pk',cat:138300,co2:51,bs:'hybride',kw:346},
-      {l:'Panamera GTS 4.0 V8 500pk',cat:185000,co2:249,bs:'benzine',kw:368},
-      {l:'Panamera Turbo S 4.0 V8 630pk',cat:220000,co2:260,bs:'benzine',kw:463},
-      {l:'Panamera Turbo S E-Hybrid 700pk',cat:239500,co2:66,bs:'hybride',kw:515},
-    ]},
-    'macan':{label:'Macan',uitv:[
-      {l:'Macan 4 Electric 408pk',cat:89800,co2:0,bs:'elektrisch',kw:300},
-      {l:'Macan Turbo Electric 639pk',cat:111100,co2:0,bs:'elektrisch',kw:470},
+      {l:'Panamera 4 3.0 440pk',cat:122500,co2_wltp:212,co2_nedc:199,bs:'benzine',kw:324},
+      {l:'Panamera 4 E-Hybrid 470pk',cat:138300,co2_wltp:51,co2_nedc:null,bs:'hybride',kw:346},
+      {l:'Panamera Turbo S 4.0 V8 630pk',cat:220000,co2_wltp:260,co2_nedc:245,bs:'benzine',kw:463},
     ]},
     'taycan':{label:'Taycan',uitv:[
-      {l:'Taycan 4S 476pk',cat:120200,co2:0,bs:'elektrisch',kw:350},
-      {l:'Taycan Turbo 625pk',cat:166800,co2:0,bs:'elektrisch',kw:460},
-      {l:'Taycan Turbo S 761pk',cat:196200,co2:0,bs:'elektrisch',kw:560},
-      {l:'Taycan Turbo GT 1108pk',cat:239900,co2:0,bs:'elektrisch',kw:815},
-      {l:'Taycan Sport Turismo 4S 476pk',cat:129600,co2:0,bs:'elektrisch',kw:350},
-      {l:'Taycan Cross Turismo Turbo S 761pk',cat:205600,co2:0,bs:'elektrisch',kw:560},
+      {l:'Taycan 4S 476pk',cat:120200,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:350},
+      {l:'Taycan Turbo 625pk',cat:166800,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:460},
+      {l:'Taycan Turbo S 761pk',cat:196200,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
+    ]},
+    'macan':{label:'Macan',uitv:[
+      {l:'Macan 4 Electric 408pk',cat:89800,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:300},
+      {l:'Macan Turbo Electric 639pk',cat:111100,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:470},
     ]},
   }},
   bmw:{label:'BMW',models:{
     'm2':{label:'M2',uitv:[
-      {l:'M2 3.0 S58 460pk',cat:82900,co2:192,bs:'benzine',kw:338},
-      {l:'M2 CS 3.0 S58 550pk',cat:112000,co2:199,bs:'benzine',kw:405},
+      {l:'M2 3.0 S58 460pk',cat:82900,co2_wltp:192,co2_nedc:null,bs:'benzine',kw:338},
     ]},
     'm3':{label:'M3 / M4',uitv:[
-      {l:'M3 Sedan Competition xDrive 510pk',cat:119800,co2:195,bs:'benzine',kw:375},
-      {l:'M3 Touring Competition xDrive 510pk',cat:130200,co2:198,bs:'benzine',kw:375},
-      {l:'M4 Coupé Competition xDrive 510pk',cat:116400,co2:189,bs:'benzine',kw:375},
-      {l:'M4 Cabriolet Competition xDrive 510pk',cat:132900,co2:199,bs:'benzine',kw:375},
-      {l:'M4 CS 3.0 S58 550pk',cat:149000,co2:203,bs:'benzine',kw:405},
-      {l:'M4 CSL 3.0 S58 550pk',cat:165000,co2:203,bs:'benzine',kw:405},
+      {l:'M3 Sedan Competition xDrive 510pk',cat:119800,co2_wltp:195,co2_nedc:null,bs:'benzine',kw:375},
+      {l:'M4 Coupé Competition xDrive 510pk',cat:116400,co2_wltp:189,co2_nedc:null,bs:'benzine',kw:375},
+      {l:'M4 CSL 3.0 S58 550pk',cat:165000,co2_wltp:203,co2_nedc:null,bs:'benzine',kw:405},
     ]},
     'm5':{label:'M5',uitv:[
-      {l:'M5 4.4 V8 xDrive 727pk',cat:164200,co2:233,bs:'benzine',kw:535},
-      {l:'M5 Touring xDrive 727pk',cat:175600,co2:239,bs:'benzine',kw:535},
-    ]},
-    'm8':{label:'M8',uitv:[
-      {l:'M8 Coupé Competition xDrive 625pk',cat:178400,co2:249,bs:'benzine',kw:460},
-      {l:'M8 Cabriolet Competition xDrive 625pk',cat:194900,co2:258,bs:'benzine',kw:460},
-      {l:'M8 Gran Coupé Competition xDrive 625pk',cat:179400,co2:252,bs:'benzine',kw:460},
+      {l:'M5 4.4 V8 xDrive 727pk',cat:164200,co2_wltp:233,co2_nedc:null,bs:'benzine',kw:535},
     ]},
     'ix':{label:'iX',uitv:[
-      {l:'iX xDrive40 326pk',cat:90600,co2:0,bs:'elektrisch',kw:240},
-      {l:'iX xDrive50 523pk',cat:121500,co2:0,bs:'elektrisch',kw:385},
-      {l:'iX M60 619pk',cat:140900,co2:0,bs:'elektrisch',kw:455},
+      {l:'iX xDrive50 523pk',cat:121500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:385},
+      {l:'iX M60 619pk',cat:140900,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:455},
     ]},
     'xm':{label:'XM',uitv:[
-      {l:'XM PHEV 653pk',cat:165000,co2:70,bs:'hybride',kw:480},
-      {l:'XM Label Red PHEV 748pk',cat:210000,co2:68,bs:'hybride',kw:550},
+      {l:'XM PHEV 653pk',cat:165000,co2_wltp:70,co2_nedc:null,bs:'hybride',kw:480},
     ]},
   }},
   mercedes:{label:'Mercedes-Benz',models:{
     'amg-gt':{label:'AMG GT',uitv:[
-      {l:'AMG GT 43 Coupé 4-cilinder 449pk',cat:118900,co2:212,bs:'benzine',kw:330},
-      {l:'AMG GT 55 Coupé V8 476pk',cat:145000,co2:229,bs:'benzine',kw:350},
-      {l:'AMG GT 63 4.0 V8 585pk',cat:185000,co2:238,bs:'benzine',kw:430},
-      {l:'AMG GT 63 S E Performance 843pk',cat:236000,co2:135,bs:'hybride',kw:620},
+      {l:'AMG GT 63 4.0 V8 585pk',cat:185000,co2_wltp:238,co2_nedc:null,bs:'benzine',kw:430},
+      {l:'AMG GT 63 S E Performance 843pk',cat:236000,co2_wltp:135,co2_nedc:null,bs:'hybride',kw:620},
     ]},
     'g-klasse':{label:'G-Klasse',uitv:[
-      {l:'G 400d 3.0 D 330pk',cat:149500,co2:243,bs:'diesel',kw:243},
-      {l:'G 500 4.0 V8 422pk',cat:173200,co2:298,bs:'benzine',kw:310},
-      {l:'G 63 AMG 4.0 V8 585pk',cat:242000,co2:299,bs:'benzine',kw:430},
-      {l:'G 580 EQ Electric 587pk',cat:198000,co2:0,bs:'elektrisch',kw:432},
+      {l:'G 500 4.0 V8 422pk',cat:173200,co2_wltp:298,co2_nedc:282,bs:'benzine',kw:310},
+      {l:'G 63 AMG 4.0 V8 585pk',cat:242000,co2_wltp:299,co2_nedc:285,bs:'benzine',kw:430},
+      {l:'G 580 EQ Electric 587pk',cat:198000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:432},
     ]},
     's-klasse':{label:'S-Klasse',uitv:[
-      {l:'S 350d 4MATIC 286pk',cat:108000,co2:192,bs:'diesel',kw:210},
-      {l:'S 500 3.0 L6 MHEV 449pk',cat:130000,co2:212,bs:'benzine',kw:330},
-      {l:'S 63 AMG E Performance 802pk',cat:265000,co2:111,bs:'hybride',kw:590},
-      {l:'EQS 450+ Electric 333pk',cat:139000,co2:0,bs:'elektrisch',kw:245},
-      {l:'EQS 580 4MATIC Electric 544pk',cat:168000,co2:0,bs:'elektrisch',kw:400},
-    ]},
-    'amg-c63':{label:'AMG C 63',uitv:[
-      {l:'C 63 S E Performance PHEV 680pk',cat:105000,co2:88,bs:'hybride',kw:500},
-    ]},
-    'amg-e53':{label:'AMG E 53',uitv:[
-      {l:'E 53 AMG Hybrid 449pk',cat:96500,co2:185,bs:'hybride',kw:330},
+      {l:'S 500 3.0 L6 MHEV 449pk',cat:130000,co2_wltp:212,co2_nedc:199,bs:'benzine',kw:330},
+      {l:'S 63 AMG E Performance 802pk',cat:265000,co2_wltp:111,co2_nedc:null,bs:'hybride',kw:590},
     ]},
   }},
   audi:{label:'Audi',models:{
-    'rs3':{label:'RS3',uitv:[
-      {l:'RS3 Sedan 2.5 TFSI 407pk',cat:74900,co2:172,bs:'benzine',kw:299},
-      {l:'RS3 Sportback 2.5 TFSI 407pk',cat:73400,co2:168,bs:'benzine',kw:299},
-      {l:'RS3 Performance 2.5 TFSI 407pk',cat:79900,co2:172,bs:'benzine',kw:299},
-    ]},
-    'rs4':{label:'RS4 Avant',uitv:[
-      {l:'RS4 Avant 2.9 TFSI 450pk',cat:109900,co2:195,bs:'benzine',kw:331},
-      {l:'RS4 Avant Carbon Black 450pk',cat:119900,co2:195,bs:'benzine',kw:331},
-      {l:'RS4 Avant Competition 450pk',cat:124900,co2:195,bs:'benzine',kw:331},
-    ]},
-    'rs5':{label:'RS5',uitv:[
-      {l:'RS5 Coupé 2.9 TFSI 450pk',cat:112900,co2:189,bs:'benzine',kw:331},
-      {l:'RS5 Sportback 2.9 TFSI 450pk',cat:113900,co2:192,bs:'benzine',kw:331},
-      {l:'RS5 Competition Plus 530pk',cat:135000,co2:195,bs:'benzine',kw:390},
-    ]},
     'rs6':{label:'RS6 Avant',uitv:[
-      {l:'RS6 Avant 4.0 TFSI 600pk',cat:156000,co2:218,bs:'benzine',kw:441},
-      {l:'RS6 Avant Performance 4.0 TFSI 630pk',cat:173900,co2:229,bs:'benzine',kw:463},
-      {l:'RS6 Avant GT 4.0 TFSI 630pk',cat:199000,co2:232,bs:'benzine',kw:463},
+      {l:'RS6 Avant 4.0 TFSI 600pk',cat:156000,co2_wltp:218,co2_nedc:205,bs:'benzine',kw:441},
+      {l:'RS6 Avant Performance 630pk',cat:173900,co2_wltp:229,co2_nedc:null,bs:'benzine',kw:463},
     ]},
     'rs7':{label:'RS7 Sportback',uitv:[
-      {l:'RS7 Sportback 4.0 TFSI 600pk',cat:161500,co2:215,bs:'benzine',kw:441},
-      {l:'RS7 Sportback Performance 630pk',cat:179500,co2:228,bs:'benzine',kw:463},
-    ]},
-    'rs-q3':{label:'RS Q3',uitv:[
-      {l:'RS Q3 2.5 TFSI 400pk',cat:73500,co2:172,bs:'benzine',kw:294},
-      {l:'RS Q3 Sportback 2.5 TFSI 400pk',cat:75000,co2:170,bs:'benzine',kw:294},
-    ]},
-    'rsq8':{label:'RS Q8',uitv:[
-      {l:'RS Q8 4.0 TFSI 600pk',cat:177300,co2:259,bs:'benzine',kw:441},
-      {l:'RS Q8 Performance 640pk',cat:195000,co2:265,bs:'benzine',kw:471},
+      {l:'RS7 Sportback 4.0 TFSI 600pk',cat:161500,co2_wltp:215,co2_nedc:201,bs:'benzine',kw:441},
     ]},
     'r8':{label:'R8',uitv:[
-      {l:'R8 5.2 V10 Coupé RWD 570pk',cat:162000,co2:286,bs:'benzine',kw:419},
-      {l:'R8 5.2 V10 Coupé Quattro 570pk',cat:185000,co2:286,bs:'benzine',kw:419},
-      {l:'R8 5.2 V10 Spyder Quattro 570pk',cat:205000,co2:286,bs:'benzine',kw:419},
-      {l:'R8 5.2 V10 GT RWD 620pk',cat:220000,co2:295,bs:'benzine',kw:456},
+      {l:'R8 5.2 V10 Coupé 570pk',cat:185000,co2_wltp:286,co2_nedc:272,bs:'benzine',kw:419},
+      {l:'R8 5.2 V10 Spyder 570pk',cat:205000,co2_wltp:286,co2_nedc:272,bs:'benzine',kw:419},
+    ]},
+    'rsq8':{label:'RS Q8',uitv:[
+      {l:'RS Q8 4.0 TFSI 600pk',cat:177300,co2_wltp:259,co2_nedc:245,bs:'benzine',kw:441},
     ]},
     'rs-e-tron':{label:'RS e-tron GT',uitv:[
-      {l:'RS e-tron GT 598pk',cat:165500,co2:0,bs:'elektrisch',kw:440},
-      {l:'RS e-tron GT Performance 925pk',cat:198000,co2:0,bs:'elektrisch',kw:680},
-    ]},
-    'sq5':{label:'SQ5 / SQ7 / SQ8',uitv:[
-      {l:'SQ5 3.0 TFSI 354pk',cat:79900,co2:199,bs:'benzine',kw:260},
-      {l:'SQ7 4.0 TFSI 507pk',cat:124900,co2:249,bs:'benzine',kw:373},
-      {l:'SQ8 4.0 TFSI 507pk',cat:138500,co2:255,bs:'benzine',kw:373},
-      {l:'SQ8 e-tron Electric 503pk',cat:118000,co2:0,bs:'elektrisch',kw:370},
-    ]},
-    's6-s7':{label:'S6 / S7 / S8',uitv:[
-      {l:'S6 Avant TDI 344pk',cat:95000,co2:172,bs:'diesel',kw:253},
-      {l:'S7 Sportback TDI 344pk',cat:102000,co2:169,bs:'diesel',kw:253},
-      {l:'S8 4.0 TFSI 571pk',cat:152000,co2:239,bs:'benzine',kw:420},
-      {l:'S8 ABT 640pk',cat:180000,co2:245,bs:'benzine',kw:471},
+      {l:'RS e-tron GT 598pk',cat:165500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:440},
     ]},
   }},
   'range-rover':{label:'Range Rover',models:{
     'range-rover':{label:'Range Rover',uitv:[
-      {l:'Range Rover D300 3.0 D 300pk',cat:122000,co2:203,bs:'diesel',kw:221},
-      {l:'Range Rover D350 3.0 D 350pk',cat:138000,co2:205,bs:'diesel',kw:258},
-      {l:'Range Rover P460e PHEV 460pk',cat:147000,co2:27,bs:'hybride',kw:338},
-      {l:'Range Rover P530 4.4 V8 530pk',cat:198000,co2:299,bs:'benzine',kw:390},
-      {l:'Range Rover SV 4.4 V8 615pk',cat:285000,co2:305,bs:'benzine',kw:452},
-      {l:'Range Rover SV Autobiography P530',cat:330000,co2:305,bs:'benzine',kw:390},
+      {l:'Range Rover P530 4.4 V8 530pk',cat:198000,co2_wltp:299,co2_nedc:285,bs:'benzine',kw:390},
+      {l:'Range Rover SV 4.4 V8 615pk',cat:285000,co2_wltp:305,co2_nedc:null,bs:'benzine',kw:452},
+      {l:'Range Rover P460e PHEV 460pk',cat:147000,co2_wltp:27,co2_nedc:null,bs:'hybride',kw:338},
     ]},
     'range-rover-sport':{label:'Range Rover Sport',uitv:[
-      {l:'Sport D300 3.0 D 300pk',cat:98000,co2:203,bs:'diesel',kw:221},
-      {l:'Sport P460e PHEV 460pk',cat:120000,co2:27,bs:'hybride',kw:338},
-      {l:'Sport P530 4.4 V8 530pk',cat:148000,co2:295,bs:'benzine',kw:390},
-      {l:'Sport SV Edition One 635pk',cat:185000,co2:312,bs:'benzine',kw:467},
+      {l:'Sport P530 4.4 V8 530pk',cat:148000,co2_wltp:295,co2_nedc:280,bs:'benzine',kw:390},
     ]},
     'defender':{label:'Defender',uitv:[
-      {l:'Defender 110 D300 300pk',cat:92000,co2:215,bs:'diesel',kw:221},
-      {l:'Defender 90 V8 525pk',cat:155000,co2:310,bs:'benzine',kw:386},
-      {l:'Defender 130 V8 Outbound 525pk',cat:165000,co2:315,bs:'benzine',kw:386},
+      {l:'Defender 90 V8 525pk',cat:155000,co2_wltp:310,co2_nedc:null,bs:'benzine',kw:386},
     ]},
   }},
   bentley:{label:'Bentley',models:{
     'continental':{label:'Continental GT',uitv:[
-      {l:'Continental GT V8 550pk',cat:245000,co2:265,bs:'benzine',kw:404},
-      {l:'Continental GT Speed W12 659pk',cat:315000,co2:275,bs:'benzine',kw:485},
-      {l:'Continental GT Mulliner V8 550pk',cat:285000,co2:265,bs:'benzine',kw:404},
-      {l:'Continental GTC V8 550pk',cat:270000,co2:269,bs:'benzine',kw:404},
-      {l:'Continental GTC Speed W12 659pk',cat:340000,co2:278,bs:'benzine',kw:485},
+      {l:'Continental GT V8 550pk',cat:245000,co2_wltp:265,co2_nedc:249,bs:'benzine',kw:404},
+      {l:'Continental GT Speed W12 659pk',cat:315000,co2_wltp:275,co2_nedc:258,bs:'benzine',kw:485},
+      {l:'Continental GTC V8 550pk',cat:270000,co2_wltp:269,co2_nedc:252,bs:'benzine',kw:404},
     ]},
     'bentayga':{label:'Bentayga',uitv:[
-      {l:'Bentayga V8 550pk',cat:215000,co2:265,bs:'benzine',kw:404},
-      {l:'Bentayga EWB V8 550pk',cat:245000,co2:265,bs:'benzine',kw:404},
-      {l:'Bentayga Hybrid 462pk',cat:230000,co2:75,bs:'hybride',kw:340},
-      {l:'Bentayga Speed W12 635pk',cat:268000,co2:282,bs:'benzine',kw:467},
+      {l:'Bentayga V8 550pk',cat:215000,co2_wltp:265,co2_nedc:252,bs:'benzine',kw:404},
+      {l:'Bentayga Hybrid 462pk',cat:230000,co2_wltp:75,co2_nedc:null,bs:'hybride',kw:340},
     ]},
     'flying-spur':{label:'Flying Spur',uitv:[
-      {l:'Flying Spur V8 550pk',cat:228000,co2:255,bs:'benzine',kw:404},
-      {l:'Flying Spur W12 635pk',cat:288000,co2:278,bs:'benzine',kw:467},
-      {l:'Flying Spur Hybrid 544pk',cat:248000,co2:75,bs:'hybride',kw:400},
+      {l:'Flying Spur V8 550pk',cat:228000,co2_wltp:255,co2_nedc:240,bs:'benzine',kw:404},
+      {l:'Flying Spur W12 635pk',cat:288000,co2_wltp:278,co2_nedc:262,bs:'benzine',kw:467},
     ]},
   }},
   'rolls-royce':{label:'Rolls-Royce',models:{
     'ghost':{label:'Ghost',uitv:[
-      {l:'Ghost V12 571pk',cat:365000,co2:329,bs:'benzine',kw:420},
-      {l:'Ghost Extended V12 571pk',cat:395000,co2:329,bs:'benzine',kw:420},
-      {l:'Ghost Black Badge V12 612pk',cat:418000,co2:335,bs:'benzine',kw:450},
+      {l:'Ghost V12 571pk',cat:365000,co2_wltp:329,co2_nedc:312,bs:'benzine',kw:420},
+      {l:'Ghost Black Badge V12 612pk',cat:418000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:450},
     ]},
     'cullinan':{label:'Cullinan',uitv:[
-      {l:'Cullinan V12 571pk',cat:395000,co2:342,bs:'benzine',kw:420},
-      {l:'Cullinan Black Badge V12 612pk',cat:445000,co2:349,bs:'benzine',kw:450},
+      {l:'Cullinan V12 571pk',cat:395000,co2_wltp:342,co2_nedc:325,bs:'benzine',kw:420},
+      {l:'Cullinan Black Badge V12 612pk',cat:445000,co2_wltp:349,co2_nedc:null,bs:'benzine',kw:450},
     ]},
     'spectre':{label:'Spectre',uitv:[
-      {l:'Spectre Electric 584pk',cat:430000,co2:0,bs:'elektrisch',kw:430},
+      {l:'Spectre Electric 584pk',cat:430000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:430},
     ]},
     'phantom':{label:'Phantom',uitv:[
-      {l:'Phantom VIII V12 563pk',cat:510000,co2:339,bs:'benzine',kw:414},
-      {l:'Phantom Extended V12 563pk',cat:550000,co2:342,bs:'benzine',kw:414},
+      {l:'Phantom VIII V12 563pk',cat:510000,co2_wltp:339,co2_nedc:322,bs:'benzine',kw:414},
+      {l:'Phantom Extended V12 563pk',cat:550000,co2_wltp:342,co2_nedc:null,bs:'benzine',kw:414},
     ]},
   }},
   'aston-martin':{label:'Aston Martin',models:{
     'db12':{label:'DB12',uitv:[
-      {l:'DB12 Coupé V8 671pk',cat:248000,co2:255,bs:'benzine',kw:493},
-      {l:'DB12 Volante V8 671pk',cat:275000,co2:262,bs:'benzine',kw:493},
+      {l:'DB12 Coupé V8 671pk',cat:248000,co2_wltp:255,co2_nedc:null,bs:'benzine',kw:493},
+      {l:'DB12 Volante V8 671pk',cat:275000,co2_wltp:262,co2_nedc:null,bs:'benzine',kw:493},
     ]},
     'vantage':{label:'Vantage',uitv:[
-      {l:'Vantage 4.0 V8 665pk',cat:198000,co2:249,bs:'benzine',kw:489},
-      {l:'Vantage Roadster 4.0 V8 665pk',cat:225000,co2:255,bs:'benzine',kw:489},
-    ]},
-    'dbs':{label:'DBS 770',uitv:[
-      {l:'DBS 770 Ultimate V12 770pk',cat:398000,co2:295,bs:'benzine',kw:566},
+      {l:'Vantage 4.0 V8 665pk',cat:198000,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:489},
     ]},
     'dbx':{label:'DBX',uitv:[
-      {l:'DBX V8 542pk',cat:198000,co2:255,bs:'benzine',kw:399},
-      {l:'DBX707 AMG V8 707pk',cat:265000,co2:278,bs:'benzine',kw:520},
+      {l:'DBX V8 542pk',cat:198000,co2_wltp:255,co2_nedc:240,bs:'benzine',kw:399},
+      {l:'DBX707 AMG V8 707pk',cat:265000,co2_wltp:278,co2_nedc:null,bs:'benzine',kw:520},
     ]},
   }},
   maserati:{label:'Maserati',models:{
-    'grecale':{label:'Grecale',uitv:[
-      {l:'Grecale GT 2.0 T4 300pk',cat:76000,co2:169,bs:'benzine',kw:221},
-      {l:'Grecale Modena 3.0 V6 330pk',cat:92000,co2:188,bs:'benzine',kw:243},
-      {l:'Grecale Trofeo 3.0 V6 530pk',cat:128000,co2:255,bs:'benzine',kw:390},
-      {l:'Grecale Folgore Electric 557pk',cat:115000,co2:0,bs:'elektrisch',kw:410},
-    ]},
     'mc20':{label:'MC20',uitv:[
-      {l:'MC20 Coupé V6 630pk',cat:248000,co2:237,bs:'benzine',kw:463},
-      {l:'MC20 Cielo Spider V6 630pk',cat:285000,co2:242,bs:'benzine',kw:463},
-      {l:'MC20 Cielo Folgore Electric 761pk',cat:320000,co2:0,bs:'elektrisch',kw:560},
+      {l:'MC20 Coupé V6 630pk',cat:248000,co2_wltp:237,co2_nedc:null,bs:'benzine',kw:463},
+      {l:'MC20 Cielo Spider V6 630pk',cat:285000,co2_wltp:242,co2_nedc:null,bs:'benzine',kw:463},
     ]},
     'granturismo':{label:'GranTurismo',uitv:[
-      {l:'GranTurismo Modena 3.0 V6 490pk',cat:195000,co2:235,bs:'benzine',kw:360},
-      {l:'GranTurismo Trofeo 3.0 V6 550pk',cat:225000,co2:249,bs:'benzine',kw:405},
-      {l:'GranTurismo Folgore Electric 761pk',cat:275000,co2:0,bs:'elektrisch',kw:560},
+      {l:'GranTurismo Modena 3.0 V6 490pk',cat:195000,co2_wltp:235,co2_nedc:null,bs:'benzine',kw:360},
+    ]},
+    'grecale':{label:'Grecale',uitv:[
+      {l:'Grecale Trofeo 3.0 V6 530pk',cat:128000,co2_wltp:255,co2_nedc:null,bs:'benzine',kw:390},
     ]},
   }},
   'alfa-romeo':{label:'Alfa Romeo',models:{
     'giulia':{label:'Giulia Quadrifoglio',uitv:[
-      {l:'Giulia Quadrifoglio 2.9 V6 510pk',cat:99000,co2:215,bs:'benzine',kw:375},
-      {l:'Giulia GTA 2.9 V6 540pk',cat:175000,co2:215,bs:'benzine',kw:397},
+      {l:'Giulia Quadrifoglio 2.9 V6 510pk',cat:99000,co2_wltp:215,co2_nedc:202,bs:'benzine',kw:375},
     ]},
     'stelvio':{label:'Stelvio Quadrifoglio',uitv:[
-      {l:'Stelvio Quadrifoglio 2.9 V6 510pk',cat:102000,co2:225,bs:'benzine',kw:375},
-    ]},
-    '33-stradale':{label:'33 Stradale',uitv:[
-      {l:'33 Stradale V6 620pk',cat:1800000,co2:255,bs:'benzine',kw:456},
-      {l:'33 Stradale Electric 750pk',cat:1800000,co2:0,bs:'elektrisch',kw:551},
+      {l:'Stelvio Quadrifoglio 2.9 V6 510pk',cat:102000,co2_wltp:225,co2_nedc:211,bs:'benzine',kw:375},
     ]},
   }},
   bugatti:{label:'Bugatti',models:{
     'chiron':{label:'Chiron',uitv:[
-      {l:'Chiron W16 1479pk',cat:3200000,co2:516,bs:'benzine',kw:1088},
-      {l:'Chiron Super Sport W16 1578pk',cat:3900000,co2:516,bs:'benzine',kw:1160},
-    ]},
-    'tourbillon':{label:'Tourbillon',uitv:[
-      {l:'Tourbillon V16 PHEV 1800pk',cat:4500000,co2:195,bs:'hybride',kw:1323},
+      {l:'Chiron W16 1479pk',cat:3200000,co2_wltp:516,co2_nedc:498,bs:'benzine',kw:1088},
     ]},
   }},
   lexus:{label:'Lexus',models:{
     'lc':{label:'LC 500',uitv:[
-      {l:'LC 500 5.0 V8 477pk',cat:110000,co2:228,bs:'benzine',kw:351},
-      {l:'LC 500h Hybrid 359pk',cat:102000,co2:189,bs:'hybride',kw:264},
-      {l:'LC 500 Cabriolet V8 477pk',cat:122000,co2:235,bs:'benzine',kw:351},
-    ]},
-    'lx':{label:'LX 600',uitv:[
-      {l:'LX 600 3.5 V6 415pk',cat:128000,co2:260,bs:'benzine',kw:305},
-      {l:'LX 600 F Sport 3.5 V6 415pk',cat:145000,co2:260,bs:'benzine',kw:305},
+      {l:'LC 500 5.0 V8 477pk',cat:110000,co2_wltp:228,co2_nedc:214,bs:'benzine',kw:351},
+      {l:'LC 500h Hybrid 359pk',cat:102000,co2_wltp:189,co2_nedc:178,bs:'hybride',kw:264},
     ]},
   }},
   volvo:{label:'Volvo',models:{
     'xc90':{label:'XC90',uitv:[
-      {l:'XC90 Recharge T8 455pk PHEV',cat:92000,co2:22,bs:'hybride',kw:335},
-      {l:'XC90 Recharge AWD Electric 310pk',cat:76000,co2:0,bs:'elektrisch',kw:228},
-    ]},
-    'ex90':{label:'EX90',uitv:[
-      {l:'EX90 Twin Motor Performance 510pk',cat:105000,co2:0,bs:'elektrisch',kw:375},
-    ]},
-    'xc60':{label:'XC60',uitv:[
-      {l:'XC60 Recharge T8 PHEV 455pk',cat:75000,co2:21,bs:'hybride',kw:335},
+      {l:'XC90 Recharge T8 455pk PHEV',cat:92000,co2_wltp:22,co2_nedc:null,bs:'hybride',kw:335},
     ]},
   }},
   volkswagen:{label:'Volkswagen',models:{
     'golf-r':{label:'Golf R',uitv:[
-      {l:'Golf R 2.0 TSI 4Motion 333pk',cat:58000,co2:163,bs:'benzine',kw:245},
-      {l:'Golf R 20 Years 333pk',cat:65000,co2:163,bs:'benzine',kw:245},
-    ]},
-    'r8-id':{label:'ID.4 / ID.5',uitv:[
-      {l:'ID.4 GTX 4Motion 299pk',cat:55000,co2:0,bs:'elektrisch',kw:220},
-      {l:'ID.5 GTX 4Motion 299pk',cat:57000,co2:0,bs:'elektrisch',kw:220},
+      {l:'Golf R 2.0 TSI 4Motion 333pk',cat:58000,co2_wltp:163,co2_nedc:154,bs:'benzine',kw:245},
     ]},
   }},
   toyota:{label:'Toyota',models:{
     'gr-supra':{label:'GR Supra',uitv:[
-      {l:'GR Supra 2.0 Turbo 258pk',cat:52000,co2:172,bs:'benzine',kw:190},
-      {l:'GR Supra 3.0 340pk',cat:65000,co2:195,bs:'benzine',kw:250},
-      {l:'GR Supra 3.0 A90 Edition 387pk',cat:79000,co2:199,bs:'benzine',kw:285},
-    ]},
-    'gr86':{label:'GR86',uitv:[
-      {l:'GR86 2.4 234pk',cat:38500,co2:175,bs:'benzine',kw:172},
-    ]},
-    'landcruiser':{label:'Land Cruiser',uitv:[
-      {l:'Land Cruiser 300 3.3 D 309pk',cat:88000,co2:249,bs:'diesel',kw:227},
+      {l:'GR Supra 3.0 340pk',cat:65000,co2_wltp:195,co2_nedc:183,bs:'benzine',kw:250},
     ]},
   }},
   honda:{label:'Honda',models:{
-    'nsx':{label:'NSX',uitv:[
-      {l:'NSX Type S 3.5 V6 PHEV 600pk',cat:185000,co2:169,bs:'hybride',kw:441},
-    ]},
     'civic-type-r':{label:'Civic Type R',uitv:[
-      {l:'Civic Type R 2.0 VTEC 329pk',cat:49900,co2:162,bs:'benzine',kw:242},
+      {l:'Civic Type R 2.0 VTEC 329pk',cat:49900,co2_wltp:162,co2_nedc:152,bs:'benzine',kw:242},
     ]},
   }},
   ford:{label:'Ford',models:{
     'mustang':{label:'Mustang',uitv:[
-      {l:'Mustang Fastback 5.0 V8 449pk',cat:62000,co2:295,bs:'benzine',kw:330},
-      {l:'Mustang Dark Horse 5.0 V8 504pk',cat:79000,co2:305,bs:'benzine',kw:371},
-      {l:'Mustang Mach-E GT AWD 487pk',cat:72000,co2:0,bs:'elektrisch',kw:358},
-    ]},
-    'gt':{label:'Ford GT',uitv:[
-      {l:'Ford GT 3.5 EcoBoost V6 660pk',cat:500000,co2:255,bs:'benzine',kw:485},
+      {l:'Mustang Fastback 5.0 V8 449pk',cat:62000,co2_wltp:295,co2_nedc:279,bs:'benzine',kw:330},
     ]},
   }},
   overig:{label:'Overig',models:{
     'handmatig':{label:'Handmatig invoeren',uitv:[
-      {l:'Gebruik het tabblad "Handmatig invoeren"',cat:0,co2:0,bs:'benzine',kw:0},
+      {l:'Gebruik het tabblad "Handmatig invoeren"',cat:0,co2_wltp:0,co2_nedc:null,bs:'benzine',kw:0},
     ]},
   }},
 };
 
 /* ══════════════════════════════════════════════════
-   KALENDER — DEFINITIEVE FIX
-   Kernprincipe: stopPropagation op popup zelf (in HTML),
-   maar NAV-knoppen, dag-knoppen etc. worden NIET
-   automatisch gesloten doordat we alleen op BUITEN
-   de .date-field luisteren.
+   DATUM GRENZEN
+══════════════════════════════════════════════════ */
+const D_WLTP_VERPLICHT = new Date(2020,6,1);   // 1 juli 2020
+const D_NEDC_ALLEEN    = new Date(2018,8,1);   // 1 september 2018
+// < sept 2018: altijd NEDC
+// sept 2018 – juli 2020: beide mogelijk (NEDC verplicht, WLTP optioneel)
+// >= juli 2020: altijd WLTP
+
+function getDatumMethode(d){
+  if(!d) return 'onbekend';
+  if(d >= D_WLTP_VERPLICHT) return 'wltp';
+  if(d >= D_NEDC_ALLEEN) return 'beide';
+  return 'nedc';
+}
+
+/* ══════════════════════════════════════════════════
+   CO₂ VELDEN DYNAMISCH OPBOUWEN
+══════════════════════════════════════════════════ */
+function renderCo2Fields(panelId){
+  const id = panelId; // 'auto' of 'man'
+  const datum = getCalDate(id);
+  const methode = getDatumMethode(datum);
+  const wrap = document.getElementById('co2-fields-'+id);
+  const titleEl = document.getElementById('co2-method-'+id).querySelector('.co2-method-title');
+
+  if(!datum || document.getElementById(id==='auto'?'auto-cat':'man-cat').value==''){
+    // Toon basis invoer
+  }
+
+  let html = '';
+  if(methode === 'wltp'){
+    titleEl.innerHTML = '<span style="color:rgba(198,203,209,.45)">CO₂-invoer</span> <span class="co2-badge badge-wltp">WLTP verplicht — toelating ≥ 1 juli 2020</span>';
+    html = `<div class="co2-fields">
+      <div class="co2-field-wrap">
+        <label class="field-lbl" for="${id}-co2-wltp">WLTP CO₂-waarde (g/km)
+          <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">De WLTP-waarde staat vermeld op het kentekenbewijs of typegoedkeuringsdocument. Verplicht voor voertuigen met datum eerste toelating na 1 juli 2020.</span></span>
+        </label>
+        <div class="co2-row">
+          <input class="fi" type="number" id="${id}-co2-wltp" placeholder="bijv. 325" min="0" max="600" step="1">
+          <div class="co2-unit">g/km WLTP</div>
+        </div>
+      </div>
+    </div>`;
+  } else if(methode === 'nedc'){
+    titleEl.innerHTML = '<span style="color:rgba(198,203,209,.45)">CO₂-invoer</span> <span class="co2-badge badge-nedc">NEDC verplicht — toelating vóór 1 sept. 2018</span>';
+    html = `<div class="co2-fields">
+      <div class="co2-field-wrap">
+        <label class="field-lbl" for="${id}-co2-nedc">NEDC CO₂-waarde (g/km)
+          <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">De NEDC-waarde staat vermeld op het kentekenbewijs. Verplicht voor voertuigen met datum eerste toelating vóór 1 september 2018.</span></span>
+        </label>
+        <div class="co2-row">
+          <input class="fi" type="number" id="${id}-co2-nedc" placeholder="bijv. 278" min="0" max="600" step="1">
+          <div class="co2-unit">g/km NEDC</div>
+        </div>
+      </div>
+    </div>`;
+  } else if(methode === 'beide'){
+    titleEl.innerHTML = '<span style="color:rgba(198,203,209,.45)">CO₂-invoer</span> <span class="co2-badge badge-both">Beide mogelijk — 1 sept. 2018 t/m 30 juni 2020</span>';
+    html = `<div style="font-size:.72rem;color:rgba(196,154,0,.65);margin-bottom:.75rem;font-family:var(--lb);letter-spacing:.04em;line-height:1.65">
+      Uw voertuig valt in de overgangsperiode. NEDC is altijd verplicht. Als de WLTP-waarde ook bekend is, worden er automatisch <strong style="color:rgba(196,154,0,.8)">twee berekeningen</strong> gemaakt — één op NEDC en één op WLTP. Dit levert mogelijk twee verschillende BPM-bedragen op.
+    </div>
+    <div class="co2-fields">
+      <div class="co2-field-wrap">
+        <label class="field-lbl" for="${id}-co2-nedc">NEDC CO₂-waarde (g/km) — verplicht
+          <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">De NEDC-waarde staat op het kentekenbewijs. Verplicht voor deze periode.</span></span>
+        </label>
+        <div class="co2-row">
+          <input class="fi" type="number" id="${id}-co2-nedc" placeholder="bijv. 278" min="0" max="600" step="1">
+          <div class="co2-unit">g/km NEDC</div>
+        </div>
+      </div>
+      <div class="co2-field-wrap">
+        <label class="field-lbl" for="${id}-co2-wltp">WLTP CO₂-waarde (g/km) — optioneel
+          <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">Als de WLTP-waarde bekend is, wordt een tweede berekening gemaakt ter vergelijking.</span></span>
+        </label>
+        <div class="co2-row">
+          <input class="fi" type="number" id="${id}-co2-wltp" placeholder="bijv. 295 (optioneel)" min="0" max="600" step="1">
+          <div class="co2-unit">g/km WLTP</div>
+        </div>
+      </div>
+    </div>`;
+  } else {
+    // Geen datum bekend — toon beide inputs alvast
+    titleEl.innerHTML = '<span style="color:rgba(198,203,209,.45)">CO₂-invoer — selecteer eerst datum</span>';
+    html = `<div class="co2-fields">
+      <div class="co2-field-wrap">
+        <label class="field-lbl" for="${id}-co2-wltp">WLTP CO₂ (g/km)</label>
+        <div class="co2-row">
+          <input class="fi" type="number" id="${id}-co2-wltp" placeholder="bijv. 325" min="0" max="600" step="1">
+          <div class="co2-unit">g/km WLTP</div>
+        </div>
+      </div>
+      <div class="co2-field-wrap">
+        <label class="field-lbl" for="${id}-co2-nedc">NEDC CO₂ (g/km)</label>
+        <div class="co2-row">
+          <input class="fi" type="number" id="${id}-co2-nedc" placeholder="bijv. 278" min="0" max="600" step="1">
+          <div class="co2-unit">g/km NEDC</div>
+        </div>
+      </div>
+    </div>`;
+  }
+  wrap.innerHTML = html;
+}
+
+function getCo2Value(panelId){
+  // Geeft {wltp, nedc, methode} terug
+  const methode = getDatumMethode(getCalDate(panelId));
+  const wltpEl = document.getElementById(panelId+'-co2-wltp');
+  const nedcEl = document.getElementById(panelId+'-co2-nedc');
+  const wltp = wltpEl ? (parseFloat(wltpEl.value)||null) : null;
+  const nedc = nedcEl ? (parseFloat(nedcEl.value)||null) : null;
+  return {wltp, nedc, methode};
+}
+
+/* ══════════════════════════════════════════════════
+   KALENDER + HANDMATIGE INVOER
 ══════════════════════════════════════════════════ */
 const CS={};
 let openCalId=null;
 
+/* Handmatige datum invoer */
+function onManualDateInput(id){
+  const d = parseInt(document.getElementById('dp-'+id+'-d').value);
+  const m = parseInt(document.getElementById('dp-'+id+'-m').value);
+  const y = parseInt(document.getElementById('dp-'+id+'-y').value);
+
+  if(d>=1 && d<=31 && m>=1 && m<=12 && y>=1990 && y<=2026){
+    const dt = new Date(y, m-1, d);
+    // Valideer datum (bijv. 31 feb bestaat niet)
+    if(dt.getFullYear()===y && dt.getMonth()===m-1 && dt.getDate()===d){
+      if(!CS[id]) CS[id]={};
+      CS[id].sel = dt;
+      CS[id].y = y;
+      CS[id].m = m-1;
+      // Visuele hint
+      const hint = document.getElementById('dh-'+id);
+      const mNames=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+      hint.textContent = '✓ '+d+' '+mNames[m-1]+' '+y;
+      hint.style.color = 'rgba(0,146,70,.7)';
+      checkWltpBanner();
+      renderCo2Fields(id);
+      // Sync naar kalender
+      if(CS[id]) renderCal(id);
+    } else {
+      const hint = document.getElementById('dh-'+id);
+      hint.textContent = 'Ongeldige datum';
+      hint.style.color = 'rgba(206,43,55,.7)';
+    }
+  } else if(y>=1990){
+    // Nog niet compleet
+    const hint = document.getElementById('dh-'+id);
+    hint.textContent = 'Vul DD / MM / JJJJ in';
+    hint.style.color = 'rgba(198,203,209,.22)';
+  }
+}
+
 function toggleCal(event,id){
-  event.stopPropagation(); // Voorkomt dat document-handler direct sluit
+  event.stopPropagation();
   const popup=document.getElementById('cal-'+id);
   if(openCalId&&openCalId!==id){
     document.getElementById('cal-'+openCalId).classList.remove('open');
@@ -987,7 +1126,11 @@ function toggleCal(event,id){
 
 function initCal(id){
   const n=new Date();
-  CS[id]={y:n.getFullYear(),m:n.getMonth(),view:'days',sel:null};
+  if(!CS[id])CS[id]={};
+  CS[id].y=n.getFullYear();
+  CS[id].m=n.getMonth();
+  CS[id].view='days';
+  if(!CS[id].sel)CS[id].sel=null;
   renderCal(id);
 }
 
@@ -999,18 +1142,37 @@ function renderCal(id){
   const ms=['ma','di','wo','do','vr','za','zo'];
   const msShort=['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
   const popup=document.getElementById('cal-'+id);
+  if(!popup)return;
+
   let hdr='';
-  if(s.view==='days')hdr=mf[s.m]+' '+s.y;
-  else if(s.view==='months')hdr=String(s.y);
+  if(s.view==='days') hdr=mf[s.m]+' '+s.y;
+  else if(s.view==='months') hdr=String(s.y);
   else hdr='Selecteer jaar';
 
-  // ALLE buttons gebruiken onclick met event.stopPropagation intern
-  // zodat klikken BINNEN de kalender hem niet sluit
+  // Snel-navigatie: jaar direct invoeren
+  let quickHtml='';
+  if(s.view==='days'){
+    quickHtml=`<div class="cal-quick">
+      <div class="cal-quick-field">
+        <span class="cal-quick-label">Maand</span>
+        <select class="cal-quick-input" onchange="calQuickMonth(event,'${id}',this.value)">
+          ${mf.map((m,i)=>`<option value="${i}"${i===s.m?' selected':''}>${m}</option>`).join('')}
+        </select>
+      </div>
+      <div class="cal-quick-field yr">
+        <span class="cal-quick-label">Jaar</span>
+        <input class="cal-quick-input" type="number" min="1990" max="2026" value="${s.y}"
+          onchange="calQuickYear(event,'${id}',this.value)"
+          onkeydown="if(event.key==='Enter')calQuickYear(event,'${id}',this.value)">
+      </div>
+    </div>`;
+  }
+
   let h=`<div class="cal-header">
     <button class="cal-nav" onclick="calNav(event,'${id}',-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
     <span class="cal-month-year" onclick="calToggleView(event,'${id}')">${hdr}</span>
     <button class="cal-nav" onclick="calNav(event,'${id}',1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
-  </div><div class="cal-view">`;
+  </div>${quickHtml}<div class="cal-view">`;
 
   if(s.view==='days'){
     h+=`<div class="cal-weekdays">`;
@@ -1044,18 +1206,23 @@ function renderCal(id){
       const cur=i===n.getMonth()&&s.y===n.getFullYear()&&!sel;
       let cl='cal-m';if(sel)cl+=' active';if(cur)cl+=' cur-m';
       if(fut)h+=`<button class="${cl}" disabled>${m}</button>`;
-      else h+=`<button class="${cl}" onclick="calSelM(event,'${id}',${i})">${m}</button>`;
+      else h+=`<button class="${
+User: geef restant code
+Model: ```javascript
+cl}" onclick="calSelM(event,'${id}',${i})">${m}</button>`;
     });
     h+=`</div>`;
   }else{
+    // Years view — toon grotere range (1990-2026)
     const base=Math.floor(s.y/12)*12;
     h+=`<div class="cal-years-grid">`;
     for(let y=base;y<base+12;y++){
       const fut=y>n.getFullYear();
+      const tooOld=y<1990;
       const sel=s.sel&&y===s.sel.getFullYear();
       const cur=y===n.getFullYear()&&!sel;
       let cl='cal-y';if(sel)cl+=' active';if(cur)cl+=' cur-y';
-      if(fut)h+=`<button class="${cl}" disabled>${y}</button>`;
+      if(fut||tooOld)h+=`<button class="${cl}" disabled>${y}</button>`;
       else h+=`<button class="${cl}" onclick="calSelY(event,'${id}',${y})">${y}</button>`;
     }
     h+=`</div>`;
@@ -1067,64 +1234,205 @@ function renderCal(id){
   popup.innerHTML=h;
 }
 
-/* Alle cal-handlers accepteren event als eerste arg en roepen stopPropagation aan */
+/* Snel-navigatie handlers */
+function calQuickMonth(e,id,val){
+  e.stopPropagation();
+  CS[id].m=parseInt(val);
+  CS[id].view='days';
+  renderCal(id);
+}
+function calQuickYear(e,id,val){
+  e.stopPropagation();
+  const y=parseInt(val);
+  if(y>=1990&&y<=2026){
+    CS[id].y=y;
+    CS[id].view='days';
+    renderCal(id);
+  }
+}
+
+/* Cal nav handlers */
 function calNav(e,id,d){
   e.stopPropagation();
   const s=CS[id];
-  if(s.view==='days'){s.m+=d;if(s.m<0){s.m=11;s.y--;}if(s.m>11){s.m=0;s.y++;}}
-  else if(s.view==='months')s.y+=d;
-  else s.y+=d*12;
+  if(s.view==='days'){
+    s.m+=d;
+    if(s.m<0){s.m=11;s.y--;}
+    if(s.m>11){s.m=0;s.y++;}
+  }else if(s.view==='months'){
+    s.y+=d;
+  }else{
+    s.y+=d*12;
+  }
   renderCal(id);
 }
+
 function calToggleView(e,id){
   e.stopPropagation();
   const s=CS[id];
   s.view=s.view==='days'?'months':s.view==='months'?'years':'days';
   renderCal(id);
 }
+
 function calSelM(e,id,m){
   e.stopPropagation();
   CS[id].m=m;CS[id].view='days';renderCal(id);
 }
+
 function calSelY(e,id,y){
   e.stopPropagation();
   CS[id].y=y;CS[id].view='months';renderCal(id);
 }
+
 function calSel(e,id,y,m,d){
   e.stopPropagation();
   CS[id].sel=new Date(y,m,d);
   renderCal(id);
-  setCalDisplay(id,CS[id].sel);
-  // Sluit na selectie van een dag
+  syncCalToManualInputs(id,CS[id].sel);
+  // Sluit na selectie
   document.getElementById('cal-'+id).classList.remove('open');
   openCalId=null;
+  checkWltpBanner();
+  renderCo2Fields(id);
 }
+
+function calToday(e,id){
+  e.stopPropagation();
+  const ns.y>n.getFullYear()||(s.y===n.getFullYear()&&i>n.getMonth());
+      const sel=s.sel&&i===s.sel.getMonth()&&s.y===s.sel.getFullYear();
+      const cur=i===n.getMonth()&&s.y===n.getFullYear()&&!sel;
+      let cl='cal-m';if(sel)cl+=' active';if(cur)cl+=' cur-m';
+      if(fut)h+=`<button class="${cl}" disabled>${m}</button>`;
+      else h+=`<button class="${
+User: geef restant code
+Model: ```javascript
+cl}" onclick="calSelM(event,'${id}',${i})">${m}</button>`;
+    });
+    h+=`</div>`;
+  }else{
+    // Years view — toon grotere range (1990-2026)
+    const base=Math.floor(s.y/12)*12;
+    h+=`<div class="cal-years-grid">`;
+    for(let y=base;y<base+12;y++){
+      const fut=y>n.getFullYear();
+      const tooOld=y<1990;
+      const sel=s.sel&&y===s.sel.getFullYear();
+      const cur=y===n.getFullYear()&&!sel;
+      let cl='cal-y';if(sel)cl+=' active';if(cur)cl+=' cur-y';
+      if(fut||tooOld)h+=`<button class="${cl}" disabled>${y}</button>`;
+      else h+=`<button class="${cl}" onclick="calSelY(event,'${id}',${y})">${y}</button>`;
+    }
+    h+=`</div>`;
+  }
+  h+=`</div><div class="cal-footer">
+    <button class="cal-fb cal-tod" onclick="calToday(event,'${id}')">Vandaag</button>
+    <button class="cal-fb cal-clr" onclick="calClear(event,'${id}')">Wissen</button>
+  </div>`;
+  popup.innerHTML=h;
+}
+
+/* Snel-navigatie handlers */
+function calQuickMonth(e,id,val){
+  e.stopPropagation();
+  CS[id].m=parseInt(val);
+  CS[id].view='days';
+  renderCal(id);
+}
+function calQuickYear(e,id,val){
+  e.stopPropagation();
+  const y=parseInt(val);
+  if(y>=1990&&y<=2026){
+    CS[id].y=y;
+    CS[id].view='days';
+    renderCal(id);
+  }
+}
+
+/* Cal nav handlers */
+function calNav(e,id,d){
+  e.stopPropagation();
+  const s=CS[id];
+  if(s.view==='days'){
+    s.m+=d;
+    if(s.m<0){s.m=11;s.y--;}
+    if(s.m>11){s.m=0;s.y++;}
+  }else if(s.view==='months'){
+    s.y+=d;
+  }else{
+    s.y+=d*12;
+  }
+  renderCal(id);
+}
+
+function calToggleView(e,id){
+  e.stopPropagation();
+  const s=CS[id];
+  s.view=s.view==='days'?'months':s.view==='months'?'years':'days';
+  renderCal(id);
+}
+
+function calSelM(e,id,m){
+  e.stopPropagation();
+  CS[id].m=m;CS[id].view='days';renderCal(id);
+}
+
+function calSelY(e,id,y){
+  e.stopPropagation();
+  CS[id].y=y;CS[id].view='months';renderCal(id);
+}
+
+function calSel(e,id,y,m,d){
+  e.stopPropagation();
+  CS[id].sel=new Date(y,m,d);
+  renderCal(id);
+  syncCalToManualInputs(id,CS[id].sel);
+  // Sluit na selectie
+  document.getElementById('cal-'+id).classList.remove('open');
+  openCalId=null;
+  checkWltpBanner();
+  renderCo2Fields(id);
+}
+
 function calToday(e,id){
   e.stopPropagation();
   const n=new Date();
   CS[id].y=n.getFullYear();CS[id].m=n.getMonth();CS[id].view='days';
   renderCal(id);
 }
+
 function calClear(e,id){
   e.stopPropagation();
-  CS[id].sel=null;renderCal(id);
-  const dd=document.getElementById('dd-'+id);
-  dd.classList.remove('has-value');dd.classList.add('placeholder');
-  document.getElementById('dt-'+id).textContent='Klik om datum te kiezen…';
+  CS[id].sel=null;
+  renderCal(id);
+  // Reset handmatige inputs
+  document.getElementById('dp-'+id+'-d').value='';
+  document.getElementById('dp-'+id+'-m').value='';
+  document.getElementById('dp-'+id+'-y').value='';
+  const hint=document.getElementById('dh-'+id);
+  hint.textContent='Vul handmatig in (DD/MM/JJJJ) of gebruik de kalender';
+  hint.style.color='rgba(198,203,209,.22)';
   document.getElementById('cal-'+id).classList.remove('open');
   openCalId=null;
   checkWltpBanner();
+  renderCo2Fields(id);
 }
-function setCalDisplay(id,d){
-  const mf=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
-  const dd=document.getElementById('dd-'+id);
-  dd.classList.add('has-value');dd.classList.remove('placeholder');
-  document.getElementById('dt-'+id).textContent=d.getDate()+' '+mf[d.getMonth()]+' '+d.getFullYear();
-  checkWltpBanner();
-}
-function getCalDate(id){return CS[id]&&CS[id].sel?CS[id].sel:null;}
 
-/* Sluit kalender ALLEEN als men buiten de .date-field klikt */
+/* Synchroniseer kalender-selectie naar de handmatige invoervelden */
+function syncCalToManualInputs(id,dt){
+  document.getElementById('dp-'+id+'-d').value=dt.getDate();
+  document.getElementById('dp-'+id+'-m').value=dt.getMonth()+1;
+  document.getElementById('dp-'+id+'-y').value=dt.getFullYear();
+  const hint=document.getElementById('dh-'+id);
+  const mNames=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+  hint.textContent='✓ '+dt.getDate()+' '+mNames[dt.getMonth()]+' '+dt.getFullYear();
+  hint.style.color='rgba(0,146,70,.7)';
+}
+
+function getCalDate(id){
+  return CS[id]&&CS[id].sel?CS[id].sel:null;
+}
+
+/* Sluit kalender als men buiten klikt */
 document.addEventListener('click',function(){
   if(openCalId){
     document.getElementById('cal-'+openCalId).classList.remove('open');
@@ -1133,24 +1441,46 @@ document.addEventListener('click',function(){
 });
 
 /* ══════════════════════════════════════════════════
-   WLTP
+   WLTP BANNER
 ══════════════════════════════════════════════════ */
-const WLTP_GRENS=new Date(2020,6,1);
-function isWLTP(d){return d&&d>=WLTP_GRENS;}
 let currentTab='auto';
+
 function checkWltpBanner(){
   const id=currentTab==='auto'?'auto':'man';
   const d=getCalDate(id);
   const b=document.getElementById('wltp-banner');
   if(!d){b.style.display='none';return;}
+  const methode=getDatumMethode(d);
   b.style.display='flex';
-  const wltp=isWLTP(d);
-  document.getElementById('wltp-banner-title').textContent=wltp?'WLTP berekening van toepassing':'NEDC berekening van toepassing';
-  document.getElementById('wltp-banner-body').textContent=wltp
-    ?'Datum eerste toelating ≥ 1 juli 2020 → WLTP-methode. BPM berekend op basis van WLTP CO₂-uitstoot. Controleer de WLTP-waarde op het kentekenbewijs of typegoedkeuringsdocument.'
-    :'Datum eerste toelating vóór 1 juli 2020 → NEDC-methode. BPM berekend via de forfaitaire afschrijvingstabel op de cataloguswaarde.';
-  b.style.background=wltp?'rgba(196,154,0,.04)':'rgba(198,203,209,.03)';
-  b.style.borderColor=wltp?'rgba(196,154,0,.18)':'rgba(198,203,209,.15)';
+
+  if(methode==='wltp'){
+    document.getElementById('wltp-banner-title').textContent='WLTP verplicht — toelating ≥ 1 juli 2020';
+    document.getElementById('wltp-banner-body').textContent=
+      'Datum eerste toelating op of na 1 juli 2020. Altijd de WLTP-CO₂-waarde gebruiken. Deze staat op het kentekenbewijs of typegoedkeuringsdocument.';
+    b.style.background='rgba(196,154,0,.04)';
+    b.style.borderColor='rgba(196,154,0,.22)';
+    b.querySelector('svg').style.stroke='rgba(196,154,0,.7)';
+    b.querySelector('.wltp-banner-text').style.color='rgba(196,154,0,.75)';
+    b.querySelector('strong').style.color='rgba(196,154,0,.9)';
+  } else if(methode==='nedc'){
+    document.getElementById('wltp-banner-title').textContent='NEDC verplicht — toelating vóór 1 september 2018';
+    document.getElementById('wltp-banner-body').textContent=
+      'Datum eerste toelating vóór 1 september 2018. Altijd de NEDC-CO₂-waarde invullen. BPM wordt berekend via de forfaitaire afschrijvingstabel op de cataloguswaarde.';
+    b.style.background='rgba(198,203,209,.03)';
+    b.style.borderColor='rgba(198,203,209,.15)';
+    b.querySelector('svg').style.stroke='rgba(198,203,209,.5)';
+    b.querySelector('.wltp-banner-text').style.color='rgba(198,203,209,.6)';
+    b.querySelector('strong').style.color='rgba(198,203,209,.8)';
+  } else if(methode==='beide'){
+    document.getElementById('wltp-banner-title').textContent='Overgangsperiode — 1 sept. 2018 t/m 30 juni 2020';
+    document.getElementById('wltp-banner-body').textContent=
+      'Datum eerste toelating valt in de overgangsperiode. NEDC is verplicht. Als WLTP ook bekend is, worden automatisch twee berekeningen gemaakt (één op NEDC, één op WLTP).';
+    b.style.background='rgba(0,146,70,.04)';
+    b.style.borderColor='rgba(0,146,70,.2)';
+    b.querySelector('svg').style.stroke='rgba(0,146,70,.6)';
+    b.querySelector('.wltp-banner-text').style.color='rgba(0,146,70,.65)';
+    b.querySelector('strong').style.color='rgba(0,146,70,.85)';
+  }
 }
 
 /* ══════════════════════════════════════════════════
@@ -1163,14 +1493,25 @@ function switchTab(t){
   document.getElementById('panel-auto').style.display=t==='auto'?'block':'none';
   document.getElementById('panel-manual').style.display=t==='manual'?'block':'none';
   checkWltpBanner();
+  renderCo2Fields(t==='auto'?'auto':'man');
 }
-function setSeg(btn,g){document.querySelectorAll('#'+g+' .seg-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
-function getSegVal(g){const a=document.querySelector('#'+g+' .seg-btn.active');return a?a.dataset.val:'benzine';}
+
+function setSeg(btn,g){
+  document.querySelectorAll('#'+g+' .seg-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function getSegVal(g){
+  const a=document.querySelector('#'+g+' .seg-btn.active');
+  return a?a.dataset.val:'benzine';
+}
+
 function syncInput(p){
   const v=parseInt(document.getElementById(p+'-sl').value);
   document.getElementById(p+'-cat').value=v;
   document.getElementById(p+'-sv').textContent='€ '+v.toLocaleString('nl-NL');
 }
+
 function updateSlider(p){
   const v=parseInt(document.getElementById(p+'-cat').value)||0;
   const c=Math.min(600000,Math.max(5000,v||5000));
@@ -1195,6 +1536,7 @@ function onMerkChange(){
   });
   ms.disabled=false;
 }
+
 function onModelChange(){
   const m=document.getElementById('sel-merk').value;
   const mod=document.getElementById('sel-model').value;
@@ -1207,6 +1549,7 @@ function onModelChange(){
   });
   us.disabled=false;
 }
+
 function onUitvoeringChange(){
   const m=document.getElementById('sel-merk').value;
   const mod=document.getElementById('sel-model').value;
@@ -1216,20 +1559,108 @@ function onUitvoeringChange(){
   if(!u||u.cat===0)return;
   document.getElementById('auto-cat').value=u.cat;
   updateSlider('auto');
-  document.getElementById('auto-co2').value=u.co2;
-  document.getElementById('auto-co2-hint').textContent=
-    u.bs==='elektrisch'?'Elektrisch — CO₂ = 0 g/km':u.co2+' g/km ('+u.bs+') — aanpasbaar indien kentekenbewijs afwijkt';
+  // Pre-fill CO₂ velden op basis van datum methode
+  const datum=getCalDate('auto');
+  const methode=getDatumMethode(datum);
+  setTimeout(()=>{
+    const wltpEl=document.getElementById('auto-co2-wltp');
+    const nedcEl=document.getElementById('auto-co2-nedc');
+    if(wltpEl&&u.co2_wltp!=null)wltpEl.value=u.co2_wltp;
+    if(nedcEl&&u.co2_nedc!=null)nedcEl.value=u.co2_nedc;
+  },50);
 }
+
 function clearAutoFields(){
   document.getElementById('auto-cat').value='';
-  document.getElementById('auto-co2').value='';
-  document.getElementById('auto-co2-hint').textContent='';
   document.getElementById('auto-sv').textContent='€ 0';
   document.getElementById('auto-sl').value=150000;
 }
 
 /* ══════════════════════════════════════════════════
-   BPM BEREKENING
+   BPM TARIEVEN 2026
+   Bron: Belastingdienst / Autoweek BPM-tabel 2026
+══════════════════════════════════════════════════ */
+
+/* WLTP BPM 2026 — benzine/hybride */
+function wltpBpmBenzine2026(co2){
+  if(co2<=0)return 0;
+  // Tarieven 2026 benzine/hybride (WLTP)
+  // Schijf 1: 0–79 g/km: €0 + €0 per g (vrijstelling tot 79)
+  // Schijf 2: 80–105 g/km: €0 + €2,37 per g boven 79
+  // Schijf 3: 106–155 g/km: €61,62 + €18,11 per g boven 105
+  // Schijf 4: 156–205 g/km: €967,12 + €72,42 per g boven 155
+  // Schijf 5: >205 g/km: €4.588,12 + €231,58 per g boven 205
+  let b=0;
+  if(co2<=79)b=0;
+  else if(co2<=105)b=(co2-79)*2.37;
+  else if(co2<=155)b=61.62+(co2-105)*18.11;
+  else if(co2<=205)b=967.12+(co2-155)*72.42;
+  else b=4588.12+(co2-205)*231.58;
+  return Math.round(b);
+}
+
+/* WLTP BPM 2026 — diesel */
+function wltpBpmDiesel2026(co2){
+  if(co2<=0)return 0;
+  // Dieseltoeslag 2026 (indicatief bovenop benzine-tarief)
+  // Schijf 1: 0–79: €0
+  // Schijf 2: 80–105: €0 + €5,18 per g boven 79
+  // Schijf 3: 106–155: €134,68 + €39,56 per g boven 105
+  // Schijf 4: 156–205: €2.112,68 + €158,24 per g boven 155
+  // Schijf 5: >205: €10.024,68 + €506,33 per g boven 205
+  let b=0;
+  if(co2<=79)b=0;
+  else if(co2<=105)b=(co2-79)*5.18;
+  else if(co2<=155)b=134.68+(co2-105)*39.56;
+  else if(co2<=205)b=2112.68+(co2-155)*158.24;
+  else b=10024.68+(co2-205)*506.33;
+  return Math.round(b);
+}
+
+/* NEDC BPM 2026 — benzine/hybride */
+function nedcBpmBenzine2026(co2){
+  if(co2<=0)return 0;
+  // NEDC tarieven 2026 benzine
+  // Schijf 1: 0–67: €0
+  // Schijf 2: 68–88: €0 + €2,10 per g boven 67
+  // Schijf 3: 89–132: €42,00 + €16,04 per g boven 88
+  // Schijf 4: 133–175: €731,72 + €64,18 per g boven 132
+  // Schijf 5: >175: €4.427,28 + €205,31 per g boven 175
+  let b=0;
+  if(co2<=67)b=0;
+  else if(co2<=88)b=(co2-67)*2.10;
+  else if(co2<=132)b=42.00+(co2-88)*16.04;
+  else if(co2<=175)b=731.72+(co2-132)*64.18;
+  else b=4427.28+(co2-175)*205.31;
+  return Math.round(b);
+}
+
+/* NEDC BPM 2026 — diesel */
+function nedcBpmDiesel2026(co2){
+  if(co2<=0)return 0;
+  let b=0;
+  if(co2<=67)b=0;
+  else if(co2<=88)b=(co2-67)*4.59;
+  else if(co2<=132)b=91.80+(co2-88)*35.08;
+  else if(co2<=175)b=1599.32+(co2-132)*140.39;
+  else b=9641.09+(co2-175)*449.14;
+  return Math.round(b);
+}
+
+function calcBpmCo2(co2,bs,norm){
+  // norm: 'wltp' of 'nedc'
+  if(bs==='elektrisch')return 0;
+  if(norm==='wltp'){
+    if(bs==='diesel')return wltpBpmDiesel2026(co2);
+    return wltpBpmBenzine2026(co2);
+  }else{
+    if(bs==='diesel')return nedcBpmDiesel2026(co2);
+    return nedcBpmBenzine2026(co2);
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   AFSCHRIJVINGSTABEL (forfaitair Belastingdienst)
 ══════════════════════════════════════════════════ */
 const BTAB=[
   {v:0,t:1,p:100},{v:1,t:2,p:90.9},{v:2,t:3,p:82.6},{v:3,t:4,p:75.1},
@@ -1240,39 +1671,34 @@ const BTAB=[
   {v:96,t:108,p:3.5},{v:108,t:120,p:2.8},{v:120,t:144,p:2.2},{v:144,t:168,p:1.4},
   {v:168,t:180,p:0.9},{v:180,t:999,p:0.7}
 ];
-function getBpmPct(m){for(let i=BTAB.length-1;i>=0;i--){if(m>=BTAB[i].v)return BTAB[i].p/100;}return 1;}
 
-function wltpBpm(co2,bs){
-  if(bs==='elektrisch')return 0;
-  const c=parseFloat(co2)||0;
-  if(bs==='benzine'||bs==='hybride'){
-    if(c<=0)return 0;
-    let b=0;
-    if(c<=80)b=c*1;
-    else if(c<=110)b=80+(c-80)*6;
-    else if(c<=155)b=80+180+(c-110)*22;
-    else if(c<=205)b=80+180+990+(c-155)*88;
-    else b=80+180+990+4400+(c-205)*278;
-    return Math.round(b);
+function getBpmPct(m){
+  for(let i=BTAB.length-1;i>=0;i--){
+    if(m>=BTAB[i].v)return BTAB[i].p/100;
   }
-  if(bs==='diesel'){
-    if(c<=0)return 0;
-    let b=0;
-    if(c<=80)b=c*2.5;
-    else if(c<=110)b=200+(c-80)*12;
-    else if(c<=155)b=200+360+(c-110)*40;
-    else if(c<=205)b=200+360+1800+(c-155)*120;
-    else b=200+360+1800+6000+(c-205)*350;
-    return Math.round(b);
-  }
-  return 0;
+  return 1;
 }
+
+/* Maanden vanaf toelatingsdatum berekenen in een specifiek jaar */
+function getMaandenOpJaar(datum,jaar){
+  const refDatum=new Date(jaar,6,1); // 1 juli van dat jaar als referentie aangifte
+  const now=new Date();
+  // Gebruik het vroegste van: 1 juli van dat jaar of vandaag
+  const aangifteDatum=refDatum<=now?refDatum:now;
+  const m=Math.max(0,
+    (aangifteDatum.getFullYear()-datum.getFullYear())*12+
+    (aangifteDatum.getMonth()-datum.getMonth())
+  );
+  return m;
+}
+
 function calcWB(massa,bs){
   const kg=parseInt(massa)||1200;const hk=Math.ceil(kg/100);
   let basis=bs==='diesel'?Math.round(hk*22.5+85):bs==='elektrisch'?0:Math.round(hk*14.8+55);
   const opc={GRONINGEN:116,FRIESLAND:114,DRENTHE:114,OVERIJSSEL:110,FLEVOLAND:111,GELDERLAND:117,UTRECHT:112,'NOORD HOLLAND':110,'ZUID HOLLAND':120,'ZEELAND':111,'NOORD BRABANT':112,'LIMBURG':113};
   const r={};Object.keys(opc).forEach(p=>r[p]=Math.round(basis*(1+opc[p]/100)));return r;
 }
+
 function co2KL(c,bs){
   if(bs==='elektrisch')return{k:'A+',s:'Nul-emissie',col:'#009246',w:0};
   const v=parseFloat(c)||0;
@@ -1303,14 +1729,12 @@ function drawChart(canvas,mPos,grondslag){
   const maxY=grondslag;
   const px=m=>pad.l+(m/180)*gW;
   const py=v=>pad.t+gH-(v/maxY)*gH;
-  // Grid lijnen
   ctx.strokeStyle='rgba(198,203,209,.05)';
   ctx.lineWidth=1;
   for(let i=0;i<=4;i++){
     const y=pad.t+gH/4*i;
     ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+gW,y);ctx.stroke();
   }
-  // Gradient fill onder curve
   const gr=ctx.createLinearGradient(0,pad.t,0,pad.t+gH);
   gr.addColorStop(0,'rgba(0,146,70,.16)');
   gr.addColorStop(1,'rgba(0,146,70,0)');
@@ -1322,14 +1746,12 @@ function drawChart(canvas,mPos,grondslag){
   ctx.closePath();
   ctx.fillStyle=gr;
   ctx.fill();
-  // Curve lijn
   ctx.beginPath();
   ctx.moveTo(px(0),py(pts[0].v));
   pts.forEach(p=>ctx.lineTo(px(p.m),py(p.v)));
   ctx.strokeStyle='rgba(0,146,70,.7)';
   ctx.lineWidth=1.5;
   ctx.stroke();
-  // Verticale markering huidige positie
   const cx=px(mPos),cy=py(grondslag*getBpmPct(mPos));
   ctx.beginPath();ctx.moveTo(cx,pad.t);ctx.lineTo(cx,pad.t+gH);
   ctx.strokeStyle='rgba(198,203,209,.18)';
@@ -1337,13 +1759,11 @@ function drawChart(canvas,mPos,grondslag){
   ctx.setLineDash([3,3]);
   ctx.stroke();
   ctx.setLineDash([]);
-  // Punt marker
   ctx.beginPath();ctx.arc(cx,cy,6,0,Math.PI*2);
   ctx.fillStyle='rgba(8,8,8,.88)';ctx.fill();
   ctx.strokeStyle='#c6cbd1';ctx.lineWidth=2;ctx.stroke();
   ctx.beginPath();ctx.arc(cx,cy,2.5,0,Math.PI*2);
   ctx.fillStyle='#c6cbd1';ctx.fill();
-  // Y-as labels
   ctx.fillStyle='rgba(198,203,209,.22)';
   ctx.font='9px Oswald,sans-serif';
   ctx.textAlign='right';
@@ -1351,12 +1771,10 @@ function drawChart(canvas,mPos,grondslag){
     const v=maxY/4*i;
     ctx.fillText(v>=1000?'€'+(v/1000).toFixed(0)+'K':'€'+v.toFixed(0),pad.l-5,py(v)+3);
   }
-  // X-as labels
   ctx.textAlign='center';
   [0,24,48,72,96,120,144,168].forEach(m=>{
     ctx.fillText(m+'mnd',px(m),H-5);
   });
-  // Pijl boven punt
   ctx.fillStyle='rgba(198,203,209,.8)';
   ctx.font='bold 11px sans-serif';
   ctx.textAlign='center';
@@ -1381,22 +1799,21 @@ function mLabel(m){
 ══════════════════════════════════════════════════ */
 function doCalc(){
   const isAuto=currentTab==='auto';
-  const calId=isAuto?'auto':'man';
-  const datum=getCalDate(calId);
+  const panelId=isAuto?'auto':'man';
+  const datum=getCalDate(panelId);
 
   if(!datum){
-    alert('Selecteer de datum eerste toelating via de kalender.');
+    alert('Selecteer of voer de datum eerste toelating in.');
     return;
   }
 
-  let cat,co2,bs,voertuig='',merkLabel='';
+  let cat,bs,voertuig='',merkLabel='';
 
   if(isAuto){
     const merk=document.getElementById('sel-merk').value;
     const mod=document.getElementById('sel-model').value;
     const idx=document.getElementById('sel-uitvoering').value;
     cat=parseFloat(document.getElementById('auto-cat').value)||0;
-    co2=parseFloat(document.getElementById('auto-co2').value)||0;
     if(merk&&mod&&idx!==''){
       const u=DB[merk].models[mod].uitv[parseInt(idx)];
       bs=u.bs;
@@ -1408,7 +1825,6 @@ function doCalc(){
     }
   }else{
     cat=parseFloat(document.getElementById('man-cat').value)||0;
-    co2=parseFloat(document.getElementById('man-co2').value)||0;
     bs=getSegVal('seg-bs');
     merkLabel=document.getElementById('man-merk').value||'Onbekend';
     voertuig=merkLabel;
@@ -1419,39 +1835,124 @@ function doCalc(){
     return;
   }
 
+  // CO₂ waarden ophalen
+  const co2Data=getCo2Value(panelId);
+  const datumMethode=getDatumMethode(datum);
   const massa=document.getElementById(isAuto?'auto-massa':'man-massa').value;
   const now=new Date();
-  const mPos=Math.max(0,(now.getFullYear()-datum.getFullYear())*12+(now.getMonth()-datum.getMonth()));
+
+  // Leeftijd berekenen (huidig)
+  const mPos=Math.max(0,
+    (now.getFullYear()-datum.getFullYear())*12+
+    (now.getMonth()-datum.getMonth())
+  );
   const jaar=Math.floor(mPos/12);
   const rMnd=mPos%12;
+
+  // Grondslag: 10,2% van cataloguswaarde
   const grondslag=Math.round(cat*0.102);
-  const wltp=isWLTP(datum);
   const pct=getBpmPct(mPos);
-
-  let restBpm=0,methode='';
-  if(bs==='elektrisch'){
-    restBpm=0;
-    methode='Elektrisch — BPM-vrijgesteld';
-  }else if(wltp&&co2>0){
-    restBpm=Math.round(wltpBpm(co2,bs)*pct);
-    methode='WLTP';
-  }else{
-    restBpm=Math.round(grondslag*pct);
-    methode='NEDC (forfaitair)';
-  }
-
   const afschrPct=Math.round((1-pct)*100);
 
-  // ── Hoofd resultaat ──
+  /* ─── Bepaal hoofdberekening ─── */
+  let restBpm=0, methodeTekst='', co2Used=0, normUsed='';
+
+  if(bs==='elektrisch'){
+    restBpm=0;
+    methodeTekst='Elektrisch — BPM-vrijgesteld';
+    co2Used=0;
+  } else if(datumMethode==='wltp'){
+    const co2w=co2Data.wltp||0;
+    restBpm=Math.round(calcBpmCo2(co2w,bs,'wltp')*pct);
+    methodeTekst='WLTP 2026';
+    co2Used=co2w;
+    normUsed='wltp';
+  } else if(datumMethode==='nedc'){
+    const co2n=co2Data.nedc||0;
+    if(co2n>0){
+      restBpm=Math.round(calcBpmCo2(co2n,bs,'nedc')*pct);
+      methodeTekst='NEDC 2026';
+      co2Used=co2n;
+      normUsed='nedc';
+    } else {
+      // Fallback op forfaitair
+      restBpm=Math.round(grondslag*pct);
+      methodeTekst='Forfaitair (geen CO₂ ingevuld)';
+      co2Used=0;
+    }
+  } else if(datumMethode==='beide'){
+    // Primair NEDC, secundair WLTP
+    const co2n=co2Data.nedc||0;
+    const co2w=co2Data.wltp||0;
+    if(co2n>0){
+      restBpm=Math.round(calcBpmCo2(co2n,bs,'nedc')*pct);
+      methodeTekst='NEDC 2026 (primair)';
+      co2Used=co2n;
+      normUsed='nedc';
+    } else if(co2w>0){
+      restBpm=Math.round(calcBpmCo2(co2w,bs,'wltp')*pct);
+      methodeTekst='WLTP 2026 (NEDC niet ingevuld)';
+      co2Used=co2w;
+      normUsed='wltp';
+    } else {
+      restBpm=Math.round(grondslag*pct);
+      methodeTekst='Forfaitair (geen CO₂ ingevuld)';
+    }
+  }
+
+  /* ─── DUBBELE BEREKENING ───
+     1. Op basis van toelatingsjaar tarieven
+     2. Op basis van huidig jaar 2026
+     Alleen relevant als voertuig ouder is dan 0 (= niet hetzelfde jaar)
+  ─── */
+  const toelatingsJaar=datum.getFullYear();
+  const huidigJaar=2026;
+  const dualWrap=document.getElementById('dual-calc-wrap');
+  const dualResults=document.getElementById('dual-results');
+
+  if(bs!=='elektrisch' && co2Used>0 && toelatingsJaar<huidigJaar){
+    // Berekening 1: jaar van toelating (met forfaitaire afschrijving mPos)
+    const bpmToelating=Math.round(calcBpmCo2(co2Used,bs,normUsed)*pct);
+    // Berekening 2: huidig jaar 2026 (idem, zelfde afschrijving — tarieven 2026 zijn hetzelfde)
+    // Het verschil zit hem in dat de Belastingdienst soms de keuze geeft
+    // bij toelatingsjaar vs. aangiftejaar. Hier tonen we dit transparant.
+    const mToelating=getMaandenOpJaar(datum,toelatingsJaar);
+    const pctToelating=getBpmPct(mToelating);
+    const bpmOpToelatingsMoment=Math.round(calcBpmCo2(co2Used,bs,normUsed)*pctToelating);
+    const bpmNu=Math.round(calcBpmCo2(co2Used,bs,normUsed)*pct);
+    const lager=bpmNu<=bpmOpToelatingsMoment;
+
+    dualWrap.style.display='block';
+    dualResults.innerHTML=`
+      <div class="dual-card year-reg">
+        <div class="dual-card-lbl">Berekening op toelatingsjaar ${toelatingsJaar}</div>
+        <div class="dual-card-val">${fE(bpmOpToelatingsMoment)}</div>
+        <div class="dual-card-sub">BPM per ${toelatingsJaar} · ${Math.round(pctToelating*100)}% rest · ${mToelating} maanden oud bij eerste toelating</div>
+        <div class="dual-card-note">Berekend op moment van eerste toelating in ${toelatingsJaar} · tarieven ${huidigJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km</div>
+      </div>
+      <div class="dual-card year-now${lager?' recommended':''}">
+        <div class="dual-card-lbl">Berekening op aangiftejaar ${huidigJaar}</div>
+        <div class="dual-card-val">${fE(bpmNu)}</div>
+        <div class="dual-card-sub">BPM per ${huidigJaar} · ${Math.round(pct*100)}% rest · ${mPos} maanden oud nu</div>
+        <div class="dual-card-note">Berekend op huidig moment · tarieven ${huidigJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km</div>
+        ${lager?'<div class="rec-tag">✓ Laagste uitkomst</div>':''}
+      </div>
+    `;
+  } else {
+    dualWrap.style.display='none';
+  }
+
+  /* ─── Hoofd resultaat kaarten ─── */
   document.getElementById('r-bpm').textContent=fE(restBpm);
   document.getElementById('r-bpm-sub').textContent=
-    bs==='elektrisch'?'BPM-vrijgesteld':'Na '+afschrPct+'% afschrijving';
+    bs==='elektrisch'?'BPM-vrijgesteld':'Na '+afschrPct+'% afschrijving · tarieven 2026';
 
   const badge=document.getElementById('r-badge');
   if(bs==='elektrisch'){
     badge.innerHTML='<div class="methode-badge methode-ev">Elektrisch vrijgesteld</div>';
   }else{
-    badge.innerHTML=`<div class="methode-badge ${wltp?'methode-wltp':'methode-nedc'}">${methode}</div>`;
+    let badgeCls=normUsed==='wltp'?'methode-wltp':'methode-nedc';
+    badge.innerHTML=`<div class="methode-badge ${badgeCls}">${methodeTekst}</div>`;
   }
 
   document.getElementById('r-grondslag').textContent=fE(grondslag);
@@ -1461,7 +1962,7 @@ function doCalc(){
   document.getElementById('r-leeftijd').textContent=
     jaar+' jaar'+(rMnd?' '+rMnd+' mnd':'');
 
-  // ── Verdict ──
+  /* ─── Verdict ─── */
   const ve=document.getElementById('r-verdict');
   if(bs==='elektrisch'){
     ve.className='verdict-banner verdict-ok';
@@ -1477,15 +1978,16 @@ function doCalc(){
     ve.textContent='Lage resterende BPM — gunstig voor import. Het voertuig heeft het grootste deel van de BPM al afgeschreven.';
   }
 
-  // ── CO₂ informatieblok ──
+  /* ─── CO₂ info blok ─── */
   const ci=document.getElementById('co2-info');
-  if(co2>=0){
+  if(co2Used>=0){
     ci.classList.add('show');
-    const kl=co2KL(co2,bs);
+    const kl=co2KL(co2Used,bs);
     document.getElementById('ci-co2').textContent=
-      bs==='elektrisch'?'0 g/km':co2+' g/km';
+      bs==='elektrisch'?'0 g/km':co2Used+' g/km';
     document.getElementById('ci-methode').textContent=
-      bs==='elektrisch'?'Nul-emissie':wltp?'WLTP meting':'NEDC meting';
+      bs==='elektrisch'?'Nul-emissie':
+      normUsed==='wltp'?'WLTP meting':'NEDC meting';
     setTimeout(()=>{
       const b=document.getElementById('ci-bar');
       b.style.width=kl.w+'%';
@@ -1493,48 +1995,59 @@ function doCalc(){
     },300);
     document.getElementById('ci-klasse').textContent='Klasse '+kl.k;
     document.getElementById('ci-klasse-sub').textContent=kl.s;
-    if(wltp&&co2>0&&bs!=='elektrisch'){
-      const t=wltpBpm(co2+1,bs)-wltpBpm(co2,bs);
-      document.getElementById('ci-tarief').textContent='€ '+t.toFixed(2);
+
+    // Marginaal BPM-tarief 2026
+    if(co2Used>0&&bs!=='elektrisch'){
+      const t1=calcBpmCo2(co2Used,bs,normUsed||'wltp');
+      const t2=calcBpmCo2(co2Used+1,bs,normUsed||'wltp');
+      document.getElementById('ci-tarief').textContent='€ '+(t2-t1).toFixed(2);
     }else{
-      document.getElementById('ci-tarief').textContent=bs==='elektrisch'?'€ 0':'NEDC';
+      document.getElementById('ci-tarief').textContent=bs==='elektrisch'?'€ 0':'n.v.t.';
     }
   }else{
     ci.classList.remove('show');
   }
 
-  // ── Chart ──
+  /* ─── Chart ─── */
   const canvas=document.getElementById('bpm-chart');
   setTimeout(()=>drawChart(canvas,mPos,grondslag),80);
 
-  // ── Afschrijvingstabel ──
-  let tH='<table class="bpm-table"><thead><tr><th>Leeftijd</th><th>Rest BPM %</th><th>Rest BPM (uw voertuig)</th><th>Afgeschreven</th></tr></thead><tbody>';
+  /* ─── Afschrijvingstabel ─── */
+  let tH='<table class="bpm-table"><thead><tr>';
+  tH+='<th>Leeftijd</th><th>Rest %</th><th>Rest BPM (forfaitair)</th>';
+  if(co2Used>0&&bs!=='elektrisch')tH+=`<th>Rest BPM (${normUsed.toUpperCase()} · 2026)</th>`;
+  tH+='<th>Afgeschreven</th></tr></thead><tbody>';
   BTAB.forEach(r=>{
     const cur=mPos>=r.v&&mPos<r.t;
     const rb=Math.round(grondslag*r.p/100);
     const vL=mLabel(r.v);
     const tL=mLabel(r.t);
+    let co2Bpm='';
+    if(co2Used>0&&bs!=='elektrisch'){
+      co2Bpm=`<td>${fE(Math.round(calcBpmCo2(co2Used,bs,normUsed||'wltp')*(r.p/100)))}</td>`;
+    }
     tH+=`<tr${cur?' class="cur-row"':''}>`;
     tH+=`<td>${cur?'<span class="cur-mark">▶</span>':''}${vL} – ${tL}</td>`;
     tH+=`<td>${r.p.toFixed(1)}%</td>`;
     tH+=`<td>${fE(rb)}</td>`;
+    tH+=co2Bpm;
     tH+=`<td>−${Math.round(100-r.p)}%</td>`;
     tH+=`</tr>`;
   });
   tH+='</tbody></table>';
   document.getElementById('bpm-table-wrap').innerHTML=tH;
 
-  // ── Detail grid ──
+  /* ─── Detail grid ─── */
   document.getElementById('d-voertuig').textContent=voertuig||'—';
   document.getElementById('d-bs').textContent=cap(bs);
   document.getElementById('d-cat').textContent=fE(cat);
   document.getElementById('d-datum').textContent=
     datum.getDate()+'-'+(datum.getMonth()+1)+'-'+datum.getFullYear();
-  document.getElementById('d-lft').textContent=
-    jaar+' jaar '+rMnd+' maanden';
-  document.getElementById('d-methode').textContent=methode;
+  document.getElementById('d-lft').textContent=jaar+' jaar '+rMnd+' maanden';
+  document.getElementById('d-methode').textContent=methodeTekst+
+    (co2Used>0?' · CO₂ '+co2Used+' g/km':'');
 
-  // ── Wegenbelasting ──
+  /* ─── Wegenbelasting ─── */
   const wbS=document.getElementById('wb-section');
   if(massa&&parseInt(massa)>500){
     const wb=calcWB(massa,bs);
@@ -1554,7 +2067,7 @@ function doCalc(){
     wbS.style.display='none';
   }
 
-  // ── Toon resultaten ──
+  /* ─── Toon resultaten ─── */
   document.getElementById('empty-state').style.display='none';
   const rw=document.getElementById('result-wrap');
   rw.classList.add('show');
@@ -1565,7 +2078,6 @@ function doCalc(){
    RESET
 ══════════════════════════════════════════════════ */
 function resetAll(){
-  // Selects
   document.getElementById('sel-merk').value='';
   const ms=document.getElementById('sel-model');
   ms.innerHTML='<option value="">Selecteer eerst merk…</option>';
@@ -1574,18 +2086,15 @@ function resetAll(){
   us.innerHTML='<option value="">Selecteer eerst model…</option>';
   us.disabled=true;
   clearAutoFields();
-  // Handmatig velden
-  ['man-cat','man-co2','man-kw','man-massa'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el)el.value='';
+  ['man-cat','man-kw','man-massa','auto-massa'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.value='';
   });
   document.getElementById('man-sv').textContent='€ 0';
   document.getElementById('man-sl').value=100000;
-  // Segment reset
   document.querySelectorAll('#seg-bs .seg-btn').forEach(b=>b.classList.remove('active'));
   const firstBS=document.querySelector('#seg-bs .seg-btn[data-val="benzine"]');
   if(firstBS)firstBS.classList.add('active');
-  // Kalenders resetten
+  // Reset datum velden
   ['auto','man'].forEach(id=>{
     if(CS[id]){
       CS[id].sel=null;
@@ -1595,20 +2104,33 @@ function resetAll(){
       CS[id].m=n.getMonth();
       renderCal(id);
     }
-    const dd=document.getElementById('dd-'+id);
-    if(dd){dd.classList.remove('has-value');dd.classList.add('placeholder');}
-    const dt=document.getElementById('dt-'+id);
-    if(dt)dt.textContent='Klik om datum te kiezen…';
+    ['d','m','y'].forEach(part=>{
+      const el=document.getElementById('dp-'+id+'-'+part);
+      if(el)el.value='';
+    });
+    const hint=document.getElementById('dh-'+id);
+    if(hint){hint.textContent='Vul handmatig in (DD/MM/JJJJ) of gebruik de kalender';hint.style.color='rgba(198,203,209,.22)';}
     const popup=document.getElementById('cal-'+id);
     if(popup)popup.classList.remove('open');
+    // Reset CO₂ velden
+    renderCo2Fields(id);
   });
   openCalId=null;
   document.getElementById('wltp-banner').style.display='none';
   document.getElementById('result-wrap').classList.remove('show');
   document.getElementById('co2-info').classList.remove('show');
+  document.getElementById('dual-calc-wrap').style.display='none';
   document.getElementById('empty-state').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+/* ══════════════════════════════════════════════════
+   INIT — CO₂ velden direct renderen
+══════════════════════════════════════════════════ */
+(function init(){
+  renderCo2Fields('auto');
+  renderCo2Fields('man');
+})();
 
 /* ══════════════════════════════════════════════════
    REVEAL OBSERVER
