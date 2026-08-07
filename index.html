@@ -2658,7 +2658,7 @@ function doCalc(){
         <div class="dual-card-lbl">Berekening op toelatingsjaar ${toelatingsJaar}</div>
         <div class="dual-card-val">${fE(bpmOpToelatingsMoment)}</div>
         <div class="dual-card-sub">
-          Bruto BPM ${toelatingsJaar}: ${fE(bpmBrutoToelatingsMoment)} · 
+          Bruto BPM ${toelatingsJaar}: ${fE(bpmBrutoToelating)} · 
           ${Math.round(pct*100)}% rest · ${mPos} maanden afgeschreven
         </div>
         <div class="dual-card-note">
@@ -2981,3 +2981,4 @@ const io=new IntersectionObserver(entries=>{
 },{threshold:.06});
 document.querySelectorAll('.rv,.ey').forEach(el=>io.observe(el));
   </script> </body> </html>
+
