@@ -2491,11 +2491,12 @@ function doCalc(){
   const massa=document.getElementById(isAuto?'auto-massa':'man-massa').value;
   const now=new Date();
 
-  // Leeftijd berekenen (huidig)
-  const mPos=Math.max(0,
+  // Leeftijd berekenen (huidig) — Belastingdienst telt elke begonnen maand
+  let mPos=Math.max(0,
     (now.getFullYear()-datum.getFullYear())*12+
     (now.getMonth()-datum.getMonth())
   );
+  if(now.getDate() > datum.getDate()) mPos += 1;
   const jaar=Math.floor(mPos/12);
   const rMnd=mPos%12;
 
