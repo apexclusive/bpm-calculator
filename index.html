@@ -2024,97 +2024,86 @@ function calcBpmCo2(co2,bs,norm){
 }
 
 /* ══════════════════════════════════════════════════
-   OFFICIËLE LEEFTIJDSKORTINGSTABEL
-   Wet BPM — geverifieerd tegen Autoweek
-   67 maanden = 32.58% restwaarde
+   OFFICIËLE FORFAITAIRE AFSCHRIJVINGSTABEL
+   Bron: Belastingdienst.nl — exact overgenomen
 ══════════════════════════════════════════════════ */
+function getBpmAfschrijving(maanden){
+  // Officiële forfaitaire tabel Belastingdienst
+  // Kolom 1: periode | Kolom 2: basis% | Kolom 3: extra% per maand
+  let pct = 0;
+
+  if(maanden < 1){
+    // 0 dagen tot 1 maand: 0% + 12% per maand
+    pct = 0 + (maanden * 12);
+  } else if(maanden < 3){
+    // 1 maand tot 3 maanden: 12% + 4% per maand
+    pct = 12 + ((maanden - 1) * 4);
+  } else if(maanden < 5){
+    // 3 maanden tot 5 maanden: 20% + 3,5% per maand
+    pct = 20 + ((maanden - 3) * 3.5);
+  } else if(maanden < 9){
+    // 5 maanden tot 9 maanden: 27% + 1,5% per maand
+    pct = 27 + ((maanden - 5) * 1.5);
+  } else if(maanden < 18){
+    // 9 maanden tot 1j6m (18mnd): 33% + 1% per maand
+    pct = 33 + ((maanden - 9) * 1);
+  } else if(maanden < 30){
+    // 1j6m tot 2j6m (18-30mnd): 42% + 0,75% per maand
+    pct = 42 + ((maanden - 18) * 0.75);
+  } else if(maanden < 42){
+    // 2j6m tot 3j6m (30-42mnd): 51% + 0,5% per maand
+    pct = 51 + ((maanden - 30) * 0.5);
+  } else if(maanden < 54){
+    // 3j6m tot 4j6m (42-54mnd): 57% + 0,42% per maand
+    pct = 57 + ((maanden - 42) * 0.42);
+  } else if(maanden < 66){
+    // 4j6m tot 5j6m (54-66mnd): 62% + 0,42% per maand
+    pct = 62 + ((maanden - 54) * 0.42);
+  } else if(maanden < 78){
+    // 5j6m tot 6j6m (66-78mnd): 67% + 0,42% per maand
+    pct = 67 + ((maanden - 66) * 0.42);
+  } else if(maanden < 90){
+    // 6j6m tot 7j6m (78-90mnd): 72% + 0,25% per maand
+    pct = 72 + ((maanden - 78) * 0.25);
+  } else if(maanden < 102){
+    // 7j6m tot 8j6m (90-102mnd): 75% + 0,25% per maand
+    pct = 75 + ((maanden - 90) * 0.25);
+  } else if(maanden < 114){
+    // 8j6m tot 9j6m (102-114mnd): 78% + 0,25% per maand
+    pct = 78 + ((maanden - 102) * 0.25);
+  } else {
+    // Vanaf 9j6m (114mnd+): 81% + 0,19% per maand
+    pct = 81 + ((maanden - 114) * 0.19);
+  }
+
+  // Max 100%
+  pct = Math.min(pct, 100);
+
+  // Restwaarde = 100 - afschrijving%
+  return (100 - pct) / 100;
+}
+
+// Compatibiliteitswrapper — getBpmPct blijft werken
+function getBpmPct(m){
+  return getBpmAfschrijving(m);
+}
+
+// BTAB voor weergave in de tabel (blokken)
 const BTAB=[
-  {v:0,  t:1,  p:100.00},
-  {v:1,  t:2,  p:98.00},
-  {v:2,  t:3,  p:96.00},
-  {v:3,  t:4,  p:94.00},
-  {v:4,  t:5,  p:92.00},
-  {v:5,  t:6,  p:90.00},
-  {v:6,  t:7,  p:88.00},
-  {v:7,  t:8,  p:86.00},
-  {v:8,  t:9,  p:84.00},
-  {v:9,  t:10, p:82.00},
-  {v:10, t:11, p:80.00},
-  {v:11, t:12, p:78.00},
-  {v:12, t:13, p:76.00},
-  {v:13, t:14, p:74.00},
-  {v:14, t:15, p:72.00},
-  {v:15, t:16, p:70.00},
-  {v:16, t:17, p:68.00},
-  {v:17, t:18, p:66.00},
-  {v:18, t:19, p:64.00},
-  {v:19, t:20, p:62.50},
-  {v:20, t:21, p:61.00},
-  {v:21, t:22, p:59.50},
-  {v:22, t:23, p:58.00},
-  {v:23, t:24, p:56.50},
-  {v:24, t:25, p:55.00},
-  {v:25, t:26, p:53.50},
-  {v:26, t:27, p:52.00},
-  {v:27, t:28, p:50.50},
-  {v:28, t:29, p:49.00},
-  {v:29, t:30, p:47.50},
-  {v:30, t:31, p:46.00},
-  {v:31, t:32, p:44.80},
-  {v:32, t:33, p:43.60},
-  {v:33, t:34, p:42.40},
-  {v:34, t:35, p:41.20},
-  {v:35, t:36, p:40.00},
-  {v:36, t:37, p:39.00},
-  {v:37, t:38, p:38.00},
-  {v:38, t:39, p:37.00},
-  {v:39, t:40, p:36.00},
-  {v:40, t:41, p:35.20},
-  {v:41, t:42, p:34.40},
-  {v:42, t:43, p:33.58},
-  {v:43, t:44, p:33.58},
-  {v:44, t:45, p:32.58},
-  {v:45, t:46, p:32.00},
-  {v:46, t:47, p:31.20},
-  {v:47, t:48, p:30.40},
-  {v:48, t:49, p:29.60},
-  {v:49, t:50, p:28.80},
-  {v:50, t:51, p:28.10},
-  {v:51, t:52, p:27.40},
-  {v:52, t:53, p:26.70},
-  {v:53, t:54, p:26.00},
-  {v:54, t:55, p:25.30},
-  {v:55, t:56, p:24.60},
-  {v:56, t:57, p:23.90},
-  {v:57, t:58, p:23.20},
-  {v:58, t:59, p:22.50},
-  {v:59, t:60, p:21.80},
-  {v:60, t:61, p:21.10},
-  {v:61, t:62, p:20.50},
-  {v:62, t:63, p:19.90},
-  {v:63, t:64, p:19.30},
-  {v:64, t:65, p:18.70},
-  {v:65, t:66, p:18.10},
-  {v:66, t:67, p:17.50},
-  {v:67, t:68, p:32.58},
-  {v:68, t:69, p:16.40},
-  {v:69, t:70, p:15.90},
-  {v:70, t:71, p:15.40},
-  {v:71, t:72, p:14.90},
-  {v:72, t:78, p:13.50},
-  {v:78, t:84, p:11.00},
-  {v:84, t:90, p:9.00},
-  {v:90, t:96, p:7.50},
-  {v:96, t:102,p:6.20},
-  {v:102,t:108,p:5.10},
-  {v:108,t:114,p:4.20},
-  {v:114,t:120,p:3.40},
-  {v:120,t:132,p:2.80},
-  {v:132,t:144,p:2.20},
-  {v:144,t:156,p:1.80},
-  {v:156,t:168,p:1.40},
-  {v:168,t:180,p:1.00},
-  {v:180,t:999,p:0.70}
+  {v:0,   t:1,   p:100.0},
+  {v:1,   t:3,   p:88.0},
+  {v:3,   t:5,   p:80.0},
+  {v:5,   t:9,   p:73.0},
+  {v:9,   t:18,  p:67.0},
+  {v:18,  t:30,  p:58.0},
+  {v:30,  t:42,  p:49.0},
+  {v:42,  t:54,  p:43.0},
+  {v:54,  t:66,  p:38.0},
+  {v:66,  t:78,  p:33.0},
+  {v:78,  t:90,  p:28.0},
+  {v:90,  t:102, p:25.0},
+  {v:102, t:114, p:22.0},
+  {v:114, t:999, p:19.0}
 ];
 
 function getBpmPct(m){
@@ -2126,15 +2115,17 @@ function getBpmPct(m){
 
 /* Maanden vanaf toelatingsdatum berekenen in een specifiek jaar */
 function getMaandenOpJaar(datum,jaar){
-  const refDatum=new Date(jaar,6,1); // 1 juli van dat jaar als referentie aangifte
-  const now=new Date();
-  // Gebruik het vroegste van: 1 juli van dat jaar of vandaag
-  const aangifteDatum=refDatum<=now?refDatum:now;
-  const m=Math.max(0,
-    (aangifteDatum.getFullYear()-datum.getFullYear())*12+
-    (aangifteDatum.getMonth()-datum.getMonth())
-  );
-  return m;
+  const now = new Date();
+  // Gebruik 31 december van het opgegeven jaar, of vandaag als dat eerder is
+  const eindDatum = new Date(Math.min(new Date(jaar,11,31).getTime(), now.getTime()));
+  
+  let maanden = (eindDatum.getFullYear() - datum.getFullYear()) * 12 
+                + (eindDatum.getMonth() - datum.getMonth());
+  
+  // Tel gedeeltelijke maand mee (Belastingdienst telt elke begonnen maand)
+  if(eindDatum.getDate() > datum.getDate()) maanden += 1;
+  
+  return Math.max(0, maanden);
 }
 
 function calcWB(massa,bs){
