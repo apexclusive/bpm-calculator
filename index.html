@@ -1295,34 +1295,27 @@ function calSel(e,id,y,m,d){
 
 function calToday(e,id){
   e.stopPropagation();
-  const ns.y>n.getFullYear()||(s.y===n.getFullYear()&&i>n.getMonth());
-      const sel=s.sel&&i===s.sel.getMonth()&&s.y===s.sel.getFullYear();
-      const cur=i===n.getMonth()&&s.y===n.getFullYear()&&!sel;
-      let cl='cal-m';if(sel)cl+=' active';if(cur)cl+=' cur-m';
-      if(fut)h+=`<button class="${cl}" disabled>${m}</button>`;
-      else h+=`<button class="${cl}" onclick="calSelM(event,'${id}',${i})">${m}</button>`;
-    });
-    h+=`</div>`;
-  }else{
-    // Years view — toon grotere range (1990-2026)
-    const base=Math.floor(s.y/12)*12;
-    h+=`<div class="cal-years-grid">`;
-    for(let y=base;y<base+12;y++){
-      const fut=y>n.getFullYear();
-      const tooOld=y<1990;
-      const sel=s.sel&&y===s.sel.getFullYear();
-      const cur=y===n.getFullYear()&&!sel;
-      let cl='cal-y';if(sel)cl+=' active';if(cur)cl+=' cur-y';
-      if(fut||tooOld)h+=`<button class="${cl}" disabled>${y}</button>`;
-      else h+=`<button class="${cl}" onclick="calSelY(event,'${id}',${y})">${y}</button>`;
-    }
-    h+=`</div>`;
-  }
-  h+=`</div><div class="cal-footer">
-    <button class="cal-fb cal-tod" onclick="calToday(event,'${id}')">Vandaag</button>
-    <button class="cal-fb cal-clr" onclick="calClear(event,'${id}')">Wissen</button>
-  </div>`;
-  popup.innerHTML=h;
+  const n=new Date();
+  CS[id].y=n.getFullYear();
+  CS[id].m=n.getMonth();
+  CS[id].view='days';
+  renderCal(id);
+}
+
+function calClear(e,id){
+  e.stopPropagation();
+  CS[id].sel=null;
+  renderCal(id);
+  document.getElementById('dp-'+id+'-d').value='';
+  document.getElementById('dp-'+id+'-m').value='';
+  document.getElementById('dp-'+id+'-y').value='';
+  const hint=document.getElementById('dh-'+id);
+  hint.textContent='Vul handmatig in (DD/MM/JJJJ) of gebruik de kalender';
+  hint.style.color='rgba(198,203,209,.22)';
+  document.getElementById('cal-'+id).classList.remove('open');
+  openCalId=null;
+  checkWltpBanner();
+  renderCo2Fields(id);
 }
 
 /* Snel-navigatie handlers */
