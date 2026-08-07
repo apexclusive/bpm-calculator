@@ -689,7 +689,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 /* ══════════════════════════════════════════════════
    VOERTUIGDATABASE
 ══════════════════════════════════════════════════ */
-cconst DB={
+const DB={
   lamborghini:{label:'Lamborghini',models:{
     'urus':{label:'Urus',uitv:[
       {l:'Urus 4.0 V8 BiTurbo 650pk',cat:328590,co2_wltp:325,co2_nedc:null,bs:'benzine',kw:478},
@@ -1793,91 +1793,6 @@ function calClear(e,id){
   renderCo2Fields(id);
 }
 
-/* Snel-navigatie handlers */
-function calQuickMonth(e,id,val){
-  e.stopPropagation();
-  CS[id].m=parseInt(val);
-  CS[id].view='days';
-  renderCal(id);
-}
-function calQuickYear(e,id,val){
-  e.stopPropagation();
-  const y=parseInt(val);
-  if(y>=1990&&y<=2026){
-    CS[id].y=y;
-    CS[id].view='days';
-    renderCal(id);
-  }
-}
-
-/* Cal nav handlers */
-function calNav(e,id,d){
-  e.stopPropagation();
-  const s=CS[id];
-  if(s.view==='days'){
-    s.m+=d;
-    if(s.m<0){s.m=11;s.y--;}
-    if(s.m>11){s.m=0;s.y++;}
-  }else if(s.view==='months'){
-    s.y+=d;
-  }else{
-    s.y+=d*12;
-  }
-  renderCal(id);
-}
-
-function calToggleView(e,id){
-  e.stopPropagation();
-  const s=CS[id];
-  s.view=s.view==='days'?'months':s.view==='months'?'years':'days';
-  renderCal(id);
-}
-
-function calSelM(e,id,m){
-  e.stopPropagation();
-  CS[id].m=m;CS[id].view='days';renderCal(id);
-}
-
-function calSelY(e,id,y){
-  e.stopPropagation();
-  CS[id].y=y;CS[id].view='months';renderCal(id);
-}
-
-function calSel(e,id,y,m,d){
-  e.stopPropagation();
-  CS[id].sel=new Date(y,m,d);
-  renderCal(id);
-  syncCalToManualInputs(id,CS[id].sel);
-  // Sluit na selectie
-  document.getElementById('cal-'+id).classList.remove('open');
-  openCalId=null;
-  checkWltpBanner();
-  renderCo2Fields(id);
-}
-
-function calToday(e,id){
-  e.stopPropagation();
-  const n=new Date();
-  CS[id].y=n.getFullYear();CS[id].m=n.getMonth();CS[id].view='days';
-  renderCal(id);
-}
-
-function calClear(e,id){
-  e.stopPropagation();
-  CS[id].sel=null;
-  renderCal(id);
-  // Reset handmatige inputs
-  document.getElementById('dp-'+id+'-d').value='';
-  document.getElementById('dp-'+id+'-m').value='';
-  document.getElementById('dp-'+id+'-y').value='';
-  const hint=document.getElementById('dh-'+id);
-  hint.textContent='Vul handmatig in (DD/MM/JJJJ) of gebruik de kalender';
-  hint.style.color='rgba(198,203,209,.22)';
-  document.getElementById('cal-'+id).classList.remove('open');
-  openCalId=null;
-  checkWltpBanner();
-  renderCo2Fields(id);
-}
 
 /* Synchroniseer kalender-selectie naar de handmatige invoervelden */
 function syncCalToManualInputs(id,dt){
