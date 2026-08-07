@@ -1530,6 +1530,8 @@ function renderCo2Fields(panelId){
     </div>`;
   }
   wrap.innerHTML = html;
+  // Vul CO₂ in als er een pending waarde is
+  _fillCo2Fields(id);
 }
 
 function getCo2Value(panelId){
@@ -1937,15 +1939,18 @@ function onUitvoeringChange(){
   if(!u||u.cat===0)return;
   document.getElementById('auto-cat').value=u.cat;
   updateSlider('auto');
-  // Pre-fill CO₂ velden op basis van datum methode
-  const datum=getCalDate('auto');
-  const methode=getDatumMethode(datum);
-  setTimeout(()=>{
-    const wltpEl=document.getElementById('auto-co2-wltp');
-    const nedcEl=document.getElementById('auto-co2-nedc');
-    if(wltpEl&&u.co2_wltp!=null)wltpEl.value=u.co2_wltp;
-    if(nedcEl&&u.co2_nedc!=null)nedcEl.value=u.co2_nedc;
-  },50);
+  // Sla co2 op voor later gebruik
+  window._pendingCo2={wltp:u.co2_wltp,nedc:u.co2_nedc};
+  // Probeer direct in te vullen als velden al bestaan
+  _fillCo2Fields('auto');
+}
+
+function _fillCo2Fields(id){
+  if(!window._pendingCo2)return;
+  const wltpEl=document.getElementById(id+'-co2-wltp');
+  const nedcEl=document.getElementById(id+'-co2-nedc');
+  if(wltpEl&&window._pendingCo2.wltp!=null)wltpEl.value=window._pendingCo2.wltp;
+  if(nedcEl&&window._pendingCo2.nedc!=null)nedcEl.value=window._pendingCo2.nedc;
 }
 
 function clearAutoFields(){
