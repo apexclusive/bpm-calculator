@@ -2644,51 +2644,50 @@ function doCalc(){
   const dualWrap=document.getElementById('dual-calc-wrap');
   const dualResults=document.getElementById('dual-results');
 
-  ```javascript
-if(bs!=='elektrisch' && co2Used>0 && toelatingsJaar<huidigJaar){
+  if(bs!=='elektrisch' && co2Used>0 && toelatingsJaar<huidigJaar){
 
-  const bpmBruto2026 = calcBpmCo2(co2Used, bs, normUsed);
-  const bpmNu = Math.round(bpmBruto2026 * pct);
-  const bpmBrutoToelating = calcBpmHistorisch(co2Used, bs, normUsed, toelatingsJaar);
-  const bpmOpToelatingsMoment = Math.round(bpmBrutoToelating * pct);
-  const lager = bpmOpToelatingsMoment <= bpmNu;
+    const bpmBruto2026 = calcBpmCo2(co2Used, bs, normUsed);
+    const bpmNu = Math.round(bpmBruto2026 * pct);
+    const bpmBrutoToelating = calcBpmHistorisch(co2Used, bs, normUsed, toelatingsJaar);
+    const bpmOpToelatingsMoment = Math.round(bpmBrutoToelating * pct);
+    const lager = bpmOpToelatingsMoment <= bpmNu;
 
-  dualWrap.style.display='block';
-  dualResults.innerHTML=`
-    <div class="dual-card year-reg${!lager?' recommended':''}">
-      <div class="dual-card-lbl">Berekening op toelatingsjaar ${toelatingsJaar}</div>
-      <div class="dual-card-val">${fE(bpmOpToelatingsMoment)}</div>
-      <div class="dual-card-sub">
-        Bruto BPM ${toelatingsJaar}: ${fE(bpmBrutoToelating)} · 
-        ${Math.round(pct*100)}% rest · ${mPos} maanden afgeschreven
+    dualWrap.style.display='block';
+    dualResults.innerHTML=`
+      <div class="dual-card year-reg${!lager?' recommended':''}">
+        <div class="dual-card-lbl">Berekening op toelatingsjaar ${toelatingsJaar}</div>
+        <div class="dual-card-val">${fE(bpmOpToelatingsMoment)}</div>
+        <div class="dual-card-sub">
+          Bruto BPM ${toelatingsJaar}: ${fE(bpmBrutoToelatingsMoment)} · 
+          ${Math.round(pct*100)}% rest · ${mPos} maanden afgeschreven
+        </div>
+        <div class="dual-card-note">
+          Tarieven ${toelatingsJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km
+        </div>
+        ${!lager?'<div class="rec-tag">✓ Laagste uitkomst</div>':''}
       </div>
-      <div class="dual-card-note">
-        Tarieven ${toelatingsJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km
+      <div class="dual-card year-now${lager?' recommended':''}">
+        <div class="dual-card-lbl">Berekening op aangiftejaar ${huidigJaar}</div>
+        <div class="dual-card-val">${fE(bpmNu)}</div>
+        <div class="dual-card-sub">
+          Bruto BPM ${huidigJaar}: ${fE(bpmBruto2026)} · 
+          ${Math.round(pct*100)}% rest · ${mPos} maanden afgeschreven
+        </div>
+        <div class="dual-card-note">
+          Tarieven ${huidigJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km
+        </div>
+        ${lager?'<div class="rec-tag">✓ Laagste uitkomst</div>':''}
       </div>
-      ${!lager?'<div class="rec-tag">✓ Laagste uitkomst</div>':''}
-    </div>
-    <div class="dual-card year-now${lager?' recommended':''}">
-      <div class="dual-card-lbl">Berekening op aangiftejaar ${huidigJaar}</div>
-      <div class="dual-card-val">${fE(bpmNu)}</div>
-      <div class="dual-card-sub">
-        Bruto BPM ${huidigJaar}: ${fE(bpmBruto2026)} · 
-        ${Math.round(pct*100)}% rest · ${mPos} maanden afgeschreven
-      </div>
-      <div class="dual-card-note">
-        Tarieven ${huidigJaar} · ${normUsed.toUpperCase()} ${co2Used} g/km
-      </div>
-      ${lager?'<div class="rec-tag">✓ Laagste uitkomst</div>':''}
-    </div>
-  `;
+    `;
 
-  restBpm = Math.min(bpmNu, bpmOpToelatingsMoment);
-  methodeTekst = !lager
-    ? `${normUsed.toUpperCase()} ${toelatingsJaar} (laagste)`
-    : `${normUsed.toUpperCase()} 2026 (laagste)`;
+    restBpm = Math.min(bpmNu, bpmOpToelatingsMoment);
+    methodeTekst = !lager
+      ? `${normUsed.toUpperCase()} ${toelatingsJaar} (laagste)`
+      : `${normUsed.toUpperCase()} 2026 (laagste)`;
 
-} else {
-  dualWrap.style.display='none';
-}
+  } else {
+    dualWrap.style.display='none';
+  }
 
   /* ─── Hoofd resultaat kaarten ─── */
   document.getElementById('r-bpm').textContent=fE(restBpm);
@@ -2982,4 +2981,3 @@ const io=new IntersectionObserver(entries=>{
 },{threshold:.06});
 document.querySelectorAll('.rv,.ey').forEach(el=>io.observe(el));
   </script> </body> </html>
-
