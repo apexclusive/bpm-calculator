@@ -690,449 +690,148 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
    VOERTUIGDATABASE
 ══════════════════════════════════════════════════ */
 const DB={
-  lamborghini:{label:'Lamborghini',models:{
-    'urus':{label:'Urus',uitv:[
-      {l:'Urus 4.0 V8 BiTurbo 650pk',cat:328590,co2_wltp:325,co2_nedc:null,bs:'benzine',kw:478},
-      {l:'Urus S 4.0 V8 BiTurbo 666pk',cat:345000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:490},
-      {l:'Urus Performante 4.0 V8 666pk',cat:360000,co2_wltp:340,co2_nedc:null,bs:'benzine',kw:490},
+  'alfa-romeo':{label:'Alfa Romeo',models:{
+    'giulia':{label:'Giulia Quadrifoglio',uitv:[
+      {l:'Giulia Quadrifoglio 2.9 V6 510pk',cat:99000,co2_wltp:232,co2_nedc:212,bs:'benzine',kw:375},
+      {l:'Giulia GTA 2.9 V6 540pk',cat:175000,co2_wltp:232,co2_nedc:null,bs:'benzine',kw:397},
+      {l:'Giulia GTAm 2.9 V6 540pk',cat:185000,co2_wltp:232,co2_nedc:null,bs:'benzine',kw:397},
     ]},
-    'huracan':{label:'Huracán',uitv:[
-      {l:'Huracán LP 610-4 610pk',cat:242953,co2_wltp:290,co2_nedc:278,bs:'benzine',kw:449},
-      {l:'Huracán LP 610-4 Spyder 610pk',cat:268953,co2_wltp:290,co2_nedc:278,bs:'benzine',kw:449},
-      {l:'Huracán Evo Coupé 640pk',cat:249000,co2_wltp:299,co2_nedc:289,bs:'benzine',kw:470},
-      {l:'Huracán Evo Spyder 640pk',cat:272000,co2_wltp:299,co2_nedc:289,bs:'benzine',kw:470},
-      {l:'Huracán Evo RWD Coupé 610pk',cat:219000,co2_wltp:290,co2_nedc:278,bs:'benzine',kw:449},
-      {l:'Huracán Evo RWD Spyder 610pk',cat:235000,co2_wltp:290,co2_nedc:278,bs:'benzine',kw:449},
-      {l:'Huracán Sterrato 610pk',cat:275000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:449},
-      {l:'Huracán Tecnica 640pk',cat:265000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:470},
-      {l:'Huracán STO 640pk',cat:295000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:470},
+    'stelvio':{label:'Stelvio Quadrifoglio',uitv:[
+      {l:'Stelvio Quadrifoglio 2.9 V6 510pk',cat:102000,co2_wltp:245,co2_nedc:224,bs:'benzine',kw:375},
+      {l:'Stelvio GTA 2.9 V6 540pk',cat:178000,co2_wltp:245,co2_nedc:null,bs:'benzine',kw:397},
     ]},
-    'revuelto':{label:'Revuelto',uitv:[
-      {l:'Revuelto V12 PHEV 1015pk',cat:599000,co2_wltp:51,co2_nedc:null,bs:'hybride',kw:746},
-    ]},
-    'gallardo':{label:'Gallardo',uitv:[
-      {l:'Gallardo LP 560-4 560pk',cat:178000,co2_wltp:null,co2_nedc:327,bs:'benzine',kw:412},
-      {l:'Gallardo LP 570-4 Superleggera 570pk',cat:210000,co2_wltp:null,co2_nedc:327,bs:'benzine',kw:419},
-      {l:'Gallardo Spyder 520pk',cat:175000,co2_wltp:null,co2_nedc:327,bs:'benzine',kw:382},
-    ]},
-    'aventador':{label:'Aventador',uitv:[
-      {l:'Aventador LP 700-4 700pk',cat:318000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:515},
-      {l:'Aventador LP 700-4 Roadster 700pk',cat:356000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:515},
-      {l:'Aventador LP 750-4 SV 750pk',cat:378000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:552},
-      {l:'Aventador LP 750-4 SV Roadster 750pk',cat:415000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:552},
-      {l:'Aventador S LP 740-4 740pk',cat:325000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:544},
-      {l:'Aventador SVJ 770pk',cat:425000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:566},
-      {l:'Aventador SVJ Roadster 770pk',cat:460000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:566},
-      {l:'Aventador Ultimae 780pk',cat:490000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:574},
+    '33-stradale':{label:'33 Stradale',uitv:[
+      {l:'33 Stradale V6 620pk',cat:1800000,co2_wltp:255,co2_nedc:null,bs:'benzine',kw:456},
+      {l:'33 Stradale Electric 750pk',cat:1800000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:551},
     ]},
   }},
-  ferrari:{label:'Ferrari',models:{
-    '296-gtb':{label:'296 GTB',uitv:[
-      {l:'296 GTB V6 PHEV 830pk',cat:322000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:610},
-      {l:'296 GTB Assetto Fiorano 830pk',cat:365000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:610},
+  'aston-martin':{label:'Aston Martin',models:{
+    'db11':{label:'DB11',uitv:[
+      {l:'DB11 V8 510pk',cat:195000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:375},
+      {l:'DB11 V8 Volante 510pk',cat:218000,co2_wltp:null,co2_nedc:255,bs:'benzine',kw:375},
+      {l:'DB11 V12 630pk',cat:225000,co2_wltp:null,co2_nedc:299,bs:'benzine',kw:463},
+      {l:'DB11 AMR V12 639pk',cat:245000,co2_wltp:null,co2_nedc:299,bs:'benzine',kw:470},
     ]},
-    '296-gts':{label:'296 GTS',uitv:[
-      {l:'296 GTS V6 PHEV 830pk',cat:389000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:610},
+    'db12':{label:'DB12',uitv:[
+      {l:'DB12 Coupé V8 671pk',cat:248000,co2_wltp:289,co2_nedc:null,bs:'benzine',kw:493},
+      {l:'DB12 Volante V8 671pk',cat:275000,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:493},
     ]},
-    'roma':{label:'Roma',uitv:[
-      {l:'Roma 3.9 V8 Turbo 620pk',cat:245000,co2_wltp:253,co2_nedc:243,bs:'benzine',kw:456},
-      {l:'Roma Spider 3.9 V8 620pk',cat:272000,co2_wltp:258,co2_nedc:248,bs:'benzine',kw:456},
+    'dbs':{label:'DBS',uitv:[
+      {l:'DBS 770 Ultimate V12 770pk',cat:398000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:566},
+      {l:'DBS Superleggera V12 725pk',cat:298000,co2_wltp:null,co2_nedc:299,bs:'benzine',kw:533},
+      {l:'DBS Superleggera Volante 725pk',cat:325000,co2_wltp:null,co2_nedc:305,bs:'benzine',kw:533},
     ]},
-    'purosangue':{label:'Purosangue',uitv:[
-      {l:'Purosangue V12 NA 725pk',cat:408000,co2_wltp:310,co2_nedc:null,bs:'benzine',kw:533},
+    'dbx':{label:'DBX',uitv:[
+      {l:'DBX V8 542pk',cat:198000,co2_wltp:295,co2_nedc:270,bs:'benzine',kw:399},
+      {l:'DBX707 AMG V8 707pk',cat:265000,co2_wltp:315,co2_nedc:null,bs:'benzine',kw:520},
     ]},
-    'sf90':{label:'SF90 Stradale',uitv:[
-      {l:'SF90 Stradale PHEV 1000pk',cat:575000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:736},
-      {l:'SF90 Spider PHEV 1000pk',cat:644000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:736},
-      {l:'SF90 XX Stradale PHEV 1030pk',cat:850000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:757},
-      {l:'SF90 XX Spider PHEV 1030pk',cat:920000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:757},
+    'vantage':{label:'Vantage',uitv:[
+      {l:'Vantage 4.0 V8 665pk',cat:198000,co2_wltp:285,co2_nedc:261,bs:'benzine',kw:489},
+      {l:'Vantage Roadster 4.0 V8 665pk',cat:225000,co2_wltp:292,co2_nedc:268,bs:'benzine',kw:489},
+      {l:'Vantage F1 Edition 535pk',cat:175000,co2_wltp:279,co2_nedc:null,bs:'benzine',kw:393},
+      {l:'Vantage GT8 535pk',cat:185000,co2_wltp:279,co2_nedc:null,bs:'benzine',kw:393},
     ]},
-    '812':{label:'812 Superfast / GTS',uitv:[
-      {l:'812 Superfast V12 800pk',cat:365000,co2_wltp:340,co2_nedc:320,bs:'benzine',kw:588},
-      {l:'812 GTS V12 800pk',cat:398000,co2_wltp:340,co2_nedc:320,bs:'benzine',kw:588},
-      {l:'812 Competizione V12 830pk',cat:580000,co2_wltp:340,co2_nedc:null,bs:'benzine',kw:610},
-      {l:'812 Competizione A V12 830pk',cat:620000,co2_wltp:340,co2_nedc:null,bs:'benzine',kw:610},
-    ]},
-    'f8':{label:'F8 Tributo / Spider',uitv:[
-      {l:'F8 Tributo 3.9 V8 720pk',cat:248000,co2_wltp:269,co2_nedc:259,bs:'benzine',kw:530},
-      {l:'F8 Spider 3.9 V8 720pk',cat:278000,co2_wltp:269,co2_nedc:259,bs:'benzine',kw:530},
-    ]},
-    '488':{label:'488 GTB / Spider / Pista',uitv:[
-      {l:'488 GTB 3.9 V8 660pk',cat:228000,co2_wltp:null,co2_nedc:260,bs:'benzine',kw:485},
-      {l:'488 Spider 3.9 V8 660pk',cat:248000,co2_wltp:null,co2_nedc:260,bs:'benzine',kw:485},
-      {l:'488 Pista 3.9 V8 720pk',cat:295000,co2_wltp:null,co2_nedc:263,bs:'benzine',kw:530},
-      {l:'488 Pista Spider 3.9 V8 720pk',cat:325000,co2_wltp:null,co2_nedc:263,bs:'benzine',kw:530},
-    ]},
-    'portofino':{label:'Portofino / M',uitv:[
-      {l:'Portofino 3.9 V8 600pk',cat:215000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:441},
-      {l:'Portofino M 3.9 V8 620pk',cat:235000,co2_wltp:253,co2_nedc:243,bs:'benzine',kw:456},
-    ]},
-    'california':{label:'California T',uitv:[
-      {l:'California T 3.9 V8 560pk',cat:185000,co2_wltp:null,co2_nedc:250,bs:'benzine',kw:412},
-    ]},
-    'gtc4lusso':{label:'GTC4Lusso',uitv:[
-      {l:'GTC4Lusso V12 690pk',cat:295000,co2_wltp:null,co2_nedc:350,bs:'benzine',kw:507},
-      {l:'GTC4Lusso T V8 610pk',cat:265000,co2_wltp:null,co2_nedc:299,bs:'benzine',kw:449},
-    ]},
-    '458':{label:'458 Italia / Spider / Speciale',uitv:[
-      {l:'458 Italia 4.5 V8 570pk',cat:205000,co2_wltp:null,co2_nedc:307,bs:'benzine',kw:419},
-      {l:'458 Spider 4.5 V8 570pk',cat:228000,co2_wltp:null,co2_nedc:307,bs:'benzine',kw:419},
-      {l:'458 Speciale 4.5 V8 605pk',cat:255000,co2_wltp:null,co2_nedc:307,bs:'benzine',kw:445},
-      {l:'458 Speciale A 4.5 V8 605pk',cat:278000,co2_wltp:null,co2_nedc:307,bs:'benzine',kw:445},
-    ]},
-    'laferrari':{label:'LaFerrari',uitv:[
-      {l:'LaFerrari V12 PHEV 963pk',cat:1350000,co2_wltp:null,co2_nedc:330,bs:'hybride',kw:708},
-      {l:'LaFerrari Aperta V12 PHEV 963pk',cat:2200000,co2_wltp:null,co2_nedc:330,bs:'hybride',kw:708},
-    ]},
-  }},
-  mclaren:{label:'McLaren',models:{
-    'artura':{label:'Artura',uitv:[
-      {l:'Artura V6 PHEV 680pk',cat:265000,co2_wltp:129,co2_nedc:null,bs:'hybride',kw:500},
-      {l:'Artura Spider V6 PHEV 700pk',cat:295000,co2_wltp:131,co2_nedc:null,bs:'hybride',kw:515},
-    ]},
-    '750s':{label:'750S',uitv:[
-      {l:'750S Coupé 4.0 V8 750pk',cat:335000,co2_wltp:263,co2_nedc:null,bs:'benzine',kw:552},
-      {l:'750S Spider 4.0 V8 750pk',cat:360000,co2_wltp:263,co2_nedc:null,bs:'benzine',kw:552},
-    ]},
-    '720s':{label:'720S',uitv:[
-      {l:'720S Coupé 4.0 V8 720pk',cat:287000,co2_wltp:249,co2_nedc:239,bs:'benzine',kw:530},
-      {l:'720S Spider 4.0 V8 720pk',cat:313000,co2_wltp:249,co2_nedc:239,bs:'benzine',kw:530},
-      {l:'720S Performance Coupé 720pk',cat:305000,co2_wltp:249,co2_nedc:239,bs:'benzine',kw:530},
-    ]},
-    '650s':{label:'650S',uitv:[
-      {l:'650S Coupé 3.8 V8 650pk',cat:220000,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:478},
-      {l:'650S Spider 3.8 V8 650pk',cat:238000,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:478},
-    ]},
-    '600lt':{label:'600LT',uitv:[
-      {l:'600LT Coupé 3.8 V8 600pk',cat:255000,co2_wltp:249,co2_nedc:239,bs:'benzine',kw:441},
-      {l:'600LT Spider 3.8 V8 600pk',cat:278000,co2_wltp:249,co2_nedc:239,bs:'benzine',kw:441},
-    ]},
-    '570s':{label:'570S / GT',uitv:[
-      {l:'570S Coupé 3.8 V8 570pk',cat:198000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:419},
-      {l:'570S Spider 3.8 V8 570pk',cat:218000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:419},
-      {l:'570GT 3.8 V8 570pk',cat:205000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:419},
-    ]},
-    '540c':{label:'540C',uitv:[
-      {l:'540C Coupé 3.8 V8 540pk',cat:168000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:397},
-    ]},
-    'senna':{label:'Senna / GTR',uitv:[
-      {l:'Senna 4.0 V8 800pk',cat:985000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:588},
-      {l:'Senna GTR 4.0 V8 825pk',cat:1450000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:607},
-    ]},
-    'speedtail':{label:'Speedtail',uitv:[
-      {l:'Speedtail V8 Hybrid 1055pk',cat:2100000,co2_wltp:null,co2_nedc:null,bs:'hybride',kw:776},
-    ]},
-    'elva':{label:'Elva',uitv:[
-      {l:'Elva 4.0 V8 804pk',cat:1690000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:591},
-    ]},
-    'p1':{label:'P1',uitv:[
-      {l:'P1 V8 PHEV 916pk',cat:1150000,co2_wltp:null,co2_nedc:194,bs:'hybride',kw:674},
-      {l:'P1 GTR V8 PHEV 1000pk',cat:2500000,co2_wltp:null,co2_nedc:null,bs:'hybride',kw:736},
-    ]},
-  }},
-  porsche:{label:'Porsche',models:{
-    '911':{label:'911',uitv:[
-      {l:'911 Carrera 3.0 T-Hybrid 357pk',cat:138500,co2_wltp:199,co2_nedc:null,bs:'hybride',kw:263},
-      {l:'911 Carrera Cabriolet 3.0 T-Hybrid 357pk',cat:151800,co2_wltp:202,co2_nedc:null,bs:'hybride',kw:263},
-      {l:'911 Carrera S 3.0 T-Hybrid 473pk',cat:160500,co2_wltp:208,co2_nedc:null,bs:'hybride',kw:348},
-      {l:'911 Carrera S Cabriolet 473pk',cat:174200,co2_wltp:211,co2_nedc:null,bs:'hybride',kw:348},
-      {l:'911 Carrera 4S 3.0 T-Hybrid 473pk',cat:172900,co2_wltp:211,co2_nedc:null,bs:'hybride',kw:348},
-      {l:'911 Carrera 4S Cabriolet 473pk',cat:186600,co2_wltp:213,co2_nedc:null,bs:'hybride',kw:348},
-      {l:'911 Targa 4 3.0 385pk',cat:155800,co2_wltp:205,co2_nedc:null,bs:'benzine',kw:283},
-      {l:'911 Targa 4S 3.0 T-Hybrid 473pk',cat:189300,co2_wltp:211,co2_nedc:null,bs:'hybride',kw:348},
-      {l:'911 GTS 3.0 T-Hybrid 541pk',cat:189300,co2_wltp:213,co2_nedc:null,bs:'hybride',kw:398},
-      {l:'911 GTS Cabriolet 541pk',cat:203000,co2_wltp:215,co2_nedc:null,bs:'hybride',kw:398},
-      {l:'911 Targa 4 GTS 541pk',cat:196500,co2_wltp:215,co2_nedc:null,bs:'hybride',kw:398},
-      {l:'911 Turbo 3.7 580pk',cat:232800,co2_wltp:208,co2_nedc:195,bs:'benzine',kw:427},
-      {l:'911 Turbo Cabriolet 3.7 580pk',cat:246500,co2_wltp:210,co2_nedc:198,bs:'benzine',kw:427},
-      {l:'911 Turbo S 3.7 650pk',cat:279600,co2_wltp:212,co2_nedc:199,bs:'benzine',kw:478},
-      {l:'911 Turbo S Cabriolet 3.7 650pk',cat:293300,co2_wltp:214,co2_nedc:201,bs:'benzine',kw:478},
-      {l:'911 GT3 4.0 518pk',cat:218000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:381},
-      {l:'911 GT3 Touring 4.0 518pk',cat:218000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:381},
-      {l:'911 GT3 RS 4.0 525pk',cat:295000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:386},
-      {l:'911 GT2 RS 3.8 700pk',cat:375000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:515},
-      {l:'911 Dakar 3.0 480pk',cat:222700,co2_wltp:198,co2_nedc:null,bs:'benzine',kw:353},
-      {l:'911 Sport Classic 3.7 480pk',cat:248000,co2_wltp:198,co2_nedc:null,bs:'benzine',kw:353},
-      {l:'911 Speedster 4.0 502pk',cat:295000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:369},
-    ]},
-    'cayenne':{label:'Cayenne',uitv:[
-      {l:'Cayenne 3.0 V6 353pk',cat:108400,co2_wltp:218,co2_nedc:205,bs:'benzine',kw:260},
-      {l:'Cayenne Coupé 3.0 V6 353pk',cat:115600,co2_wltp:219,co2_nedc:206,bs:'benzine',kw:260},
-      {l:'Cayenne S 4.0 V8 474pk',cat:134500,co2_wltp:235,co2_nedc:220,bs:'benzine',kw:348},
-      {l:'Cayenne S Coupé 4.0 V8 474pk',cat:141700,co2_wltp:236,co2_nedc:221,bs:'benzine',kw:348},
-      {l:'Cayenne GTS 4.0 V8 500pk',cat:167400,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:368},
-      {l:'Cayenne GTS Coupé 4.0 V8 500pk',cat:174600,co2_wltp:250,co2_nedc:null,bs:'benzine',kw:368},
-      {l:'Cayenne Turbo GT 4.0 V8 640pk',cat:229000,co2_wltp:268,co2_nedc:null,bs:'benzine',kw:471},
-      {l:'Cayenne E-Hybrid 3.0 470pk',cat:132000,co2_wltp:47,co2_nedc:null,bs:'hybride',kw:346},
-      {l:'Cayenne E-Hybrid Coupé 470pk',cat:139200,co2_wltp:47,co2_nedc:null,bs:'hybride',kw:346},
-      {l:'Cayenne Turbo S E-Hybrid 689pk',cat:218000,co2_wltp:68,co2_nedc:null,bs:'hybride',kw:507},
-      {l:'Cayenne Turbo S E-Hybrid Coupé 689pk',cat:225200,co2_wltp:68,co2_nedc:null,bs:'hybride',kw:507},
-    ]},
-    'panamera':{label:'Panamera',uitv:[
-      {l:'Panamera 4 3.0 440pk',cat:122500,co2_wltp:212,co2_nedc:199,bs:'benzine',kw:324},
-      {l:'Panamera 4 Sport Turismo 440pk',cat:128800,co2_wltp:214,co2_nedc:201,bs:'benzine',kw:324},
-      {l:'Panamera 4 E-Hybrid 470pk',cat:138300,co2_wltp:51,co2_nedc:null,bs:'hybride',kw:346},
-      {l:'Panamera 4 E-Hybrid Sport Turismo 470pk',cat:144600,co2_wltp:51,co2_nedc:null,bs:'hybride',kw:346},
-      {l:'Panamera GTS 4.0 V8 500pk',cat:185000,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:368},
-      {l:'Panamera GTS Sport Turismo 500pk',cat:191300,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:368},
-      {l:'Panamera Turbo S 4.0 V8 630pk',cat:220000,co2_wltp:260,co2_nedc:245,bs:'benzine',kw:463},
-      {l:'Panamera Turbo S E-Hybrid 700pk',cat:239500,co2_wltp:66,co2_nedc:null,bs:'hybride',kw:515},
-      {l:'Panamera Turbo S E-Hybrid ST 700pk',cat:245800,co2_wltp:66,co2_nedc:null,bs:'hybride',kw:515},
-    ]},
-    'taycan':{label:'Taycan',uitv:[
-      {l:'Taycan RWD 408pk',cat:98500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:300},
-      {l:'Taycan Sport Turismo RWD 408pk',cat:105700,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:300},
-      {l:'Taycan 4S 476pk',cat:120200,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:350},
-      {l:'Taycan 4S Cross Turismo 476pk',cat:127400,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:350},
-      {l:'Taycan Turbo 625pk',cat:166800,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:460},
-      {l:'Taycan Turbo Sport Turismo 625pk',cat:174000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:460},
-      {l:'Taycan Turbo S 761pk',cat:196200,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
-      {l:'Taycan Turbo S Cross Turismo 761pk',cat:203400,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
-      {l:'Taycan Turbo GT 1108pk',cat:239900,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:815},
-    ]},
-    'macan':{label:'Macan',uitv:[
-      {l:'Macan 4 Electric 408pk',cat:89800,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:300},
-      {l:'Macan 4S Electric 516pk',cat:102500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:380},
-      {l:'Macan Turbo Electric 639pk',cat:111100,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:470},
-    ]},
-    'boxster':{label:'Boxster / Cayman',uitv:[
-      {l:'Boxster 2.0 300pk',cat:75200,co2_wltp:175,co2_nedc:165,bs:'benzine',kw:220},
-      {l:'Boxster S 2.5 350pk',cat:89800,co2_wltp:182,co2_nedc:172,bs:'benzine',kw:257},
-      {l:'Boxster GTS 4.0 400pk',cat:108500,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:294},
-      {l:'Boxster Spyder 4.0 420pk',cat:118500,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:309},
-      {l:'Cayman 2.0 300pk',cat:73100,co2_wltp:172,co2_nedc:162,bs:'benzine',kw:220},
-      {l:'Cayman S 2.5 350pk',cat:87700,co2_wltp:178,co2_nedc:168,bs:'benzine',kw:257},
-      {l:'Cayman GTS 4.0 400pk',cat:106400,co2_wltp:195,co2_nedc:null,bs:'benzine',kw:294},
-      {l:'Cayman GT4 4.0 420pk',cat:116400,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:309},
-      {l:'Cayman GT4 RS 4.0 500pk',cat:145000,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:368},
-    ]},
-  }},
-  bmw:{label:'BMW',models:{
-    'm2':{label:'M2',uitv:[
-      {l:'M2 3.0 S58 460pk',cat:82900,co2_wltp:192,co2_nedc:null,bs:'benzine',kw:338},
-      {l:'M2 CS 3.0 S58 550pk',cat:112000,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:405},
-    ]},
-    'm3':{label:'M3 / M4',uitv:[
-      {l:'M3 Sedan Competition 510pk',cat:115800,co2_wltp:192,co2_nedc:null,bs:'benzine',kw:375},
-      {l:'M3 Sedan Competition xDrive 510pk',cat:119800,co2_wltp:195,co2_nedc:null,bs:'benzine',kw:375},
-      {l:'M3 Touring Competition xDrive 510pk',cat:130200,co2_wltp:198,co2_nedc:null,bs:'benzine',kw:375},
-      {l:'M4 Coupé Competition 510pk',cat:112400,co2_wltp:186,co2_nedc:null,bs:'benzine',kw:375},
-      {l:'M4 Coupé Competition xDrive 510pk',cat:116400,co2_wltp:189,co2_nedc:null,bs:'benzine',kw:375},
-      {l:'M4 Cabriolet Competition xDrive 510pk',cat:132900,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:375},
-      {l:'M4 CS 3.0 S58 550pk',cat:149000,co2_wltp:203,co2_nedc:null,bs:'benzine',kw:405},
-      {l:'M4 CSL 3.0 S58 550pk',cat:165000,co2_wltp:203,co2_nedc:null,bs:'benzine',kw:405},
-    ]},
-    'm5':{label:'M5',uitv:[
-      {l:'M5 4.4 V8 xDrive 727pk',cat:164200,co2_wltp:233,co2_nedc:null,bs:'benzine',kw:535},
-      {l:'M5 Touring xDrive 727pk',cat:175600,co2_wltp:239,co2_nedc:null,bs:'benzine',kw:535},
-      {l:'M5 CS 4.4 V8 635pk',cat:185000,co2_wltp:246,co2_nedc:null,bs:'benzine',kw:467},
-    ]},
-    'm8':{label:'M8',uitv:[
-      {l:'M8 Coupé Competition xDrive 625pk',cat:178400,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:460},
-      {l:'M8 Cabriolet Competition xDrive 625pk',cat:194900,co2_wltp:258,co2_nedc:null,bs:'benzine',kw:460},
-      {l:'M8 Gran Coupé Competition xDrive 625pk',cat:179400,co2_wltp:252,co2_nedc:null,bs:'benzine',kw:460},
-    ]},
-    'ix':{label:'iX',uitv:[
-      {l:'iX xDrive40 326pk',cat:90600,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:240},
-      {l:'iX xDrive50 523pk',cat:121500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:385},
-      {l:'iX M60 619pk',cat:140900,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:455},
-    ]},
-    'xm':{label:'XM',uitv:[
-      {l:'XM PHEV 653pk',cat:165000,co2_wltp:70,co2_nedc:null,bs:'hybride',kw:480},
-      {l:'XM Label Red PHEV 748pk',cat:210000,co2_wltp:68,co2_nedc:null,bs:'hybride',kw:550},
-      {l:'XM Label Black PHEV 748pk',cat:235000,co2_wltp:68,co2_nedc:null,bs:'hybride',kw:550},
-    ]},
-    'm1000rr':{label:'Alpina B7 / B8',uitv:[
-      {l:'Alpina B7 xDrive 612pk',cat:168000,co2_wltp:245,co2_nedc:null,bs:'benzine',kw:450},
-      {l:'Alpina B8 Gran Coupé 621pk',cat:175000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:456},
-      {l:'Alpina XB7 621pk',cat:185000,co2_wltp:258,co2_nedc:null,bs:'benzine',kw:456},
-    ]},
-  }},
-  mercedes:{label:'Mercedes-Benz',models:{
-    'amg-gt':{label:'AMG GT',uitv:[
-      {l:'AMG GT 43 Coupé 449pk',cat:118900,co2_wltp:212,co2_nedc:null,bs:'benzine',kw:330},
-      {l:'AMG GT 55 Coupé V8 476pk',cat:145000,co2_wltp:229,co2_nedc:null,bs:'benzine',kw:350},
-      {l:'AMG GT 63 4.0 V8 585pk',cat:185000,co2_wltp:238,co2_nedc:null,bs:'benzine',kw:430},
-      {l:'AMG GT 63 S E Performance 843pk',cat:236000,co2_wltp:135,co2_nedc:null,bs:'hybride',kw:620},
-      {l:'AMG GT 63 S Roadster 585pk',cat:198000,co2_wltp:242,co2_nedc:null,bs:'benzine',kw:430},
-    ]},
-    'g-klasse':{label:'G-Klasse',uitv:[
-      {l:'G 400d 3.0 D 330pk',cat:149500,co2_wltp:243,co2_nedc:null,bs:'diesel',kw:243},
-      {l:'G 500 4.0 V8 422pk',cat:173200,co2_wltp:298,co2_nedc:282,bs:'benzine',kw:310},
-      {l:'G 63 AMG 4.0 V8 585pk',cat:242000,co2_wltp:299,co2_nedc:285,bs:'benzine',kw:430},
-      {l:'G 63 AMG Manufaktur 585pk',cat:285000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:430},
-      {l:'G 580 EQ Electric 587pk',cat:198000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:432},
-    ]},
-    's-klasse':{label:'S-Klasse / EQS',uitv:[
-      {l:'S 350d 4MATIC 286pk',cat:108000,co2_wltp:192,co2_nedc:182,bs:'diesel',kw:210},
-      {l:'S 400d 4MATIC 330pk',cat:122000,co2_wltp:199,co2_nedc:189,bs:'diesel',kw:243},
-      {l:'S 450 4MATIC 367pk',cat:118000,co2_wltp:208,co2_nedc:null,bs:'benzine',kw:270},
-      {l:'S 500 4MATIC 449pk',cat:130000,co2_wltp:212,co2_nedc:199,bs:'benzine',kw:330},
-      {l:'S 580 4MATIC 503pk',cat:152000,co2_wltp:225,co2_nedc:null,bs:'benzine',kw:370},
-      {l:'S 63 AMG E Performance 802pk',cat:265000,co2_wltp:111,co2_nedc:null,bs:'hybride',kw:590},
-      {l:'S 680 Maybach V12 612pk',cat:295000,co2_wltp:235,co2_nedc:null,bs:'benzine',kw:450},
-      {l:'EQS 450+ Electric 333pk',cat:139000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:245},
-      {l:'EQS 580 4MATIC Electric 544pk',cat:168000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:400},
-      {l:'EQS AMG 53 761pk',cat:195000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
-    ]},
-    'amg-c63':{label:'AMG C 63 / E 63',uitv:[
-      {l:'C 63 S E Performance PHEV 680pk',cat:105000,co2_wltp:88,co2_nedc:null,bs:'hybride',kw:500},
-      {l:'E 53 AMG 4MATIC+ 449pk',cat:96500,co2_wltp:185,co2_nedc:null,bs:'hybride',kw:330},
-      {l:'E 63 S AMG 4MATIC+ 612pk',cat:138000,co2_wltp:239,co2_nedc:null,bs:'benzine',kw:450},
-    ]},
-    'amg-slr':{label:'AMG SL / SLC',uitv:[
-      {l:'SL 43 AMG 381pk',cat:138500,co2_wltp:198,co2_nedc:null,bs:'benzine',kw:280},
-      {l:'SL 55 AMG V8 476pk',cat:165000,co2_wltp:229,co2_nedc:null,bs:'benzine',kw:350},
-      {l:'SL 63 AMG V8 585pk',cat:198000,co2_wltp:242,co2_nedc:null,bs:'benzine',kw:430},
-      {l:'SL 63 AMG S E Performance 843pk',cat:248000,co2_wltp:135,co2_nedc:null,bs:'hybride',kw:620},
-    ]},
-    'glc-gle':{label:'GLC / GLE AMG',uitv:[
-      {l:'GLC 63 S E Performance AMG 680pk',cat:122000,co2_wltp:90,co2_nedc:null,bs:'hybride',kw:500},
-      {l:'GLE 53 AMG 4MATIC+ 449pk',cat:118500,co2_wltp:215,co2_nedc:null,bs:'hybride',kw:330},
-      {l:'GLE 63 S AMG 4MATIC+ 612pk',cat:168000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:450},
-      {l:'GLE 63 S AMG Coupé 612pk',cat:178000,co2_wltp:252,co2_nedc:null,bs:'benzine',kw:450},
-    ]},
-    'maybach':{label:'Maybach GLS / S',uitv:[
-      {l:'Maybach GLS 600 4MATIC 558pk',cat:238000,co2_wltp:289,co2_nedc:null,bs:'benzine',kw:410},
-      {l:'Maybach S 480 4MATIC 367pk',cat:178000,co2_wltp:212,co2_nedc:null,bs:'benzine',kw:270},
-      {l:'Maybach S 580 4MATIC 503pk',cat:215000,co2_wltp:229,co2_nedc:null,bs:'benzine',kw:370},
-      {l:'Maybach S 680 V12 612pk',cat:295000,co2_wltp:235,co2_nedc:null,bs:'benzine',kw:450},
-      {l:'Maybach EQS 680 Electric 658pk',cat:268000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:484},
+    'valkyrie':{label:'Valkyrie',uitv:[
+      {l:'Valkyrie V12 Hybrid 1160pk',cat:3000000,co2_wltp:null,co2_nedc:null,bs:'hybride',kw:854},
     ]},
   }},
   audi:{label:'Audi',models:{
-    'rs3':{label:'RS3',uitv:[
-      {l:'RS3 Sedan 2.5 TFSI 407pk',cat:74900,co2_wltp:172,co2_nedc:null,bs:'benzine',kw:299},
-      {l:'RS3 Sportback 2.5 TFSI 407pk',cat:73400,co2_wltp:168,co2_nedc:null,bs:'benzine',kw:299},
-      {l:'RS3 Performance 2.5 TFSI 407pk',cat:79900,co2_wltp:172,co2_nedc:null,bs:'benzine',kw:299},
-    ]},
-    'rs4':{label:'RS4 Avant',uitv:[
-      {l:'RS4 Avant 2.9 TFSI 450pk',cat:109900,co2_wltp:195,co2_nedc:182,bs:'benzine',kw:331},
-      {l:'RS4 Avant Carbon Black 450pk',cat:119900,co2_wltp:195,co2_nedc:null,bs:'benzine',kw:331},
-      {l:'RS4 Avant Competition 450pk',cat:124900,co2_wltp:195,co2_nedc:null,bs:'benzine',kw:331},
-      {l:'RS4 Avant Competition Plus 530pk',cat:138000,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:390},
-    ]},
-    'rs5':{label:'RS5',uitv:[
-      {l:'RS5 Coupé 2.9 TFSI 450pk',cat:112900,co2_wltp:189,co2_nedc:178,bs:'benzine',kw:331},
-      {l:'RS5 Sportback 2.9 TFSI 450pk',cat:113900,co2_wltp:192,co2_nedc:181,bs:'benzine',kw:331},
-      {l:'RS5 Coupé Competition 450pk',cat:122900,co2_wltp:189,co2_nedc:null,bs:'benzine',kw:331},
-      {l:'RS5 Sportback Competition 450pk',cat:123900,co2_wltp:192,co2_nedc:null,bs:'benzine',kw:331},
-      {l:'RS5 Competition Plus 530pk',cat:135000,co2_wltp:195,co2_nedc:null,bs:'benzine',kw:390},
-    ]},
-    'rs6':{label:'RS6 Avant',uitv:[
-      {l:'RS6 Avant 4.0 TFSI 600pk',cat:156000,co2_wltp:218,co2_nedc:205,bs:'benzine',kw:441},
-      {l:'RS6 Avant Carbon Black 600pk',cat:169000,co2_wltp:218,co2_nedc:null,bs:'benzine',kw:441},
-      {l:'RS6 Avant Performance 4.0 TFSI 630pk',cat:173900,co2_wltp:229,co2_nedc:null,bs:'benzine',kw:463},
-      {l:'RS6 Avant GT 4.0 TFSI 630pk',cat:199000,co2_wltp:232,co2_nedc:null,bs:'benzine',kw:463},
-    ]},
-    'rs7':{label:'RS7 Sportback',uitv:[
-      {l:'RS7 Sportback 4.0 TFSI 600pk',cat:161500,co2_wltp:215,co2_nedc:201,bs:'benzine',kw:441},
-      {l:'RS7 Sportback Carbon Black 600pk',cat:174500,co2_wltp:215,co2_nedc:null,bs:'benzine',kw:441},
-      {l:'RS7 Sportback Performance 630pk',cat:179500,co2_wltp:228,co2_nedc:null,bs:'benzine',kw:463},
-    ]},
-    'rs-q3':{label:'RS Q3',uitv:[
-      {l:'RS Q3 2.5 TFSI 400pk',cat:73500,co2_wltp:172,co2_nedc:162,bs:'benzine',kw:294},
-      {l:'RS Q3 Sportback 2.5 TFSI 400pk',cat:75000,co2_wltp:170,co2_nedc:160,bs:'benzine',kw:294},
-    ]},
-    'rs-q8':{label:'RS Q8',uitv:[
-      {l:'RS Q8 4.0 TFSI 600pk',cat:177300,co2_wltp:259,co2_nedc:245,bs:'benzine',kw:441},
-      {l:'RS Q8 Performance 640pk',cat:195000,co2_wltp:265,co2_nedc:null,bs:'benzine',kw:471},
-    ]},
     'r8':{label:'R8',uitv:[
-      {l:'R8 5.2 V10 Coupé RWD 570pk',cat:162000,co2_wltp:286,co2_nedc:272,bs:'benzine',kw:419},
-      {l:'R8 5.2 V10 Coupé Quattro 570pk',cat:185000,co2_wltp:286,co2_nedc:272,bs:'benzine',kw:419},
-      {l:'R8 5.2 V10 Spyder RWD 570pk',cat:178000,co2_wltp:286,co2_nedc:272,bs:'benzine',kw:419},
-      {l:'R8 5.2 V10 Spyder Quattro 570pk',cat:205000,co2_wltp:286,co2_nedc:272,bs:'benzine',kw:419},
-      {l:'R8 5.2 V10 GT RWD 620pk',cat:220000,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:456},
-      {l:'R8 5.2 V10 GT Spyder 620pk',cat:238000,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:456},
+      {l:'R8 5.2 V10 Coupé RWD 570pk',cat:162000,co2_wltp:331,co2_nedc:299,bs:'benzine',kw:419},
+      {l:'R8 5.2 V10 Coupé Quattro 570pk',cat:185000,co2_wltp:339,co2_nedc:306,bs:'benzine',kw:419},
+      {l:'R8 5.2 V10 Spyder RWD 570pk',cat:178000,co2_wltp:338,co2_nedc:305,bs:'benzine',kw:419},
+      {l:'R8 5.2 V10 Spyder Quattro 570pk',cat:205000,co2_wltp:345,co2_nedc:312,bs:'benzine',kw:419},
+      {l:'R8 5.2 V10 GT RWD 620pk',cat:220000,co2_wltp:338,co2_nedc:null,bs:'benzine',kw:456},
+      {l:'R8 5.2 V10 GT Spyder 620pk',cat:238000,co2_wltp:345,co2_nedc:null,bs:'benzine',kw:456},
     ]},
     'rs-e-tron':{label:'RS e-tron GT',uitv:[
       {l:'RS e-tron GT 598pk',cat:165500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:440},
       {l:'RS e-tron GT Performance 925pk',cat:198000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:680},
     ]},
+    'rs3':{label:'RS3',uitv:[
+      {l:'RS3 Sedan 2.5 TFSI 407pk',cat:74900,co2_wltp:216,co2_nedc:199,bs:'benzine',kw:299},
+      {l:'RS3 Sportback 2.5 TFSI 407pk',cat:73400,co2_wltp:212,co2_nedc:196,bs:'benzine',kw:299},
+      {l:'RS3 Performance 2.5 TFSI 407pk',cat:79900,co2_wltp:216,co2_nedc:199,bs:'benzine',kw:299},
+    ]},
+    'rs4':{label:'RS4 Avant',uitv:[
+      {l:'RS4 Avant 2.9 TFSI 450pk',cat:109900,co2_wltp:249,co2_nedc:228,bs:'benzine',kw:331},
+      {l:'RS4 Avant Carbon Black 450pk',cat:119900,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:331},
+      {l:'RS4 Avant Competition 450pk',cat:124900,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:331},
+      {l:'RS4 Avant Competition Plus 530pk',cat:138000,co2_wltp:252,co2_nedc:null,bs:'benzine',kw:390},
+    ]},
+    'rs5':{label:'RS5',uitv:[
+      {l:'RS5 Coupé 2.9 TFSI 450pk',cat:112900,co2_wltp:238,co2_nedc:218,bs:'benzine',kw:331},
+      {l:'RS5 Sportback 2.9 TFSI 450pk',cat:113900,co2_wltp:241,co2_nedc:221,bs:'benzine',kw:331},
+      {l:'RS5 Coupé Competition 450pk',cat:122900,co2_wltp:238,co2_nedc:null,bs:'benzine',kw:331},
+      {l:'RS5 Sportback Competition 450pk',cat:123900,co2_wltp:241,co2_nedc:null,bs:'benzine',kw:331},
+      {l:'RS5 Competition Plus 530pk',cat:135000,co2_wltp:248,co2_nedc:null,bs:'benzine',kw:390},
+    ]},
+    'rs6':{label:'RS6 Avant',uitv:[
+      {l:'RS6 Avant 4.0 TFSI 600pk',cat:156000,co2_wltp:275,co2_nedc:253,bs:'benzine',kw:441},
+      {l:'RS6 Avant Carbon Black 600pk',cat:169000,co2_wltp:275,co2_nedc:null,bs:'benzine',kw:441},
+      {l:'RS6 Avant Performance 4.0 TFSI 630pk',cat:173900,co2_wltp:284,co2_nedc:null,bs:'benzine',kw:463},
+      {l:'RS6 Avant GT 4.0 TFSI 630pk',cat:199000,co2_wltp:287,co2_nedc:null,bs:'benzine',kw:463},
+    ]},
+    'rs7':{label:'RS7 Sportback',uitv:[
+      {l:'RS7 Sportback 4.0 TFSI 600pk',cat:161500,co2_wltp:272,co2_nedc:249,bs:'benzine',kw:441},
+      {l:'RS7 Sportback Carbon Black 600pk',cat:174500,co2_wltp:272,co2_nedc:null,bs:'benzine',kw:441},
+      {l:'RS7 Sportback Performance 630pk',cat:179500,co2_wltp:281,co2_nedc:null,bs:'benzine',kw:463},
+    ]},
+    'rs-q3':{label:'RS Q3',uitv:[
+      {l:'RS Q3 2.5 TFSI 400pk',cat:73500,co2_wltp:218,co2_nedc:199,bs:'benzine',kw:294},
+      {l:'RS Q3 Sportback 2.5 TFSI 400pk',cat:75000,co2_wltp:224,co2_nedc:204,bs:'benzine',kw:294},
+    ]},
+    'rs-q8':{label:'RS Q8',uitv:[
+      {l:'RS Q8 4.0 TFSI 600pk',cat:177300,co2_wltp:299,co2_nedc:275,bs:'benzine',kw:441},
+      {l:'RS Q8 Performance 640pk',cat:195000,co2_wltp:306,co2_nedc:null,bs:'benzine',kw:471},
+    ]},
+    's6-s8':{label:'S6 / S7 / S8',uitv:[
+      {l:'S6 Avant TDI 344pk',cat:95000,co2_wltp:199,co2_nedc:182,bs:'diesel',kw:253},
+      {l:'S6 Sedan TDI 344pk',cat:92000,co2_wltp:196,co2_nedc:179,bs:'diesel',kw:253},
+      {l:'S7 Sportback TDI 344pk',cat:102000,co2_wltp:196,co2_nedc:179,bs:'diesel',kw:253},
+      {l:'S8 4.0 TFSI 571pk',cat:152000,co2_wltp:285,co2_nedc:261,bs:'benzine',kw:420},
+      {l:'S8 ABT 640pk',cat:180000,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:471},
+    ]},
     'sq5-sq8':{label:'SQ5 / SQ7 / SQ8',uitv:[
-      {l:'SQ5 3.0 TFSI 354pk',cat:79900,co2_wltp:199,co2_nedc:188,bs:'benzine',kw:260},
-      {l:'SQ5 Sportback 3.0 TFSI 354pk',cat:82900,co2_wltp:198,co2_nedc:null,bs:'benzine',kw:260},
-      {l:'SQ7 4.0 TFSI 507pk',cat:124900,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:373},
-      {l:'SQ8 4.0 TFSI 507pk',cat:138500,co2_wltp:255,co2_nedc:241,bs:'benzine',kw:373},
+      {l:'SQ5 3.0 TFSI 354pk',cat:79900,co2_wltp:218,co2_nedc:199,bs:'benzine',kw:260},
+      {l:'SQ5 Sportback 3.0 TFSI 354pk',cat:82900,co2_wltp:215,co2_nedc:null,bs:'benzine',kw:260},
+      {l:'SQ7 4.0 TFSI 507pk',cat:124900,co2_wltp:299,co2_nedc:272,bs:'benzine',kw:373},
+      {l:'SQ8 4.0 TFSI 507pk',cat:138500,co2_wltp:306,co2_nedc:279,bs:'benzine',kw:373},
       {l:'SQ8 e-tron Electric 503pk',cat:118000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:370},
       {l:'SQ8 e-tron Sportback 503pk',cat:121000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:370},
     ]},
-    's6-s8':{label:'S6 / S7 / S8',uitv:[
-      {l:'S6 Avant TDI 344pk',cat:95000,co2_wltp:172,co2_nedc:162,bs:'diesel',kw:253},
-      {l:'S6 Sedan TDI 344pk',cat:92000,co2_wltp:169,co2_nedc:159,bs:'diesel',kw:253},
-      {l:'S7 Sportback TDI 344pk',cat:102000,co2_wltp:169,co2_nedc:159,bs:'diesel',kw:253},
-      {l:'S8 4.0 TFSI 571pk',cat:152000,co2_wltp:239,co2_nedc:225,bs:'benzine',kw:420},
-      {l:'S8 ABT 640pk',cat:180000,co2_wltp:245,co2_nedc:null,bs:'benzine',kw:471},
-    ]},
     'ttrs':{label:'TT RS',uitv:[
-      {l:'TT RS Coupé 2.5 TFSI 400pk',cat:72500,co2_wltp:172,co2_nedc:162,bs:'benzine',kw:294},
-      {l:'TT RS Roadster 2.5 TFSI 400pk',cat:76500,co2_wltp:175,co2_nedc:165,bs:'benzine',kw:294},
-    ]},
-  }},
-  'range-rover':{label:'Range Rover',models:{
-    'range-rover':{label:'Range Rover',uitv:[
-      {l:'Range Rover D250 3.0 D 249pk',cat:112000,co2_wltp:199,co2_nedc:null,bs:'diesel',kw:183},
-      {l:'Range Rover D300 3.0 D 300pk',cat:122000,co2_wltp:203,co2_nedc:null,bs:'diesel',kw:221},
-      {l:'Range Rover D350 3.0 D 350pk',cat:138000,co2_wltp:205,co2_nedc:null,bs:'diesel',kw:258},
-      {l:'Range Rover P360 3.0 360pk',cat:128000,co2_wltp:275,co2_nedc:null,bs:'benzine',kw:265},
-      {l:'Range Rover P400 3.0 400pk',cat:142000,co2_wltp:285,co2_nedc:null,bs:'benzine',kw:294},
-      {l:'Range Rover P460e PHEV 460pk',cat:147000,co2_wltp:27,co2_nedc:null,bs:'hybride',kw:338},
-      {l:'Range Rover P530 4.4 V8 530pk',cat:198000,co2_wltp:299,co2_nedc:285,bs:'benzine',kw:390},
-      {l:'Range Rover SV 4.4 V8 615pk',cat:285000,co2_wltp:305,co2_nedc:null,bs:'benzine',kw:452},
-      {l:'Range Rover SV Autobiography P530',cat:330000,co2_wltp:305,co2_nedc:null,bs:'benzine',kw:390},
-      {l:'Range Rover SV Serenity P530',cat:345000,co2_wltp:305,co2_nedc:null,bs:'benzine',kw:390},
-    ]},
-    'range-rover-sport':{label:'Range Rover Sport',uitv:[
-      {l:'Sport D250 3.0 D 249pk',cat:88000,co2_wltp:199,co2_nedc:null,bs:'diesel',kw:183},
-      {l:'Sport D300 3.0 D 300pk',cat:98000,co2_wltp:203,co2_nedc:null,bs:'diesel',kw:221},
-      {l:'Sport P360 3.0 360pk',cat:105000,co2_wltp:278,co2_nedc:null,bs:'benzine',kw:265},
-      {l:'Sport P400 3.0 400pk',cat:118000,co2_wltp:282,co2_nedc:null,bs:'benzine',kw:294},
-      {l:'Sport P460e PHEV 460pk',cat:120000,co2_wltp:27,co2_nedc:null,bs:'hybride',kw:338},
-      {l:'Sport P530 4.4 V8 530pk',cat:148000,co2_wltp:295,co2_nedc:280,bs:'benzine',kw:390},
-      {l:'Sport SV Edition One 635pk',cat:185000,co2_wltp:312,co2_nedc:null,bs:'benzine',kw:467},
-    ]},
-    'defender':{label:'Defender',uitv:[
-      {l:'Defender 90 D200 200pk',cat:58000,co2_wltp:199,co2_nedc:null,bs:'diesel',kw:147},
-      {l:'Defender 110 D300 300pk',cat:92000,co2_wltp:215,co2_nedc:null,bs:'diesel',kw:221},
-      {l:'Defender 130 D300 300pk',cat:99000,co2_wltp:218,co2_nedc:null,bs:'diesel',kw:221},
-      {l:'Defender 90 V8 525pk',cat:155000,co2_wltp:310,co2_nedc:null,bs:'benzine',kw:386},
-      {l:'Defender 110 V8 525pk',cat:162000,co2_wltp:315,co2_nedc:null,bs:'benzine',kw:386},
-      {l:'Defender 130 V8 Outbound 525pk',cat:165000,co2_wltp:315,co2_nedc:null,bs:'benzine',kw:386},
-      {l:'Defender 90 P400e PHEV 404pk',cat:78000,co2_wltp:30,co2_nedc:null,bs:'hybride',kw:297},
-    ]},
-    'discovery':{label:'Discovery',uitv:[
-      {l:'Discovery D300 HSE 300pk',cat:85000,co2_wltp:212,co2_nedc:null,bs:'diesel',kw:221},
-      {l:'Discovery D300 R-Dynamic HSE 300pk',cat:92000,co2_wltp:212,co2_nedc:null,bs:'diesel',kw:221},
+      {l:'TT RS Coupé 2.5 TFSI 400pk',cat:72500,co2_wltp:215,co2_nedc:197,bs:'benzine',kw:294},
+      {l:'TT RS Roadster 2.5 TFSI 400pk',cat:76500,co2_wltp:219,co2_nedc:201,bs:'benzine',kw:294},
     ]},
   }},
   bentley:{label:'Bentley',models:{
-    'continental':{label:'Continental GT',uitv:[
-      {l:'Continental GT V8 550pk',cat:245000,co2_wltp:265,co2_nedc:249,bs:'benzine',kw:404},
-      {l:'Continental GT Speed W12 659pk',cat:315000,co2_wltp:275,co2_nedc:258,bs:'benzine',kw:485},
-      {l:'Continental GT Mulliner W12 659pk',cat:348000,co2_wltp:275,co2_nedc:null,bs:'benzine',kw:485},
-      {l:'Continental GTC V8 550pk',cat:270000,co2_wltp:269,co2_nedc:252,bs:'benzine',kw:404},
-      {l:'Continental GTC Speed W12 659pk',cat:340000,co2_wltp:278,co2_nedc:261,bs:'benzine',kw:485},
-      {l:'Continental GT S V8 550pk',cat:258000,co2_wltp:265,co2_nedc:null,bs:'benzine',kw:404},
-      {l:'Continental GT Azure V8 550pk',cat:275000,co2_wltp:265,co2_nedc:null,bs:'benzine',kw:404},
-    ]},
     'bentayga':{label:'Bentayga',uitv:[
-      {l:'Bentayga V8 550pk',cat:215000,co2_wltp:265,co2_nedc:252,bs:'benzine',kw:404},
-      {l:'Bentayga S V8 550pk',cat:228000,co2_wltp:265,co2_nedc:null,bs:'benzine',kw:404},
-      {l:'Bentayga Azure V8 550pk',cat:238000,co2_wltp:265,co2_nedc:null,bs:'benzine',kw:404},
-      {l:'Bentayga EWB V8 550pk',cat:245000,co2_wltp:265,co2_nedc:null,bs:'benzine',kw:404},
+      {l:'Bentayga V8 550pk',cat:215000,co2_wltp:299,co2_nedc:274,bs:'benzine',kw:404},
+      {l:'Bentayga S V8 550pk',cat:228000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:404},
+      {l:'Bentayga Azure V8 550pk',cat:238000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:404},
+      {l:'Bentayga EWB V8 550pk',cat:245000,co2_wltp:305,co2_nedc:null,bs:'benzine',kw:404},
       {l:'Bentayga Hybrid 462pk',cat:230000,co2_wltp:75,co2_nedc:null,bs:'hybride',kw:340},
-      {l:'Bentayga EWB Azure Hybrid 462pk',cat:268000,co2_wltp:75,co2_nedc:null,bs:'hybride',kw:340},
-      {l:'Bentayga Speed W12 635pk',cat:268000,co2_wltp:282,co2_nedc:265,bs:'benzine',kw:467},
+      {l:'Bentayga EWB Azure Hybrid 462pk',cat:268000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:340},
+      {l:'Bentayga Speed W12 635pk',cat:268000,co2_wltp:325,co2_nedc:299,bs:'benzine',kw:467},
+    ]},
+    'continental':{label:'Continental GT',uitv:[
+      {l:'Continental GT V8 550pk',cat:245000,co2_wltp:295,co2_nedc:270,bs:'benzine',kw:404},
+      {l:'Continental GT Speed W12 659pk',cat:315000,co2_wltp:315,co2_nedc:289,bs:'benzine',kw:485},
+      {l:'Continental GT Mulliner W12 659pk',cat:348000,co2_wltp:315,co2_nedc:null,bs:'benzine',kw:485},
+      {l:'Continental GTC V8 550pk',cat:270000,co2_wltp:299,co2_nedc:274,bs:'benzine',kw:404},
+      {l:'Continental GTC Speed W12 659pk',cat:340000,co2_wltp:319,co2_nedc:293,bs:'benzine',kw:485},
+      {l:'Continental GT S V8 550pk',cat:258000,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:404},
+      {l:'Continental GT Azure V8 550pk',cat:275000,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:404},
     ]},
     'flying-spur':{label:'Flying Spur',uitv:[
-      {l:'Flying Spur V8 550pk',cat:228000,co2_wltp:255,co2_nedc:240,bs:'benzine',kw:404},
-      {l:'Flying Spur S V8 550pk',cat:242000,co2_wltp:255,co2_nedc:null,bs:'benzine',kw:404},
-      {l:'Flying Spur Azure V8 550pk',cat:255000,co2_wltp:255,co2_nedc:null,bs:'benzine',kw:404},
-      {l:'Flying Spur W12 635pk',cat:288000,co2_wltp:278,co2_nedc:262,bs:'benzine',kw:467},
-      {l:'Flying Spur Speed W12 635pk',cat:312000,co2_wltp:278,co2_nedc:null,bs:'benzine',kw:467},
-      {l:'Flying Spur Hybrid 544pk',cat:248000,co2_wltp:75,co2_nedc:null,bs:'hybride',kw:400},
-      {l:'Flying Spur Azure Hybrid 544pk',cat:268000,co2_wltp:75,co2_nedc:null,bs:'hybride',kw:400},
+      {l:'Flying Spur V8 550pk',cat:228000,co2_wltp:289,co2_nedc:265,bs:'benzine',kw:404},
+      {l:'Flying Spur S V8 550pk',cat:242000,co2_wltp:289,co2_nedc:null,bs:'benzine',kw:404},
+      {l:'Flying Spur Azure V8 550pk',cat:255000,co2_wltp:289,co2_nedc:null,bs:'benzine',kw:404},
+      {l:'Flying Spur W12 635pk',cat:288000,co2_wltp:315,co2_nedc:289,bs:'benzine',kw:467},
+      {l:'Flying Spur Speed W12 635pk',cat:312000,co2_wltp:319,co2_nedc:null,bs:'benzine',kw:467},
+      {l:'Flying Spur Hybrid 544pk',cat:248000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:400},
+      {l:'Flying Spur Azure Hybrid 544pk',cat:268000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:400},
     ]},
     'mulsanne':{label:'Mulsanne',uitv:[
       {l:'Mulsanne V8 512pk',cat:325000,co2_wltp:null,co2_nedc:385,bs:'benzine',kw:377},
@@ -1140,114 +839,51 @@ const DB={
       {l:'Mulsanne Extended Wheelbase 512pk',cat:365000,co2_wltp:null,co2_nedc:385,bs:'benzine',kw:377},
     ]},
   }},
-  'rolls-royce':{label:'Rolls-Royce',models:{
-    'ghost':{label:'Ghost',uitv:[
-      {l:'Ghost V12 571pk',cat:365000,co2_wltp:329,co2_nedc:312,bs:'benzine',kw:420},
-      {l:'Ghost Extended V12 571pk',cat:395000,co2_wltp:329,co2_nedc:312,bs:'benzine',kw:420},
-      {l:'Ghost Black Badge V12 612pk',cat:418000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:450},
-      {l:'Ghost Zenith Collection V12 571pk',cat:428000,co2_wltp:329,co2_nedc:null,bs:'benzine',kw:420},
+  bmw:{label:'BMW',models:{
+    'm1000rr':{label:'Alpina B7 / B8',uitv:[
+      {l:'Alpina B7 xDrive 612pk',cat:168000,co2_wltp:279,co2_nedc:null,bs:'benzine',kw:450},
+      {l:'Alpina B8 Gran Coupé 621pk',cat:175000,co2_wltp:285,co2_nedc:null,bs:'benzine',kw:456},
+      {l:'Alpina XB7 621pk',cat:185000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:456},
     ]},
-    'cullinan':{label:'Cullinan',uitv:[
-      {l:'Cullinan V12 571pk',cat:395000,co2_wltp:342,co2_nedc:325,bs:'benzine',kw:420},
-      {l:'Cullinan Black Badge V12 612pk',cat:445000,co2_wltp:349,co2_nedc:null,bs:'benzine',kw:450},
-      {l:'Cullinan Series II V12 571pk',cat:425000,co2_wltp:342,co2_nedc:null,bs:'benzine',kw:420},
+    'ix':{label:'iX',uitv:[
+      {l:'iX xDrive40 326pk',cat:90600,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:240},
+      {l:'iX xDrive50 523pk',cat:121500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:385},
+      {l:'iX M60 619pk',cat:140900,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:455},
     ]},
-    'spectre':{label:'Spectre',uitv:[
-      {l:'Spectre Electric 584pk',cat:430000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:430},
+    'm2':{label:'M2',uitv:[
+      {l:'M2 3.0 S58 460pk',cat:82900,co2_wltp:228,co2_nedc:null,bs:'benzine',kw:338},
+      {l:'M2 CS 3.0 S58 550pk',cat:112000,co2_wltp:235,co2_nedc:null,bs:'benzine',kw:405},
     ]},
-    'phantom':{label:'Phantom',uitv:[
-      {l:'Phantom VIII V12 563pk',cat:510000,co2_wltp:339,co2_nedc:322,bs:'benzine',kw:414},
-      {l:'Phantom Extended V12 563pk',cat:550000,co2_wltp:342,co2_nedc:null,bs:'benzine',kw:414},
-      {l:'Phantom Tempus Collection V12 563pk',cat:595000,co2_wltp:339,co2_nedc:null,bs:'benzine',kw:414},
+    'm3':{label:'M3 / M4',uitv:[
+      {l:'M3 Sedan Competition 510pk',cat:115800,co2_wltp:228,co2_nedc:null,bs:'benzine',kw:375},
+      {l:'M3 Sedan Competition xDrive 510pk',cat:119800,co2_wltp:234,co2_nedc:null,bs:'benzine',kw:375},
+      {l:'M3 Touring Competition xDrive 510pk',cat:130200,co2_wltp:238,co2_nedc:null,bs:'benzine',kw:375},
+      {l:'M4 Coupé Competition 510pk',cat:112400,co2_wltp:222,co2_nedc:null,bs:'benzine',kw:375},
+      {l:'M4 Coupé Competition xDrive 510pk',cat:116400,co2_wltp:228,co2_nedc:null,bs:'benzine',kw:375},
+      {l:'M4 Cabriolet Competition xDrive 510pk',cat:132900,co2_wltp:238,co2_nedc:null,bs:'benzine',kw:375},
+      {l:'M4 CS 3.0 S58 550pk',cat:149000,co2_wltp:238,co2_nedc:null,bs:'benzine',kw:405},
+      {l:'M4 CSL 3.0 S58 550pk',cat:165000,co2_wltp:241,co2_nedc:null,bs:'benzine',kw:405},
     ]},
-    'dawn':{label:'Dawn / Wraith',uitv:[
-      {l:'Dawn V12 571pk',cat:348000,co2_wltp:null,co2_nedc:328,bs:'benzine',kw:420},
-      {l:'Dawn Black Badge V12 612pk',cat:385000,co2_wltp:null,co2_nedc:332,bs:'benzine',kw:450},
-      {l:'Wraith V12 624pk',cat:325000,co2_wltp:null,co2_nedc:335,bs:'benzine',kw:459},
-      {l:'Wraith Black Badge V12 632pk',cat:358000,co2_wltp:null,co2_nedc:339,bs:'benzine',kw:465},
+    'm5':{label:'M5',uitv:[
+      {l:'M5 4.4 V8 xDrive 727pk',cat:164200,co2_wltp:289,co2_nedc:null,bs:'benzine',kw:535},
+      {l:'M5 Touring xDrive 727pk',cat:175600,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:535},
+      {l:'M5 CS 4.4 V8 635pk',cat:185000,co2_wltp:296,co2_nedc:null,bs:'benzine',kw:467},
     ]},
-  }},
-  'aston-martin':{label:'Aston Martin',models:{
-    'db12':{label:'DB12',uitv:[
-      {l:'DB12 Coupé V8 671pk',cat:248000,co2_wltp:255,co2_nedc:null,bs:'benzine',kw:493},
-      {l:'DB12 Volante V8 671pk',cat:275000,co2_wltp:262,co2_nedc:null,bs:'benzine',kw:493},
+    'm8':{label:'M8',uitv:[
+      {l:'M8 Coupé Competition xDrive 625pk',cat:178400,co2_wltp:289,co2_nedc:null,bs:'benzine',kw:460},
+      {l:'M8 Cabriolet Competition xDrive 625pk',cat:194900,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:460},
+      {l:'M8 Gran Coupé Competition xDrive 625pk',cat:179400,co2_wltp:292,co2_nedc:null,bs:'benzine',kw:460},
     ]},
-    'db11':{label:'DB11',uitv:[
-      {l:'DB11 V8 510pk',cat:195000,co2_wltp:null,co2_nedc:245,bs:'benzine',kw:375},
-      {l:'DB11 V8 Volante 510pk',cat:218000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:375},
-      {l:'DB11 V12 630pk',cat:225000,co2_wltp:null,co2_nedc:285,bs:'benzine',kw:463},
-      {l:'DB11 AMR V12 639pk',cat:245000,co2_wltp:null,co2_nedc:285,bs:'benzine',kw:470},
-    ]},
-    'vantage':{label:'Vantage',uitv:[
-      {l:'Vantage 4.0 V8 665pk',cat:198000,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:489},
-      {l:'Vantage Roadster 4.0 V8 665pk',cat:225000,co2_wltp:255,co2_nedc:241,bs:'benzine',kw:489},
-      {l:'Vantage F1 Edition 535pk',cat:175000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:393},
-      {l:'Vantage GT8 535pk',cat:185000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:393},
-    ]},
-    'dbs':{label:'DBS',uitv:[
-      {l:'DBS 770 Ultimate V12 770pk',cat:398000,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:566},
-      {l:'DBS Superleggera V12 725pk',cat:298000,co2_wltp:null,co2_nedc:290,bs:'benzine',kw:533},
-      {l:'DBS Superleggera Volante 725pk',cat:325000,co2_wltp:null,co2_nedc:295,bs:'benzine',kw:533},
-    ]},
-    'dbx':{label:'DBX',uitv:[
-      {l:'DBX V8 542pk',cat:198000,co2_wltp:255,co2_nedc:240,bs:'benzine',kw:399},
-      {l:'DBX707 AMG V8 707pk',cat:265000,co2_wltp:278,co2_nedc:null,bs:'benzine',kw:520},
-    ]},
-    'valkyrie':{label:'Valkyrie',uitv:[
-      {l:'Valkyrie V12 Hybrid 1160pk',cat:3000000,co2_wltp:null,co2_nedc:null,bs:'hybride',kw:854},
-    ]},
-  }},
-  maserati:{label:'Maserati',models:{
-    'mc20':{label:'MC20',uitv:[
-      {l:'MC20 Coupé V6 630pk',cat:248000,co2_wltp:237,co2_nedc:null,bs:'benzine',kw:463},
-      {l:'MC20 Cielo Spider V6 630pk',cat:285000,co2_wltp:242,co2_nedc:null,bs:'benzine',kw:463},
-      {l:'MC20 Cielo Folgore Electric 761pk',cat:320000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
-    ]},
-    'granturismo':{label:'GranTurismo',uitv:[
-      {l:'GranTurismo Modena 3.0 V6 490pk',cat:195000,co2_wltp:235,co2_nedc:null,bs:'benzine',kw:360},
-      {l:'GranTurismo Trofeo 3.0 V6 550pk',cat:225000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:405},
-      {l:'GranTurismo Folgore Electric 761pk',cat:275000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
-    ]},
-    'grancabrio':{label:'GranCabrio',uitv:[
-      {l:'GranCabrio Modena 3.0 V6 490pk',cat:218000,co2_wltp:238,co2_nedc:null,bs:'benzine',kw:360},
-      {l:'GranCabrio Trofeo 3.0 V6 550pk',cat:248000,co2_wltp:252,co2_nedc:null,bs:'benzine',kw:405},
-      {l:'GranCabrio Folgore Electric 761pk',cat:295000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
-    ]},
-    'grecale':{label:'Grecale',uitv:[
-      {l:'Grecale GT 2.0 T4 300pk',cat:76000,co2_wltp:169,co2_nedc:null,bs:'benzine',kw:221},
-      {l:'Grecale Modena 3.0 V6 330pk',cat:92000,co2_wltp:188,co2_nedc:null,bs:'benzine',kw:243},
-      {l:'Grecale Trofeo 3.0 V6 530pk',cat:128000,co2_wltp:255,co2_nedc:null,bs:'benzine',kw:390},
-      {l:'Grecale Folgore Electric 557pk',cat:115000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:410},
-    ]},
-    'levante':{label:'Levante',uitv:[
-      {l:'Levante 3.0 V6 350pk',cat:88000,co2_wltp:249,co2_nedc:235,bs:'benzine',kw:257},
-      {l:'Levante S 3.0 V6 430pk',cat:105000,co2_wltp:269,co2_nedc:255,bs:'benzine',kw:316},
-      {l:'Levante GTS 3.8 V8 550pk',cat:148000,co2_wltp:299,co2_nedc:285,bs:'benzine',kw:404},
-      {l:'Levante Trofeo 3.8 V8 580pk',cat:168000,co2_wltp:305,co2_nedc:289,bs:'benzine',kw:427},
-    ]},
-    'quattroporte':{label:'Quattroporte',uitv:[
-      {l:'Quattroporte 3.0 V6 350pk',cat:115000,co2_wltp:null,co2_nedc:235,bs:'benzine',kw:257},
-      {l:'Quattroporte S 3.0 V6 430pk',cat:132000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:316},
-      {l:'Quattroporte GTS 3.8 V8 530pk',cat:168000,co2_wltp:null,co2_nedc:299,bs:'benzine',kw:390},
-      {l:'Quattroporte Trofeo 3.8 V8 580pk',cat:188000,co2_wltp:null,co2_nedc:305,bs:'benzine',kw:427},
-    ]},
-  }},
-  'alfa-romeo':{label:'Alfa Romeo',models:{
-    'giulia':{label:'Giulia Quadrifoglio',uitv:[
-      {l:'Giulia Quadrifoglio 2.9 V6 510pk',cat:99000,co2_wltp:215,co2_nedc:202,bs:'benzine',kw:375},
-      {l:'Giulia GTA 2.9 V6 540pk',cat:175000,co2_wltp:215,co2_nedc:null,bs:'benzine',kw:397},
-      {l:'Giulia GTAm 2.9 V6 540pk',cat:185000,co2_wltp:215,co2_nedc:null,bs:'benzine',kw:397},
-    ]},
-    'stelvio':{label:'Stelvio Quadrifoglio',uitv:[
-      {l:'Stelvio Quadrifoglio 2.9 V6 510pk',cat:102000,co2_wltp:225,co2_nedc:211,bs:'benzine',kw:375},
-      {l:'Stelvio GTA 2.9 V6 540pk',cat:178000,co2_wltp:225,co2_nedc:null,bs:'benzine',kw:397},
-    ]},
-    '33-stradale':{label:'33 Stradale',uitv:[
-      {l:'33 Stradale V6 620pk',cat:1800000,co2_wltp:255,co2_nedc:null,bs:'benzine',kw:456},
-      {l:'33 Stradale Electric 750pk',cat:1800000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:551},
+    'xm':{label:'XM',uitv:[
+      {l:'XM PHEV 653pk',cat:165000,co2_wltp:82,co2_nedc:null,bs:'hybride',kw:480},
+      {l:'XM Label Red PHEV 748pk',cat:210000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:550},
+      {l:'XM Label Black PHEV 748pk',cat:235000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:550},
     ]},
   }},
   bugatti:{label:'Bugatti',models:{
+    'bolide':{label:'Bolide',uitv:[
+      {l:'Bolide W16 1825pk',cat:4700000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:1342},
+    ]},
     'chiron':{label:'Chiron',uitv:[
       {l:'Chiron W16 1479pk',cat:3200000,co2_wltp:516,co2_nedc:498,bs:'benzine',kw:1088},
       {l:'Chiron Sport W16 1479pk',cat:3400000,co2_wltp:516,co2_nedc:498,bs:'benzine',kw:1088},
@@ -1255,6 +891,12 @@ const DB={
       {l:'Chiron Super Sport 300+ W16 1578pk',cat:4600000,co2_wltp:516,co2_nedc:null,bs:'benzine',kw:1160},
       {l:'Chiron Pur Sport W16 1479pk',cat:4000000,co2_wltp:516,co2_nedc:null,bs:'benzine',kw:1088},
       {l:'Chiron Profilée W16 1479pk',cat:5000000,co2_wltp:516,co2_nedc:null,bs:'benzine',kw:1088},
+    ]},
+    'divo':{label:'Divo',uitv:[
+      {l:'Divo W16 1479pk',cat:5700000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:1088},
+    ]},
+    'mistral':{label:'Mistral',uitv:[
+      {l:'Mistral Roadster W16 1578pk',cat:5200000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:1160},
     ]},
     'tourbillon':{label:'Tourbillon',uitv:[
       {l:'Tourbillon V16 PHEV 1800pk',cat:4500000,co2_wltp:195,co2_nedc:null,bs:'hybride',kw:1323},
@@ -1265,121 +907,92 @@ const DB={
       {l:'Veyron Super Sport W16 1184pk',cat:2400000,co2_wltp:null,co2_nedc:539,bs:'benzine',kw:882},
       {l:'Veyron Vitesse W16 1184pk',cat:2600000,co2_wltp:null,co2_nedc:539,bs:'benzine',kw:882},
     ]},
-    'divo':{label:'Divo',uitv:[
-      {l:'Divo W16 1479pk',cat:5700000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:1088},
-    ]},
-    'bolide':{label:'Bolide',uitv:[
-      {l:'Bolide W16 1825pk',cat:4700000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:1342},
-    ]},
-    'mistral':{label:'Mistral',uitv:[
-      {l:'Mistral Roadster W16 1578pk',cat:5200000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:1160},
-    ]},
   }},
-  lexus:{label:'Lexus',models:{
-    'lc':{label:'LC 500',uitv:[
-      {l:'LC 500 5.0 V8 477pk',cat:110000,co2_wltp:228,co2_nedc:214,bs:'benzine',kw:351},
-      {l:'LC 500h Hybrid 359pk',cat:102000,co2_wltp:189,co2_nedc:178,bs:'hybride',kw:264},
-      {l:'LC 500 Cabriolet V8 477pk',cat:122000,co2_wltp:235,co2_nedc:220,bs:'benzine',kw:351},
-      {l:'LC 500h Cabriolet Hybrid 359pk',cat:115000,co2_wltp:195,co2_nedc:183,bs:'hybride',kw:264},
+  ferrari:{label:'Ferrari',models:{
+    '296-gtb':{label:'296 GTB',uitv:[
+      {l:'296 GTB V6 PHEV 830pk',cat:322000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:610},
+      {l:'296 GTB Assetto Fiorano 830pk',cat:365000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:610},
     ]},
-    'lx':{label:'LX 600',uitv:[
-      {l:'LX 600 3.5 V6 415pk',cat:128000,co2_wltp:260,co2_nedc:245,bs:'benzine',kw:305},
-      {l:'LX 600 F Sport 3.5 V6 415pk',cat:145000,co2_wltp:260,co2_nedc:245,bs:'benzine',kw:305},
-      {l:'LX 600 Ultra Luxury 415pk',cat:165000,co2_wltp:260,co2_nedc:null,bs:'benzine',kw:305},
+    '296-gts':{label:'296 GTS',uitv:[
+      {l:'296 GTS V6 PHEV 830pk',cat:389000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:610},
     ]},
-    'ls':{label:'LS 500',uitv:[
-      {l:'LS 500 3.5 V6 Biturbo 422pk',cat:118000,co2_wltp:219,co2_nedc:205,bs:'benzine',kw:310},
-      {l:'LS 500h Hybrid 359pk',cat:125000,co2_wltp:155,co2_nedc:143,bs:'hybride',kw:264},
-      {l:'LS 500 Inspiration Series 422pk',cat:138000,co2_wltp:219,co2_nedc:null,bs:'benzine',kw:310},
+    '458':{label:'458 Italia / Spider / Speciale',uitv:[
+      {l:'458 Italia 4.5 V8 570pk',cat:205000,co2_wltp:null,co2_nedc:307,bs:'benzine',kw:419},
+      {l:'458 Spider 4.5 V8 570pk',cat:228000,co2_wltp:null,co2_nedc:307,bs:'benzine',kw:419},
+      {l:'458 Speciale 4.5 V8 605pk',cat:255000,co2_wltp:null,co2_nedc:307,bs:'benzine',kw:445},
+      {l:'458 Speciale A 4.5 V8 605pk',cat:278000,co2_wltp:null,co2_nedc:307,bs:'benzine',kw:445},
     ]},
-    'rcf':{label:'RC F',uitv:[
-      {l:'RC F 5.0 V8 477pk',cat:95000,co2_wltp:null,co2_nedc:278,bs:'benzine',kw:351},
-      {l:'RC F Track Edition 5.0 V8 477pk',cat:112000,co2_wltp:null,co2_nedc:278,bs:'benzine',kw:351},
+    '488':{label:'488 GTB / Spider / Pista',uitv:[
+      {l:'488 GTB 3.9 V8 660pk',cat:228000,co2_wltp:null,co2_nedc:275,bs:'benzine',kw:485},
+      {l:'488 Spider 3.9 V8 660pk',cat:248000,co2_wltp:null,co2_nedc:279,bs:'benzine',kw:485},
+      {l:'488 Pista 3.9 V8 720pk',cat:295000,co2_wltp:null,co2_nedc:275,bs:'benzine',kw:530},
+      {l:'488 Pista Spider 3.9 V8 720pk',cat:325000,co2_wltp:null,co2_nedc:279,bs:'benzine',kw:530},
     ]},
-  }},
-  volvo:{label:'Volvo',models:{
-    'xc90':{label:'XC90',uitv:[
-      {l:'XC90 Recharge T8 455pk PHEV',cat:92000,co2_wltp:22,co2_nedc:null,bs:'hybride',kw:335},
-      {l:'XC90 Recharge T8 AWD Ultimate 455pk',cat:105000,co2_wltp:22,co2_nedc:null,bs:'hybride',kw:335},
-      {l:'XC90 Recharge AWD Electric 310pk',cat:76000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:228},
+    '812':{label:'812 Superfast / GTS',uitv:[
+      {l:'812 Superfast V12 800pk',cat:365000,co2_wltp:null,co2_nedc:340,bs:'benzine',kw:588},
+      {l:'812 GTS V12 800pk',cat:398000,co2_wltp:null,co2_nedc:340,bs:'benzine',kw:588},
+      {l:'812 Competizione V12 830pk',cat:580000,co2_wltp:null,co2_nedc:340,bs:'benzine',kw:610},
+      {l:'812 Competizione A V12 830pk',cat:620000,co2_wltp:null,co2_nedc:340,bs:'benzine',kw:610},
     ]},
-    'ex90':{label:'EX90',uitv:[
-      {l:'EX90 Twin Motor 408pk',cat:95000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:300},
-      {l:'EX90 Twin Motor Performance 510pk',cat:105000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:375},
-      {l:'EX90 Ultra Twin Motor Performance 510pk',cat:118000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:375},
+    'california':{label:'California T',uitv:[
+      {l:'California T 3.9 V8 560pk',cat:185000,co2_wltp:null,co2_nedc:250,bs:'benzine',kw:412},
     ]},
-    'xc60':{label:'XC60',uitv:[
-      {l:'XC60 Recharge T8 PHEV 455pk',cat:75000,co2_wltp:21,co2_nedc:null,bs:'hybride',kw:335},
-      {l:'XC60 Recharge T8 AWD Ultimate 455pk',cat:85000,co2_wltp:21,co2_nedc:null,bs:'hybride',kw:335},
+    'f8':{label:'F8 Tributo / Spider',uitv:[
+      {l:'F8 Tributo 3.9 V8 720pk',cat:248000,co2_wltp:269,co2_nedc:247,bs:'benzine',kw:530},
+      {l:'F8 Spider 3.9 V8 720pk',cat:278000,co2_wltp:275,co2_nedc:252,bs:'benzine',kw:530},
     ]},
-    'polestar':{label:'Polestar',uitv:[
-      {l:'Polestar 1 Hybrid 600pk',cat:155000,co2_wltp:null,co2_nedc:13,bs:'hybride',kw:441},
-      {l:'Polestar 2 AWD Long Range 476pk',cat:62000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:350},
-      {l:'Polestar 3 AWD Long Range 517pk',cat:89000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:380},
-      {l:'Polestar 6 Electric Roadster 884pk',cat:195000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:650},
+    'gtc4lusso':{label:'GTC4Lusso',uitv:[
+      {l:'GTC4Lusso V12 690pk',cat:295000,co2_wltp:null,co2_nedc:350,bs:'benzine',kw:507},
+      {l:'GTC4Lusso T V8 610pk',cat:265000,co2_wltp:null,co2_nedc:299,bs:'benzine',kw:449},
     ]},
-  }},
-  volkswagen:{label:'Volkswagen',models:{
-    'golf-r':{label:'Golf R',uitv:[
-      {l:'Golf R 2.0 TSI 4Motion 333pk',cat:58000,co2_wltp:163,co2_nedc:154,bs:'benzine',kw:245},
-      {l:'Golf R 20 Years 333pk',cat:65000,co2_wltp:163,co2_nedc:null,bs:'benzine',kw:245},
+    'laferrari':{label:'LaFerrari',uitv:[
+      {l:'LaFerrari V12 PHEV 963pk',cat:1350000,co2_wltp:null,co2_nedc:330,bs:'hybride',kw:708},
+      {l:'LaFerrari Aperta V12 PHEV 963pk',cat:2200000,co2_wltp:null,co2_nedc:330,bs:'hybride',kw:708},
     ]},
-    'id-family':{label:'ID.4 / ID.5 / ID.7',uitv:[
-      {l:'ID.4 GTX 4Motion 299pk',cat:55000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:220},
-      {l:'ID.5 GTX 4Motion 299pk',cat:57000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:220},
-      {l:'ID.7 Pro S AWD 340pk',cat:68000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:250},
+    'portofino':{label:'Portofino / M',uitv:[
+      {l:'Portofino 3.9 V8 600pk',cat:215000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:441},
+      {l:'Portofino M 3.9 V8 620pk',cat:235000,co2_wltp:253,co2_nedc:232,bs:'benzine',kw:456},
     ]},
-    'touareg':{label:'Touareg',uitv:[
-      {l:'Touareg R PHEV 462pk',cat:82000,co2_wltp:44,co2_nedc:null,bs:'hybride',kw:340},
-      {l:'Touareg 3.0 TDI 286pk',cat:72000,co2_wltp:195,co2_nedc:182,bs:'diesel',kw:210},
+    'purosangue':{label:'Purosangue',uitv:[
+      {l:'Purosangue V12 NA 725pk',cat:408000,co2_wltp:399,co2_nedc:null,bs:'benzine',kw:533},
     ]},
-  }},
-  toyota:{label:'Toyota',models:{
-    'gr-supra':{label:'GR Supra',uitv:[
-      {l:'GR Supra 2.0 Turbo 258pk',cat:52000,co2_wltp:172,co2_nedc:162,bs:'benzine',kw:190},
-      {l:'GR Supra 3.0 340pk',cat:65000,co2_wltp:195,co2_nedc:183,bs:'benzine',kw:250},
-      {l:'GR Supra 3.0 A90 Edition 387pk',cat:79000,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:285},
-      {l:'GR Supra 45th Anniversary 387pk',cat:82000,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:285},
+    'roma':{label:'Roma',uitv:[
+      {l:'Roma 3.9 V8 Turbo 620pk',cat:245000,co2_wltp:253,co2_nedc:232,bs:'benzine',kw:456},
+      {l:'Roma Spider 3.9 V8 620pk',cat:272000,co2_wltp:259,co2_nedc:238,bs:'benzine',kw:456},
     ]},
-    'gr86':{label:'GR86',uitv:[
-      {l:'GR86 2.4 234pk',cat:38500,co2_wltp:175,co2_nedc:165,bs:'benzine',kw:172},
-      {l:'GR86 2.4 Premium 234pk',cat:42500,co2_wltp:175,co2_nedc:null,bs:'benzine',kw:172},
-    ]},
-    'gr-yaris':{label:'GR Yaris',uitv:[
-      {l:'GR Yaris 1.6 261pk',cat:42500,co2_wltp:174,co2_nedc:null,bs:'benzine',kw:192},
-      {l:'GR Yaris Circuit 1.6 261pk',cat:48500,co2_wltp:174,co2_nedc:null,bs:'benzine',kw:192},
-    ]},
-    'landcruiser':{label:'Land Cruiser',uitv:[
-      {l:'Land Cruiser 300 3.3 D 309pk',cat:88000,co2_wltp:249,co2_nedc:235,bs:'diesel',kw:227},
-      {l:'Land Cruiser 300 GR Sport 309pk',cat:95000,co2_wltp:249,co2_nedc:null,bs:'diesel',kw:227},
-    ]},
-  }},
-  honda:{label:'Honda',models:{
-    'nsx':{label:'NSX',uitv:[
-      {l:'NSX Type S 3.5 V6 PHEV 600pk',cat:185000,co2_wltp:169,co2_nedc:null,bs:'hybride',kw:441},
-    ]},
-    'civic-type-r':{label:'Civic Type R',uitv:[
-      {l:'Civic Type R 2.0 VTEC 329pk',cat:49900,co2_wltp:162,co2_nedc:152,bs:'benzine',kw:242},
-      {l:'Civic Type R Limited Edition 329pk',cat:58000,co2_wltp:162,co2_nedc:null,bs:'benzine',kw:242},
-    ]},
-    'e-nsx':{label:'e:NS2 / e:NP2',uitv:[
-      {l:'Honda e Electric 154pk',cat:38500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:113},
+    'sf90':{label:'SF90 Stradale',uitv:[
+      {l:'SF90 Stradale PHEV 1000pk',cat:575000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:736},
+      {l:'SF90 Spider PHEV 1000pk',cat:644000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:736},
+      {l:'SF90 XX Stradale PHEV 1030pk',cat:850000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:757},
+      {l:'SF90 XX Spider PHEV 1030pk',cat:920000,co2_wltp:78,co2_nedc:null,bs:'hybride',kw:757},
     ]},
   }},
   ford:{label:'Ford',models:{
-    'mustang':{label:'Mustang',uitv:[
-      {l:'Mustang Fastback 5.0 V8 449pk',cat:62000,co2_wltp:295,co2_nedc:279,bs:'benzine',kw:330},
-      {l:'Mustang Cabriolet 5.0 V8 449pk',cat:68000,co2_wltp:298,co2_nedc:282,bs:'benzine',kw:330},
-      {l:'Mustang Dark Horse 5.0 V8 504pk',cat:79000,co2_wltp:305,co2_nedc:null,bs:'benzine',kw:371},
-      {l:'Mustang Mach-E GT AWD 487pk',cat:72000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:358},
-    ]},
     'gt':{label:'Ford GT',uitv:[
       {l:'Ford GT 3.5 EcoBoost V6 660pk',cat:500000,co2_wltp:255,co2_nedc:242,bs:'benzine',kw:485},
       {l:'Ford GT Mk II 3.5 V6 700pk',cat:1200000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:515},
     ]},
+    'mustang':{label:'Mustang',uitv:[
+      {l:'Mustang Fastback 5.0 V8 449pk',cat:62000,co2_wltp:322,co2_nedc:295,bs:'benzine',kw:330},
+      {l:'Mustang Cabriolet 5.0 V8 449pk',cat:68000,co2_wltp:329,co2_nedc:302,bs:'benzine',kw:330},
+      {l:'Mustang Dark Horse 5.0 V8 504pk',cat:79000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:371},
+      {l:'Mustang Mach-E GT AWD 487pk',cat:72000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:358},
+    ]},
     'ranger-raptor':{label:'Ranger / Bronco Raptor',uitv:[
-      {l:'Ranger Raptor 3.0 V6 292pk',cat:68000,co2_wltp:262,co2_nedc:null,bs:'benzine',kw:215},
-      {l:'Bronco Raptor 3.0 V6 418pk',cat:85000,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:307},
+      {l:'Ranger Raptor 3.0 V6 292pk',cat:68000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:215},
+      {l:'Bronco Raptor 3.0 V6 418pk',cat:85000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:307},
+    ]},
+  }},
+  honda:{label:'Honda',models:{
+    'civic-type-r':{label:'Civic Type R',uitv:[
+      {l:'Civic Type R 2.0 VTEC 329pk',cat:49900,co2_wltp:178,co2_nedc:163,bs:'benzine',kw:242},
+      {l:'Civic Type R Limited Edition 329pk',cat:58000,co2_wltp:178,co2_nedc:null,bs:'benzine',kw:242},
+    ]},
+    'e-nsx':{label:'Honda e',uitv:[
+      {l:'Honda e Electric 154pk',cat:38500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:113},
+    ]},
+    'nsx':{label:'NSX',uitv:[
+      {l:'NSX Type S 3.5 V6 PHEV 600pk',cat:185000,co2_wltp:169,co2_nedc:null,bs:'hybride',kw:441},
     ]},
   }},
   koenigsegg:{label:'Koenigsegg',models:{
@@ -1387,17 +1000,208 @@ const DB={
       {l:'Agera RS V8 Biturbo 1360pk',cat:2500000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:1000},
       {l:'Agera Final One V8 1360pk',cat:3200000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:1000},
     ]},
+    'gemera':{label:'Gemera',uitv:[
+      {l:'Gemera V8 PHEV 2300pk',cat:1700000,co2_wltp:null,co2_nedc:null,bs:'hybride',kw:1692},
+    ]},
     'jesko':{label:'Jesko',uitv:[
       {l:'Jesko V8 Biturbo 1280pk',cat:2800000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:942},
       {l:'Jesko Absolut V8 1600pk',cat:3500000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:1176},
-    ]},
-    'gemera':{label:'Gemera',uitv:[
-      {l:'Gemera V8 PHEV 2300pk',cat:1700000,co2_wltp:null,co2_nedc:null,bs:'hybride',kw:1692},
     ]},
     'regera':{label:'Regera',uitv:[
       {l:'Regera V8 Hybrid 1500pk',cat:1900000,co2_wltp:null,co2_nedc:null,bs:'hybride',kw:1103},
     ]},
   }},
+  lamborghini:{label:'Lamborghini',models:{
+    'aventador':{label:'Aventador',uitv:[
+      {l:'Aventador LP 700-4 700pk',cat:318000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:515},
+      {l:'Aventador LP 700-4 Roadster 700pk',cat:356000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:515},
+      {l:'Aventador LP 750-4 SV 750pk',cat:378000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:552},
+      {l:'Aventador LP 750-4 SV Roadster 750pk',cat:415000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:552},
+      {l:'Aventador S LP 740-4 740pk',cat:325000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:544},
+      {l:'Aventador SVJ 770pk',cat:425000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:566},
+      {l:'Aventador SVJ Roadster 770pk',cat:460000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:566},
+      {l:'Aventador Ultimae 780pk',cat:490000,co2_wltp:null,co2_nedc:398,bs:'benzine',kw:574},
+    ]},
+    'gallardo':{label:'Gallardo',uitv:[
+      {l:'Gallardo LP 560-4 560pk',cat:178000,co2_wltp:null,co2_nedc:327,bs:'benzine',kw:412},
+      {l:'Gallardo LP 570-4 Superleggera 570pk',cat:210000,co2_wltp:null,co2_nedc:327,bs:'benzine',kw:419},
+      {l:'Gallardo Spyder 520pk',cat:175000,co2_wltp:null,co2_nedc:327,bs:'benzine',kw:382},
+    ]},
+    'huracan':{label:'Huracán',uitv:[
+      {l:'Huracán LP 610-4 610pk',cat:242953,co2_wltp:325,co2_nedc:298,bs:'benzine',kw:449},
+      {l:'Huracán LP 610-4 Spyder 610pk',cat:268953,co2_wltp:332,co2_nedc:305,bs:'benzine',kw:449},
+      {l:'Huracán Evo Coupé 640pk',cat:249000,co2_wltp:336,co2_nedc:308,bs:'benzine',kw:470},
+      {l:'Huracán Evo Spyder 640pk',cat:272000,co2_wltp:341,co2_nedc:312,bs:'benzine',kw:470},
+      {l:'Huracán Evo RWD Coupé 610pk',cat:219000,co2_wltp:325,co2_nedc:298,bs:'benzine',kw:449},
+      {l:'Huracán Evo RWD Spyder 610pk',cat:235000,co2_wltp:331,co2_nedc:303,bs:'benzine',kw:449},
+      {l:'Huracán Sterrato 610pk',cat:275000,co2_wltp:338,co2_nedc:null,bs:'benzine',kw:449},
+      {l:'Huracán Tecnica 640pk',cat:265000,co2_wltp:336,co2_nedc:null,bs:'benzine',kw:470},
+      {l:'Huracán STO 640pk',cat:295000,co2_wltp:336,co2_nedc:null,bs:'benzine',kw:470},
+    ]},
+    'revuelto':{label:'Revuelto',uitv:[
+      {l:'Revuelto V12 PHEV 1015pk',cat:599000,co2_wltp:51,co2_nedc:null,bs:'hybride',kw:746},
+    ]},
+    'urus':{label:'Urus',uitv:[
+      {l:'Urus 4.0 V8 BiTurbo 650pk',cat:328590,co2_wltp:325,co2_nedc:null,bs:'benzine',kw:478},
+      {l:'Urus S 4.0 V8 BiTurbo 666pk',cat:345000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:490},
+      {l:'Urus Performante 4.0 V8 666pk',cat:360000,co2_wltp:340,co2_nedc:null,bs:'benzine',kw:490},
+    ]},
+  }},
+  lexus:{label:'Lexus',models:{
+    'lc':{label:'LC 500',uitv:[
+      {l:'LC 500 5.0 V8 477pk',cat:110000,co2_wltp:270,co2_nedc:247,bs:'benzine',kw:351},
+      {l:'LC 500h Hybrid 359pk',cat:102000,co2_wltp:218,co2_nedc:199,bs:'hybride',kw:264},
+      {l:'LC 500 Cabriolet V8 477pk',cat:122000,co2_wltp:278,co2_nedc:255,bs:'benzine',kw:351},
+      {l:'LC 500h Cabriolet Hybrid 359pk',cat:115000,co2_wltp:225,co2_nedc:206,bs:'hybride',kw:264},
+    ]},
+    'ls':{label:'LS 500',uitv:[
+      {l:'LS 500 3.5 V6 Biturbo 422pk',cat:118000,co2_wltp:249,co2_nedc:228,bs:'benzine',kw:310},
+      {l:'LS 500h Hybrid 359pk',cat:125000,co2_wltp:189,co2_nedc:173,bs:'hybride',kw:264},
+      {l:'LS 500 Inspiration Series 422pk',cat:138000,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:310},
+    ]},
+    'lx':{label:'LX 600',uitv:[
+      {l:'LX 600 3.5 V6 415pk',cat:128000,co2_wltp:315,co2_nedc:289,bs:'benzine',kw:305},
+      {l:'LX 600 F Sport 3.5 V6 415pk',cat:145000,co2_wltp:315,co2_nedc:289,bs:'benzine',kw:305},
+      {l:'LX 600 Ultra Luxury 415pk',cat:165000,co2_wltp:315,co2_nedc:null,bs:'benzine',kw:305},
+    ]},
+    'rcf':{label:'RC F',uitv:[
+      {l:'RC F 5.0 V8 477pk',cat:95000,co2_wltp:null,co2_nedc:278,bs:'benzine',kw:351},
+      {l:'RC F Track Edition 5.0 V8 477pk',cat:112000,co2_wltp:null,co2_nedc:278,bs:'benzine',kw:351},
+    ]},
+  }},
+  maserati:{label:'Maserati',models:{
+    'granturismo':{label:'GranTurismo',uitv:[
+      {l:'GranTurismo Modena 3.0 V6 490pk',cat:195000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:360},
+      {l:'GranTurismo Trofeo 3.0 V6 550pk',cat:225000,co2_wltp:315,co2_nedc:null,bs:'benzine',kw:405},
+      {l:'GranTurismo Folgore Electric 761pk',cat:275000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
+    ]},
+    'grancabrio':{label:'GranCabrio',uitv:[
+      {l:'GranCabrio Modena 3.0 V6 490pk',cat:218000,co2_wltp:305,co2_nedc:null,bs:'benzine',kw:360},
+      {l:'GranCabrio Trofeo 3.0 V6 550pk',cat:248000,co2_wltp:319,co2_nedc:null,bs:'benzine',kw:405},
+      {l:'GranCabrio Folgore Electric 761pk',cat:295000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
+    ]},
+    'grecale':{label:'Grecale',uitv:[
+      {l:'Grecale GT 2.0 T4 300pk',cat:76000,co2_wltp:199,co2_nedc:null,bs:'benzine',kw:221},
+      {l:'Grecale Modena 3.0 V6 330pk',cat:92000,co2_wltp:225,co2_nedc:null,bs:'benzine',kw:243},
+      {l:'Grecale Trofeo 3.0 V6 530pk',cat:128000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:390},
+      {l:'Grecale Folgore Electric 557pk',cat:115000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:410},
+    ]},
+    'levante':{label:'Levante',uitv:[
+      {l:'Levante 3.0 V6 350pk',cat:88000,co2_wltp:279,co2_nedc:256,bs:'benzine',kw:257},
+      {l:'Levante S 3.0 V6 430pk',cat:105000,co2_wltp:299,co2_nedc:274,bs:'benzine',kw:316},
+      {l:'Levante GTS 3.8 V8 550pk',cat:148000,co2_wltp:339,co2_nedc:311,bs:'benzine',kw:404},
+      {l:'Levante Trofeo 3.8 V8 580pk',cat:168000,co2_wltp:349,co2_nedc:320,bs:'benzine',kw:427},
+    ]},
+    'mc20':{label:'MC20',uitv:[
+      {l:'MC20 Coupé V6 630pk',cat:248000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:463},
+      {l:'MC20 Cielo Spider V6 630pk',cat:285000,co2_wltp:305,co2_nedc:null,bs:'benzine',kw:463},
+      {l:'MC20 Cielo Folgore Electric 761pk',cat:320000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
+    ]},
+    'quattroporte':{label:'Quattroporte',uitv:[
+      {l:'Quattroporte 3.0 V6 350pk',cat:115000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:257},
+      {l:'Quattroporte S 3.0 V6 430pk',cat:132000,co2_wltp:null,co2_nedc:265,bs:'benzine',kw:316},
+      {l:'Quattroporte GTS 3.8 V8 530pk',cat:168000,co2_wltp:null,co2_nedc:325,bs:'benzine',kw:390},
+      {l:'Quattroporte Trofeo 3.8 V8 580pk',cat:188000,co2_wltp:null,co2_nedc:335,bs:'benzine',kw:427},
+    ]},
+  }},
+  mclaren:{label:'McLaren',models:{
+    '540c':{label:'540C',uitv:[
+      {l:'540C Coupé 3.8 V8 540pk',cat:168000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:397},
+    ]},
+    '570s':{label:'570S / GT',uitv:[
+      {l:'570S Coupé 3.8 V8 570pk',cat:198000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:419},
+      {l:'570S Spider 3.8 V8 570pk',cat:218000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:419},
+      {l:'570GT 3.8 V8 570pk',cat:205000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:419},
+    ]},
+    '600lt':{label:'600LT',uitv:[
+      {l:'600LT Coupé 3.8 V8 600pk',cat:255000,co2_wltp:249,co2_nedc:228,bs:'benzine',kw:441},
+      {l:'600LT Spider 3.8 V8 600pk',cat:278000,co2_wltp:255,co2_nedc:234,bs:'benzine',kw:441},
+    ]},
+    '650s':{label:'650S',uitv:[
+      {l:'650S Coupé 3.8 V8 650pk',cat:220000,co2_wltp:249,co2_nedc:228,bs:'benzine',kw:478},
+      {l:'650S Spider 3.8 V8 650pk',cat:238000,co2_wltp:255,co2_nedc:234,bs:'benzine',kw:478},
+    ]},
+    '720s':{label:'720S',uitv:[
+      {l:'720S Coupé 4.0 V8 720pk',cat:287000,co2_wltp:269,co2_nedc:247,bs:'benzine',kw:530},
+      {l:'720S Spider 4.0 V8 720pk',cat:313000,co2_wltp:275,co2_nedc:252,bs:'benzine',kw:530},
+      {l:'720S Performance Coupé 720pk',cat:305000,co2_wltp:269,co2_nedc:247,bs:'benzine',kw:530},
+    ]},
+    '750s':{label:'750S',uitv:[
+      {l:'750S Coupé 4.0 V8 750pk',cat:335000,co2_wltp:285,co2_nedc:null,bs:'benzine',kw:552},
+      {l:'750S Spider 4.0 V8 750pk',cat:360000,co2_wltp:292,co2_nedc:null,bs:'benzine',kw:552},
+    ]},
+    'artura':{label:'Artura',uitv:[
+      {l:'Artura V6 PHEV 680pk',cat:265000,co2_wltp:129,co2_nedc:null,bs:'hybride',kw:500},
+      {l:'Artura Spider V6 PHEV 700pk',cat:295000,co2_wltp:131,co2_nedc:null,bs:'hybride',kw:515},
+    ]},
+    'elva':{label:'Elva',uitv:[
+      {l:'Elva 4.0 V8 804pk',cat:1690000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:591},
+    ]},
+    'p1':{label:'P1',uitv:[
+      {l:'P1 V8 PHEV 916pk',cat:1150000,co2_wltp:null,co2_nedc:194,bs:'hybride',kw:674},
+      {l:'P1 GTR V8 PHEV 1000pk',cat:2500000,co2_wltp:null,co2_nedc:null,bs:'hybride',kw:736},
+    ]},
+    'senna':{label:'Senna / GTR',uitv:[
+      {l:'Senna 4.0 V8 800pk',cat:985000,co2_wltp:null,co2_nedc:249,bs:'benzine',kw:588},
+      {l:'Senna GTR 4.0 V8 825pk',cat:1450000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:607},
+    ]},
+    'speedtail':{label:'Speedtail',uitv:[
+      {l:'Speedtail V8 Hybrid 1055pk',cat:2100000,co2_wltp:null,co2_nedc:null,bs:'hybride',kw:776},
+    ]},
+  }},
+  mercedes:{label:'Mercedes-Benz',models:{
+    'amg-c63':{label:'AMG C 63 / E 63',uitv:[
+      {l:'C 63 S E Performance PHEV 680pk',cat:105000,co2_wltp:99,co2_nedc:null,bs:'hybride',kw:500},
+      {l:'E 53 AMG 4MATIC+ 449pk',cat:96500,co2_wltp:219,co2_nedc:null,bs:'hybride',kw:330},
+      {l:'E 63 S AMG 4MATIC+ 612pk',cat:138000,co2_wltp:279,co2_nedc:null,bs:'benzine',kw:450},
+    ]},
+    'amg-gt':{label:'AMG GT',uitv:[
+      {l:'AMG GT 43 Coupé 449pk',cat:118900,co2_wltp:249,co2_nedc:null,bs:'benzine',kw:330},
+      {l:'AMG GT 55 Coupé V8 476pk',cat:145000,co2_wltp:265,co2_nedc:null,bs:'benzine',kw:350},
+      {l:'AMG GT 63 4.0 V8 585pk',cat:185000,co2_wltp:289,co2_nedc:null,bs:'benzine',kw:430},
+      {l:'AMG GT 63 S E Performance 843pk',cat:236000,co2_wltp:149,co2_nedc:null,bs:'hybride',kw:620},
+      {l:'AMG GT 63 S Roadster 585pk',cat:198000,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:430},
+    ]},
+    'amg-slr':{label:'AMG SL',uitv:[
+      {l:'SL 43 AMG 381pk',cat:138500,co2_wltp:235,co2_nedc:null,bs:'benzine',kw:280},
+      {l:'SL 55 AMG V8 476pk',cat:165000,co2_wltp:265,co2_nedc:null,bs:'benzine',kw:350},
+      {l:'SL 63 AMG V8 585pk',cat:198000,co2_wltp:285,co2_nedc:null,bs:'benzine',kw:430},
+      {l:'SL 63 AMG S E Performance 843pk',cat:248000,co2_wltp:149,co2_nedc:null,bs:'hybride',kw:620},
+    ]},
+    'g-klasse':{label:'G-Klasse',uitv:[
+      {l:'G 400d 3.0 D 330pk',cat:149500,co2_wltp:243,co2_nedc:null,bs:'diesel',kw:243},
+      {l:'G 500 4.0 V8 422pk',cat:173200,co2_wltp:325,co2_nedc:299,bs:'benzine',kw:310},
+      {l:'G 63 AMG 4.0 V8 585pk',cat:242000,co2_wltp:337,co2_nedc:310,bs:'benzine',kw:430},
+      {l:'G 63 AMG Manufaktur 585pk',cat:285000,co2_wltp:337,co2_nedc:null,bs:'benzine',kw:430},
+      {l:'G 580 EQ Electric 587pk',cat:198000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:432},
+    ]},
+    'glc-gle':{label:'GLC / GLE AMG',uitv:[
+      {l:'GLC 63 S E Performance AMG 680pk',cat:122000,co2_wltp:99,co2_nedc:null,bs:'hybride',kw:500},
+      {l:'GLE 53 AMG 4MATIC+ 449pk',cat:118500,co2_wltp:249,co2_nedc:null,bs:'hybride',kw:330},
+      {l:'GLE 63 S AMG 4MATIC+ 612pk',cat:168000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:450},
+      {l:'GLE 63 S AMG Coupé 612pk',cat:178000,co2_wltp:305,co2_nedc:null,bs:'benzine',kw:450},
+    ]},
+    'maybach':{label:'Maybach GLS / S',uitv:[
+      {l:'Maybach GLS 600 4MATIC 558pk',cat:238000,co2_wltp:325,co2_nedc:null,bs:'benzine',kw:410},
+      {l:'Maybach S 480 4MATIC 367pk',cat:178000,co2_wltp:239,co2_nedc:null,bs:'benzine',kw:270},
+      {l:'Maybach S 580 4MATIC 503pk',cat:215000,co2_wltp:259,co2_nedc:null,bs:'benzine',kw:370},
+      {l:'Maybach S 680 V12 612pk',cat:295000,co2_wltp:285,co2_nedc:null,bs:'benzine',kw:450},
+      {l:'Maybach EQS 680 Electric 658pk',cat:268000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:484},
+    ]},
+    's-klasse':{label:'S-Klasse / EQS',uitv:[
+      {l:'S 350d 4MATIC 286pk',cat:108000,co2_wltp:192,co2_nedc:175,bs:'diesel',kw:210},
+      {l:'S 400d 4MATIC 330pk',cat:122000,co2_wltp:199,co2_nedc:181,bs:'diesel',kw:243},
+      {l:'S 450 4MATIC 367pk',cat:118000,co2_wltp:225,co2_nedc:null,bs:'benzine',kw:270},
+      {l:'S 500 4MATIC 449pk',cat:130000,co2_wltp:239,co2_nedc:218,bs:'benzine',kw:330},
+      {l:'S 580 4MATIC 503pk',cat:152000,co2_wltp:259,co2_nedc:null,bs:'benzine',kw:370},
+      {l:'S 63 AMG E Performance 802pk',cat:265000,co2_wltp:129,co2_nedc:null,bs:'hybride',kw:590},
+      {l:'S 680 Maybach V12 612pk',cat:295000,co2_wltp:285,co2_nedc:null,bs:'benzine',kw:450},
+      {l:'EQS 450+ Electric 333pk',cat:139000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:245},
+      {l:'EQS 580 4MATIC Electric 544pk',cat:168000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:400},
+      {l:'EQS AMG 53 761pk',cat:195000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
+    ]},
+  }},
+
   pagani:{label:'Pagani',models:{
     'huayra':{label:'Huayra',uitv:[
       {l:'Huayra V12 Biturbo 730pk',cat:2400000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:537},
@@ -1413,10 +1217,207 @@ const DB={
       {l:'Zonda Cinque V12 678pk',cat:1800000,co2_wltp:null,co2_nedc:null,bs:'benzine',kw:499},
     ]},
   }},
-  rimac:{label:'Rimac / Bugatti',models:{
+  porsche:{label:'Porsche',models:{
+    '911':{label:'911',uitv:[
+      {l:'911 Carrera 3.0 T-Hybrid 357pk',cat:138500,co2_wltp:219,co2_nedc:null,bs:'hybride',kw:263},
+      {l:'911 Carrera Cabriolet 3.0 T-Hybrid 357pk',cat:151800,co2_wltp:225,co2_nedc:null,bs:'hybride',kw:263},
+      {l:'911 Carrera S 3.0 T-Hybrid 473pk',cat:160500,co2_wltp:229,co2_nedc:null,bs:'hybride',kw:348},
+      {l:'911 Carrera S Cabriolet 473pk',cat:174200,co2_wltp:235,co2_nedc:null,bs:'hybride',kw:348},
+      {l:'911 Carrera 4S 3.0 T-Hybrid 473pk',cat:172900,co2_wltp:232,co2_nedc:null,bs:'hybride',kw:348},
+      {l:'911 Carrera 4S Cabriolet 473pk',cat:186600,co2_wltp:238,co2_nedc:null,bs:'hybride',kw:348},
+      {l:'911 Targa 4 3.0 385pk',cat:155800,co2_wltp:228,co2_nedc:null,bs:'benzine',kw:283},
+      {l:'911 Targa 4S 3.0 T-Hybrid 473pk',cat:189300,co2_wltp:232,co2_nedc:null,bs:'hybride',kw:348},
+      {l:'911 GTS 3.0 T-Hybrid 541pk',cat:189300,co2_wltp:239,co2_nedc:null,bs:'hybride',kw:398},
+      {l:'911 GTS Cabriolet 541pk',cat:203000,co2_wltp:245,co2_nedc:null,bs:'hybride',kw:398},
+      {l:'911 Targa 4 GTS 541pk',cat:196500,co2_wltp:242,co2_nedc:null,bs:'hybride',kw:398},
+      {l:'911 Turbo 3.7 580pk',cat:232800,co2_wltp:249,co2_nedc:228,bs:'benzine',kw:427},
+      {l:'911 Turbo Cabriolet 3.7 580pk',cat:246500,co2_wltp:255,co2_nedc:234,bs:'benzine',kw:427},
+      {l:'911 Turbo S 3.7 650pk',cat:279600,co2_wltp:252,co2_nedc:231,bs:'benzine',kw:478},
+      {l:'911 Turbo S Cabriolet 3.7 650pk',cat:293300,co2_wltp:258,co2_nedc:237,bs:'benzine',kw:478},
+      {l:'911 GT3 4.0 518pk',cat:218000,co2_wltp:292,co2_nedc:null,bs:'benzine',kw:381},
+      {l:'911 GT3 Touring 4.0 518pk',cat:218000,co2_wltp:292,co2_nedc:null,bs:'benzine',kw:381},
+      {l:'911 GT3 RS 4.0 525pk',cat:295000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:386},
+      {l:'911 GT2 RS 3.8 700pk',cat:375000,co2_wltp:null,co2_nedc:295,bs:'benzine',kw:515},
+      {l:'911 Dakar 3.0 480pk',cat:222700,co2_wltp:245,co2_nedc:null,bs:'benzine',kw:353},
+      {l:'911 Sport Classic 3.7 480pk',cat:248000,co2_wltp:245,co2_nedc:null,bs:'benzine',kw:353},
+      {l:'911 Speedster 4.0 502pk',cat:295000,co2_wltp:null,co2_nedc:288,bs:'benzine',kw:369},
+    ]},
+    'boxster':{label:'Boxster / Cayman',uitv:[
+      {l:'Boxster 2.0 300pk',cat:75200,co2_wltp:198,co2_nedc:182,bs:'benzine',kw:220},
+      {l:'Boxster S 2.5 350pk',cat:89800,co2_wltp:208,co2_nedc:191,bs:'benzine',kw:257},
+      {l:'Boxster GTS 4.0 400pk',cat:108500,co2_wltp:228,co2_nedc:null,bs:'benzine',kw:294},
+      {l:'Boxster Spyder 4.0 420pk',cat:118500,co2_wltp:235,co2_nedc:null,bs:'benzine',kw:309},
+      {l:'Cayman 2.0 300pk',cat:73100,co2_wltp:195,co2_nedc:179,bs:'benzine',kw:220},
+      {l:'Cayman S 2.5 350pk',cat:87700,co2_wltp:205,co2_nedc:188,bs:'benzine',kw:257},
+      {l:'Cayman GTS 4.0 400pk',cat:106400,co2_wltp:225,co2_nedc:null,bs:'benzine',kw:294},
+      {l:'Cayman GT4 4.0 420pk',cat:116400,co2_wltp:232,co2_nedc:null,bs:'benzine',kw:309},
+      {l:'Cayman GT4 RS 4.0 500pk',cat:145000,co2_wltp:245,co2_nedc:null,bs:'benzine',kw:368},
+    ]},
+    'cayenne':{label:'Cayenne',uitv:[
+      {l:'Cayenne 3.0 V6 353pk',cat:108400,co2_wltp:249,co2_nedc:229,bs:'benzine',kw:260},
+      {l:'Cayenne Coupé 3.0 V6 353pk',cat:115600,co2_wltp:252,co2_nedc:231,bs:'benzine',kw:260},
+      {l:'Cayenne S 4.0 V8 474pk',cat:134500,co2_wltp:279,co2_nedc:256,bs:'benzine',kw:348},
+      {l:'Cayenne S Coupé 4.0 V8 474pk',cat:141700,co2_wltp:282,co2_nedc:259,bs:'benzine',kw:348},
+      {l:'Cayenne GTS 4.0 V8 500pk',cat:167400,co2_wltp:295,co2_nedc:null,bs:'benzine',kw:368},
+      {l:'Cayenne GTS Coupé 4.0 V8 500pk',cat:174600,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:368},
+      {l:'Cayenne Turbo GT 4.0 V8 640pk',cat:229000,co2_wltp:325,co2_nedc:null,bs:'benzine',kw:471},
+      {l:'Cayenne E-Hybrid 3.0 470pk',cat:132000,co2_wltp:49,co2_nedc:null,bs:'hybride',kw:346},
+      {l:'Cayenne E-Hybrid Coupé 470pk',cat:139200,co2_wltp:49,co2_nedc:null,bs:'hybride',kw:346},
+      {l:'Cayenne Turbo S E-Hybrid 689pk',cat:218000,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:507},
+      {l:'Cayenne Turbo S E-Hybrid Coupé 689pk',cat:225200,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:507},
+    ]},
+    'macan':{label:'Macan',uitv:[
+      {l:'Macan 4 Electric 408pk',cat:89800,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:300},
+      {l:'Macan 4S Electric 516pk',cat:102500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:380},
+      {l:'Macan Turbo Electric 639pk',cat:111100,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:470},
+    ]},
+    'panamera':{label:'Panamera',uitv:[
+      {l:'Panamera 4 3.0 440pk',cat:122500,co2_wltp:249,co2_nedc:228,bs:'benzine',kw:324},
+      {l:'Panamera 4 Sport Turismo 440pk',cat:128800,co2_wltp:252,co2_nedc:231,bs:'benzine',kw:324},
+      {l:'Panamera 4 E-Hybrid 470pk',cat:138300,co2_wltp:59,co2_nedc:null,bs:'hybride',kw:346},
+      {l:'Panamera 4 E-Hybrid Sport Turismo 470pk',cat:144600,co2_wltp:62,co2_nedc:null,bs:'hybride',kw:346},
+      {l:'Panamera GTS 4.0 V8 500pk',cat:185000,co2_wltp:295,co2_nedc:271,bs:'benzine',kw:368},
+      {l:'Panamera GTS Sport Turismo 500pk',cat:191300,co2_wltp:299,co2_nedc:275,bs:'benzine',kw:368},
+      {l:'Panamera Turbo S 4.0 V8 630pk',cat:220000,co2_wltp:312,co2_nedc:286,bs:'benzine',kw:463},
+      {l:'Panamera Turbo S E-Hybrid 700pk',cat:239500,co2_wltp:79,co2_nedc:null,bs:'hybride',kw:515},
+      {l:'Panamera Turbo S E-Hybrid ST 700pk',cat:245800,co2_wltp:82,co2_nedc:null,bs:'hybride',kw:515},
+    ]},
+    'taycan':{label:'Taycan',uitv:[
+      {l:'Taycan RWD 408pk',cat:98500,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:300},
+      {l:'Taycan Sport Turismo RWD 408pk',cat:105700,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:300},
+      {l:'Taycan 4S 476pk',cat:120200,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:350},
+      {l:'Taycan 4S Cross Turismo 476pk',cat:127400,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:350},
+      {l:'Taycan Turbo 625pk',cat:166800,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:460},
+      {l:'Taycan Turbo Sport Turismo 625pk',cat:174000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:460},
+      {l:'Taycan Turbo S 761pk',cat:196200,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
+      {l:'Taycan Turbo S Cross Turismo 761pk',cat:203400,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:560},
+      {l:'Taycan Turbo GT 1108pk',cat:239900,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:815},
+    ]},
+  }},
+  'range-rover':{label:'Range Rover',models:{
+    'defender':{label:'Defender',uitv:[
+      {l:'Defender 90 D200 200pk',cat:58000,co2_wltp:215,co2_nedc:null,bs:'diesel',kw:147},
+      {l:'Defender 110 D300 300pk',cat:92000,co2_wltp:235,co2_nedc:null,bs:'diesel',kw:221},
+      {l:'Defender 130 D300 300pk',cat:99000,co2_wltp:238,co2_nedc:null,bs:'diesel',kw:221},
+      {l:'Defender 90 V8 525pk',cat:155000,co2_wltp:355,co2_nedc:null,bs:'benzine',kw:386},
+      {l:'Defender 110 V8 525pk',cat:162000,co2_wltp:362,co2_nedc:null,bs:'benzine',kw:386},
+      {l:'Defender 130 V8 Outbound 525pk',cat:165000,co2_wltp:362,co2_nedc:null,bs:'benzine',kw:386},
+      {l:'Defender 90 P400e PHEV 404pk',cat:78000,co2_wltp:43,co2_nedc:null,bs:'hybride',kw:297},
+    ]},
+    'discovery':{label:'Discovery',uitv:[
+      {l:'Discovery D300 HSE 300pk',cat:85000,co2_wltp:232,co2_nedc:null,bs:'diesel',kw:221},
+      {l:'Discovery D300 R-Dynamic HSE 300pk',cat:92000,co2_wltp:232,co2_nedc:null,bs:'diesel',kw:221},
+    ]},
+    'range-rover':{label:'Range Rover',uitv:[
+      {l:'Range Rover D250 3.0 D 249pk',cat:112000,co2_wltp:219,co2_nedc:null,bs:'diesel',kw:183},
+      {l:'Range Rover D300 3.0 D 300pk',cat:122000,co2_wltp:225,co2_nedc:null,bs:'diesel',kw:221},
+      {l:'Range Rover D350 3.0 D 350pk',cat:138000,co2_wltp:228,co2_nedc:null,bs:'diesel',kw:258},
+      {l:'Range Rover P360 3.0 360pk',cat:128000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:265},
+      {l:'Range Rover P400 3.0 400pk',cat:142000,co2_wltp:312,co2_nedc:null,bs:'benzine',kw:294},
+      {l:'Range Rover P460e PHEV 460pk',cat:147000,co2_wltp:35,co2_nedc:null,bs:'hybride',kw:338},
+      {l:'Range Rover P530 4.4 V8 530pk',cat:198000,co2_wltp:335,co2_nedc:306,bs:'benzine',kw:390},
+      {l:'Range Rover SV 4.4 V8 615pk',cat:285000,co2_wltp:345,co2_nedc:null,bs:'benzine',kw:452},
+      {l:'Range Rover SV Autobiography P530',cat:330000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:390},
+      {l:'Range Rover SV Serenity P530',cat:345000,co2_wltp:335,co2_nedc:null,bs:'benzine',kw:390},
+    ]},
+    'range-rover-sport':{label:'Range Rover Sport',uitv:[
+      {l:'Sport D250 3.0 D 249pk',cat:88000,co2_wltp:215,co2_nedc:null,bs:'diesel',kw:183},
+      {l:'Sport D300 3.0 D 300pk',cat:98000,co2_wltp:219,co2_nedc:null,bs:'diesel',kw:221},
+      {l:'Sport P360 3.0 360pk',cat:105000,co2_wltp:299,co2_nedc:null,bs:'benzine',kw:265},
+      {l:'Sport P400 3.0 400pk',cat:118000,co2_wltp:309,co2_nedc:null,bs:'benzine',kw:294},
+      {l:'Sport P460e PHEV 460pk',cat:120000,co2_wltp:35,co2_nedc:null,bs:'hybride',kw:338},
+      {l:'Sport P530 4.4 V8 530pk',cat:148000,co2_wltp:332,co2_nedc:305,bs:'benzine',kw:390},
+      {l:'Sport SV Edition One 635pk',cat:185000,co2_wltp:355,co2_nedc:null,bs:'benzine',kw:467},
+    ]},
+  }},
+  rimac:{label:'Rimac',models:{
     'nevera':{label:'Nevera',uitv:[
       {l:'Rimac Nevera Electric 1914pk',cat:2200000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:1408},
       {l:'Rimac Nevera Time Attack 2012pk',cat:2500000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:1480},
+    ]},
+  }},
+  'rolls-royce':{label:'Rolls-Royce',models:{
+    'cullinan':{label:'Cullinan',uitv:[
+      {l:'Cullinan V12 571pk',cat:395000,co2_wltp:385,co2_nedc:355,bs:'benzine',kw:420},
+      {l:'Cullinan Black Badge V12 612pk',cat:445000,co2_wltp:392,co2_nedc:null,bs:'benzine',kw:450},
+      {l:'Cullinan Series II V12 571pk',cat:425000,co2_wltp:385,co2_nedc:null,bs:'benzine',kw:420},
+    ]},
+    'dawn':{label:'Dawn / Wraith',uitv:[
+      {l:'Dawn V12 571pk',cat:348000,co2_wltp:null,co2_nedc:328,bs:'benzine',kw:420},
+      {l:'Dawn Black Badge V12 612pk',cat:385000,co2_wltp:null,co2_nedc:332,bs:'benzine',kw:450},
+      {l:'Wraith V12 624pk',cat:325000,co2_wltp:null,co2_nedc:335,bs:'benzine',kw:459},
+      {l:'Wraith Black Badge V12 632pk',cat:358000,co2_wltp:null,co2_nedc:339,bs:'benzine',kw:465},
+    ]},
+    'ghost':{label:'Ghost',uitv:[
+      {l:'Ghost V12 571pk',cat:365000,co2_wltp:355,co2_nedc:329,bs:'benzine',kw:420},
+      {l:'Ghost Extended V12 571pk',cat:395000,co2_wltp:358,co2_nedc:332,bs:'benzine',kw:420},
+      {l:'Ghost Black Badge V12 612pk',cat:418000,co2_wltp:362,co2_nedc:null,bs:'benzine',kw:450},
+      {l:'Ghost Zenith Collection V12 571pk',cat:428000,co2_wltp:355,co2_nedc:null,bs:'benzine',kw:420},
+    ]},
+    'phantom':{label:'Phantom',uitv:[
+      {l:'Phantom VIII V12 563pk',cat:510000,co2_wltp:369,co2_nedc:339,bs:'benzine',kw:414},
+      {l:'Phantom Extended V12 563pk',cat:550000,co2_wltp:372,co2_nedc:null,bs:'benzine',kw:414},
+      {l:'Phantom Tempus Collection V12 563pk',cat:595000,co2_wltp:369,co2_nedc:null,bs:'benzine',kw:414},
+    ]},
+    'spectre':{label:'Spectre',uitv:[
+      {l:'Spectre Electric 584pk',cat:430000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:430},
+    ]},
+  }},
+  toyota:{label:'Toyota',models:{
+    'gr-supra':{label:'GR Supra',uitv:[
+      {l:'GR Supra 2.0 Turbo 258pk',cat:52000,co2_wltp:192,co2_nedc:176,bs:'benzine',kw:190},
+      {l:'GR Supra 3.0 340pk',cat:65000,co2_wltp:219,co2_nedc:201,bs:'benzine',kw:250},
+      {l:'GR Supra 3.0 A90 Edition 387pk',cat:79000,co2_wltp:225,co2_nedc:null,bs:'benzine',kw:285},
+      {l:'GR Supra 45th Anniversary 387pk',cat:82000,co2_wltp:225,co2_nedc:null,bs:'benzine',kw:285},
+    ]},
+    'gr-yaris':{label:'GR Yaris',uitv:[
+      {l:'GR Yaris 1.6 261pk',cat:42500,co2_wltp:185,co2_nedc:null,bs:'benzine',kw:192},
+      {l:'GR Yaris Circuit 1.6 261pk',cat:48500,co2_wltp:185,co2_nedc:null,bs:'benzine',kw:192},
+    ]},
+    'gr86':{label:'GR86',uitv:[
+      {l:'GR86 2.4 234pk',cat:38500,co2_wltp:192,co2_nedc:176,bs:'benzine',kw:172},
+      {l:'GR86 2.4 Premium 234pk',cat:42500,co2_wltp:192,co2_nedc:null,bs:'benzine',kw:172},
+    ]},
+    'landcruiser':{label:'Land Cruiser',uitv:[
+      {l:'Land Cruiser 300 3.3 D 309pk',cat:88000,co2_wltp:249,co2_nedc:228,bs:'diesel',kw:227},
+      {l:'Land Cruiser 300 GR Sport 309pk',cat:95000,co2_wltp:249,co2_nedc:null,bs:'diesel',kw:227},
+    ]},
+  }},
+  volkswagen:{label:'Volkswagen',models:{
+    'golf-r':{label:'Golf R',uitv:[
+      {l:'Golf R 2.0 TSI 4Motion 333pk',cat:58000,co2_wltp:185,co2_nedc:169,bs:'benzine',kw:245},
+      {l:'Golf R 20 Years 333pk',cat:65000,co2_wltp:185,co2_nedc:null,bs:'benzine',kw:245},
+    ]},
+    'id-family':{label:'ID.4 / ID.5 / ID.7',uitv:[
+      {l:'ID.4 GTX 4Motion 299pk',cat:55000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:220},
+      {l:'ID.5 GTX 4Motion 299pk',cat:57000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:220},
+      {l:'ID.7 Pro S AWD 340pk',cat:68000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:250},
+    ]},
+    'touareg':{label:'Touareg',uitv:[
+      {l:'Touareg R PHEV 462pk',cat:82000,co2_wltp:44,co2_nedc:null,bs:'hybride',kw:340},
+      {l:'Touareg 3.0 TDI 286pk',cat:72000,co2_wltp:205,co2_nedc:188,bs:'diesel',kw:210},
+    ]},
+  }},
+  volvo:{label:'Volvo',models:{
+    'ex90':{label:'EX90',uitv:[
+      {l:'EX90 Twin Motor 408pk',cat:95000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:300},
+      {l:'EX90 Twin Motor Performance 510pk',cat:105000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:375},
+      {l:'EX90 Ultra Twin Motor Performance 510pk',cat:118000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:375},
+    ]},
+    'polestar':{label:'Polestar',uitv:[
+      {l:'Polestar 1 Hybrid 600pk',cat:155000,co2_wltp:null,co2_nedc:13,bs:'hybride',kw:441},
+      {l:'Polestar 2 AWD Long Range 476pk',cat:62000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:350},
+      {l:'Polestar 3 AWD Long Range 517pk',cat:89000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:380},
+      {l:'Polestar 6 Electric Roadster 884pk',cat:195000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:650},
+    ]},
+    'xc60':{label:'XC60',uitv:[
+      {l:'XC60 Recharge T8 PHEV 455pk',cat:75000,co2_wltp:21,co2_nedc:null,bs:'hybride',kw:335},
+      {l:'XC60 Recharge T8 AWD Ultimate 455pk',cat:85000,co2_wltp:21,co2_nedc:null,bs:'hybride',kw:335},
+    ]},
+    'xc90':{label:'XC90',uitv:[
+      {l:'XC90 Recharge T8 455pk PHEV',cat:92000,co2_wltp:22,co2_nedc:null,bs:'hybride',kw:335},
+      {l:'XC90 Recharge T8 AWD Ultimate 455pk',cat:105000,co2_wltp:22,co2_nedc:null,bs:'hybride',kw:335},
+      {l:'XC90 Recharge AWD Electric 310pk',cat:76000,co2_wltp:0,co2_nedc:null,bs:'elektrisch',kw:228},
     ]},
   }},
   overig:{label:'Overig',models:{
