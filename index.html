@@ -10,6 +10,108 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+
+/* ═══════════════════════════════════════
+   TE BETALEN BPM — PROMINENT BLOK
+═══════════════════════════════════════ */
+.betalen-wrap{
+  background:var(--ink2);
+  border:2px solid rgba(198,203,209,.35);
+  position:relative;
+  margin-bottom:4px;
+  overflow:hidden;
+}
+.betalen-wrap::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--ig),var(--pt),var(--ir));
+}
+.betalen-header{
+  display:flex;align-items:center;gap:1.5rem;
+  padding:1.75rem 2rem;
+  background:rgba(198,203,209,.04);
+  border-bottom:1px solid var(--ln);
+}
+.betalen-icon{
+  width:64px;height:64px;flex-shrink:0;
+  background:var(--pt);
+  color:var(--ink);
+  font-family:var(--sf);font-size:2.2rem;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:2px;
+}
+.betalen-content{flex:1}
+.betalen-lbl{
+  font-family:var(--lb);font-size:.6rem;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(198,203,209,.45);
+  margin-bottom:.35rem;
+}
+.betalen-val{
+  font-family:var(--sf);font-size:clamp(2.2rem,5vw,3.5rem);
+  font-weight:300;color:var(--pt);line-height:1;
+  margin-bottom:.35rem;
+}
+.betalen-sub{
+  font-size:.78rem;color:rgba(198,203,209,.5);
+  font-family:var(--lb);letter-spacing:.06em;line-height:1.55;
+}
+.betalen-kosten{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--ln);
+}
+@media(max-width:640px){.betalen-kosten{grid-template-columns:1fr 1fr}}
+@media(max-width:380px){.betalen-kosten{grid-template-columns:1fr}}
+.betalen-kost{
+  background:var(--ink3);
+  padding:1.1rem 1.35rem;
+}
+.betalen-kost-icon{
+  font-size:1.1rem;margin-bottom:.4rem;
+}
+.betalen-kost-lbl{
+  font-family:var(--lb);font-size:.52rem;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(198,203,209,.28);
+  margin-bottom:.25rem;
+}
+.betalen-kost-val{
+  font-family:var(--sf);font-size:1.15rem;font-weight:300;
+  color:var(--tx);line-height:1;margin-bottom:.2rem;
+}
+.betalen-kost-sub{
+  font-size:.65rem;color:rgba(198,203,209,.28);
+  font-family:var(--lb);letter-spacing:.04em;line-height:1.5;
+}
+.betalen-kost.bpm-kost .betalen-kost-val{color:var(--pt)}
+.betalen-totaal-wrap{
+  padding:1.25rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+  background:rgba(198,203,209,.03);
+  border-top:1px solid var(--ln);
+}
+.betalen-totaal-lbl{
+  font-family:var(--lb);font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(198,203,209,.4);
+}
+.betalen-totaal-val{
+  font-family:var(--sf);font-size:1.85rem;font-weight:300;
+  color:var(--tx);line-height:1;
+}
+.betalen-totaal-sub{
+  font-size:.65rem;color:rgba(198,203,209,.25);
+  font-family:var(--lb);letter-spacing:.05em;
+  width:100%;margin-top:.25rem;
+}
+.betalen-methode-info{
+  padding:.85rem 2rem;
+  background:rgba(196,154,0,.04);
+  border-top:1px solid rgba(196,154,0,.15);
+  font-family:var(--lb);font-size:.6rem;letter-spacing:.08em;
+  color:rgba(196,154,0,.6);line-height:1.65;
+  display:flex;gap:.65rem;align-items:flex-start;
+}
+.betalen-methode-info::before{
+  content:'ℹ';font-size:.85rem;flex-shrink:0;margin-top:.05rem;
+}
 :root{
   --pt:#c6cbd1;--pt-s:#f2f4f6;
   --ig:#009246;--ir:#CE2B37;
@@ -608,6 +710,25 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   </div>
 
   <div class="result-wrap" id="result-wrap">
+
+    <!-- TE BETALEN BPM — PROMINENT BLOK -->
+    <div class="betalen-wrap" id="betalen-wrap" style="display:none">
+      <div class="betalen-header">
+        <div class="betalen-icon">€</div>
+        <div class="betalen-content">
+          <div class="betalen-lbl">Te betalen BPM bij import</div>
+          <div class="betalen-val" id="betalen-val">—</div>
+          <div class="betalen-sub" id="betalen-sub">—</div>
+        </div>
+      </div>
+      <div class="betalen-kosten" id="betalen-kosten"></div>
+      <div class="betalen-totaal-wrap">
+        <div class="betalen-totaal-lbl">Geschatte totale importkosten</div>
+        <div class="betalen-totaal-val" id="betalen-totaal-val">—</div>
+        <div class="betalen-totaal-sub">BPM + RDW + APK + transport (indicatie)</div>
+      </div>
+    </div>
+
     <!-- Dubbele berekening sectie -->
     <div class="dual-calc-wrap" id="dual-calc-wrap" style="display:none">
       <div class="dual-calc-header">Twee berekeningen — toelatingsjaar vs. huidig jaar 2026</div>
@@ -2502,7 +2623,92 @@ function doCalc(){
   }else{
     wbS.style.display='none';
   }
+/* ─── TE BETALEN BPM BLOK ─── */
+  const betalenWrap = document.getElementById('betalen-wrap');
+  const betalenVal  = document.getElementById('betalen-val');
+  const betalenSub  = document.getElementById('betalen-sub');
+  const betalenKosten = document.getElementById('betalen-kosten');
+  const betalenTotaal = document.getElementById('betalen-totaal-val');
 
+  if(bs === 'elektrisch'){
+    betalenWrap.style.display = 'none';
+  } else {
+    betalenWrap.style.display = 'block';
+
+    // Bepaal laagste BPM uitkomst
+    let teBetalenBpm = restBpm;
+    let teBetalenLabel = 'Op basis van huidige tarieven 2026';
+
+    // Als dubbele berekening zichtbaar is, gebruik laagste
+    if(co2Used > 0 && toelatingsJaar < huidigJaar){
+      const bpmNu = Math.round(calcBpmCo2(co2Used,bs,normUsed)*pct);
+      const mToelating = getMaandenOpJaar(datum,toelatingsJaar);
+      const pctToelating = getBpmPct(mToelating);
+      const bpmToelating = Math.round(calcBpmCo2(co2Used,bs,normUsed)*pctToelating);
+      teBetalenBpm = Math.min(bpmNu, bpmToelating);
+      teBetalenLabel = bpmNu <= bpmToelating
+        ? 'Laagste uitkomst: berekening op aangiftejaar 2026'
+        : 'Laagste uitkomst: berekening op toelatingsjaar '+toelatingsJaar;
+    }
+
+    betalenVal.textContent = fE(teBetalenBpm);
+    betalenSub.textContent = teBetalenLabel
+      + ' · ' + (normUsed.toUpperCase()||'Forfaitair')
+      + (co2Used > 0 ? ' · ' + co2Used + ' g/km CO₂' : '')
+      + ' · ' + Math.round((1-pct)*100) + '% afgeschreven';
+
+    // Bijkomende kosten
+    const rdwKeuring  = 960;   // RDW keuringskosten (indicatie 2026)
+    const apkKosten   = 85;    // APK keuring (indicatie)
+    const transportLaag = 800; // Transport Europa → NL (laag)
+    const transportHoog = 2500;// Transport Europa → NL (hoog)
+    const aangifte    = 295;   // BPM aangifte kosten (indicatie)
+
+    const totaalLaag = teBetalenBpm + rdwKeuring + apkKosten + transportLaag + aangifte;
+    const totaalHoog = teBetalenBpm + rdwKeuring + apkKosten + transportHoog + aangifte;
+
+    betalenKosten.innerHTML = `
+      <div class="betalen-kost bpm-kost">
+        <div class="betalen-kost-icon">🏛</div>
+        <div class="betalen-kost-lbl">Resterende BPM</div>
+        <div class="betalen-kost-val">${fE(teBetalenBpm)}</div>
+        <div class="betalen-kost-sub">Te betalen aan Belastingdienst</div>
+      </div>
+      <div class="betalen-kost">
+        <div class="betalen-kost-icon">🔍</div>
+        <div class="betalen-kost-lbl">RDW Keuring</div>
+        <div class="betalen-kost-val">± ${fE(rdwKeuring)}</div>
+        <div class="betalen-kost-sub">Keuringsonderzoek + registratie</div>
+      </div>
+      <div class="betalen-kost">
+        <div class="betalen-kost-icon">🚗</div>
+        <div class="betalen-kost-lbl">Transport</div>
+        <div class="betalen-kost-val">± ${fE(transportLaag)}–${fE(transportHoog)}</div>
+        <div class="betalen-kost-sub">Afhankelijk van herkomst en methode</div>
+      </div>
+      <div class="betalen-kost">
+        <div class="betalen-kost-icon">📋</div>
+        <div class="betalen-kost-lbl">APK + Aangifte</div>
+        <div class="betalen-kost-val">± ${fE(apkKosten + aangifte)}</div>
+        <div class="betalen-kost-sub">APK keuring + BPM aangifte kosten</div>
+      </div>
+    `;
+
+    betalenTotaal.textContent = fE(totaalLaag) + ' – ' + fE(totaalHoog);
+
+    // Methode info
+    const methodInfo = document.createElement('div');
+    methodInfo.className = 'betalen-methode-info';
+    methodInfo.textContent = 
+      'De werkelijke BPM kan lager uitvallen bij taxatie (koerslijst of taxatierapport). '
+      + 'Bij ongebruikelijke gebruikssporen, hoog kilometrage of schade kan de afschrijving '
+      + 'hoger zijn dan de forfaitaire berekening. APEXclusive regelt taxatie via erkende RDW-partners.';
+    
+    // Verwijder eerder toegevoegde methode info
+    const bestaand = betalenWrap.querySelector('.betalen-methode-info');
+    if(bestaand) bestaand.remove();
+    betalenWrap.appendChild(methodInfo);
+  }
   /* ─── Toon resultaten ─── */
   document.getElementById('empty-state').style.display='none';
   const rw=document.getElementById('result-wrap');
