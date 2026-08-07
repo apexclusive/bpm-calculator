@@ -1,1664 +1,1718 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>APEXclusive BPM Import Calculator</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
-
-body{
-background:#0a0a0a;
-color:#e8e8e8;
-font-family:'Montserrat',sans-serif;
-font-weight:300;
-min-height:100vh;
-}
-
-
-header{
-background:#0a0a0a;
-border-bottom:1px solid #1a1a1a;
-padding:20px 40px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-position:sticky;
-top:0;
-z-index:100;
-}
-
-
-.logo{
-font-family:'Cormorant Garamond',serif;
-font-size:22px;
-letter-spacing:.18em;
-color:#fff;
-text-decoration:none;
-text-transform:uppercase;
-}
-
-
-.logo span{
-color:#c9a84c;
-}
-
-
-.back{
-font-size:10px;
-letter-spacing:.22em;
-text-transform:uppercase;
-color:#c9a84c;
-text-decoration:none;
-border:1px solid #c9a84c33;
-padding:10px 22px;
-transition:.35s;
-}
-
-
-.back:hover{
-border-color:#c9a84c;
-background:#c9a84c11;
-}
-
-
-.hero{
-text-align:center;
-padding:80px 40px 60px;
-position:relative;
-}
-
-
-.hero::before{
-content:'';
-position:absolute;
-top:0;
-left:50%;
-transform:translateX(-50%);
-width:1px;
-height:60px;
-background:linear-gradient(to bottom,transparent,#c9a84c);
-}
-
-
-.hl{
-font-size:10px;
-letter-spacing:.35em;
-text-transform:uppercase;
-color:#c9a84c;
-margin-bottom:20px;
-margin-top:16px;
-}
-
-
-.hero h1{
-font-family:'Cormorant Garamond',serif;
-font-size:clamp(32px,5vw,56px);
-font-weight:300;
-color:#fff;
-letter-spacing:.06em;
-line-height:1.2;
-margin-bottom:20px;
-}
-
-
-.hero p{
-font-size:13px;
-color:#888;
-letter-spacing:.08em;
-line-height:1.9;
-max-width:600px;
-margin:auto;
-}
-
-
-
-.gl{
-height:1px;
-background:
-linear-gradient(
-90deg,
-transparent,
-#c9a84c 30%,
-#f5e6a3 50%,
-#c9a84c 70%,
-transparent
-);
-background-size:200% 100%;
-animation:shimmer 4s ease-in-out infinite;
-margin:0 40px;
-opacity:.6;
-}
-
-
-@keyframes shimmer{
-0%{
-background-position:200% center;
-}
-100%{
-background-position:-200% center;
-}
-}
-
-
-.wrap{
-max-width:860px;
-margin:auto;
-padding:60px 40px 80px;
-}
-
-
-.box{
-background:#0f0f0f;
-border:1px solid #1a1a1a;
-border-left:2px solid #c9a84c;
-padding:35px;
-margin-bottom:20px;
-}
-
-
-.bt{
-font-size:9px;
-letter-spacing:.3em;
-text-transform:uppercase;
-color:#c9a84c;
-margin-bottom:25px;
-}
-
-
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
-}
-
-
-.field{
-display:flex;
-flex-direction:column;
-gap:8px;
-}
-
-
-.field.full{
-grid-column:1/-1;
-}
-
-
-label{
-font-size:9px;
-letter-spacing:.18em;
-text-transform:uppercase;
-color:#444;
-}
-
-
-input,
-select{
-
-background:#111;
-border:none;
-border-bottom:2px solid #2a2a2a;
-color:#fff;
-font-size:14px;
-padding:16px;
-font-family:'Montserrat',sans-serif;
-outline:none;
-
-}
-
-
-input:focus,
-select:focus{
-border-bottom-color:#c9a84c;
-}
-
-
-
-.calculate{
-
-margin-top:35px;
-width:100%;
-background:#c9a84c;
-color:#0a0a0a;
-border:none;
-padding:18px;
-font-size:10px;
-letter-spacing:.25em;
-font-weight:500;
-text-transform:uppercase;
-cursor:pointer;
-transition:.35s;
-
-}
-
-
-.calculate:hover{
-
-box-shadow:
-0 0 32px rgba(201,168,76,.4);
-
-}
-
-
-.results{
-
-display:none;
-margin-top:50px;
-
-}
-
-
-.cards{
-
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-
-}
-
-
-.card{
-
-background:#0f0f0f;
-border:1px solid #1a1a1a;
-padding:30px;
-text-align:center;
-
-}
-
-
-.card.main{
-
-border-color:#c9a84c;
-
-}
-
-
-.card small{
-
-display:block;
-font-size:9px;
-letter-spacing:.25em;
-color:#444;
-margin-bottom:15px;
-text-transform:uppercase;
-
-}
-
-
-.card strong{
-
-font-size:26px;
-
-}
-
-
-.gold{
-
-color:#c9a84c;
-
-}
-
-
-.breakdown{
-
-background:#0f0f0f;
-border:1px solid #1a1a1a;
-border-left:2px solid #c9a84c;
-padding:30px;
-margin-top:25px;
-line-height:1.8;
-color:#888;
-font-size:13px;
-
-}
-
-
-.cta{
-
-text-align:center;
-margin-top:40px;
-
-}
-
-
-.cta h2{
-
-font-family:'Cormorant Garamond',serif;
-font-size:32px;
-font-weight:300;
-
-}
-
-
-.cta p{
-
-color:#666;
-margin:20px auto 30px;
-max-width:500px;
-line-height:1.8;
-
-}
-
-
-.btn{
-
-display:inline-block;
-padding:15px 35px;
-margin:5px;
-text-decoration:none;
-font-size:10px;
-letter-spacing:.25em;
-text-transform:uppercase;
-
-}
-
-
-.whatsapp{
-
-background:#c9a84c;
-color:#000;
-
-}
-
-
-.email{
-
-border:1px solid #c9a84c;
-color:#c9a84c;
-
-}
-
-
-@media(max-width:700px){
-
-.grid,
-.cards{
-
-grid-template-columns:1fr;
-
-}
-
-header{
-
-padding:16px 20px;
-
-}
-
-.wrap{
-
-padding:40px 20px;
-
-}
-
-}
-
-</style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APEXclusive — Automotive Advisory Maastricht</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:        #050505;
+      --black-2:      #0a0a0a;
+      --black-3:      #111111;
+      --black-4:      #181818;
+      --black-5:      #202020;
+      --white:        #EEEBE5;
+      --white-2:      #D8D4CC;
+      --white-dim:    rgba(238,235,229,0.5);
+      --white-faint:  rgba(238,235,229,0.07);
+      --grey:         #666666;
+      --grey-2:       #999999;
+      --it-green:     #009246;
+      --it-green-dim: rgba(0,146,70,0.12);
+      --it-green-glow:rgba(0,146,70,0.06);
+      --it-red:       #CE2B37;
+      --it-red-dim:   rgba(206,43,55,0.12);
+      --it-red-glow:  rgba(206,43,55,0.06);
+      --it-white:     rgba(238,235,229,0.55);
+      --border:       rgba(238,235,229,0.08);
+      --border-mid:   rgba(238,235,229,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      cursor: none;
+      overflow-x: hidden;
+    }
+    #cur {
+      position: fixed; width: 6px; height: 6px;
+      background: var(--white); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: difference;
+      transition: width .25s, height .25s;
+    }
+    #cur-ring {
+      position: fixed; width: 32px; height: 32px;
+      border: 1px solid rgba(238,235,229,0.3); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width .4s cubic-bezier(.25,.46,.45,.94), height .4s cubic-bezier(.25,.46,.45,.94);
+    }
+    body.hov #cur { width: 10px; height: 10px; }
+    body.hov #cur-ring { width: 50px; height: 50px; }
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      pointer-events: none; z-index: 8000; opacity: .022;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, var(--it-green) 33%, rgba(238,235,229,.5) 33% 66%, var(--it-red) 66%);
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 36px 72px;
+      transition: padding .5s, background .5s, backdrop-filter .5s;
+    }
+    nav.scrolled {
+      padding: 20px 72px;
+      background: rgba(5,5,5,0.95);
+      backdrop-filter: blur(28px) saturate(1.2);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { text-decoration: none; display: flex; flex-direction: column; gap: 4px; }
+    .logo-wordmark { display: flex; align-items: baseline; }
+    .logo-apex { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; letter-spacing: 0.22em; color: var(--white); text-transform: uppercase; line-height: 1; }
+    .logo-dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--it-red); margin: 0 2px; position: relative; top: -3px; }
+    .logo-exclusive { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 300; letter-spacing: 0.22em; color: rgba(238,235,229,0.45); text-transform: uppercase; line-height: 1; }
+    .logo-sub { font-size: 0.5rem; letter-spacing: 0.38em; text-transform: uppercase; color: rgba(238,235,229,0.28); padding-left: 1px; }
+    .logo-tribar { display: flex; height: 1px; margin-top: 3px; opacity: 0.6; }
+    .logo-tribar span { flex: 1; display: block; }
+    .logo-tribar span:nth-child(1) { background: var(--it-green); }
+    .logo-tribar span:nth-child(2) { background: rgba(238,235,229,0.5); }
+    .logo-tribar span:nth-child(3) { background: var(--it-red); }
+    .nav-links { display: flex; gap: 48px; list-style: none; }
+    .nav-links a { font-size: 0.67rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(238,235,229,0.38); text-decoration: none; font-weight: 400; transition: color .3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: linear-gradient(90deg, var(--it-green), rgba(238,235,229,0.6), var(--it-red)); transition: width .45s ease; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-btn { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; border: 1px solid rgba(238,235,229,0.18); padding: 11px 28px; transition: border-color .3s, background .3s; cursor: none; position: relative; overflow: hidden; }
+    .nav-btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--it-green-dim), var(--it-red-dim)); opacity: 0; transition: opacity .4s; }
+    .nav-btn:hover { border-color: rgba(238,235,229,0.35); }
+    .nav-btn:hover::before { opacity: 1; }
+    .nav-btn span { position: relative; z-index: 1; }
+    #hero { position: relative; height: 100vh; min-height: 750px; overflow: hidden; display: flex; align-items: flex-end; }
+    .hero-media { position: absolute; inset: 0; }
+    .hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; filter: brightness(0.42) saturate(0.65) contrast(1.15); transform: scale(1.04); animation: heroZoom 18s ease-in-out infinite alternate; }
+    @keyframes heroZoom { from { transform: scale(1.04); } to { transform: scale(1.10); } }
+    .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,5,1) 0%, rgba(5,5,5,0.6) 35%, rgba(5,5,5,0.1) 70%, rgba(5,5,5,0.25) 100%), radial-gradient(ellipse at 80% 40%, var(--it-green-glow) 0%, transparent 55%), radial-gradient(ellipse at 90% 70%, var(--it-red-glow) 0%, transparent 50%); }
+    .hero-edge { position: absolute; right: 0; top: 0; bottom: 0; width: 3px; display: flex; flex-direction: column; z-index: 4; }
+    .hero-edge span { flex: 1; }
+    .hero-edge span:nth-child(1) { background: var(--it-green); opacity: .7; }
+    .hero-edge span:nth-child(2) { background: rgba(238,235,229,0.45); }
+    .hero-edge span:nth-child(3) { background: var(--it-red); opacity: .7; }
+    .hero-content { position: relative; z-index: 3; padding: 0 72px 88px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: flex-end; gap: 60px; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+    .hero-eyebrow-text { font-size: 0.62rem; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(238,235,229,0.38); font-weight: 400; }
+    h1.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.8rem, 7vw, 7.5rem); font-weight: 400; line-height: 0.95; letter-spacing: -0.01em; color: var(--white); margin-bottom: 36px; }
+    h1.hero-title em { font-style: italic; font-weight: 300; color: rgba(238,235,229,0.42); }
+    h1.hero-title .green { color: var(--it-green); }
+    .hero-actions { display: flex; gap: 16px; align-items: center; }
+    .btn-white { background: var(--white); color: var(--black); padding: 14px 36px; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; transition: background .3s, transform .3s; cursor: none; display: inline-block; position: relative; overflow: hidden; }
+    .btn-white::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--it-green) 0%, rgba(5,5,5,0.9) 50%, var(--it-red) 100%); opacity: 0; transition: opacity .4s; }
+    .btn-white:hover { background: var(--white-2); transform: translateY(-2px); }
+    .btn-white span { position: relative; z-index: 1; }
+    .btn-ghost { background: transparent; color: rgba(238,235,229,0.55); padding: 14px 36px; font-size: 0.68rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(238,235,229,0.14); transition: border-color .3s, color .3s, transform .3s; cursor: none; display: inline-block; }
+    .btn-ghost:hover { border-color: rgba(238,235,229,0.35); color: var(--white); transform: translateY(-2px); }
+    .hero-right { display: flex; flex-direction: column; gap: 20px; align-items: flex-end; }
+    .hero-sub { font-size: 0.88rem; color: rgba(238,235,229,0.42); line-height: 1.85; max-width: 360px; text-align: right; font-weight: 300; }
+    .hero-stats { display: flex; gap: 40px; }
+    .hero-stat { text-align: right; }
+    .hero-stat-n { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 400; color: var(--white); line-height: 1; }
+    .hero-stat-l { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(238,235,229,0.3); margin-top: 4px; }
+    .hero-scroll-ind { position: absolute; bottom: 88px; left: 72px; z-index: 4; display: flex; align-items: center; gap: 12px; }
+    .scroll-line-wrap { display: flex; flex-direction: column; gap: 2px; height: 52px; }
+    .scroll-line-wrap span { flex: 1; width: 1px; display: block; }
+    .scroll-line-wrap span:nth-child(1) { background: var(--it-green); animation: sp 2.5s ease-in-out infinite; }
+    .scroll-line-wrap span:nth-child(2) { background: rgba(238,235,229,0.4); animation: sp 2.5s ease-in-out .18s infinite; }
+    .scroll-line-wrap span:nth-child(3) { background: var(--it-red); animation: sp 2.5s ease-in-out .36s infinite; }
+    @keyframes sp { 0%,100%{opacity:.2} 50%{opacity:1} }
+    .hero-scroll-ind span { writing-mode: vertical-rl; font-size: 0.55rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(238,235,229,0.25); }
+    section { padding: 140px 72px; }
+    .s-eye { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .s-eye-text { font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(238,235,229,0.32); font-weight: 400; }
+    .s-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4.5vw, 4.2rem); font-weight: 400; line-height: 1.05; color: var(--white); margin-bottom: 24px; letter-spacing: -0.01em; }
+    .s-title em { font-style: italic; color: rgba(238,235,229,0.38); }
+    .s-sub { font-size: 0.88rem; color: rgba(238,235,229,0.42); line-height: 1.88; max-width: 520px; font-weight: 300; }
+    .s-head { margin-bottom: 88px; }
+    .tri-pill { display: flex; gap: 3px; align-items: center; }
+    .tri-pill span { display: block; width: 2px; border-radius: 1px; }
+    #tools { background: var(--black-2); position: relative; overflow: hidden; }
+    .tools-topbar { width: 100%; height: 1px; display: flex; }
+    .tools-topbar span { flex: 1; display: block; }
+    .tools-topbar span:nth-child(1) { background: var(--it-green); }
+    .tools-topbar span:nth-child(2) { background: rgba(238,235,229,0.5); }
+    .tools-topbar span:nth-child(3) { background: var(--it-red); }
+    #tools::before { content: ''; position: absolute; top: -500px; right: -300px; width: 900px; height: 900px; background: radial-gradient(circle, var(--it-green-glow) 0%, transparent 65%); pointer-events: none; }
+    #tools::after { content: ''; position: absolute; bottom: -400px; left: -200px; width: 700px; height: 700px; background: radial-gradient(circle, var(--it-red-glow) 0%, transparent 65%); pointer-events: none; }
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .tool-card { background: var(--black-2); padding: 60px 52px; position: relative; overflow: hidden; transition: background .5s; cursor: none; text-decoration: none; display: block; }
+    .tool-card:nth-child(1) { --tc: var(--it-green); --tc-dim: var(--it-green-dim); }
+    .tool-card:nth-child(2) { --tc: rgba(238,235,229,0.7); --tc-dim: rgba(238,235,229,0.06); }
+    .tool-card:nth-child(3) { --tc: var(--it-red); --tc-dim: var(--it-red-dim); }
+    .tool-card-bg { position: absolute; inset: 0; opacity: 0; transition: opacity .6s; pointer-events: none; }
+    .tool-card:nth-child(1) .tool-card-bg { background: radial-gradient(ellipse at 0% 100%, rgba(0,146,70,0.08) 0%, transparent 55%); }
+    .tool-card:nth-child(2) .tool-card-bg { background: radial-gradient(ellipse at 50% 50%, rgba(238,235,229,0.04) 0%, transparent 60%); }
+    .tool-card:nth-child(3) .tool-card-bg { background: radial-gradient(ellipse at 100% 100%, rgba(206,43,55,0.08) 0%, transparent 55%); }
+    .tool-card:hover { background: var(--black-3); }
+    .tool-card:hover .tool-card-bg { opacity: 1; }
+    .tool-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--tc); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.25,.46,.45,.94); }
+    .tool-card:hover::before { transform: scaleX(1); }
+    .tool-num-wrap { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 44px; }
+    .tool-num { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; line-height: 1; color: rgba(238,235,229,0.04); transition: color .5s; }
+    .tool-card:hover .tool-num { color: rgba(238,235,229,0.09); }
+    .tool-icon { width: 40px; height: 40px; border: 1px solid rgba(238,235,229,0.1); display: flex; align-items: center; justify-content: center; transition: border-color .4s, background .4s; }
+    .tool-card:hover .tool-icon { border-color: var(--tc); background: var(--tc-dim); }
+    .tool-icon svg { width: 17px; height: 17px; stroke: var(--grey-2); fill: none; stroke-width: 1.5; transition: stroke .4s; }
+    .tool-card:hover .tool-icon svg { stroke: var(--tc); }
+    .tool-badge { position: absolute; top: 22px; right: 22px; font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 10px; background: var(--it-red); color: var(--white); font-weight: 500; }
+    .tool-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 500; color: var(--white); margin-bottom: 6px; letter-spacing: 0.01em; line-height: 1.1; }
+    .tool-tagline { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--tc); font-style: italic; margin-bottom: 20px; }
+    .tool-desc { font-size: 0.84rem; color: rgba(238,235,229,0.42); line-height: 1.82; margin-bottom: 44px; font-weight: 300; }
+    .tool-link { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; color: var(--tc); transition: gap .35s; cursor: none; }
+    .tool-link:hover { gap: 22px; }
+    .tl-line { position: relative; width: 30px; height: 1px; background: var(--tc); transition: width .35s; }
+    .tool-link:hover .tl-line { width: 40px; }
+    .tl-line::after { content: ''; position: absolute; right: 0; top: -3px; width: 6px; height: 6px; border-right: 1px solid var(--tc); border-top: 1px solid var(--tc); transform: rotate(45deg); }
+    #import { background: var(--black); position: relative; overflow: hidden; }
+    #import::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--it-green) 25%, rgba(238,235,229,.3) 50%, var(--it-red) 75%, transparent); opacity: .4; }
+    .import-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 110px; align-items: center; }
+    .import-visual { position: relative; }
+    .import-img-wrap { position: relative; height: 620px; overflow: hidden; }
+    .import-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; filter: brightness(0.6) saturate(0.65) contrast(1.1); transition: transform .8s ease; }
+    .import-img-wrap:hover img { transform: scale(1.04); }
+    .import-frame { position: absolute; top: -16px; left: -16px; right: 16px; bottom: 16px; border: 1px solid rgba(238,235,229,0.07); pointer-events: none; }
+    .import-tristrip { position: absolute; top: -16px; left: -16px; bottom: 16px; width: 2px; display: flex; flex-direction: column; }
+    .import-tristrip span { flex: 1; display: block; }
+    .import-tristrip span:nth-child(1) { background: var(--it-green); opacity: .7; }
+    .import-tristrip span:nth-child(2) { background: rgba(238,235,229,0.45); }
+    .import-tristrip span:nth-child(3) { background: var(--it-red); opacity: .7; }
+    .import-card { position: absolute; bottom: -1px; left: 0; right: 0; background: rgba(5,5,5,0.93); backdrop-filter: blur(20px); padding: 22px 28px; border-top: 1px solid rgba(238,235,229,0.07); }
+    .import-card-label { font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(238,235,229,0.28); margin-bottom: 12px; }
+    .import-countries { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+    .ic { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: rgba(238,235,229,0.5); }
+    .ic-dot { width: 4px; height: 4px; border-radius: 50%; }
+    .ic:nth-child(3n+1) .ic-dot { background: var(--it-green); }
+    .ic:nth-child(3n+2) .ic-dot { background: rgba(238,235,229,0.5); }
+    .ic:nth-child(3n) .ic-dot { background: var(--it-red); }
+    .import-steps { margin-top: 56px; }
+    .import-step { display: flex; gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+    .import-step:first-child { border-top: 1px solid var(--border); }
+    .import-step-n { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: rgba(238,235,229,0.2); padding-top: 2px; min-width: 24px; }
+    .import-step-t { font-size: 0.87rem; font-weight: 500; color: var(--white); margin-bottom: 3px; }
+    .import-step-d { font-size: 0.8rem; color: rgba(238,235,229,0.4); line-height: 1.7; font-weight: 300; }
+    .gallery-strip { padding: 0; height: 340px; display: grid; grid-template-columns: 2fr 1fr 1fr 2fr; gap: 1px; background: var(--black); overflow: hidden; }
+    .gs-item { position: relative; overflow: hidden; }
+    .gs-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) saturate(0.6); transition: transform .8s ease, filter .8s ease; }
+    .gs-item:hover img { transform: scale(1.06); filter: brightness(0.65) saturate(0.75); }
+    .gs-item-label { position: absolute; bottom: 16px; left: 20px; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic; color: rgba(238,235,229,0.5); pointer-events: none; }
+    #diensten { background: var(--black-2); position: relative; }
+    #diensten::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 0%, var(--it-green) 20%, rgba(238,235,229,0.4) 50%, var(--it-red) 80%, transparent 100%); opacity: .35; }
+    .diensten-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+    .d-item { background: var(--black-2); padding: 40px 30px; position: relative; overflow: hidden; transition: background .35s; cursor: none; }
+    .d-item::after { content: ''; position: absolute; bottom: 0; left: 0; height: 1px; width: 0; transition: width .5s ease; }
+    .d-item:nth-child(3n+1)::after { background: var(--it-green); }
+    .d-item:nth-child(3n+2)::after { background: rgba(238,235,229,0.4); }
+    .d-item:nth-child(3n)::after { background: var(--it-red); }
+    .d-item:nth-child(3n-1)::after { background: rgba(238,235,229,0.4); }
+    .d-item:hover { background: var(--black-3); }
+    .d-item:hover::after { width: 100%; }
+    .d-n { font-size: 0.58rem; letter-spacing: 0.24em; color: rgba(238,235,229,0.2); margin-bottom: 16px; }
+    .d-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; color: var(--white); margin-bottom: 10px; }
+    .d-desc { font-size: 0.78rem; color: rgba(238,235,229,0.38); line-height: 1.72; font-weight: 300; }
+    #waarom { background: var(--black); position: relative; overflow: hidden; }
+    .waarom-wm { position: absolute; bottom: -80px; right: -60px; font-family: 'Cormorant Garamond', serif; font-size: 22rem; font-weight: 700; color: rgba(238,235,229,0.018); pointer-events: none; line-height: 1; letter-spacing: -0.05em; user-select: none; }
+    .waarom-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+    .w-item { background: var(--black); padding: 60px 56px; position: relative; overflow: hidden; transition: background .4s; cursor: none; }
+    .w-bg { position: absolute; inset: 0; opacity: 0; transition: opacity .5s; pointer-events: none; }
+    .w-item:nth-child(1) .w-bg { background: radial-gradient(ellipse at 0% 0%, rgba(0,146,70,0.055) 0%, transparent 60%); }
+    .w-item:nth-child(2) .w-bg { background: radial-gradient(ellipse at 100% 0%, rgba(238,235,229,0.03) 0%, transparent 60%); }
+    .w-item:nth-child(3) .w-bg { background: radial-gradient(ellipse at 0% 100%, rgba(238,235,229,0.03) 0%, transparent 60%); }
+    .w-item:nth-child(4) .w-bg { background: radial-gradient(ellipse at 100% 100%, rgba(206,43,55,0.055) 0%, transparent 60%); }
+    .w-item:hover { background: var(--black-2); }
+    .w-item:hover .w-bg { opacity: 1; }
+    .w-icon { width: 42px; height: 42px; border: 1px solid rgba(238,235,229,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 28px; transition: border-color .4s; }
+    .w-item:hover .w-icon { border-color: rgba(238,235,229,0.22); }
+    .w-icon svg { width: 17px; height: 17px; stroke: var(--grey); fill: none; stroke-width: 1.5; transition: stroke .4s; }
+    .w-item:hover .w-icon svg { stroke: var(--grey-2); }
+    .w-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 500; color: var(--white); margin-bottom: 14px; }
+    .w-desc { font-size: 0.84rem; color: rgba(238,235,229,0.4); line-height: 1.8; font-weight: 300; }
+    #werkwijze { background: var(--black-2); overflow: hidden; }
+    .ww-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 120px; align-items: start; }
+    .ww-sticky { position: sticky; top: 130px; }
+    .ww-divider { height: 1px; background: linear-gradient(90deg, var(--it-green), rgba(238,235,229,0.35), var(--it-red)); opacity: .45; margin: 36px 0; }
+    .ww-step { display: grid; grid-template-columns: 64px 1fr; gap: 28px; padding: 36px 0; border-bottom: 1px solid var(--border); }
+    .ww-step:first-child { padding-top: 0; }
+    .ww-n { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 300; color: rgba(238,235,229,0.06); line-height: 1; padding-top: 2px; transition: color .4s; }
+    .ww-step:hover .ww-n { color: rgba(238,235,229,0.18); }
+    .ww-t { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; color: var(--white); margin-bottom: 7px; }
+    .ww-d { font-size: 0.82rem; color: rgba(238,235,229,0.4); line-height: 1.75; font-weight: 300; }
+    #projecten { background: var(--black); overflow: hidden; }
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .proj-card { position: relative; height: 520px; overflow: hidden; cursor: none; }
+    .proj-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.25,.46,.45,.94), filter .9s; filter: brightness(0.45) saturate(0.55) contrast(1.15); }
+    .proj-card:hover img { transform: scale(1.08); filter: brightness(0.3) saturate(0.45); }
+    .proj-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,5,0.97) 0%, rgba(5,5,5,0.08) 55%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px 36px; }
+    .proj-tri { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; display: flex; transform: scaleX(0); transform-origin: left; transition: transform .55s cubic-bezier(.25,.46,.45,.94); }
+    .proj-card:hover .proj-tri { transform: scaleX(1); }
+    .proj-tri span { flex: 1; display: block; }
+    .proj-tri span:nth-child(1) { background: var(--it-green); }
+    .proj-tri span:nth-child(2) { background: rgba(238,235,229,0.65); }
+    .proj-tri span:nth-child(3) { background: var(--it-red); }
+    .proj-loc { font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(238,235,229,0.35); margin-bottom: 10px; }
+    .proj-line { width: 28px; height: 1px; background: rgba(238,235,229,0.2); margin-bottom: 12px; transition: width .4s, background .4s; }
+    .proj-card:hover .proj-line { width: 50px; background: rgba(238,235,229,0.45); }
+    .proj-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--white); line-height: 1.15; }
+    .proj-specs { font-size: 0.76rem; color: rgba(238,235,229,0.45); line-height: 1.65; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .55s, opacity .4s, margin .4s; font-weight: 300; }
+    .proj-card:hover .proj-specs { max-height: 120px; opacity: 1; margin-top: 14px; }
+    #overons { background: var(--black-2); overflow: hidden; }
+    .oo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: center; }
+    .oo-img-wrap { position: relative; }
+    .oo-img { width: 100%; height: 640px; object-fit: cover; filter: brightness(0.7) saturate(0.6) contrast(1.1); display: block; }
+    .oo-frame { position: absolute; top: -18px; left: -18px; right: 18px; bottom: 18px; border: 1px solid rgba(238,235,229,0.07); pointer-events: none; }
+    .oo-tristrip { position: absolute; top: -18px; left: -18px; width: 2px; height: calc(100% + 36px); display: flex; flex-direction: column; }
+    .oo-tristrip span { flex: 1; display: block; }
+    .oo-tristrip span:nth-child(1) { background: var(--it-green); opacity: .65; }
+    .oo-tristrip span:nth-child(2) { background: rgba(238,235,229,0.4); }
+    .oo-tristrip span:nth-child(3) { background: var(--it-red); opacity: .65; }
+    .oo-quote-layer { position: absolute; bottom: 0; left: 0; right: 0; padding: 80px 36px 36px; background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, transparent); }
+    .oo-qt { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(238,235,229,0.48); line-height: 1.65; }
+    .oo-text { font-size: 0.88rem; color: rgba(238,235,229,0.44); line-height: 1.9; margin-bottom: 18px; font-weight: 300; }
+    .oo-sig { margin-top: 48px; padding-top: 30px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 18px; }
+    .oo-sig-tri { display: flex; flex-direction: column; gap: 2px; }
+    .oo-sig-tri span { display: block; width: 2px; height: 13px; border-radius: 1px; }
+    .oo-sig-tri span:nth-child(1) { background: var(--it-green); }
+    .oo-sig-tri span:nth-child(2) { background: rgba(238,235,229,0.45); }
+    .oo-sig-tri span:nth-child(3) { background: var(--it-red); }
+    .oo-sig-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-style: italic; color: var(--white); }
+    .oo-sig-role { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(238,235,229,0.3); margin-top: 3px; }
+    .oo-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 52px; background: var(--border); }
+    .oo-stat { background: var(--black-2); padding: 26px 22px; }
+    .oo-stat-n { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--white); line-height: 1; margin-bottom: 5px; }
+    .oo-stat-l { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(238,235,229,0.28); }
+    #tarieven { background: var(--black); position: relative; overflow: hidden; }
+    #tarieven::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 1000px; height: 800px; background: radial-gradient(ellipse at 35% 50%, var(--it-green-glow) 0%, transparent 55%), radial-gradient(ellipse at 65% 50%, var(--it-red-glow) 0%, transparent 55%); pointer-events: none; }
+    .tar-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+    .tar-inner .s-eye { justify-content: center; }
+    .tar-card { margin-top: 72px; padding: 72px; border: 1px solid rgba(238,235,229,0.08); background: var(--black-2); position: relative; }
+    .tar-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--it-green) 25%, rgba(238,235,229,.55) 50%, var(--it-red) 75%, transparent); opacity: .55; }
+    .tar-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--it-red) 25%, rgba(238,235,229,.55) 50%, var(--it-green) 75%, transparent); opacity: .25; }
+    .tar-text { font-size: 0.9rem; color: rgba(238,235,229,0.44); line-height: 1.9; margin-bottom: 18px; text-align: left; font-weight: 300; }
+    .tar-text strong { color: var(--white); font-weight: 500; }
+    .tar-btn { display: inline-flex; align-items: center; gap: 16px; margin-top: 44px; background: var(--white); color: var(--black); padding: 15px 44px; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: background .3s, transform .3s; cursor: none; position: relative; overflow: hidden; }
+    .tar-btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--it-green) 0%, var(--black) 50%, var(--it-red) 100%); opacity: 0; transition: opacity .45s; }
+    .tar-btn:hover { transform: translateY(-2px); }
+    .tar-btn:hover::before { opacity: 1; }
+    .tar-btn span { position: relative; z-index: 1; }
+    #aftersales { padding: 120px 72px; background: var(--black-2); position: relative; }
+    #aftersales::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--it-green) 25%, rgba(238,235,229,0.4) 50%, var(--it-red) 75%, transparent); opacity: .35; }
+    #aftersales::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--it-red) 25%, rgba(238,235,229,0.4) 50%, var(--it-green) 75%, transparent); opacity: .2; }
+    .afs-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .afs-tri { display: flex; justify-content: center; align-items: flex-end; gap: 5px; margin-bottom: 40px; }
+    .afs-tri span { display: block; width: 2px; border-radius: 1px; }
+    .afs-tri span:nth-child(1) { height: 20px; background: var(--it-green); }
+    .afs-tri span:nth-child(2) { height: 30px; background: rgba(238,235,229,0.5); }
+    .afs-tri span:nth-child(3) { height: 20px; background: var(--it-red); }
+    .afs-q { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 2.8vw, 2.2rem); font-style: italic; font-weight: 400; color: var(--white); line-height: 1.55; margin-bottom: 40px; }
+    .afs-div { width: 64px; height: 1px; margin: 0 auto 20px; background: linear-gradient(90deg, var(--it-green), rgba(238,235,229,0.5), var(--it-red)); opacity: .5; }
+    .afs-author { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(238,235,229,0.28); }
+    #contact { background: var(--black); position: relative; overflow: hidden; }
+    #contact::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 1200px; height: 900px; background: radial-gradient(ellipse at 25% 50%, var(--it-green-glow) 0%, transparent 50%), radial-gradient(ellipse at 75% 50%, var(--it-red-glow) 0%, transparent 50%); pointer-events: none; }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 110px; align-items: start; }
+    .ci { display: flex; gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--border); }
+    .ci:first-child { border-top: 1px solid var(--border); }
+    .ci-icon { width: 36px; height: 36px; border: 1px solid rgba(238,235,229,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: border-color .3s; }
+    .ci:hover .ci-icon { border-color: rgba(238,235,229,0.22); }
+    .ci-icon svg { width: 14px; height: 14px; stroke: var(--grey); fill: none; stroke-width: 1.5; }
+    .ci-label { font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(238,235,229,0.25); margin-bottom: 5px; }
+    .ci-val { font-size: 0.88rem; color: var(--white); line-height: 1.5; }
+    .ci-val a { color: var(--white); text-decoration: none; transition: color .3s; }
+    .ci-val a:hover { color: rgba(238,235,229,0.6); }
+    .contact-btns { margin-top: 44px; display: flex; gap: 14px; flex-wrap: wrap; }
+    .contact-promise { padding: 52px; background: var(--black-2); border: 1px solid rgba(238,235,229,0.08); position: relative; }
+    .contact-promise::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--it-green), rgba(238,235,229,0.5), var(--it-red)); opacity: .5; }
+    .contact-promise::after { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--it-green), rgba(238,235,229,0.4), var(--it-red)); opacity: .4; }
+    .cp-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; color: var(--white); margin-bottom: 18px; line-height: 1.4; }
+    .cp-text { font-size: 0.84rem; color: rgba(238,235,229,0.42); line-height: 1.85; margin-bottom: 36px; font-weight: 300; }
+    .cp-items { display: flex; flex-direction: column; gap: 12px; }
+    .cp-item { display: flex; align-items: center; gap: 12px; font-size: 0.82rem; color: rgba(238,235,229,0.42); }
+    .cp-dot { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
+    .cp-item:nth-child(3n+1) .cp-dot { background: var(--it-green); }
+    .cp-item:nth-child(3n+2) .cp-dot { background: rgba(238,235,229,0.45); }
+    .cp-item:nth-child(3n) .cp-dot { background: var(--it-red); }
+    footer { background: var(--black-2); padding: 80px 72px 48px; position: relative; }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--it-green) 20%, rgba(238,235,229,0.4) 50%, var(--it-red) 80%, transparent); opacity: .35; }
+    .ft { display: grid; grid-template-columns: 2.2fr 1fr 1fr; gap: 80px; margin-bottom: 72px; }
+    .ft-logo { margin-bottom: 20px; }
+    .ft-desc { font-size: 0.8rem; color: rgba(238,235,229,0.28); line-height: 1.8; max-width: 280px; font-weight: 300; }
+    .ft-col-t { font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(238,235,229,0.22); margin-bottom: 22px; }
+    .ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .ft-links a { font-size: 0.82rem; color: rgba(238,235,229,0.38); text-decoration: none; transition: color .3s; }
+    .ft-links a:hover { color: var(--white); }
+    .ft-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 36px; border-top: 1px solid var(--border); }
+    .ft-copy { font-size: 0.7rem; color: rgba(238,235,229,0.2); letter-spacing: 0.06em; }
+    .ft-tri-badge { display: flex; gap: 2px; align-items: center; }
+    .ft-tri-badge span { display: block; height: 2px; }
+    .ft-tri-badge span:nth-child(1) { width: 20px; background: var(--it-green); opacity: .6; }
+    .ft-tri-badge span:nth-child(2) { width: 20px; background: rgba(238,235,229,0.4); }
+    .ft-tri-badge span:nth-child(3) { width: 20px; background: var(--it-red); opacity: .6; }
+    .ft-tag { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-style: italic; color: rgba(238,235,229,0.2); }
+    .fi { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s ease; }
+    .fi.vis { opacity: 1; transform: none; }
+    .fi.d1 { transition-delay: .1s; }
+    .fi.d2 { transition-delay: .2s; }
+    .fi.d3 { transition-delay: .3s; }
+    @media(max-width:1100px){.tools-grid{grid-template-columns:1fr}.import-grid{grid-template-columns:1fr;gap:60px}.import-img-wrap{height:380px}.diensten-grid{grid-template-columns:repeat(2,1fr)}.oo-layout{grid-template-columns:1fr;gap:60px}.oo-img{height:420px}.contact-layout{grid-template-columns:1fr;gap:60px}.ft{grid-template-columns:1fr 1fr;gap:40px}.ww-layout{grid-template-columns:1fr;gap:60px}.ww-sticky{position:static}.waarom-grid{grid-template-columns:1fr}.gallery-strip{grid-template-columns:1fr 1fr;height:auto}.gs-item{height:220px}.hero-content{grid-template-columns:1fr}.hero-right{align-items:flex-start}.hero-sub{text-align:left}}
+    @media(max-width:768px){nav{padding:22px 28px}nav.scrolled{padding:14px 28px}.nav-links{display:none}section{padding:88px 28px}#aftersales{padding:88px 28px}.hero-content{padding:0 28px 72px}.hero-scroll-ind{left:28px;bottom:72px}.diensten-grid{grid-template-columns:1fr}.proj-grid{grid-template-columns:1fr}footer{padding:56px 28px 36px}.ft{grid-template-columns:1fr;gap:36px}.ft-bottom{flex-direction:column;gap:16px;text-align:center}.tar-card{padding:36px 28px}.oo-stats{grid-template-columns:1fr}.gallery-strip{display:none}}
+  </style>
 </head>
-
 <body>
 
+<div id="cur"></div>
+<div id="cur-ring"></div>
 
-<header>
+<nav id="nav">
+  <a href="#" class="logo">
+    <div class="logo-wordmark">
+      <span class="logo-apex">APEX</span><span class="logo-dot"></span><span class="logo-exclusive">exclusive</span>
+    </div>
+    <div class="logo-sub">Automotive Advisory</div>
+    <div class="logo-tribar"><span></span><span></span><span></span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#import">Import</a></li>
+    <li><a href="#diensten">Diensten</a></li>
+    <li><a href="#werkwijze">Werkwijze</a></li>
+    <li><a href="#projecten">Projecten</a></li>
+    <li><a href="#overons">Over ons</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn"><span>Gesprek plannen</span></a>
+</nav>
 
-<a class="logo" href="https://apexclusive.nl">
-APEX<span>clusive</span>
-</a>
+<section id="hero">
+  <div class="hero-media">
+    <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=1920&q=90" alt="Lamborghini" />
+  </div>
+  <div class="hero-edge"><span></span><span></span><span></span></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="tri-pill">
+          <span style="height:18px;background:var(--it-green)"></span>
+          <span style="height:24px;background:rgba(238,235,229,0.45)"></span>
+          <span style="height:18px;background:var(--it-red)"></span>
+        </div>
+        <span class="hero-eyebrow-text">Automotive Advisory · Maastricht</span>
+      </div>
+      <h1 class="hero-title">De juiste auto<br><em>bestaat.</em><br><span class="green">Wij vinden hem.</span></h1>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-white"><span>Gesprek plannen</span></a>
+        <a href="#tools" class="btn-ghost">Onze tools</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-sub">Onafhankelijke aankoopbegeleiding en import van uitzonderlijke voertuigen. Heel Europa als zoekgebied — Maastricht als thuisbasis.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-n">EU</div><div class="hero-stat-l">Zoekgebied</div></div>
+        <div class="hero-stat"><div class="hero-stat-n">100%</div><div class="hero-stat-l">Onafhankelijk</div></div>
+        <div class="hero-stat"><div class="hero-stat-n">A–Z</div><div class="hero-stat-l">Begeleiding</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-ind">
+    <div class="scroll-line-wrap"><span></span><span></span><span></span></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
+<section id="tools">
+  <div class="tools-topbar"><span></span><span></span><span></span></div>
+  <div class="s-head fi">
+    <div class="s-eye">
+      <div class="tri-pill">
+        <span style="height:14px;background:var(--it-green)"></span>
+        <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+        <span style="height:14px;background:var(--it-red)"></span>
+      </div>
+      <span class="s-eye-text">Gratis instrumenten</span>
+    </div>
+    <h2 class="s-title">Drie tools.<br><em>Direct bruikbaar.</em></h2>
+    <p class="s-sub">Dezelfde instrumenten die wij dagelijks inzetten — vrij beschikbaar, zonder registratie.</p>
+  </div>
+  <div class="tools-grid">
 
-<a class="back" href="https://apexclusive.nl">
-← Terug naar website
-</a>
+    <a href="https://bpm.apexclusive.nl" class="tool-card fi d1">
+      <div class="tool-card-bg"></div>
+      <div class="tool-num-wrap">
+        <div class="tool-num">01</div>
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        </div>
+      </div>
+      <div class="tool-name">BPM Calculator</div>
+      <div class="tool-tagline">"Weet vóór de aankoop wat de import u kost."</div>
+      <p class="tool-desc">Bereken een realistische indicatie van de resterende BPM bij import van uw voertuig binnen Europa — op basis van leeftijd, cataloguswaarde en brandstoftype.</p>
+      <span class="tool-link">Berekenen <span class="tl-line"></span></span>
+    </a>
 
-</header>
+    <a href="https://kentekencheck.apexclusive.nl" class="tool-card fi d2">
+      <div class="tool-card-bg"></div>
+      <div class="tool-num-wrap">
+        <div class="tool-num">02</div>
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="1"/><circle cx="7" cy="12" r="1.5"/><path d="M11 12h6"/></svg>
+        </div>
+      </div>
+      <div class="tool-name">Kentekencheck</div>
+      <div class="tool-tagline">"Vertrouw nooit een verkoper op zijn woord."</div>
+      <p class="tool-desc">Direct inzicht in technische gegevens, APK-historie, tenaamstellingen en milieuklasse via officiële RDW-data. In seconden.</p>
+      <span class="tool-link">Controleren <span class="tl-line"></span></span>
+    </a>
 
+    <a href="https://carrapport.apexclusive.nl" class="tool-card fi d3">
+      <div class="tool-card-bg"></div>
+      <div class="tool-badge">Aanbevolen</div>
+      <div class="tool-num-wrap">
+        <div class="tool-num">03</div>
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
+        </div>
+      </div>
+      <div class="tool-name">Advertentie Analyse</div>
+      <div class="tool-tagline">"Is dit de eerlijke prijs — of betaalt u te veel?"</div>
+      <p class="tool-desc">Plak een link van Mobile.de, AutoScout24 of Marktplaats. Wij analyseren prijs, specificaties en geven u direct een objectief koopadvies.</p>
+      <span class="tool-link">Analyseren <span class="tl-line"></span></span>
+    </a>
 
-<div class="hero">
+  </div>
+</section>
 
-<div class="hl">
-BPM Import Calculator
+<section id="import">
+  <div class="import-grid">
+    <div class="import-visual fi">
+      <div class="import-img-wrap">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1000&q=88" alt="Auto import Europa" />
+        <div class="import-frame"></div>
+        <div class="import-tristrip"><span></span><span></span><span></span></div>
+        <div class="import-card">
+          <div class="import-card-label">Actief zoekgebied</div>
+          <div class="import-countries">
+            <div class="ic"><span class="ic-dot"></span>Duitsland</div>
+            <div class="ic"><span class="ic-dot"></span>België</div>
+            <div class="ic"><span class="ic-dot"></span>Italië</div>
+            <div class="ic"><span class="ic-dot"></span>Spanje</div>
+            <div class="ic"><span class="ic-dot"></span>Zweden</div>
+            <div class="ic"><span class="ic-dot"></span>Luxemburg</div>
+            <div class="ic"><span class="ic-dot"></span>Frankrijk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fi d1">
+      <div class="s-eye">
+        <div class="tri-pill">
+          <span style="height:14px;background:var(--it-green)"></span>
+          <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+          <span style="height:14px;background:var(--it-red)"></span>
+        </div>
+        <span class="s-eye-text">Importbegeleiding</span>
+      </div>
+      <h2 class="s-title">Europa is<br>uw showroom.<br><em>Wij zijn uw gids.</em></h2>
+      <p class="s-sub">De mooiste exemplaren staan zelden bij een Nederlandse dealer. Wij zoeken verder — en begeleiden het volledige importtraject van A tot Z.</p>
+      <div class="import-steps">
+        <div class="import-step"><div class="import-step-n">01</div><div><div class="import-step-t">Voertuig opsporen</div><div class="import-step-d">Wij doorzoeken ons Europese netwerk op voertuigen die voldoen aan uw exacte wensen.</div></div></div>
+        <div class="import-step"><div class="import-step-n">02</div><div><div class="import-step-t">Onafhankelijke keuring</div><div class="import-step-d">Ter plaatse inspectie door een erkende specialist — volledig objectief.</div></div></div>
+        <div class="import-step"><div class="import-step-n">03</div><div><div class="import-step-t">BPM-taxatie &amp; afhandeling</div><div class="import-step-d">Coördinatie van de volledige importafhandeling via erkende partners.</div></div></div>
+        <div class="import-step"><div class="import-step-n">04</div><div><div class="import-step-t">Nederlandse registratie</div><div class="import-step-d">RDW-keuring én kenteken aan huis. Alles bij u afgeleverd.</div></div></div>
+      </div>
+      <div style="margin-top:52px"><a href="#contact" class="btn-white"><span>Import bespreken</span></a></div>
+    </div>
+  </div>
+</section>
+
+<div class="gallery-strip">
+  <div class="gs-item"><img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=900&q=85" alt="Lamborghini"><span class="gs-item-label">Lamborghini</span></div>
+  <div class="gs-item"><img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=600&q=85" alt="Ferrari"><span class="gs-item-label">Ferrari</span></div>
+  <div class="gs-item"><img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=85" alt="RS6"><span class="gs-item-label">RS6</span></div>
+  <div class="gs-item"><img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=900&q=85" alt="Porsche"><span class="gs-item-label">Porsche</span></div>
 </div>
 
-
-<h1>
-Exclusieve Auto Import Analyse
-</h1>
-
-
-<p>
-Bereken een realistische indicatie van de resterende BPM bij import van uw voertuig binnen Europa.
-</p>
-
-
-</div>
-
-
-<div class="gl"></div>
-
-
-<div class="wrap">
-
-<div class="box">
-
-<div class="bt">
-Voertuiggegevens
-</div>
-
-
-<div class="grid">
-
-
-<div class="field">
-
-<label>Brandstof</label>
-
-<select id="brandstof">
-
-<option value="benzine">Benzine</option>
-<option value="diesel">Diesel</option>
-<option value="hybride">Plug-in Hybride</option>
-<option value="elektrisch">Elektrisch</option>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>CO₂ uitstoot WLTP (g/km)</label>
-
-<input id="co2" placeholder="Bijvoorbeeld 280">
-
-</div>
-
-
-<div class="field">
-
-<label>Datum eerste toelating</label>
-
-<input id="datum" type="date">
-
-</div>
-
-
-<div class="field">
-
-<label>Cataloguswaarde incl. BTW</label>
-
-<input id="waarde" placeholder="Bijvoorbeeld 180000">
-
-</div>
-
-
-<div class="field">
-
-<label>Oorspronkelijke BPM</label>
-
-<input id="origineleBPM" placeholder="Optioneel">
-
-</div>
-
-
-<div class="field">
-
-<label>Land van herkomst</label>
-
-<select id="land">
-
-<option>Duitsland</option>
-<option>België</option>
-<option>Italië</option>
-<option>Spanje</option>
-<option>Overig Europa</option>
-
-</select>
-
-</div>
-
-
-</div>
-
-
-<button class="calculate" onclick="calculateBPM()">
-Bereken BPM Analyse
-</button>
-
-
-</div>
-
-</div>
-
-
-<div class="results" id="results">
-
-
-<div class="box">
-
-<div class="bt">
-APEXclusive Import Analyse
-</div>
-
-
-<div class="cards">
-
-
-<div class="card">
-
-<small>
-Bruto BPM indicatie
-</small>
-
-<strong id="bruto">
--
-</strong>
-
-</div>
-
-
-<div class="card">
-
-<small>
-Afschrijving
-</small>
-
-<strong id="afschrijving">
--
-</strong>
-
-</div>
-
-
-<div class="card main">
-
-<small>
-Resterende BPM
-</small>
-
-<strong class="gold" id="bpm">
--
-</strong>
-
-</div>
-
-
-</div>
-
-
-
-<div class="breakdown" id="details">
-
-</div>
-
-
-
-<div class="cta">
-
-
-<h2>
-Persoonlijke importanalyse nodig?
-</h2>
-
-
-<p>
-APEXclusive begeleidt u bij aankoop, controle, BPM-optimalisatie en volledige import van exclusieve voertuigen binnen Europa.
-</p>
-
-
-
-<a class="btn whatsapp"
-href="https://wa.me/31624735939"
-target="_blank">
-
-WhatsApp advies
-
-</a>
-
-
-
-<a class="btn email"
-href="mailto:info@apexclusive.nl">
-
-E-mail contact
-
-</a>
-
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
+<section id="diensten">
+  <div class="s-head fi">
+    <div class="s-eye">
+      <div class="tri-pill">
+        <span style="height:14px;background:var(--it-green)"></span>
+        <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+        <span style="height:14px;background:var(--it-red)"></span>
+      </div>
+      <span class="s-eye-text">Diensten</span>
+    </div>
+    <h2 class="s-title">Wat wij<br><em>voor u doen.</em></h2>
+    <p class="s-sub">Van de eerste zoektocht tot de sleuteloverdracht — elke stap begeleid.</p>
+  </div>
+  <div class="diensten-grid">
+    <div class="d-item fi"><div class="d-n">01</div><div class="d-name">Aankoopbegeleiding</div><p class="d-desc">Onafhankelijk zoeken, historie beoordelen, technische staat controleren.</p></div>
+    <div class="d-item fi d1"><div class="d-n">02</div><div class="d-name">Technische Keuring</div><p class="d-desc">Onafhankelijke aankoopkeuring door een erkende specialist.</p></div>
+    <div class="d-item fi d2"><div class="d-n">03</div><div class="d-name">Onderhandeling</div><p class="d-desc">Scherpe, feitelijke onderhandeling op basis van actuele marktkennis.</p></div>
+    <div class="d-item fi d3"><div class="d-n">04</div><div class="d-name">Importbegeleiding</div><p class="d-desc">Volledig importtraject inclusief BPM-taxatie, registratie en documentatie.</p></div>
+    <div class="d-item fi"><div class="d-n">05</div><div class="d-name">Taxatie</div><p class="d-desc">Onafhankelijke taxatie door een gecertificeerde expert op locatie naar keuze.</p></div>
+    <div class="d-item fi d1"><div class="d-n">06</div><div class="d-name">BPM-afhandeling</div><p class="d-desc">Volledige BPM-afhandeling en Nederlandse registratie via erkende partners.</p></div>
+    <div class="d-item fi d2"><div class="d-n">07</div><div class="d-name">RDW-keuring aan huis</div><p class="d-desc">Verplichte RDW-keuring direct na aflevering aan huis.</p></div>
+    <div class="d-item fi d3"><div class="d-n">08</div><div class="d-name">Kenteken aan huis</div><p class="d-desc">Uw Nederlandse kenteken afgeleverd en professioneel gemonteerd.</p></div>
+  </div>
+</section>
+
+<section id="waarom">
+  <div class="waarom-wm" aria-hidden="true">A</div>
+  <div class="s-head fi">
+    <div class="s-eye">
+      <div class="tri-pill">
+        <span style="height:14px;background:var(--it-green)"></span>
+        <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+        <span style="height:14px;background:var(--it-red)"></span>
+      </div>
+      <span class="s-eye-text">Waarom APEXclusive</span>
+    </div>
+    <h2 class="s-title">Vier redenen<br><em>om ons te kiezen.</em></h2>
+  </div>
+  <div class="waarom-grid">
+    <div class="w-item fi"><div class="w-bg"></div><div class="w-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="w-title">Persoonlijke begeleiding</div><p class="w-desc">Elke opdracht begint met een persoonlijk gesprek. Uw wensen staan centraal — niet een aanbod uit de voorraad.</p></div>
+    <div class="w-item fi d1"><div class="w-bg"></div><div class="w-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="w-title">Onafhankelijk advies</div><p class="w-desc">Geen voorraad, geen dealerbelang. Alleen advies dat volledig aansluit bij uw situatie.</p></div>
+    <div class="w-item fi d2"><div class="w-bg"></div><div class="w-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="w-title">Europese marktkennis</div><p class="w-desc">Duitsland, België, Italië, Spanje — ons netwerk omspant heel Europa.</p></div>
+    <div class="w-item fi d3"><div class="w-bg"></div><div class="w-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="w-title">Volledige ontzorging</div><p class="w-desc">Van eerste zoektocht tot sleuteloverdracht — alles geregeld, niets vergeten.</p></div>
+  </div>
+</section>
+
+<section id="werkwijze">
+  <div class="ww-layout">
+    <div class="ww-sticky fi">
+      <div class="s-eye">
+        <div class="tri-pill">
+          <span style="height:14px;background:var(--it-green)"></span>
+          <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+          <span style="height:14px;background:var(--it-red)"></span>
+        </div>
+        <span class="s-eye-text">Werkwijze</span>
+      </div>
+      <h2 class="s-title">Van eerste gesprek tot <em>sleuteloverdracht.</em></h2>
+      <div class="ww-divider"></div>
+      <p style="font-size:.84rem;color:rgba(238,235,229,0.4);line-height:1.85;font-weight:300">Elk traject begint met het begrijpen van uw wensen — en eindigt pas wanneer u volledig tevreden bent.</p>
+    </div>
+    <div class="fi d1">
+      <div class="ww-step"><div class="ww-n">01</div><div><div class="ww-t">Intake &amp; wensen</div><p class="ww-d">Een persoonlijk gesprek over uw wensen, budget en rijervaring. Zonder verplichtingen.</p></div></div>
+      <div class="ww-step"><div class="ww-n">02</div><div><div class="ww-t">Zoeken &amp; screenen</div><p class="ww-d">Wij doorzoeken ons netwerk en de Europese markt op voertuigen die exact passen.</p></div></div>
+      <div class="ww-step"><div class="ww-n">03</div><div><div class="ww-t">Beoordeling &amp; advies</div><p class="ww-d">Op verzoek regelen wij een onafhankelijke aankoopkeuring. Volledig objectief.</p></div></div>
+      <div class="ww-step"><div class="ww-n">04</div><div><div class="ww-t">Onderhandelen &amp; aankopen</div><p class="ww-d">Scherpe onderhandeling op basis van marktkennis. U beslist, wij regelen de overdracht.</p></div></div>
+      <div class="ww-step"><div class="ww-n">05</div><div><div class="ww-t">Taxatie &amp; BPM-afhandeling</div><p class="ww-d">BPM-taxatie en importafhandeling via erkende partners. Geregeld en inzichtelijk.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projecten">
+  <div class="s-head fi">
+    <div class="s-eye">
+      <div class="tri-pill">
+        <span style="height:14px;background:var(--it-green)"></span>
+        <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+        <span style="height:14px;background:var(--it-red)"></span>
+      </div>
+      <span class="s-eye-text">Gerealiseerde projecten</span>
+    </div>
+    <h2 class="s-title">Uitgevoerde<br><em>opdrachten.</em></h2>
+    <p class="s-sub">Elk voertuig persoonlijk begeleid, zorgvuldig gekeurd en aan een tevreden eigenaar overgedragen.</p>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card fi">
+      <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=800&q=88" alt="Lamborghini Huracán">
+      <div class="proj-overlay">
+        <div class="proj-loc">Persoonlijke import · Zweden</div>
+        <div class="proj-line"></div>
+        <div class="proj-name">Lamborghini<br>Huracán LP610 Spyder</div>
+        <div class="proj-specs">610 pk · V10 · Eerste eigenaar · Volledig PPF · Titanium F1-uitlaat.</div>
+      </div>
+      <div class="proj-tri"><span></span><span></span><span></span></div>
+    </div>
+    <div class="proj-card fi d1">
+      <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=88" alt="Lamborghini Urus">
+      <div class="proj-overlay">
+        <div class="proj-loc">Persoonlijke import · Luxemburg</div>
+        <div class="proj-line"></div>
+        <div class="proj-name">Lamborghini<br>Urus</div>
+        <div class="proj-specs">650 pk · V8 Twin-Turbo · 5 jaar Lamborghini Service Warranty.</div>
+      </div>
+      <div class="proj-tri"><span></span><span></span><span></span></div>
+    </div>
+    <div class="proj-card fi d2">
+      <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=88" alt="Audi RS6">
+      <div class="proj-overlay">
+        <div class="proj-loc">Aankoopbegeleiding · Duitsland</div>
+        <div class="proj-line"></div>
+        <div class="proj-name">Audi RS6<br>Avant C8</div>
+        <div class="proj-specs">600 pk · V8 TFSI · Audi Approved · 24 maanden garantie.</div>
+      </div>
+      <div class="proj-tri"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="overons">
+  <div class="oo-layout">
+    <div class="oo-img-wrap fi">
+      <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=900&q=88" alt="Martijn Puts" class="oo-img">
+      <div class="oo-frame"></div>
+      <div class="oo-tristrip"><span></span><span></span><span></span></div>
+      <div class="oo-quote-layer">
+        <p class="oo-qt">Precisie en oog voor detail zijn geen eigenschappen — het zijn gewoontes.</p>
+      </div>
+    </div>
+    <div class="fi d1">
+      <div class="s-eye">
+        <div class="tri-pill">
+          <span style="height:14px;background:var(--it-green)"></span>
+          <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+          <span style="height:14px;background:var(--it-red)"></span>
+        </div>
+        <span class="s-eye-text">Over ons</span>
+      </div>
+      <h2 class="s-title">Onafhankelijk.<br>Deskundig.<br><em>Aan uw kant.</em></h2>
+      <p class="oo-text">APEXclusive is ontstaan vanuit een eenvoudige overtuiging: wie investeert in een bijzonder voertuig, verdient begeleiding die daar volledig bij past.</p>
+      <p class="oo-text">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen eigenschappen — het zijn gewoontes. Die mindset neem ik mee in elk adviestraject.</p>
+      <p class="oo-text">Geen standaardaanbod. Geen dealerbelang. Alleen de auto die bij u past.</p>
+      <div class="oo-sig">
+        <div class="oo-sig-tri"><span></span><span></span><span></span></div>
+        <div>
+          <div class="oo-sig-name">Martijn Puts</div>
+          <div class="oo-sig-role">Founder &amp; Private Vehicle Advisor</div>
+        </div>
+      </div>
+      <div class="oo-stats">
+        <div class="oo-stat"><div class="oo-stat-n">100%</div><div class="oo-stat-l">Onafhankelijk</div></div>
+        <div class="oo-stat"><div class="oo-stat-n">EU</div><div class="oo-stat-l">Netwerk</div></div>
+        <div class="oo-stat"><div class="oo-stat-n">A–Z</div><div class="oo-stat-l">Begeleiding</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tarieven">
+  <div class="tar-inner">
+    <div class="s-eye fi" style="justify-content:center">
+      <div class="tri-pill">
+        <span style="height:14px;background:var(--it-green)"></span>
+        <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+        <span style="height:14px;background:var(--it-red)"></span>
+      </div>
+      <span class="s-eye-text">Tarieven</span>
+    </div>
+    <h2 class="s-title fi" style="text-align:center">Investeren<br><em>in zekerheid.</em></h2>
+    <p class="s-sub fi" style="margin:0 auto;text-align:center">Transparant en eerlijk — afgestemd op de omvang van uw opdracht.</p>
+    <div class="tar-card fi">
+      <p class="tar-text">APEXclusive werkt op basis van een <strong>transparant honorarium</strong>, afgestemd op de omvang en complexiteit van uw zoekopdracht. Geen vaste pakketprijzen — wel een eerlijk gesprek vooraf over wat u kunt verwachten.</p>
+      <p class="tar-text">Ons tarief staat altijd in verhouding tot de tijd, expertise en het netwerk dat wij voor u inzetten. De begeleiding verdient zichzelf terug via een <strong>scherpere aankoopprijs</strong>, vermeden risico's en de zekerheid dat u precies het juiste voertuig rijdt.</p>
+      <a href="#contact" class="tar-btn"><span>Vrijblijvend gesprek plannen</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="aftersales">
+  <div class="afs-inner fi">
+    <div class="afs-tri"><span></span><span></span><span></span></div>
+    <p class="afs-q">"Ik bel u altijd na afloop. Niet als vinkje op een checklist — gewoon omdat ik echt wil weten hoe het voelt, rijdt en of u blij bent met uw keuze."</p>
+    <div class="afs-div"></div>
+    <div class="afs-author">— Martijn Puts · Founder &amp; Private Vehicle Advisor</div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-layout">
+    <div class="fi">
+      <div class="s-eye">
+        <div class="tri-pill">
+          <span style="height:14px;background:var(--it-green)"></span>
+          <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+          <span style="height:14px;background:var(--it-red)"></span>
+        </div>
+        <span class="s-eye-text">Contact</span>
+      </div>
+      <h2 class="s-title">Op zoek naar<br><em>iets bijzonders?</em></h2>
+      <p class="s-sub" style="margin-bottom:52px">Één gesprek is genoeg om te bepalen of wij iets voor u kunnen betekenen. Vrijblijvend, discreet en zonder verplichtingen.</p>
+      <div class="ci">
+        <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="ci-label">Locatie</div><div class="ci-val">Maastricht, Nederland<br><span style="font-size:.78rem;color:rgba(238,235,229,0.35)">Actief in heel Europa</span></div></div>
+      </div>
+      <div class="ci">
+        <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><div class="ci-label">E-mail</div><div class="ci-val"><a href="mailto:info@apexclusive.nl">info@apexclusive.nl</a></div></div>
+      </div>
+      <div class="ci">
+        <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 19.79 19.79 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 19.79 19.79 0 0 0 2.81.7A2 2 0 0 1 21.72 16.92z"/></svg></div>
+        <div><div class="ci-label">Direct contact</div><div class="ci-val"><a href="tel:+31624735939">+31 6 24 73 59 39</a><br><a href="https://wa.me/31624735939" style="font-size:.8rem;color:rgba(238,235,229,0.35)">WhatsApp openen</a></div></div>
+      </div>
+      <div class="contact-btns">
+        <a href="https://wa.me/31624735939" class="btn-white"><span>WhatsApp</span></a>
+        <a href="mailto:info@apexclusive.nl" class="btn-ghost">E-mail sturen</a>
+      </div>
+    </div>
+    <div class="fi d1">
+      <div class="contact-promise">
+        <div class="cp-title">Een gesprek zonder verplichtingen.</div>
+        <p class="cp-text">U neemt contact op, wij luisteren. Geen verkooppraatje, geen standaardpakket. Alleen een eerlijk gesprek over of — en hoe — wij u kunnen helpen.</p>
+        <div class="cp-items">
+          <div class="cp-item"><span class="cp-dot"></span>Doorgaans reageren wij binnen 24 uur</div>
+          <div class="cp-item"><span class="cp-dot"></span>Volledig discreet en vertrouwelijk</div>
+          <div class="cp-item"><span class="cp-dot"></span>Geen verplichtingen na het eerste gesprek</div>
+          <div class="cp-item"><span class="cp-dot"></span>Persoonlijk contact met de oprichter</div>
+          <div class="cp-item"><span class="cp-dot"></span>Actief vanuit Maastricht, heel Europa bereikbaar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">
+    <div>
+      <div class="ft-logo">
+        <a href="#" class="logo" style="display:inline-flex">
+          <div class="logo-wordmark">
+            <span class="logo-apex" style="font-size:1.3rem">APEX</span><span class="logo-dot"></span><span class="logo-exclusive" style="font-size:1.3rem">exclusive</span>
+          </div>
+          <div class="logo-sub" style="margin-top:4px">Automotive Advisory</div>
+          <div class="logo-tribar"><span></span><span></span><span></span></div>
+        </a>
+      </div>
+      <p class="ft-desc">Private vehicle advisory vanuit Maastricht. Onafhankelijke aankoopbegeleiding en import van uitzonderlijke auto's — in heel Europa.</p>
+    </div>
+    <div>
+      <div class="ft-col-t">Tools</div>
+      <ul class="ft-links">
+        <li><a href="https://bpm.apexclusive.nl">BPM Calculator</a></li>
+        <li><a href="https://kentekencheck.apexclusive.nl">Kentekencheck</a></li>
+        <li><a href="https://carrapport.apexclusive.nl">Advertentie Analyse</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-t">Contact</div>
+      <ul class="ft-links">
+        <li><a href="mailto:info@apexclusive.nl">info@apexclusive.nl</a></li>
+        <li><a href="tel:+31624735939">+31 6 24 73 59 39</a></li>
+        <li><a href="https://wa.me/31624735939">WhatsApp</a></li>
+        <li><a href="#">Maastricht, Nederland</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">&#169; 2026 APEXclusive · Automotive Advisory · Maastricht</div>
+    <div class="ft-tri-badge"><span></span><span></span><span></span></div>
+    <div class="ft-tag">Driven by Excellence.</div>
+  </div>
+</footer>
 
 <script>
-
-
-function euro(value){
-
-return "€ " + Math.round(value)
-.toLocaleString("nl-NL");
-
-}
-
-
-
-function calculateBPM(){
-
-
-let brandstof =
-document.getElementById("brandstof").value;
-
-
-let co2 =
-Number(document.getElementById("co2").value);
-
-
-let datum =
-document.getElementById("datum").value;
-
-
-let land =
-document.getElementById("land").value;
-
-
-
-if(!co2 || !datum){
-
-alert("Vul CO₂-uitstoot en datum eerste toelating in.");
-
-return;
-
-}
-
-
-
-
-let bpm = 0;
-
-
-
-if(
-brandstof === "benzine" ||
-brandstof === "hybride"
-){
-
-
-
-if(co2 > 79)
-bpm += (Math.min(co2,106)-79) * 2.5;
-
-
-if(co2 > 106)
-bpm += (Math.min(co2,156)-106) * 61.50;
-
-
-if(co2 > 156)
-bpm += (Math.min(co2,176)-156) * 137.00;
-
-
-if(co2 > 176)
-bpm += (co2-176) * 275.00;
-
-
-
-}
-
-
-
-if(brandstof === "diesel"){
-
-
-if(co2 > 79)
-bpm += (Math.min(co2,106)-79) * 2.5;
-
-
-if(co2 > 106)
-bpm += (Math.min(co2,156)-106) * 61.50;
-
-
-if(co2 > 156)
-bpm += (Math.min(co2,176)-156) * 137.00;
-
-
-if(co2 > 176)
-bpm += (co2-176) * 275.00;
-
-
-
-bpm += 94 + (co2 * 100);
-
-
-}
-
-
-
-if(brandstof === "hybride"){
-
-bpm = bpm * 0.5;
-
-}
-
-
-
-if(brandstof === "elektrisch"){
-
-bpm = 0;
-
-}
-
-
-
-let eersteDatum =
-new Date(datum);
-
-
-let vandaag =
-new Date();
-
-
-
-let maanden =
-(vandaag.getFullYear()-eersteDatum.getFullYear())*12 +
-(vandaag.getMonth()-eersteDatum.getMonth());
-
-
-
-let afschrijving;
-
-
-
-if(maanden <= 3){
-
-afschrijving = 0;
-
-}
-
-else if(maanden <= 12){
-
-afschrijving = 34;
-
-}
-
-else if(maanden <= 24){
-
-afschrijving = 48;
-
-}
-
-else if(maanden <= 36){
-
-afschrijving = 57;
-
-}
-
-else if(maanden <= 60){
-
-afschrijving = 68;
-
-}
-
-else if(maanden <= 120){
-
-afschrijving = 78;
-
-}
-
-else{
-
-afschrijving = 90;
-
-}
-
-
-
-
-let origineleBPM =
-Number(document.getElementById("origineleBPM").value);
-
-
-
-if(origineleBPM > 0){
-
-bpm = origineleBPM;
-
-}
-
-
-
-let resterendeBPM =
-bpm * ((100-afschrijving)/100);
-
-
-
-
-
-let transport = 1000;
-
-
-
-if(land==="Duitsland")
-transport=750;
-
-
-if(land==="België")
-transport=350;
-
-
-if(land==="Italië")
-transport=1500;
-
-
-if(land==="Spanje")
-transport=1800;
-
-
-
-let rdw = 125;
-
-let kenteken = 40;
-
-
-let importkosten =
-transport + rdw + kenteken;
-
-
-
-document.getElementById("bruto").innerHTML =
-euro(bpm);
-
-
-
-document.getElementById("afschrijving").innerHTML =
-Math.round(afschrijving)+"%";
-
-
-
-document.getElementById("bpm").innerHTML =
-euro(resterendeBPM);
-
-
-
-document.getElementById("details").innerHTML =
-
-`
-<strong>Importindicatie</strong><br><br>
-
-CO₂ uitstoot: ${co2} g/km<br>
-
-Brandstof: ${brandstof}<br>
-
-Herkomst: ${land}<br>
-
-Transport + RDW + kenteken: ${euro(importkosten)}<br><br>
-
-
-<strong>Totale geschatte importkosten inclusief BPM:</strong><br>
-
-${euro(resterendeBPM + importkosten)}
-
-<br><br>
-
-<small>
-Indicatieve berekening. Exacte BPM kan afwijken door historische BPM-tabellen,
-koerslijsten, voertuigwaarde en gekozen afschrijvingsmethode.
-</small>
-
-`;
-
-
-
-document.getElementById("results").style.display="block";
-
-
-
-document.getElementById("results")
-.scrollIntoView({
-
-behavior:"smooth"
-
+const cur=document.getElementById('cur');
+const ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function tick(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+document.querySelectorAll('a,button,.tool-card,.proj-card,.d-item,.w-item,.ww-step,.gs-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
 });
-
-}
-
-
-
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:0.1});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
 </script>
-
-
 </body>
-
 </html>
 Model: ```html
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APEXclusive BPM Import Calculator</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: #0a0a0a;
-  color: #e8e8e8;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  min-height: 100vh;
-}
-
-/* ── HEADER ── */
-header {
-  background: #0a0a0a;
-  border-bottom: 1px solid #1a1a1a;
-  padding: 20px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  letter-spacing: .18em;
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.logo span { color: #c9a84c; }
-
-.back {
-  font-size: 10px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: #c9a84c;
-  text-decoration: none;
-  border: 1px solid #c9a84c33;
-  padding: 10px 22px;
-  transition: .35s;
-}
-
-.back:hover {
-  border-color: #c9a84c;
-  background: #c9a84c11;
-}
-
-/* ── HERO ── */
-.hero {
-  text-align: center;
-  padding: 80px 40px 60px;
-  position: relative;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, transparent, #c9a84c);
-}
-
-.hl {
-  font-size: 10px;
-  letter-spacing: .35em;
-  text-transform: uppercase;
-  color: #c9a84c;
-  margin-bottom: 20px;
-  margin-top: 16px;
-}
-
-.hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(32px, 5vw, 56px);
-  font-weight: 300;
-  color: #fff;
-  letter-spacing: .06em;
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 13px;
-  color: #888;
-  letter-spacing: .08em;
-  line-height: 1.9;
-  max-width: 600px;
-  margin: auto;
-}
-
-/* ── GOLD LINE ── */
-.gl {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #c9a84c 30%, #f5e6a3 50%, #c9a84c 70%, transparent);
-  background-size: 200% 100%;
-  animation: shimmer 4s ease-in-out infinite;
-  margin: 0 40px;
-  opacity: .6;
-}
-
-@keyframes shimmer {
-  0%   { background-position: 200% center; }
-  100% { background-position: -200% center; }
-}
-
-/* ── LAYOUT ── */
-.wrap {
-  max-width: 920px;
-  margin: auto;
-  padding: 60px 40px 100px;
-}
-
-/* ── BOX ── */
-.box {
-  background: #0f0f0f;
-  border: 1px solid #1a1a1a;
-  border-left: 2px solid #c9a84c;
-  padding: 40px;
-  margin-bottom: 24px;
-  animation: fadeUp .5s ease both;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.bt {
-  font-size: 9px;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  color: #c9a84c;
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.bt::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, #c9a84c22, transparent);
-}
-
-/* ── GRID ── */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-}
-
-.field.full { grid-column: 1 / -1; }
-
-label {
-  font-size: 9px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: #555;
-  transition: color .25s;
-}
-
-.field:focus-within label { color: #c9a84c; }
-
-input,
-select {
-  background: #111;
-  border: none;
-  border-bottom: 1px solid #2a2a2a;
-  color: #fff;
-  font-size: 14px;
-  padding: 14px 16px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  outline: none;
-  transition: border-color .3s, background .3s;
-  width: 100%;
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-input:focus,
-select:focus {
-  border-bottom-color: #c9a84c;
-  background: #141414;
-}
-
-input::placeholder { color: #333; }
-
-/* custom select arrow */
-.field select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c9a84c'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
-  cursor: pointer;
-}
-
-/* hint text */
-.hint {
-  font-size: 9px;
-  color: #444;
-  letter-spacing: .06em;
-  line-height: 1.6;
-  margin-top: 2px;
-}
-
-/* ── INFO BANNER ── */
-.info-bar {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  background: #c9a84c08;
-  border: 1px solid #c9a84c22;
-  padding: 16px 20px;
-  margin-bottom: 28px;
-  font-size: 11px;
-  color: #888;
-  line-height: 1.7;
-  letter-spacing: .04em;
-}
-
-.info-bar span {
-  color: #c9a84c;
-  font-size: 15px;
-  margin-top: 1px;
-  flex-shrink: 0;
-}
-
-/* ── BUTTON ── */
-.calculate {
-  margin-top: 10px;
-  width: 100%;
-  background: #c9a84c;
-  color: #0a0a0a;
-  border: none;
-  padding: 18px;
-  font-size: 10px;
-  letter-spacing: .28em;
-  font-weight: 500;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: box-shadow .35s, transform .2s;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.calculate:hover {
-  box-shadow: 0 0 40px rgba(201,168,76,.45);
-  transform: translateY(-1px);
-}
-
-.calculate:active { transform: translateY(0); }
-
-/* ── RESULTS ── */
-.results {
-  display: none;
-  animation: fadeUp .5s ease both;
-}
-
-/* ── CARDS ── */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.card {
-  background: #0d0d0d;
-  border: 1px solid #1c1c1c;
-  padding: 28px 20px;
-  text-align: center;
-  transition: border-color .3s;
-}
-
-.card:hover { border-color: #2a2a2a; }
-
-.card.main {
-  border-color: #c9a84c44;
-  background: #0f0e0a;
-}
-
-.card.main:hover { border-color: #c9a84c; }
-
-.card small {
-  display: block;
-  font-size: 8px;
-  letter-spacing: .28em;
-  color: #444;
-  margin-bottom: 14px;
-  text-transform: uppercase;
-}
-
-.card strong {
-  font-size: 24px;
-  font-weight: 300;
-  letter-spacing: .02em;
-}
-
-.gold { color: #c9a84c; }
-
-/* ── BREAKDOWN ── */
-.breakdown {
-  background: #0d0d0d;
-  border: 1px solid #1a1a1a;
-  border-left: 2px solid #c9a84c;
-  padding: 32px 36px;
-  margin-bottom: 24px;
-  font-size: 13px;
-  color: #777;
-  line-height: 2;
-}
-
-.breakdown strong {
-  color: #ccc;
-  font-weight: 400;
-  display: block;
-  margin-bottom: 4px;
-  font-size: 11px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-.bd-row {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #161616;
-  padding: 10px 0;
-  font-size: 13px;
-}
-
-.bd-row:last-child { border-bottom: none; }
-
-.bd-row .label { color: #555; letter-spacing: .06em; }
-.bd-row .val   { color: #ccc; }
-.bd-row.total  { border-top: 1px solid #c9a84c33; margin-top: 6px; padding-top: 14px; }
-.bd-row.total .label { color: #c9a84c; font-size: 11px; letter-spacing: .12em; }
-.bd-row.total .val   { color: #c9a84c; font-size: 18px; font-weight: 400; }
-
-/* ── ADVICE BOX ── */
-.advice {
-  background: #0d0d0d;
-  border: 1px solid #1a1a1a;
-  padding: 32px 36px;
-  margin-bottom: 24px;
-}
-
-.advice-title {
-  font-size: 9px;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: #c9a84c;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.advice-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, #c9a84c22, transparent);
-}
-
-.advice-items {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-.advice-item {
-  background: #111;
-  border: 1px solid #1a1a1a;
-  border-left: 2px solid #c9a84c33;
-  padding: 18px 20px;
-  font-size: 12px;
-  color: #666;
-  line-height: 1.7;
-  transition: border-color .3s;
-}
-
-.advice-item:hover { border-left-color: #c9a84c; }
-
-.advice-item b {
-  display: block;
-  color: #ccc;
-  font-size: 11px;
-  letter-spacing: .08em;
-  margin-bottom: 6px;
-  font-weight: 400;
-}
-
-/* ── DISCLAIMER ── */
-.disc {
-  font-size: 10px;
-  color: #333;
-  letter-spacing: .06em;
-  line-height: 1.8;
-  text-align: center;
-  padding: 0 20px 10px;
-}
-
-/* ── CTA ── */
-.cta {
-  text-align: center;
-  padding: 50px 20px;
-  background: #0f0f0f;
-  border: 1px solid #1a1a1a;
-  border-left: 2px solid #c9a84c;
-  margin-top: 24px;
-}
-
-.cta h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(26px, 4vw, 38px);
-  font-weight: 300;
-  color: #fff;
-  letter-spacing: .06em;
-  margin-bottom: 16px;
-}
-
-.cta p {
-  color: #555;
-  font-size: 12px;
-  letter-spacing: .07em;
-  line-height: 1.9;
-  max-width: 500px;
-  margin: 0 auto 30px;
-}
-
-.btn-group {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-block;
-  padding: 15px 36px;
-  text-decoration: none;
-  font-size: 10px;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
-  transition: .3s;
-}
-
-.whatsapp {
-  background: #c9a84c;
-  color: #000;
-}
-
-.whatsapp:hover { box-shadow: 0 0 28px rgba(201,168,76,.45); }
-
-.email {
-  border: 1px solid #c9a84c;
-  color: #c9a84c;
-}
-
-.email:hover { background: #c9a84c11; }
-
-/* ── RESPONSIVE ── */
-@media(max-width: 700px) {
-  header { padding: 16px 20px; }
-  .wrap  { padding: 40px 20px 80px; }
-  .box   { padding: 28px 22px; }
-  .grid,
-  .cards,
-  .advice-items { grid-template-columns: 1fr; }
-  .bd-row .val { font-size: 14px; }
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APEXclusive — BPM Import Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:        #050505;
+      --black-2:      #0a0a0a;
+      --black-3:      #111111;
+      --black-4:      #181818;
+      --black-5:      #202020;
+      --white:        #EEEBE5;
+      --white-2:      #D8D4CC;
+      --white-dim:    rgba(238,235,229,0.5);
+      --white-faint:  rgba(238,235,229,0.07);
+      --grey:         #666666;
+      --grey-2:       #999999;
+      --it-green:     #009246;
+      --it-green-dim: rgba(0,146,70,0.12);
+      --it-green-glow:rgba(0,146,70,0.06);
+      --it-red:       #CE2B37;
+      --it-red-dim:   rgba(206,43,55,0.12);
+      --it-red-glow:  rgba(206,43,55,0.06);
+      --border:       rgba(238,235,229,0.08);
+      --border-mid:   rgba(238,235,229,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* ── CURSOR ── */
+    #cur {
+      position: fixed; width: 6px; height: 6px;
+      background: var(--white); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: difference;
+      transition: width .25s, height .25s;
+    }
+    #cur-ring {
+      position: fixed; width: 32px; height: 32px;
+      border: 1px solid rgba(238,235,229,0.3); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width .4s cubic-bezier(.25,.46,.45,.94), height .4s cubic-bezier(.25,.46,.45,.94);
+    }
+    body.hov #cur { width: 10px; height: 10px; }
+    body.hov #cur-ring { width: 50px; height: 50px; }
+
+    /* ── NOISE ── */
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      pointer-events: none; z-index: 8000; opacity: .022;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, var(--it-green) 33%, rgba(238,235,229,.5) 33% 66%, var(--it-red) 66%);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 36px 72px;
+      transition: padding .5s, background .5s, backdrop-filter .5s;
+    }
+    nav.scrolled {
+      padding: 20px 72px;
+      background: rgba(5,5,5,0.95);
+      backdrop-filter: blur(28px) saturate(1.2);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { text-decoration: none; display: flex; flex-direction: column; gap: 4px; }
+    .logo-wordmark { display: flex; align-items: baseline; }
+    .logo-apex { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; letter-spacing: 0.22em; color: var(--white); text-transform: uppercase; line-height: 1; }
+    .logo-dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--it-red); margin: 0 2px; position: relative; top: -3px; }
+    .logo-exclusive { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 300; letter-spacing: 0.22em; color: rgba(238,235,229,0.45); text-transform: uppercase; line-height: 1; }
+    .logo-sub { font-size: 0.5rem; letter-spacing: 0.38em; text-transform: uppercase; color: rgba(238,235,229,0.28); padding-left: 1px; }
+    .logo-tribar { display: flex; height: 1px; margin-top: 3px; opacity: 0.6; }
+    .logo-tribar span { flex: 1; display: block; }
+    .logo-tribar span:nth-child(1) { background: var(--it-green); }
+    .logo-tribar span:nth-child(2) { background: rgba(238,235,229,0.5); }
+    .logo-tribar span:nth-child(3) { background: var(--it-red); }
+    .nav-btn {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--white); text-decoration: none;
+      border: 1px solid rgba(238,235,229,0.18); padding: 11px 28px;
+      transition: border-color .3s, background .3s; cursor: none;
+      position: relative; overflow: hidden;
+    }
+    .nav-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--it-green-dim), var(--it-red-dim));
+      opacity: 0; transition: opacity .4s;
+    }
+    .nav-btn:hover { border-color: rgba(238,235,229,0.35); }
+    .nav-btn:hover::before { opacity: 1; }
+    .nav-btn span { position: relative; z-index: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; height: 72vh; min-height: 580px;
+      overflow: hidden; display: flex; align-items: flex-end;
+    }
+    .hero-media { position: absolute; inset: 0; }
+    .hero-media img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center 45%;
+      filter: brightness(0.32) saturate(0.55) contrast(1.2);
+      transform: scale(1.04);
+      animation: heroZoom 20s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom { from { transform: scale(1.04); } to { transform: scale(1.10); } }
+    .hero-media::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, rgba(5,5,5,1) 0%, rgba(5,5,5,0.55) 40%, rgba(5,5,5,0.1) 75%, rgba(5,5,5,0.3) 100%),
+        radial-gradient(ellipse at 80% 40%, var(--it-green-glow) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 70%, var(--it-red-glow)   0%, transparent 50%);
+    }
+    .hero-edge {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 3px; display: flex; flex-direction: column; z-index: 4;
+    }
+    .hero-edge span { flex: 1; }
+    .hero-edge span:nth-child(1) { background: var(--it-green); opacity: .7; }
+    .hero-edge span:nth-child(2) { background: rgba(238,235,229,0.45); }
+    .hero-edge span:nth-child(3) { background: var(--it-red); opacity: .7; }
+    .hero-content {
+      position: relative; z-index: 3;
+      padding: 0 72px 88px; width: 100%;
+    }
+    .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+    .hero-eyebrow-text { font-size: 0.62rem; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(238,235,229,0.38); font-weight: 400; }
+    h1.hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 400; line-height: 0.95;
+      letter-spacing: -0.01em; color: var(--white);
+      margin-bottom: 24px;
+    }
+    h1.hero-title em { font-style: italic; font-weight: 300; color: rgba(238,235,229,0.42); }
+    .hero-sub {
+      font-size: 0.88rem; color: rgba(238,235,229,0.4);
+      line-height: 1.85; max-width: 480px; font-weight: 300;
+    }
+
+    /* ── TRI-PILL ── */
+    .tri-pill { display: flex; gap: 3px; align-items: center; }
+    .tri-pill span { display: block; width: 2px; border-radius: 1px; }
+
+    /* ── DIVIDER LINE ── */
+    .tri-line {
+      width: 100%; height: 1px; display: flex;
+    }
+    .tri-line span { flex: 1; display: block; }
+    .tri-line span:nth-child(1) { background: var(--it-green); opacity: .7; }
+    .tri-line span:nth-child(2) { background: rgba(238,235,229,0.45); }
+    .tri-line span:nth-child(3) { background: var(--it-red); opacity: .7; }
+
+    /* ── MAIN WRAP ── */
+    .wrap {
+      max-width: 1000px; margin: 0 auto;
+      padding: 80px 72px 120px;
+    }
+
+    /* ── SECTION EYEBROW ── */
+    .s-eye { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .s-eye-text { font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(238,235,229,0.32); font-weight: 400; }
+    .s-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 400; line-height: 1.05;
+      color: var(--white); margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .s-title em { font-style: italic; color: rgba(238,235,229,0.38); }
+
+    /* ── INFO BAR ── */
+    .info-bar {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: rgba(0,146,70,0.04);
+      border: 1px solid rgba(0,146,70,0.15);
+      border-left: 2px solid var(--it-green);
+      padding: 20px 24px; margin-bottom: 40px;
+      font-size: 0.82rem; color: rgba(238,235,229,0.42);
+      line-height: 1.75; letter-spacing: 0.02em;
+    }
+    .info-bar-icon { color: var(--it-green); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .info-bar strong { color: rgba(238,235,229,0.7); font-weight: 500; }
+
+    /* ── FORM BOX ── */
+    .form-box {
+      background: var(--black-2);
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      margin-bottom: 2px;
+    }
+    .form-box::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--it-green) 25%, rgba(238,235,229,.4) 50%, var(--it-red) 75%, transparent);
+      opacity: .5;
+    }
+    .form-box-inner { padding: 52px 56px; }
+    .form-box-title {
+      font-size: 0.62rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: rgba(238,235,229,0.28);
+      margin-bottom: 40px; display: flex; align-items: center; gap: 14px;
+    }
+    .form-box-title::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--border-mid), transparent);
+    }
+
+    /* ── GRID ── */
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .field { display: flex; flex-direction: column; gap: 10px; position: relative; }
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.58rem; letter-spacing: 0.26em;
+      text-transform: uppercase; color: rgba(238,235,229,0.28);
+      font-weight: 400; transition: color .3s;
+    }
+    .field:focus-within label { color: rgba(238,235,229,0.55); }
+
+    input, select {
+      background: var(--black-3);
+      border: none;
+      border-bottom: 1px solid rgba(238,235,229,0.1);
+      color: var(--white);
+      font-size: 0.92rem;
+      padding: 14px 16px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      outline: none;
+      transition: border-color .3s, background .3s;
+      width: 100%;
+      appearance: none; -webkit-appearance: none;
+    }
+    input:focus, select:focus {
+      border-bottom-color: rgba(238,235,229,0.45);
+      background: #141414;
+    }
+    input::placeholder { color: rgba(238,235,229,0.18); font-size: 0.88rem; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(238,235,229,0.3)'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-color: var(--black-3);
+      padding-right: 40px; cursor: none;
+    }
+
+    .field-hint {
+      font-size: 0.68rem; color: rgba(238,235,229,0.22);
+      letter-spacing: 0.04em; line-height: 1.6;
+    }
+
+    /* ── BUTTON ── */
+    .btn-calculate {
+      margin-top: 16px; width: 100%;
+      background: var(--white); color: var(--black);
+      border: none; padding: 18px;
+      font-size: 0.68rem; letter-spacing: 0.28em;
+      font-weight: 500; text-transform: uppercase;
+      cursor: none; font-family: 'Inter', sans-serif;
+      transition: background .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .btn-calculate::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--it-green) 0%, var(--black) 50%, var(--it-red) 100%);
+      opacity: 0; transition: opacity .45s;
+    }
+    .btn-calculate:hover { transform: translateY(-2px); }
+    .btn-calculate:hover::before { opacity: 1; }
+    .btn-calculate span { position: relative; z-index: 1; }
+
+    /* ── RESULTS ── */
+    .results { display: none; margin-top: 3px; animation: fadeUp .6s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESULT CARDS ── */
+    .result-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      margin-bottom: 3px;
+    }
+    .r-card {
+      background: var(--black-2); padding: 40px 32px;
+      text-align: center; position: relative; overflow: hidden;
+      transition: background .4s;
+    }
+    .r-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px; transform: scaleX(0); transform-origin: left;
+      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+    }
+    .r-card:nth-child(1)::after { background: var(--it-green); }
+    .r-card:nth-child(2)::after { background: rgba(238,235,229,0.4); }
+    .r-card:nth-child(3)::after { background: var(--it-red); }
+    .r-card:hover::after { transform: scaleX(1); }
+    .r-card:hover { background: var(--black-3); }
+    .r-card.primary { border: 1px solid rgba(238,235,229,0.1); }
+    .r-card small {
+      display: block; font-size: 0.58rem;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(238,235,229,0.28); margin-bottom: 18px;
+    }
+    .r-card strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 400;
+      color: var(--white); line-height: 1;
+      display: block;
+    }
+    .r-card.primary strong { color: var(--white); }
+    .r-card-sub {
+      font-size: 0.68rem; color: rgba(238,235,229,0.28);
+      letter-spacing: 0.08em; margin-top: 8px;
+    }
+
+    /* ── BREAKDOWN ── */
+    .breakdown-box {
+      background: var(--black-2);
+      border: 1px solid var(--border);
+      border-left: 2px solid rgba(238,235,229,0.15);
+      padding: 48px 56px; margin-bottom: 3px;
+      position: relative;
+    }
+    .breakdown-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--it-green) 20%, rgba(238,235,229,.4) 50%, var(--it-red) 80%, transparent);
+      opacity: .3;
+    }
+    .breakdown-title {
+      font-size: 0.62rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: rgba(238,235,229,0.28);
+      margin-bottom: 32px; display: flex; align-items: center; gap: 14px;
+    }
+    .breakdown-title::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--border-mid), transparent);
+    }
+    .bd-section { margin-bottom: 32px; }
+    .bd-section:last-child { margin-bottom: 0; }
+    .bd-section-label {
+      font-size: 0.58rem; letter-spacing: 0.26em;
+      text-transform: uppercase; color: rgba(238,235,229,0.2);
+      margin-bottom: 12px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .bd-row {
+      display: flex; justify-content: space-between;
+      align-items: baseline; padding: 10px 0;
+      border-bottom: 1px solid rgba(238,235,229,0.04);
+      font-size: 0.84rem;
+    }
+    .bd-row:last-child { border-bottom: none; }
+    .bd-row .bd-l { color: rgba(238,235,229,0.38); letter-spacing: 0.04em; }
+    .bd-row .bd-v { color: rgba(238,235,229,0.75); font-weight: 400; }
+    .bd-row.bd-total {
+      border-top: 1px solid rgba(238,235,229,0.12);
+      border-bottom: none; margin-top: 8px; padding-top: 18px;
+    }
+    .bd-row.bd-total .bd-l {
+      color: rgba(238,235,229,0.55); font-size: 0.78rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .bd-row.bd-total .bd-v {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 400; color: var(--white);
+    }
+    .bd-row.bd-allin .bd-l {
+      color: rgba(238,235,229,0.45); font-size: 0.75rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .bd-row.bd-allin .bd-v {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; color: rgba(238,235,229,0.7);
+    }
+
+    /* ── ADVICE ── */
+    .advice-box {
+      background: var(--black-2); border: 1px solid var(--border);
+      padding: 48px 56px; margin-bottom: 3px; position: relative;
+    }
+    .advice-box::before {
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--it-green), rgba(238,235,229,0.3), var(--it-red));
+      opacity: .45;
+    }
+    .advice-title {
+      font-size: 0.62rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: rgba(238,235,229,0.28);
+      margin-bottom: 32px; display: flex; align-items: center; gap: 14px;
+    }
+    .advice-title::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--border-mid), transparent);
+    }
+    .advice-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+      background: var(--border);
+    }
+    .advice-item {
+      background: var(--black-2); padding: 28px 28px;
+      transition: background .35s; cursor: none;
+      position: relative; overflow: hidden;
+    }
+    .advice-item::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px; background: var(--it-green);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .4s ease;
+    }
+    .advice-item:nth-child(even)::after { background: var(--it-red); }
+    .advice-item:hover { background: var(--black-3); }
+    .advice-item:hover::after { transform: scaleX(1); }
+    .advice-item-head {
+      display: flex; align-items: flex-start; gap: 14px; margin-bottom: 10px;
+    }
+    .advice-item-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      border: 1px solid rgba(238,235,229,0.1);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .3s;
+    }
+    .advice-item:hover .advice-item-icon { border-color: rgba(238,235,229,0.22); }
+    .advice-item-icon svg {
+      width: 14px; height: 14px; stroke: var(--grey);
+      fill: none; stroke-width: 1.5;
+    }
+    .advice-item-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 500;
+      color: var(--white); line-height: 1.2; padding-top: 5px;
+    }
+    .advice-item-text {
+      font-size: 0.8rem; color: rgba(238,235,229,0.38);
+      line-height: 1.75; font-weight: 300;
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      font-size: 0.72rem; color: rgba(238,235,229,0.2);
+      letter-spacing: 0.04em; line-height: 1.8;
+      text-align: center; padding: 28px 0 8px;
+    }
+
+    /* ── CTA ── */
+    .cta-box {
+      background: var(--black-2); border: 1px solid var(--border);
+      padding: 72px 56px; text-align: center;
+      position: relative; overflow: hidden; margin-top: 3px;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--it-green) 25%, rgba(238,235,229,.55) 50%, var(--it-red) 75%, transparent);
+      opacity: .55;
+    }
+    .cta-box::after {
+      content: ''; position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 900px; height: 700px;
+      background:
+        radial-gradient(ellipse at 30% 50%, var(--it-green-glow) 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 50%, var(--it-red-glow)   0%, transparent 55%);
+      pointer-events: none;
+    }
+    .cta-box-inner { position: relative; z-index: 1; }
+    .cta-box h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 400; color: var(--white);
+      letter-spacing: -0.01em; margin-bottom: 16px; line-height: 1.1;
+    }
+    .cta-box h2 em { font-style: italic; color: rgba(238,235,229,0.42); }
+    .cta-box p {
+      font-size: 0.88rem; color: rgba(238,235,229,0.4);
+      line-height: 1.85; max-width: 520px; margin: 0 auto 44px;
+      font-weight: 300;
+    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-white {
+      background: var(--white); color: var(--black);
+      padding: 14px 36px; font-size: 0.68rem;
+      font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none;
+      transition: background .3s, transform .3s;
+      cursor: none; display: inline-block;
+      position: relative; overflow: hidden;
+    }
+    .btn-white:hover { background: var(--white-2); transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: transparent; color: rgba(238,235,229,0.55);
+      padding: 14px 36px; font-size: 0.68rem;
+      font-weight: 400; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(238,235,229,0.14);
+      transition: border-color .3s, color .3s, transform .3s;
+      cursor: none; display: inline-block;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(238,235,229,0.35);
+      color: var(--white); transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black-2); padding: 80px 72px 48px;
+      position: relative;
+    }
+    footer::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--it-green) 20%, rgba(238,235,229,0.4) 50%, var(--it-red) 80%, transparent);
+      opacity: .35;
+    }
+    .ft { display: grid; grid-template-columns: 2.2fr 1fr 1fr; gap: 80px; margin-bottom: 72px; }
+    .ft-desc { font-size: 0.8rem; color: rgba(238,235,229,0.28); line-height: 1.8; max-width: 280px; font-weight: 300; }
+    .ft-col-t { font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(238,235,229,0.22); margin-bottom: 22px; }
+    .ft-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .ft-links a { font-size: 0.82rem; color: rgba(238,235,229,0.38); text-decoration: none; transition: color .3s; }
+    .ft-links a:hover { color: var(--white); }
+    .ft-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 36px; border-top: 1px solid var(--border);
+    }
+    .ft-copy { font-size: 0.7rem; color: rgba(238,235,229,0.2); letter-spacing: 0.06em; }
+    .ft-tri-badge { display: flex; gap: 2px; align-items: center; }
+    .ft-tri-badge span { display: block; height: 2px; }
+    .ft-tri-badge span:nth-child(1) { width: 20px; background: var(--it-green); opacity: .6; }
+    .ft-tri-badge span:nth-child(2) { width: 20px; background: rgba(238,235,229,0.4); }
+    .ft-tri-badge span:nth-child(3) { width: 20px; background: var(--it-red); opacity: .6; }
+    .ft-tag { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-style: italic; color: rgba(238,235,229,0.2); }
+
+    /* ── FADE IN ── */
+    .fi { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
+    .fi.vis { opacity: 1; transform: none; }
+    .fi.d1 { transition-delay: .1s; }
+    .fi.d2 { transition-delay: .2s; }
+    .fi.d3 { transition-delay: .3s; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 900px) {
+      nav { padding: 22px 28px; }
+      nav.scrolled { padding: 14px 28px; }
+      .hero-content { padding: 0 28px 72px; }
+      .wrap { padding: 56px 28px 80px; }
+      .form-box-inner { padding: 36px 28px; }
+      .grid { grid-template-columns: 1fr; }
+      .result-cards { grid-template-columns: 1fr; }
+      .breakdown-box { padding: 36px 28px; }
+      .advice-box { padding: 36px 28px; }
+      .advice-grid { grid-template-columns: 1fr; }
+      .cta-box { padding: 52px 28px; }
+      footer { padding: 56px 28px 36px; }
+      .ft { grid-template-columns: 1fr; gap: 36px; }
+      .ft-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <a class="logo" href="https://apexclusive.nl">APEX<span>clusive</span></a>
-  <a class="back" href="https://apexclusive.nl">← Terug naar website</a>
-</header>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="https://apexclusive.nl" class="logo">
+    <div class="logo-wordmark">
+      <span class="logo-apex">APEX</span><span class="logo-dot"></span><span class="logo-exclusive">exclusive</span>
+    </div>
+    <div class="logo-sub">Automotive Advisory</div>
+    <div class="logo-tribar"><span></span><span></span><span></span></div>
+  </a>
+  <a href="https://apexclusive.nl" class="nav-btn"><span>← Terug naar website</span></a>
+</nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hl">BPM Import Calculator</div>
-  <h1>Exclusieve Auto Import Analyse</h1>
-  <p>Bereken een realistische indicatie van de resterende BPM bij import van uw voertuig binnen Europa. Inclusief volledige kostenopbouw en persoonlijk importadvies.</p>
+  <div class="hero-media">
+    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=90" alt="Auto import Europa" />
+  </div>
+  <div class="hero-edge"><span></span><span></span><span></span></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="tri-pill">
+        <span style="height:18px;background:var(--it-green)"></span>
+        <span style="height:24px;background:rgba(238,235,229,0.45)"></span>
+        <span style="height:18px;background:var(--it-red)"></span>
+      </div>
+      <span class="hero-eyebrow-text">BPM Import Calculator · APEXclusive</span>
+    </div>
+    <h1 class="hero-title">Wat kost uw<br>import <em>werkelijk?</em></h1>
+    <p class="hero-sub">Realistische BPM-indicatie op basis van de meest actuele Belastingdienst-tarieven — inclusief volledige kostenopbouw en persoonlijk advies.</p>
+  </div>
 </div>
 
-<div class="gl"></div>
+<div class="tri-line"><span></span><span></span><span></span></div>
 
-<!-- MAIN WRAP -->
+<!-- MAIN -->
 <div class="wrap">
 
-  <!-- INFO -->
-  <div class="info-bar">
-    <span>ℹ</span>
+  <!-- INFO BAR -->
+  <div class="info-bar fi">
+    <div class="info-bar-icon">ℹ</div>
     <div>
-      De BPM wordt berekend op basis van de <strong>2024-2025 CO₂-tarieftabellen</strong> van de Belastingdienst.
-      Voor voertuigen ouder dan 6 maanden wordt de afschrijving bepaald via de wettelijke forfaitaire staffel.
-      Een exacte BPM-aangifte vereist een taxatierapport van een erkend taxateur of een koerslijst (XRAY / EurotaxGlass's).
+      Berekening op basis van <strong>Belastingdienst CO₂-tarieftabellen 2025</strong>. Afschrijving via de wettelijke forfaitaire staffel. Een exacte BPM-aanslag vereist een erkend taxatierapport of koerslijst (XRAY / EurotaxGlass's). APEXclusive verzorgt de volledige BPM-afhandeling via gecertificeerde partners.
     </div>
   </div>
 
   <!-- FORM -->
-  <div class="box">
-    <div class="bt">Voertuiggegevens</div>
+  <div class="form-box fi d1">
+    <div class="form-box-inner">
+      <div class="form-box-title">Voertuiggegevens invoeren</div>
+      <div class="grid">
 
-    <div class="grid">
+        <div class="field">
+          <label>Brandstoftype</label>
+          <select id="brandstof" onchange="toggleCO2()">
+            <option value="benzine">Benzine</option>
+            <option value="diesel">Diesel</option>
+            <option value="hybride">Plug-in Hybride (PHEV)</option>
+            <option value="elektrisch">Volledig Elektrisch (BEV)</option>
+          </select>
+        </div>
 
-      <div class="field">
-        <label>Brandstoftype</label>
-        <select id="brandstof" onchange="toggleCO2()">
-          <option value="benzine">Benzine</option>
-          <option value="diesel">Diesel</option>
-          <option value="hybride">Plug-in Hybride (PHEV)</option>
-          <option value="elektrisch">Volledig Elektrisch (BEV)</option>
-        </select>
+        <div class="field" id="co2Field">
+          <label>CO₂-uitstoot WLTP (g/km)</label>
+          <input id="co2" type="number" min="0" max="600" placeholder="Bijv. 280">
+          <div class="field-hint">Vermeld op kentekenbewijs of WLTP-documentatie.</div>
+        </div>
+
+        <div class="field">
+          <label>Datum eerste toelating</label>
+          <input id="datum" type="date">
+          <div class="field-hint">Eerste registratiedatum in land van herkomst.</div>
+        </div>
+
+        <div class="field">
+          <label>Cataloguswaarde incl. BTW (€)</label>
+          <input id="waarde" type="number" min="0" placeholder="Bijv. 185 000">
+          <div class="field-hint">Nieuwprijs in Nederland op datum eerste toelating.</div>
+        </div>
+
+        <div class="field">
+          <label>Werkelijke aankoopprijs incl. BTW (€)</label>
+          <input id="aankoopprijs" type="number" min="0" placeholder="Bijv. 155 000">
+          <div class="field-hint">Helpt bij realistische kosten-batenanalyse.</div>
+        </div>
+
+        <div class="field">
+          <label>Oorspronkelijke BPM (€) — optioneel</label>
+          <input id="origineleBPM" type="number" min="0" placeholder="Indien bekend uit buitenlands kentekenbewijs">
+        </div>
+
+        <div class="field">
+          <label>Land van herkomst</label>
+          <select id="land">
+            <option value="Duitsland">Duitsland</option>
+            <option value="België">België</option>
+            <option value="Italië">Italië</option>
+            <option value="Spanje">Spanje</option>
+            <option value="Overig Europa">Overig Europa</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Afschrijvingsmethode</label>
+          <select id="methode">
+            <option value="forfaitair">Forfaitaire staffel (standaard)</option>
+            <option value="koerslijst">Koerslijst / taxatierapport</option>
+          </select>
+          <div class="field-hint">Koerslijstmethode kan voordeliger uitvallen bij sterk afgeschreven modellen.</div>
+        </div>
+
       </div>
 
-      <div class="field" id="co2Field">
-        <label>CO₂-uitstoot WLTP (g/km)</label>
-        <input id="co2" type="number" min="0" max="600" placeholder="Bijv. 280">
-        <div class="hint">Vermeld op het kentekenbewijs of in de WLTP-documentatie.</div>
-      </div>
-
-      <div class="field">
-        <label>Datum eerste toelating</label>
-        <input id="datum" type="date">
-        <div class="hint">Eerste registratiedatum in het land van herkomst.</div>
-      </div>
-
-      <div class="field">
-        <label>Cataloguswaarde incl. BTW (€)</label>
-        <input id="waarde" type="number" min="0" placeholder="Bijv. 185000">
-        <div class="hint">Nieuwprijs in Nederland op datum eerste toelating.</div>
-      </div>
-
-      <div class="field">
-        <label>Werkelijke aankoopprijs incl. BTW (€)</label>
-        <input id="aankoopprijs" type="number" min="0" placeholder="Bijv. 155000">
-        <div class="hint">Helpt bij realistische kosten-batenanalyse.</div>
-      </div>
-
-      <div class="field">
-        <label>Oorspronkelijke BPM (€) — optioneel</label>
-        <input id="origineleBPM" type="number" min="0" placeholder="Indien bekend, bijv. 38000">
-        <div class="hint">Invullen indien vermeld op buitenlands kentekenbewijs of factuur.</div>
-      </div>
-
-      <div class="field">
-        <label>Land van herkomst</label>
-        <select id="land">
-          <option value="Duitsland">Duitsland</option>
-          <option value="België">België</option>
-          <option value="Italië">Italië</option>
-          <option value="Spanje">Spanje</option>
-          <option value="Overig Europa">Overig Europa</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label>Afschrijvingsmethode</label>
-        <select id="methode">
-          <option value="forfaitair">Forfaitaire staffel (standaard)</option>
-          <option value="koerslijst">Koerslijst / taxatierapport</option>
-        </select>
-        <div class="hint">Koerslijstmethode kan voordeliger uitvallen bij sterk afgeschreven modellen.</div>
-      </div>
-
+      <button class="btn-calculate" onclick="calculateBPM()">
+        <span>Bereken BPM &amp; Importanalyse</span>
+      </button>
     </div>
-
-    <button class="calculate" onclick="calculateBPM()">
-      Bereken BPM &amp; Importanalyse
-    </button>
   </div>
 
   <!-- RESULTS -->
   <div class="results" id="results">
 
     <!-- CARDS -->
-    <div class="box" style="padding-bottom:32px">
-      <div class="bt">Resultaat</div>
-
-      <div class="cards">
-        <div class="card">
-          <small>Bruto BPM (nieuw)</small>
-          <strong id="bruto">—</strong>
-        </div>
-        <div class="card">
-          <small>Forfaitaire afschrijving</small>
-          <strong id="afschrijving">—</strong>
-        </div>
-        <div class="card main">
-          <small>Resterende BPM</small>
-          <strong class="gold" id="bpm">—</strong>
-        </div>
+    <div class="result-cards">
+      <div class="r-card">
+        <small>Bruto BPM (nieuw)</small>
+        <strong id="r-bruto">—</strong>
+        <div class="r-card-sub">Op basis van CO₂-tabel 2025</div>
       </div>
-
+      <div class="r-card">
+        <small>Forfaitaire afschrijving</small>
+        <strong id="r-afschr">—</strong>
+        <div class="r-card-sub" id="r-leeftijd">—</div>
+      </div>
+      <div class="r-card primary">
+        <small>Resterende BPM</small>
+        <strong id="r-bpm">—</strong>
+        <div class="r-card-sub">Te voldoen bij RDW-registratie</div>
+      </div>
     </div>
 
     <!-- BREAKDOWN -->
-    <div class="breakdown" id="breakdown"></div>
+    <div class="breakdown-box">
+      <div class="breakdown-title">Gedetailleerde kostenopbouw</div>
+      <div id="breakdown-content"></div>
+    </div>
 
     <!-- ADVICE -->
-    <div class="advice" id="adviceBox">
+    <div class="advice-box">
       <div class="advice-title">Importadvies op maat</div>
-      <div class="advice-items" id="adviceItems"></div>
+      <div class="advice-grid" id="advice-grid"></div>
     </div>
 
     <!-- DISCLAIMER -->
-    <p class="disc">
-      Indicatieve berekening op basis van gepubliceerde Belastingdienst-tabellen 2024–2025.
-      De werkelijke BPM-aanslag kan afwijken door voertuigspecifieke CO₂-waarden, gehanteerde
-      koerslijst, historische BPM-tabellen en correcties door de RDW of Belastingdienst.
-      APEXclusive aanvaardt geen aansprakelijkheid voor onjuiste invoer of gewijzigde wet- en regelgeving.
+    <p class="disclaimer">
+      Indicatieve berekening op basis van gepubliceerde Belastingdienst-tabellen 2025. De werkelijke BPM-aanslag kan afwijken door voertuigspecifieke CO₂-waarden, gehanteerde koerslijst, historische BPM-tabellen en correcties door RDW of Belastingdienst. APEXclusive aanvaardt geen aansprakelijkheid voor onjuiste invoer of gewijzigde regelgeving.
     </p>
 
     <!-- CTA -->
-    <div class="cta">
-      <h2>Persoonlijke importanalyse?</h2>
-      <p>
-        APEXclusive begeleidt u bij aankoop, technische keuring, BPM-optimalisatie
-        en volledige begeleiding van uw exclusieve voertuig import binnen Europa.
-      </p>
-      <div class="btn-group">
-        <a class="btn whatsapp" href="https://wa.me/31624735939" target="_blank">WhatsApp advies</a>
-        <a class="btn email"    href="mailto:info@apexclusive.nl">E-mail contact</a>
+    <div class="cta-box">
+      <div class="cta-box-inner">
+        <div class="s-eye" style="justify-content:center;margin-bottom:20px">
+          <div class="tri-pill">
+            <span style="height:14px;background:var(--it-green)"></span>
+            <span style="height:18px;background:rgba(238,235,229,0.4)"></span>
+            <span style="height:14px;background:var(--it-red)"></span>
+          </div>
+          <span class="s-eye-text">Persoonlijke begeleiding</span>
+        </div>
+        <h2>Klaar voor de <em>volgende stap?</em></h2>
+        <p>APEXclusive begeleidt u bij aankoop, technische keuring, BPM-optimalisatie en volledige importafhandeling van uw exclusieve voertuig binnen Europa — van A tot Z.</p>
+        <div class="cta-btns">
+          <a href="https://wa.me/31624735939" target="_blank" class="btn-white">WhatsApp advies</a>
+          <a href="mailto:info@apexclusive.nl" class="btn-ghost">E-mail sturen</a>
+        </div>
       </div>
     </div>
 
   </div>
+</div>
 
-</div><!-- /wrap -->
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div>
+      <div style="margin-bottom:20px">
+        <a href="https://apexclusive.nl" class="logo" style="display:inline-flex">
+          <div class="logo-wordmark">
+            <span class="logo-apex" style="font-size:1.3rem">APEX</span>
+            <span class="logo-dot"></span>
+            <span class="logo-exclusive" style="font-size:1.3rem">exclusive</span>
+          </div>
+          <div class="logo-sub" style="margin-top:4px">Automotive Advisory</div>
+          <div class="logo-tribar"><span></span><span></span><span></span></div>
+        </a>
+      </div>
+      <p class="ft-desc">Private vehicle advisory vanuit Maastricht. Onafhankelijke aankoopbegeleiding en import van uitzonderlijke auto's — in heel Europa.</p>
+    </div>
+    <div>
+      <div class="ft-col-t">Tools</div>
+      <ul class="ft-links">
+        <li><a href="https://bpm.apexclusive.nl">BPM Calculator</a></li>
+        <li><a href="https://kentekencheck.apexclusive.nl">Kentekencheck</a></li>
+        <li><a href="https://carrapport.apexclusive.nl">Advertentie Analyse</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-t">Contact</div>
+      <ul class="ft-links">
+        <li><a href="mailto:info@apexclusive.nl">info@apexclusive.nl</a></li>
+        <li><a href="tel:+31624735939">+31 6 24 73 59 39</a></li>
+        <li><a href="https://wa.me/31624735939">WhatsApp</a></li>
+        <li><a href="https://apexclusive.nl">apexclusive.nl</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2026 APEXclusive · Automotive Advisory · Maastricht</div>
+    <div class="ft-tri-badge"><span></span><span></span><span></span></div>
+    <div class="ft-tag">Driven by Excellence.</div>
+  </div>
+</footer>
 
 <script>
 
-/* ── helpers ── */
-function euro(v){ return "€\u00a0" + Math.round(v).toLocaleString("nl-NL"); }
-function pct(v) { return Math.round(v) + "%"; }
+/* ── CURSOR ── */
+const cur  = document.getElementById('cur');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function tick(){
+  rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(tick);
+})();
+document.querySelectorAll('a,button,select,input,.r-card,.advice-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ── INTERSECTION OBSERVER ── */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
+},{threshold:0.1});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+/* ── HELPERS ── */
+function euro(v){ return '€\u00a0'+Math.round(v).toLocaleString('nl-NL'); }
+function pct(v){ return Math.round(v)+'%'; }
 
 function toggleCO2(){
-  const show = document.getElementById("brandstof").value !== "elektrisch";
-  document.getElementById("co2Field").style.opacity = show ? "1" : ".35";
-  document.getElementById("co2Field").querySelector("input").disabled = !show;
+  const ev = document.getElementById('brandstof').value === 'elektrisch';
+  const f  = document.getElementById('co2Field');
+  f.style.opacity  = ev ? '.35' : '1';
+  f.querySelector('input').disabled = ev;
 }
 
-/* ── bruto BPM 2025 tarieven ── */
+/* ── BRUTO BPM — tarieven 2025 ── */
 function calcBruto(brandstof, co2){
-
-  if(brandstof === "elektrisch") return 0;
-
+  if(brandstof === 'elektrisch') return 0;
   let bpm = 0;
 
-  if(brandstof === "benzine" || brandstof === "hybride"){
-    /* 2025 benzine schijven */
-    if(co2 <= 79)   { bpm = 0; }
-    if(co2 > 79)    bpm += (Math.min(co2,106) - 79)  *   2.89;
-    if(co2 > 106)   bpm += (Math.min(co2,156) - 106) *  66.24;
-    if(co2 > 156)   bpm += (Math.min(co2,176) - 156) * 147.80;
-    if(co2 > 176)   bpm += (co2 - 176)               * 296.10;
+  if(brandstof === 'benzine' || brandstof === 'hybride'){
+    if(co2 > 79)  bpm += (Math.min(co2,106)-79)  *   2.89;
+    if(co2 > 106) bpm += (Math.min(co2,156)-106) *  66.24;
+    if(co2 > 156) bpm += (Math.min(co2,176)-156) * 147.80;
+    if(co2 > 176) bpm += (co2-176)               * 296.10;
   }
-
-  if(brandstof === "diesel"){
-    /* diesel = benzineschijven + dieseltoeslag */
-    if(co2 > 79)    bpm += (Math.min(co2,106) - 79)  *   2.89;
-    if(co2 > 106)   bpm += (Math.min(co2,156) - 106) *  66.24;
-    if(co2 > 156)   bpm += (Math.min(co2,176) - 156) * 147.80;
-    if(co2 > 176)   bpm += (co2 - 176)               * 296.10;
-    /* dieseltoeslag 2025 */
-    bpm += 100 + co2 * 105;
+  if(brandstof === 'diesel'){
+    if(co2 > 79)  bpm += (Math.min(co2,106)-79)  *   2.89;
+    if(co2 > 106) bpm += (Math.min(co2,156)-106) *  66.24;
+    if(co2 > 156) bpm += (Math.min(co2,176)-156) * 147.80;
+    if(co2 > 176) bpm += (co2-176)               * 296.10;
+    bpm += 100 + co2 * 105; /* dieseltoeslag 2025 */
   }
-
-  /* PHEV: 50% korting */
-  if(brandstof === "hybride") bpm *= 0.50;
-
+  if(brandstof === 'hybride') bpm *= 0.50; /* PHEV 50% */
   return Math.max(0, bpm);
 }
 
-/* ── forfaitaire afschrijvingsstaffel (RDW 2024-2025) ── */
+/* ── FORFAITAIRE STAFFEL ── */
 function forfaitair(maanden){
   if(maanden <=  3) return 0;
   if(maanden <= 12) return 34;
@@ -1669,166 +1723,144 @@ function forfaitair(maanden){
   return 90;
 }
 
-/* ── leeftijd in maanden ── */
-function leeftijdMaanden(datumStr){
-  const d = new Date(datumStr);
-  const n = new Date();
-  return (n.getFullYear() - d.getFullYear()) * 12 + (n.getMonth() - d.getMonth());
+/* ── LEEFTIJD ── */
+function leeftijdMaanden(d){
+  const dt=new Date(d), n=new Date();
+  return (n.getFullYear()-dt.getFullYear())*12+(n.getMonth()-dt.getMonth());
 }
 
-/* ── transport + RDW ── */
-function importOnkosten(land){
-  const transport = {
-    "Duitsland": 750,
-    "België":    350,
-    "Italië":   1500,
-    "Spanje":   1800,
-    "Overig Europa": 1200
-  };
-  return (transport[land] || 1000) + 125 + 40; /* RDW €125, kenteken €40 */
+/* ── TRANSPORT + RDW ── */
+function transportKosten(land){
+  const t={Duitsland:750,België:350,Italië:1500,Spanje:1800,'Overig Europa':1200};
+  return (t[land]||1000) + 125 + 40;
 }
 
-/* ── advies genereren ── */
-function buildAdvice(data){
-  const items = [];
+/* ── SVG ICONS ── */
+const icons = {
+  info:       `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`,
+  shield:     `<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  check:      `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`,
+  lightning:  `<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  globe:      `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  tag:        `<svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`,
+  doc:        `<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+  euro:       `<svg viewBox="0 0 24 24"><path d="M4 10h10M4 14h10"/><path d="M18.5 6A6.5 6.5 0 1 0 18.5 18"/></svg>`,
+};
 
-  /* methode advies */
-  if(data.methode === "forfaitair" && data.maanden > 24){
-    items.push({
-      title: "Overweeg koerslijstmethode",
-      text: "Bij voertuigen ouder dan 2 jaar wijkt de werkelijke marktwaarde vaak gunstiger af van de forfaitaire staffel. Een XRAY- of EurotaxGlass's koerslijst kan de BPM aanzienlijk verlagen."
-    });
+/* ── ADVICE GENERATOR ── */
+function buildAdvice(d){
+  const items=[];
+
+  if(d.brandstof==='elektrisch'){
+    items.push({icon:'lightning',title:'BEV — geen BPM tot 2026',text:'Volledig elektrische voertuigen zijn vrijgesteld van BPM tot en met 2025. Import vóór de jaarwisseling biedt een strategisch voordeel.'});
   }
-
-  /* EV voordeel */
-  if(data.brandstof === "elektrisch"){
-    items.push({
-      title: "BPM-vrijstelling elektrisch",
-      text: "Volledig elektrische voertuigen zijn tot en met 2025 vrijgesteld van BPM. Vanaf 2026 geldt een vastgestelde heffing. Import vóór die datum biedt een strategisch voordeel."
-    });
+  if(d.methode==='forfaitair' && d.maanden>24){
+    items.push({icon:'doc',title:'Overweeg koerslijstmethode',text:'Bij voertuigen ouder dan 2 jaar kan een XRAY- of EurotaxGlass\'s koerslijst de BPM significant verlagen ten opzichte van de forfaitaire staffel.'});
   }
-
-  /* hoge BPM waarschuwing */
-  if(data.resterendeBPM > 20000){
-    items.push({
-      title: "Hoge BPM: taxatie aanbevolen",
-      text: "Bij een resterende BPM boven €20.000 is een erkend taxatierapport sterk aan te raden. Dit voorkomt een te hoge BPM-aanslag en biedt juridisch houvast bij bezwaar."
-    });
+  if(d.resterendeBPM>20000){
+    items.push({icon:'shield',title:'Taxatierapport aanbevolen',text:'Bij een resterende BPM boven €20.000 is een erkend taxatierapport sterk aan te raden. Dit biedt juridisch houvast bij bezwaar én voorkomt overbetaling.'});
   }
-
-  /* PHEV */
-  if(data.brandstof === "hybride"){
-    items.push({
-      title: "PHEV: controleer elektrisch bereik",
-      text: "De 50% BPM-korting geldt voor plug-in hybriden met een elektrisch bereik van minimaal 50 km (WLTP). Controleer dit in de typegoedkeuring of EU-certificaat."
-    });
+  if(d.brandstof==='hybride'){
+    items.push({icon:'check',title:'PHEV — elektrisch bereik checken',text:'De 50% BPM-korting geldt uitsluitend voor PHEV\'s met een elektrisch bereik van minimaal 50 km (WLTP). Verifieer dit in de EU-typegoedkeuring.'});
   }
-
-  /* marge voordeel */
-  if(data.aankoopprijs > 0 && data.cataloguswaarde > 0){
-    const marge = data.cataloguswaarde - data.aankoopprijs - data.resterendeBPM - data.onkosten;
-    if(marge > 5000){
-      items.push({
-        title: `Importvoordeel ~${euro(marge)}`,
-        text: "Vergeleken met de Nederlandse cataloguswaarde realiseert u een aanzienlijk financieel voordeel. APEXclusive optimaliseert dit proces voor u van A tot Z."
-      });
+  if(d.aankoopprijs>0 && d.cataloguswaarde>0){
+    const marge=d.cataloguswaarde - d.aankoopprijs - d.resterendeBPM - d.onkosten;
+    if(marge>5000){
+      items.push({icon:'euro',title:`Importvoordeel ~${euro(marge)}`,text:'Vergeleken met de Nederlandse cataloguswaarde realiseert u een aanzienlijk financieel voordeel. APEXclusive optimaliseert dit traject voor u.'});
     }
   }
+  items.push({icon:'globe',title:'RDW-keuring & CoC',text:'Zorg voor een geldig EU-typegoedkeurings­certificaat (CoC). APEXclusive regelt de volledige RDW-aanmelding, kentekenplaten en eerste APK.'});
+  items.push({icon:'tag',title:'BTW-regime & facturatie',text:'Afhankelijk van land en dealer kan BTW worden teruggevorderd bij zakelijke import. Controleer altijd of het voertuig met of zonder BTW wordt verkocht.'});
 
-  /* altijd: RDW keuring */
-  items.push({
-    title: "RDW-keuring & overschrijving",
-    text: "Zorg voor een geldig EU-typegoedkeurings­certificaat (CoC). APEXclusive regelt de volledige RDW-aanmelding, kentekenplaten en eerste APK indien vereist."
-  });
-
-  /* altijd: BTW terugvordering */
-  items.push({
-    title: "BTW-regime & facturatie",
-    text: "Afhankelijk van het land en de dealer kan 21% BTW worden teruggevorderd bij zakelijke import. Controleer altijd of het voertuig met of zonder BTW wordt verkocht."
-  });
-
-  return items.slice(0, 6);
+  return items.slice(0,6);
 }
 
-/* ── HOOFDFUNCTIE ── */
+/* ── MAIN ── */
 function calculateBPM(){
+  const brandstof    = document.getElementById('brandstof').value;
+  const co2          = Number(document.getElementById('co2').value) || 0;
+  const datumStr     = document.getElementById('datum').value;
+  const catalogus    = Number(document.getElementById('waarde').value) || 0;
+  const aankoopprijs = Number(document.getElementById('aankoopprijs').value) || 0;
+  const origineel    = Number(document.getElementById('origineleBPM').value) || 0;
+  const land         = document.getElementById('land').value;
+  const methode      = document.getElementById('methode').value;
 
-  const brandstof    = document.getElementById("brandstof").value;
-  const co2          = Number(document.getElementById("co2").value) || 0;
-  const datumStr     = document.getElementById("datum").value;
-  const catalogus    = Number(document.getElementById("waarde").value) || 0;
-  const aankoopprijs = Number(document.getElementById("aankoopprijs").value) || 0;
-  const origineel    = Number(document.getElementById("origineleBPM").value) || 0;
-  const land         = document.getElementById("land").value;
-  const methode      = document.getElementById("methode").value;
+  if(!datumStr){ alert('Vul de datum eerste toelating in.'); return; }
+  if(brandstof!=='elektrisch' && co2<=0){ alert('Vul een geldige CO₂-uitstoot in.'); return; }
 
-  if(!datumStr){
-    alert("Vul de datum eerste toelating in.");
-    return;
-  }
+  const maanden      = leeftijdMaanden(datumStr);
+  const bruto        = origineel>0 ? origineel : calcBruto(brandstof, co2);
+  const afscrPct     = forfaitair(maanden);
+  const restBPM      = bruto * ((100-afscrPct)/100);
+  const onkosten     = transportKosten(land);
+  const transportNet = onkosten - 165;
+  const totaal       = restBPM + onkosten;
+  const allIn        = aankoopprijs>0 ? aankoopprijs+restBPM+onkosten : 0;
+  const jaren        = Math.floor(maanden/12);
+  const mndRest      = maanden%12;
 
-  if(brandstof !== "elektrisch" && co2 <= 0){
-    alert("Vul een geldige CO₂-uitstoot in.");
-    return;
-  }
-
-  /* berekeningen */
-  const maanden   = leeftijdMaanden(datumStr);
-  const bruto     = origineel > 0 ? origineel : calcBruto(brandstof, co2);
-  const afscrPct  = forfaitair(maanden);
-  const restBPM   = bruto * ((100 - afscrPct) / 100);
-  const onkosten  = importOnkosten(land);
-
-  /* methode-correctie melding */
-  let methodeNote = "";
-  if(methode === "koerslijst"){
-    methodeNote = "<em>Let op: bij koerslijstmethode dient u een erkend rapport aan te leveren. De berekening hieronder is gebaseerd op de forfaitaire staffel als indicatie.</em><br><br>";
-  }
-
-  /* ── DISPLAY ── */
-  document.getElementById("bruto").textContent      = euro(bruto);
-  document.getElementById("afschrijving").textContent = pct(afscrPct);
-  document.getElementById("bpm").textContent         = euro(restBPM);
+  /* cards */
+  document.getElementById('r-bruto').textContent  = euro(bruto);
+  document.getElementById('r-afschr').textContent = pct(afscrPct);
+  document.getElementById('r-bpm').textContent    = euro(restBPM);
+  document.getElementById('r-leeftijd').textContent = `${jaren}j ${mndRest}m — ${maanden} maanden`;
 
   /* breakdown */
-  const jaren  = Math.floor(maanden / 12);
-  const mnd    = maanden % 12;
-  const totaal = restBPM + onkosten;
-  const totaalMetAankoop = aankoopprijs > 0 ? aankoopprijs + restBPM + onkosten : 0;
-
-  document.getElementById("breakdown").innerHTML = `
-    <strong>Gedetailleerde opbouw</strong>
-    ${methodeNote}
-    <div class="bd-row"><span class="label">Brandstoftype</span><span class="val">${brandstof.charAt(0).toUpperCase()+brandstof.slice(1)}</span></div>
-    <div class="bd-row"><span class="label">CO₂-uitstoot WLTP</span><span class="val">${brandstof==="elektrisch"?"n.v.t.":co2+" g/km"}</span></div>
-    <div class="bd-row"><span class="label">Land van herkomst</span><span class="val">${land}</span></div>
-    <div class="bd-row"><span class="label">Leeftijd voertuig</span><span class="val">${jaren} jaar ${mnd} maanden (${maanden} mnd.)</span></div>
-    <div class="bd-row"><span class="label">Bruto BPM (nieuw)</span><span class="val">${euro(bruto)}</span></div>
-    <div class="bd-row"><span class="label">Forfaitaire afschrijving</span><span class="val">${pct(afscrPct)}</span></div>
-    <div class="bd-row"><span class="label">Resterende BPM</span><span class="val gold">${euro(restBPM)}</span></div>
-    <br>
-    <div class="bd-row"><span class="label">Transport + afvoer</span><span class="val">${euro(importOnkosten(land)-165)}</span></div>
-    <div class="bd-row"><span class="label">RDW-aanmelding</span><span class="val">€ 125</span></div>
-    <div class="bd-row"><span class="label">Kentekenplaten</span><span class="val">€ 40</span></div>
-    ${catalogus>0?`<div class="bd-row"><span class="label">Cataloguswaarde NL</span><span class="val">${euro(catalogus)}</span></div>`:""}
-    ${aankoopprijs>0?`<div class="bd-row"><span class="label">Aankoopprijs</span><span class="val">${euro(aankoopprijs)}</span></div>`:""}
-    <div class="bd-row total"><span class="label">Totale importkosten (excl. aankoop)</span><span class="val">${euro(totaal)}</span></div>
-    ${totaalMetAankoop>0?`<div class="bd-row total"><span class="label">All-in rijdend Nederland</span><span class="val">${euro(totaalMetAankoop)}</span></div>`:""}
+  let bdHTML = `
+    <div class="bd-section">
+      <div class="bd-section-label">Voertuiggegevens</div>
+      <div class="bd-row"><span class="bd-l">Brandstoftype</span><span class="bd-v">${brandstof.charAt(0).toUpperCase()+brandstof.slice(1)}</span></div>
+      <div class="bd-row"><span class="bd-l">CO₂-uitstoot WLTP</span><span class="bd-v">${brandstof==='elektrisch'?'n.v.t.':co2+' g/km'}</span></div>
+      <div class="bd-row"><span class="bd-l">Land van herkomst</span><span class="bd-v">${land}</span></div>
+      <div class="bd-row"><span class="bd-l">Leeftijd voertuig</span><span class="bd-v">${jaren} jaar ${mndRest} maanden</span></div>
+      <div class="bd-row"><span class="bd-l">Afschrijvingsmethode</span><span class="bd-v">${methode==='forfaitair'?'Forfaitaire staffel':'Koerslijst (indicatief)'}</span></div>
+      ${catalogus>0?`<div class="bd-row"><span class="bd-l">Cataloguswaarde NL</span><span class="bd-v">${euro(catalogus)}</span></div>`:''}
+      ${aankoopprijs>0?`<div class="bd-row"><span class="bd-l">Aankoopprijs</span><span class="bd-v">${euro(aankoopprijs)}</span></div>`:''}
+    </div>
+    <div class="bd-section">
+      <div class="bd-section-label">BPM-berekening</div>
+      <div class="bd-row"><span class="bd-l">Bruto BPM (nieuw voertuig)</span><span class="bd-v">${euro(bruto)}</span></div>
+      <div class="bd-row"><span class="bd-l">Forfaitaire afschrijving</span><span class="bd-v">${pct(afscrPct)}</span></div>
+      <div class="bd-row bd-total"><span class="bd-l">Resterende BPM</span><span class="bd-v">${euro(restBPM)}</span></div>
+    </div>
+    <div class="bd-section">
+      <div class="bd-section-label">Bijkomende importkosten</div>
+      <div class="bd-row"><span class="bd-l">Transport (${land})</span><span class="bd-v">${euro(transportNet)}</span></div>
+      <div class="bd-row"><span class="bd-l">RDW-aanmelding</span><span class="bd-v">€ 125</span></div>
+      <div class="bd-row"><span class="bd-l">Kentekenplaten</span><span class="bd-v">€ 40</span></div>
+      <div class="bd-row bd-total"><span class="bd-l">Totale importkosten (excl. aankoop)</span><span class="bd-v">${euro(totaal)}</span></div>
+      ${allIn>0?`<div class="bd-row bd-allin"><span class="bd-l">All-in rijdend Nederland</span><span class="bd-v">${euro(allIn)}</span></div>`:''}
+    </div>
   `;
+  if(methode==='koerslijst'){
+    bdHTML += `<div style="font-size:.78rem;color:rgba(238,235,229,0.3);border-top:1px solid var(--border);padding-top:16px;line-height:1.7">
+      <em>Koerslijstmethode geselecteerd: bovenstaande BPM is berekend via de forfaitaire staffel als indicatie. Bij gebruik van een erkend taxatierapport of koerslijst kan het exacte bedrag afwijken.</em>
+    </div>`;
+  }
+  document.getElementById('breakdown-content').innerHTML = bdHTML;
 
   /* advice */
-  const adviceData = { brandstof, co2, maanden, resterendeBPM: restBPM, methode,
-                        aankoopprijs, cataloguswaarde: catalogus, onkosten };
+  const adviceData = {brandstof,co2,maanden,resterendeBPM:restBPM,methode,aankoopprijs,cataloguswaarde:catalogus,onkosten};
   const adviceItems = buildAdvice(adviceData);
-  document.getElementById("adviceItems").innerHTML =
-    adviceItems.map(a =>
-      `<div class="advice-item"><b>${a.title}</b>${a.text}</div>`
-    ).join("");
+  document.getElementById('advice-grid').innerHTML = adviceItems.map(a=>`
+    <div class="advice-item">
+      <div class="advice-item-head">
+        <div class="advice-item-icon">${icons[a.icon]||icons.info}</div>
+        <div class="advice-item-title">${a.title}</div>
+      </div>
+      <div class="advice-item-text">${a.text}</div>
+    </div>
+  `).join('');
 
   /* show */
-  const res = document.getElementById("results");
-  res.style.display = "block";
-  res.scrollIntoView({ behavior: "smooth" });
+  const res = document.getElementById('results');
+  res.style.display = 'block';
+
+  /* re-observe new elements */
+  document.querySelectorAll('.results .fi').forEach(el=>obs.observe(el));
+
+  setTimeout(()=>{ res.scrollIntoView({behavior:'smooth', block:'start'}); }, 80);
 }
 
 </script>
