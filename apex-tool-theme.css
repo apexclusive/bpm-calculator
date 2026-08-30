@@ -80,3 +80,55 @@ footer .ft-tri{display:none!important}
 @media(max-width:640px){header{padding:1rem var(--pd)!important}.page-hero{padding:4.5rem var(--pd) 3rem!important}.page-hero h1{font-size:clamp(2.8rem,13vw,4.2rem)!important}.back-btn{padding:.48rem .75rem!important;font-size:.52rem!important}.form-inner{padding:1.35rem 1.1rem!important}.btn{width:100%}.fg{grid-template-columns:1fr!important}.fb{flex-direction:column;gap:.5rem}}
 @media(max-width:640px){.page-hero h1{width:100%!important;max-width:100%!important;margin-left:0!important;font-size:clamp(2rem,8.5vw,3rem)!important;overflow-wrap:anywhere}}
 @media(prefers-reduced-motion:reduce){.page-hero h1 em{animation:none!important}}
+
+/* ────────────────────────────────────────────────
+   HOMEPAGE-ALIGNMENT — neutralize residual accents
+   (gold → monochrome silver; square corners; hairlines)
+   So every tool reads as the APEXclusive homepage.
+──────────────────────────────────────────────── */
+:root{--warn:var(--apex-silver);--apex-warn-ink:#f2f4f6}
+
+/* WLTP hero note → neutral chrome plate, square */
+.wltp-hero-note{border-radius:0!important;background:rgba(198,203,209,.035)!important;border:1px solid rgba(198,203,209,.16)!important;color:rgba(214,219,222,.72)!important}
+
+/* WLTP contextual banner + badges + method markers */
+.wltp-banner{border-radius:0!important;background:rgba(198,203,209,.035)!important;border:1px solid rgba(198,203,209,.14)!important}
+.wltp-banner svg{stroke:rgba(214,219,222,.6)!important}
+.wltp-banner-text{color:rgba(214,219,222,.68)!important}
+.wltp-banner-text strong{color:rgba(235,238,240,.85)!important}
+.badge-wltp,.methode-wltp{color:var(--apex-silver)!important;border-color:rgba(198,203,209,.22)!important;background:rgba(198,203,209,.035)!important}
+.badge-both{color:var(--apex-green)!important;border-color:rgba(0,146,70,.28)!important;background:rgba(0,146,70,.045)!important}
+.badge-nedc{color:var(--apex-silver)!important;border-color:rgba(198,203,209,.2)!important;background:rgba(198,203,209,.03)!important}
+.dual-calc-header::before{background:var(--apex-silver)!important;opacity:.7!important}
+
+/* Verdict states → on-brand green / silver / red */
+.verdict-warn{color:var(--apex-silver)!important;background:rgba(198,203,209,.035)!important}.verdict-warn::before{background:var(--apex-silver)!important}
+.verdict-ok{color:var(--apex-green)!important;background:rgba(0,146,70,.045)!important}.verdict-ok::before{background:var(--apex-green)!important}
+.verdict-bad{color:var(--apex-red)!important;background:rgba(206,43,55,.045)!important}.verdict-bad::before{background:var(--apex-red)!important}
+
+/* Taxatie CTA → silver chrome */
+.taxatie-box{border-radius:0!important;background:rgba(198,203,209,.035)!important;border-color:rgba(198,203,209,.16)!important}
+.taxatie-box-icon{border-color:rgba(198,203,209,.22)!important}
+.taxatie-box-icon svg{stroke:var(--apex-silver)!important}
+.taxatie-box-title{color:rgba(235,238,240,.85)!important}
+.taxatie-box-body,.taxatie-case{color:rgba(214,219,222,.68)!important}
+.taxatie-box-body strong{color:rgba(240,242,244,.9)!important}
+.taxatie-case::before{color:var(--apex-silver)!important}
+.taxatie-box-btn{color:var(--apex-silver)!important;border-color:rgba(198,203,209,.26)!important}
+.taxatie-box-btn:hover{background:rgba(198,203,209,.06)!important;color:#fff!important}
+
+/* Sliders & controls → hairline chrome */
+.slider{background:rgba(198,203,209,.12)!important}
+.slider::-webkit-slider-thumb,.slider::-moz-range-thumb{background:var(--apex-silver)!important;border-color:var(--apex-ink)!important;border-radius:50%!important}
+.slider-val{color:var(--apex-silver)!important}
+
+/* Section headers & small labels on theme */
+.dual-calc-header{background:rgba(20,23,25,.88)!important;border-color:rgba(198,203,209,.16)!important;border-radius:0!important}
+.dual-calc-header{color:rgba(232,235,236,.72)!important}
+
+/* Method-info footnote under the payment block → silver chrome */
+.betalen-methode-info{border-radius:0!important;background:rgba(198,203,209,.035)!important;border-top:1px solid rgba(198,203,209,.14)!important;color:rgba(214,219,222,.6)!important}
+
+/* Rounded pills → square (dots stay round only for sliders/verdict marks) */
+.co2-method-title::before{border-radius:0!important}
+.tt-btn{border-radius:0!important;color:rgba(214,219,222,.5)!important}

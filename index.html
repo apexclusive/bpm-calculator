@@ -1619,8 +1619,8 @@ function renderCo2Fields(panelId){
     </div>`;
   } else if(methode === 'beide'){
     titleEl.innerHTML = '<span style="color:rgba(198,203,209,.45)">CO₂-invoer</span> <span class="co2-badge badge-both">Beide mogelijk — 1 sept. 2018 t/m 30 juni 2020</span>';
-    html = `<div style="font-size:.72rem;color:rgba(196,154,0,.65);margin-bottom:.75rem;font-family:var(--lb);letter-spacing:.04em;line-height:1.65">
-      Uw voertuig valt in de overgangsperiode. NEDC is altijd verplicht. Als de WLTP-waarde ook bekend is, worden er automatisch <strong style="color:rgba(196,154,0,.8)">twee berekeningen</strong> gemaakt — één op NEDC en één op WLTP. Dit levert mogelijk twee verschillende BPM-bedragen op.
+    html = `<div style="font-size:.72rem;color:rgba(214,219,222,.68);margin-bottom:.75rem;font-family:var(--lb);letter-spacing:.04em;line-height:1.65">
+      Uw voertuig valt in de overgangsperiode. NEDC is altijd verplicht. Als de WLTP-waarde ook bekend is, worden er automatisch <strong style="color:rgba(240,242,244,.9)">twee berekeningen</strong> gemaakt — één op NEDC en één op WLTP. Dit levert mogelijk twee verschillende BPM-bedragen op.
     </div>
     <div class="co2-fields">
       <div class="co2-field-wrap">
@@ -1970,11 +1970,11 @@ function checkWltpBanner(){
     document.getElementById('wltp-banner-title').textContent='WLTP verplicht — toelating ≥ 1 juli 2020';
     document.getElementById('wltp-banner-body').textContent=
       'Datum eerste toelating op of na 1 juli 2020. Altijd de WLTP-CO₂-waarde gebruiken. Deze staat op het kentekenbewijs of typegoedkeuringsdocument.';
-    b.style.background='rgba(196,154,0,.04)';
-    b.style.borderColor='rgba(196,154,0,.22)';
-    b.querySelector('svg').style.stroke='rgba(196,154,0,.7)';
-    b.querySelector('.wltp-banner-text').style.color='rgba(196,154,0,.75)';
-    b.querySelector('strong').style.color='rgba(196,154,0,.9)';
+    b.style.background='rgba(198,203,209,.035)';
+    b.style.borderColor='rgba(198,203,209,.16)';
+    b.querySelector('svg').style.stroke='rgba(214,219,222,.6)';
+    b.querySelector('.wltp-banner-text').style.color='rgba(214,219,222,.68)';
+    b.querySelector('strong').style.color='rgba(240,242,244,.85)';
   } else if(methode==='nedc'){
     document.getElementById('wltp-banner-title').textContent='NEDC verplicht — toelating vóór 1 september 2018';
     document.getElementById('wltp-banner-body').textContent=
@@ -2365,10 +2365,10 @@ function co2KL(c,bs){
   if(bs==='elektrisch')return{k:'A+',s:'Nul-emissie',col:'#009246',w:0};
   const v=parseFloat(c)||0;
   if(v<=100)return{k:'A',s:'Zeer zuinig',col:'#009246',w:v/400*100};
-  if(v<=130)return{k:'B',s:'Zuinig',col:'#4a9a3a',w:v/400*100};
-  if(v<=155)return{k:'C',s:'Gemiddeld',col:'#c49a00',w:v/400*100};
-  if(v<=185)return{k:'D',s:'Gemiddeld-hoog',col:'#d07000',w:v/400*100};
-  if(v<=225)return{k:'E',s:'Hoog verbruik',col:'#d04000',w:Math.min(v/400*100,100)};
+  if(v<=130)return{k:'B',s:'Zuinig',col:'#3f8a5f',w:v/400*100};
+  if(v<=155)return{k:'C',s:'Gemiddeld',col:'#c6cbd1',w:v/400*100};
+  if(v<=185)return{k:'D',s:'Gemiddeld-hoog',col:'#9aa1a8',w:v/400*100};
+  if(v<=225)return{k:'E',s:'Hoog verbruik',col:'#7d848b',w:Math.min(v/400*100,100)};
   if(v<=300)return{k:'F',s:'Zeer hoog verbruik',col:'#CE2B37',w:Math.min(v/400*100,100)};
   return{k:'G',s:'Extreem hoog verbruik',col:'#CE2B37',w:100};
 }
