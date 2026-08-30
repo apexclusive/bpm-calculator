@@ -132,35 +132,3 @@ footer .ft-tri{display:none!important}
 /* Rounded pills → square (dots stay round only for sliders/verdict marks) */
 .co2-method-title::before{border-radius:0!important}
 .tt-btn{border-radius:0!important;color:rgba(214,219,222,.5)!important}
-
-/* ────────────────────────────────────────────────
-   HEADER / FOOTER — homepage-consistent chrome
-──────────────────────────────────────────────── */
-
-/* Top utility bar (homepage eyebrow line) */
-.topbar{display:flex;align-items:center;gap:.9rem;padding:.5rem clamp(1.25rem,5vw,4rem);background:linear-gradient(180deg,#0a0b0b,#0e1011);border-bottom:1px solid rgba(198,203,209,.08);font-family:'Oswald',sans-serif;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.5);position:relative;z-index:101;overflow:hidden}
-.topbar::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(198,203,209,.14),transparent)}
-.topbar-brand{font-family:'DM Sans',sans-serif;font-weight:500;color:var(--apex-silver);letter-spacing:.16em;font-size:.6rem;white-space:nowrap}
-.topbar-brand em{font-style:normal;font-weight:300;color:rgba(215,218,220,.6)}
-.topbar-rule{width:1px;height:.7em;background:rgba(255,255,255,.22);flex-shrink:0}
-.topbar-tag{color:rgba(214,219,222,.6);white-space:nowrap}
-.topbar-loc{color:rgba(198,203,209,.38);white-space:nowrap}
-.topbar-spacer{flex:1}
-.topbar-link{color:rgba(198,203,209,.52);text-decoration:none;white-space:nowrap;transition:color .25s}
-.topbar-link:hover{color:#fff}
-
-/* Primary nav in the sticky header */
-.headnav{display:flex;align-items:center;gap:1.6rem}
-.headnav a{font-family:'Oswald',sans-serif;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(198,203,209,.55);text-decoration:none;position:relative;white-space:nowrap;transition:color .25s}
-.headnav a::after{content:'';position:absolute;left:0;right:0;bottom:-7px;height:1px;background:var(--apex-silver);transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.2,.7,.3,1)}
-.headnav a:hover{color:#fff}.headnav a:hover::after{transform:scaleX(1)}
-@media(max-width:960px){.headnav{display:none}}
-
-/* Footer: wider 4-col grid + brand badges */
-.fg{grid-template-columns:2fr 1.1fr 1.1fr 1.1fr!important}
-.fg-brand .brand{font-size:1.05rem!important}
-.fg-badges{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.15rem}
-.fg-badges span{font-family:'Oswald',sans-serif;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(198,203,209,.5);border:1px solid rgba(198,203,209,.14);padding:.32rem .6rem}
-.fg-brand p{max-width:34ch}
-@media(max-width:900px){.fg{grid-template-columns:1fr 1fr!important}.fg-brand{grid-column:1/-1}}
-@media(max-width:640px){.topbar{flex-wrap:wrap;gap:.5rem .9rem;padding:.55rem var(--pd)}.topbar-spacer{display:none}.fg{grid-template-columns:1fr!important}}
