@@ -1,0 +1,45 @@
+    <!-- FAQ -->
+    <div class="faq-wrap" id="faq">
+      <div class="section-lbl" style="margin-bottom:12px">Veelgestelde vragen over BPM bij import</div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Hoe weet ik of mijn auto onder NEDC of WLTP valt?</button>
+        <div class="faq-a">De meetmethode hangt af van de <strong>datum eerste toelating</strong>: vóór 1 september 2018 is dat altijd NEDC (de WLTP-waarde bestond nog niet). Tussen 1 september 2018 en 30 juni 2020 zijn beide waarden geregistreerd voor nieuw verkochte auto's — voor de BPM over het toelatingsjaar is NEDC bepalend, maar voor een herberekening met de huidige tarieven is WLTP vereist. Vanaf 1 juli 2020 is alleen WLTP nog van toepassing. Onbekende CO₂-waarde? Dan hanteert de Belastingdienst forfaitair 507 g/km (benzine) of 356 g/km (diesel) voor NEDC, en 550 g/km (benzine) of 395 g/km (diesel) voor WLTP.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Waarom zie ik soms twee bedragen (toelatingsjaar én huidig jaar)?</button>
+        <div class="faq-a">De wettelijke BPM over een geïmporteerde auto is de BPM die bij eerste toelating in Nederland betaald zou zijn — berekend met het tarief van het toelatingsjaar en het toen geldende CO₂-meetsysteem. Alleen als de auto een WLTP-waarde heeft, mag u ook een tweede berekening laten maken met de tarieven van het jaar van aangifte; u betaalt dan de laagste van de twee. De tool toont beide en markeert de gunstigste.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Wordt de BPM lager naarmate de auto ouder wordt?</button>
+        <div class="faq-a">Ja. Over de resterende BPM geldt de <strong>forfaitaire afschrijvingstabel</strong> van de Belastingdienst: na 1 jaar resteert 87,25%, na 2 jaar 76,5%, … tot 10% na 10 jaar en ouder (minimaal 10%). De tabel in deze tool is de officiële en wordt automatisch toegepast op de leeftijd sinds eerste toelating. Let op: bij een auto die al eerder in Nederland was geregistreerd, is de al betaalde BPM niet verrekenbaar met een latere import — het gaat om resterende BPM op moment van de nieuwe aangifte.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Geldt er een vaste BPM voor elektrische auto's?</button>
+        <div class="faq-a">Sinds 1 januari 2025 ja: voor emissievrije personenauto's geldt een vaste BPM-voet — € 667 in 2025 en € 687 in 2026 — zonder leeftijdskorting. Auto's die <strong>vóór 2025</strong> voor het eerst zijn toegelaten, blijven onder het oude nultarief vallen (€ 0 BPM). De tool rekent dit automatisch uit op basis van de datum eerste toelating.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Hoe zit het met plug-in hybrides (PHEV) en de wegenbelasting?</button>
+        <div class="faq-a">Voor BPM hadden PHEV's tot 50 g/km CO₂ t/m 2024 een eigen tarief zonder vaste voet; dat aparte tarief is per 1 januari 2025 beëindigd en PHEV's vallen nu onder de gewone BPM-tabel met vaste voet. Ook de MRB-vrijstelling voor plug-in hybrides is beëindigd: sinds 2026 betalen zij het volle wegenbelastingtarief. Alleen volledig elektrische auto's krijgen in 2026–2028 nog 30% korting op de MRB.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Kan ik de auto ook via een koerslijst of taxatie laten afschrijven?</button>
+        <div class="faq-a">Ja — de wet kent drie afschrijvingsmethoden: de forfaitaire tabel (die deze tool gebruikt), een erkende koerslijst of een taxatierapport van een RDW-erkend taxateur. Bij forse afwijkingen tussen inkoop- en handelswaarde kan een taxatie lager uitpakken dan de forfaitaire tabel. APEXclusive coördineert taxaties via erkende partners; vraag gerust een <strong>vrijblijvende taxatie</strong> aan via de knop onder de berekening om het laagst haalbare bedrag te achterhalen.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Wat kost het importeren naast de BPM?</button>
+        <div class="faq-a">Naast de BPM betaalt u bij registratie van een geïmporteerde auto onder meer de RDW-leges (2026: € 58,50 identificatie + € 63,10 kentekenbewijs/tenaamstelling + € 22,50 recyclingbijdrage) en eventueel douaneformaliteiten. Deze tool toont een indicatie van de vaste RDW-kosten. Een compleet kostenoverzicht (vervoer, douane, btw-afhandeling, keuring) hangt af van herkomstland en situatie — APEXclusive begeleidt de volledige importafhandeling en rekent dit graag vrijblijvend voor u door.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Is deze berekening bindend voor de Belastingdienst?</button>
+        <div class="faq-a">Nee. Dit is een indicatieve berekening op basis van de forfaitaire afschrijvingstabel en de actuele wettelijke tarieven. De Belastingdienst stelt bij de aangifte uiteindelijk zelf de verschuldigde BPM vast en controleert de opgegeven gegevens. Voor een definitieve, zo laag mogelijke vaststelling kunt u een erkend taxateur inschakelen — APEXclusive denkt graag met u mee.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Waar komen de gegevens van deze tool vandaan?</button>
+        <div class="faq-a">De CO₂-waarden en catalogusprijzen van bekende uitvoeringen komen uit openbare RDW-registratiedata en fabrikantgegevens (via onze Kentekencheck-databron). De BPM-tarieven 2015–2026, de forfaitaire afschrijvingstabel en de brandstoftoeslagen volgen de officiële publicaties van de Belastingdienst en het Belastingplan; de wegenbelasting gebruikt het rijksdeel 2026 en de provinciale opcenten 2026. Wijzigingen in wet- en regelgeving worden doorgevoerd zodra ze officieel zijn gepubliceerd.</div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button" onclick="faqToggle(this)">Bewaren jullie mijn berekening of kenteken?</button>
+        <div class="faq-a">Nee. Alles wat u invult blijft in uw eigen browser: de tool stuurt niets naar ons op en uw invoer verdwijnt zodra u de pagina sluit. Alleen uw <strong>recente berekeningen</strong> worden — als u dat handig vindt — lokaal op uw apparaat bewaard (zoals “Mijn garage” in onze Kentekencheck), zodat u later terug kunt komen. Er is geen account, geen e-mailadres en geen tracking. Voor een berekening op basis van een kenteken halen wij live gegevens bij de RDW op; die opvragen worden niet door ons opgeslagen.</div>
+      </div>
+          </div>
+    </div>

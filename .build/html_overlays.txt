@@ -1,0 +1,22 @@
+    <!-- STICKY CONVERSIEBALK (na eerste berekening) -->
+    <div class="sticky-cta" id="sticky-cta" style="display:none">
+      <div class="sc-txt"><span class="sc-lbl">Uw BPM-indicatie</span><span class="sc-val" id="sc-val">—</span></div>
+      <a class="btn sc-wa" id="sc-wa" href="#" target="_blank" rel="noopener">Gratis check: kan het lager?</a>
+      <button class="sc-x" type="button" onclick="sluitSticky()" aria-label="Sluiten">×</button>
+    </div>
+
+    <!-- EXIT-INTENT AANBOD -->
+    <div class="exit-overlay" id="exit-modal" style="display:none" role="dialog" aria-modal="true" aria-label="Vrijblijvende BPM-check">
+      <div class="exit-card">
+        <button class="exit-x" type="button" onclick="exitModal(false)" aria-label="Sluiten">×</button>
+        <p class="exit-ey">Voordat u gaat…</p>
+        <h3>Heeft u de <em>laagst mogelijke</em> BPM al te pakken?</h3>
+        <p>Naast de forfaitaire tabel bestaan de <strong>erkende koerslijst</strong> en het <strong>taxatierapport</strong>. Voor veel auto&rsquo;s scheelt dat honderden tot duizenden euro&rsquo;s. APEXclusive rekent via erkende RDW-partners gratis door welke grondslag voor úw auto het laagst is — en stelt daarna de aangifte voor u op.</p>
+        <div class="exit-btns" id="exit-btns">
+          <a class="btn" id="exit-wa" href="#" target="_blank" rel="noopener"><span>WhatsApp — gratis check</span></a>
+          <a class="btn gh" id="exit-mail" href="#"><span>Offerte per e-mail</span></a>
+          <a class="btn gh" id="exit-tel" href="tel:+31624735939"><span>Bel +31 6 24 73 59 39</span></a>
+        </div>
+        <p class="exit-noot">Vrijblijvend · reactie binnen 24 uur · RDW-erkende partners · ook voor één gerichte vraag</p>
+      </div>
+    </div>

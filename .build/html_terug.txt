@@ -1,0 +1,12 @@
+    <!-- BPM-TERUGGAAF CTA (export / total loss binnen 3 jaar) -->
+    <div class="terug-cta" id="terug-cta">
+      <div class="tc-txt">
+        <p class="tc-ey">Nog een situatie die u geld kan opleveren</p>
+        <h4>Auto geëxporteerd of total loss binnen 3 jaar? <em>U kunt een deel van de BPM terugvragen.</em></h4>
+        <p class="tc-body">Gaat een auto binnen 3 jaar na de Nederlandse tenaamstelling weer naar het buitenland of gaat hij door schade verloren? Dan vergoedt de Belastingdienst de <strong>niet-afgeschreven rest-BPM</strong> — bij jongere auto&rsquo;s kan dat oplopen tot duizenden euro&rsquo;s. Die teruggaaf moet u binnen de termijn en met de juiste grondslag aanvragen; APEXclusive rekent het bedrag voor u uit en dient de aanvraag in.</p>
+      </div>
+      <div class="tc-btns">
+        <a class="btn" href="https://wa.me/31624735939?text=Beste%20Martijn%2C%20ik%20heb%20een%20auto%20binnen%203%20jaar%20na%20tenaamstelling%20ge%C3%ABxporteerd%20of%20total%20loss%20gehad%20en%20wil%20weten%20of%20ik%20(een%20deel%20van)%20de%20BPM%20kan%20terugvragen." target="_blank" rel="noopener"><span>Check uw teruggaaf via WhatsApp</span></a>
+        <a class="btn gh" href="mailto:info@apexclusive.nl?subject=Vraag%3A%20BPM-teruggave%20bij%20export%20of%20total%20loss&body=Hallo%20APEXclusive%2C%0A%0AIk%20wil%20graag%20weten%20of%20ik%20BPM%20kan%20terugvragen%20na%20export%20of%20total%20loss.%0A%0AMet%20vriendelijke%20groet%2C">Vraag per e-mail</a>
+      </div>
+    </div>
