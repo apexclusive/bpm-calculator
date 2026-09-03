@@ -1,0 +1,110 @@
+    <!-- KENNISCENTRUM: nieuws · tips · methodes · valkuilen · stappenplan -->
+    <div class="kennis-wrap">
+      <div class="kennis-head">
+        <div>
+          <div class="section-lbl" style="margin-bottom:.4rem">BPM-kenniscentrum</div>
+          <h3 style="margin:0 0 .15rem">Tips &amp; nieuws om uw BPM te drukken</h3>
+          <p class="kennis-intro">Alles wat u moet weten vóór u een auto importeert of de BPM-aangifte doet — bijgewerkt tot september 2026. Rekenmethodes, wijzigingen, valkuilen en het complete stappenplan.</p>
+        </div>
+      </div>
+      <nav class="k-chips" aria-label="Snel naar secties">
+        <a class="k-chip" href="#kn-nieuws">Nieuws</a>
+        <a class="k-chip" href="#kn-tips">8 tips om BPM te drukken</a>
+        <a class="k-chip" href="#kn-methodes">3 rekenmethodes</a>
+        <a class="k-chip" href="#kn-valkuilen">Valkuilen</a>
+        <a class="k-chip" href="#kn-stappen">Stappenplan import</a>
+        <a class="k-chip" href="#aangifte-cta">Perfecte BPM-aangifte</a>
+      </nav>
+
+      <div class="k-card" id="kn-nieuws">
+        <h4>BPM-nieuws &amp; wijzigingen <span class="k-sub">(bron: Belastingdienst, ANWB, Belastingplan)</span></h4>
+        <div class="kn-timeline">
+          <div class="kn-item"><span class="kn-datum">2026 · nu</span><p><strong>BPM-tarieven 2026:</strong> vaste voet € 687 (was € 667), schijven € 2 / € 82 / € 181 / € 297 / € 594 per gram; dieseltoeslag € 114,83 per gram boven 69 g/km. Deze calculator rekent automatisch met het tarief van het toelatingsjaar — en waar wettelijk mogelijk óók met 2026.</p></div>
+          <div class="kn-item"><span class="kn-datum">1 juli 2026</span><p><strong>Wegenbelasting: massa rijklaar.</strong> De Belastingdienst rekent de MRB sinds 1 juli 2026 over de massa rijklaar in plaats van het ledig gewicht. U betaalt hetzelfde bedrag — wij gebruiken in de wegenbelasting-module automatisch de RDW-massa rijklaar.</p></div>
+          <div class="kn-item"><span class="kn-datum">1 jan. 2026</span><p><strong>MRB: PHEV's vol tarief, EV's 30% korting.</strong> Plug-in hybrides (1–50 g/km) betalen sinds 2026 net zoveel wegenbelasting als benzineauto's. Volledig elektrische auto's krijgen 2026–2028 30% korting (2029: 25%). Ook het kampeerautotarief ging van kwart- naar halftarief.</p></div>
+          <div class="kn-item"><span class="kn-datum">1 jan. 2025</span><p><strong>Vaste BPM-voet voor EV's &amp; einde PHEV-tarief.</strong> Emissievrije auto's betalen sinds 2025 een vaste voet (€ 667, in 2026: € 687) — tenzij de eerste toelating vóór 2025 ligt, dan blijft het nultarief gelden. De aparte PHEV-BPM-tabel (≤ 50 g, zonder vaste voet) is vervallen.</p></div>
+          <div class="kn-item"><span class="kn-datum">Vooruitblik</span><p><strong>2027: versobering oldtimer-MRB.</strong> Het voornemen is dat de MRB-vrijstelling voor oldtimers vanaf 2027 alleen nog geldt voor auto's die vóór 1988 zijn geregistreerd. Voor BPM bij import blijft de vrijstelling voor 25 jaar en ouder vooralsnog gewoon bestaan.</p></div>
+        </div>
+      </div>
+
+      <div class="k-card" id="kn-tarieven">
+        <h4>Officiële BPM-tarieven 2026 <span class="k-sub">(bron: Belastingdienst — tarieflijst BPM personenauto&rsquo;s, zoals ook in deze calculator)</span></h4>
+        <div id="kn-tarieven-body"><noscript>Zet JavaScript aan om de tabel te tonen.</noscript></div>
+      </div>
+
+      <div class="k-card" id="kn-tips">
+        <h4>Acht tips om BPM te drukken bij import <span class="k-sub">(altijd binnen de wettelijke regels — check bij twijfel uw situatie met ons)</span></h4>
+        <div class="faq-item">
+          <button class="faq-q" type="button" onclick="faqToggle(this)">1 · Laat altijd twee berekeningen maken: toelatingsjaar én aangiftejaar</button>
+          <div class="faq-a">De BPM wordt berekend met het tarief van het jaar van eerste toelating. Heeft de auto een WLTP-waarde, dan mag u óók een tweede berekening laten maken met de tarieven van het jaar van aangifte — u betaalt de laagste van de twee. Vooral bij auto's uit 2018–2020 (overgangsjaar) of bij grensgevallen rond een jaarwisseling kan dit duizenden euro's schelen. Deze tool doet het automatisch zodra u de WLTP-waarde invult.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" onclick="faqToggle(this)">2 · Kies de voordeligste grondslag: forfaitaire tabel is niet altijd het best</button>
+          <div class="faq-a">De wet kent drie methoden: de forfaitaire afschrijvingstabel (gratis), een erkende koerslijst (€ 25–50) of een taxatierapport van een RDW-erkend taxateur (€ 150–300). De tabel is vaak het voordeligst bij jonge auto's die snel afschrijven (premium, 0–3 jaar). Een koerslijst of taxatie wint vaak bij populaire modellen die langzaam afschrijven, bij schade of bij een afwijkende kilometerstand. Het verschil kan € 4.000+ zijn op dezelfde auto. APEXclusive rekent gratis door welke methode voor úw auto het laagst uitpakt.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" onclick="faqToggle(this)">3 · Gebruik de juiste CO₂-waarde (NEDC vs. WLTP) — voorkom het forfait</button>
+          <div class="faq-a">Staat de CO₂-waarde niet op het kentekenbewijs of CoC, dan gaat de Belastingdienst uit van 507 g/km (benzine, NEDC-tijdvak), 356 g/km (diesel, NEDC), 550 g/km (benzine, WLTP) of 395 g/km (diesel, WLTP). Dat kan de BPM enorm opdrijven. Zoek de echte waarde op — in het buitenlandse kentekenregister of via RDW — of laat ons dat doen. Let ook op welke meetnorm geldt: vóór 1 september 2018 NEDC, vanaf 1 juli 2020 WLTP, daartussen beide (NEDC bepaalt het toelatingsjaar).</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" onclick="faqToggle(this)">4 · Let op de 3.000-kilometerregel</button>
+          <div class="faq-a">Heeft een gebruikte auto minder dan 3.000 kilometer gereden, dan beschouwt de Belastingdienst hem bij import als nieuw: u betaalt de volle bruto-BPM zónder afschrijving. Controleer de kilometerstand dus vóór aankoop. Is de auto wél ouder of heeft hij meer kilometers, dan kan de afschrijvingstabel (of een taxatie) wél worden toegepast.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" onclick="faqToggle(this)">5 · Gebruik het jaar van eerste toelating slim</button>
+          <div class="faq-a">Het toelatingsjaar bepaalt welke BPM-tabel geldt — en die tabellen zijn door de jaren heen fors gestegen (vaste voet 2015: € 175 → 2026: € 687). Een auto met eerste toelating vóór 1 januari van een duurder jaar kan daardoor structureel minder rest-BPM hebben dan een identieke auto die enkele dagen later is toegelaten. Bij een WLTP-waarde kunt u daarnaast altijd het aangiftejaar naast het toelatingsjaar leggen (tip 1). Vraag bij twijfel de datum eerste toelating na via RDW — die bepaalt alles.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" onclick="faqToggle(this)">6 · Weet waar u aan toe bent met elektrisch en plug-in hybride</button>
+          <div class="faq-a">EV: eerste toelating vóór 2025 = € 0 BPM (nultarief); vanaf 2025 = vaste voet (€ 687 in 2026) zónder leeftijdskorting. PHEV: t/m 2024 gold tot 50 g/km een eigen tarief zonder vaste voet; sinds 2025 geldt de gewone tabel mét vaste voet en sinds 2026 ook het volle MRB-tarief. Laat u dus niet verleiden door een "gratis wegenbelasting"-verhaal bij een occasion-PHEV van ná 2025.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" onclick="faqToggle(this)">7 · Koop slim in Duitsland: Duitse occasionprijzen + BPM-logica</button>
+          <div class="faq-a">Import loont het meest in het premium- en sportsegment (grofweg € 3.000–15.000+ voordeel op auto's vanaf € 30.000–40.000) en bij elektrische occasions. Bij goedkope compacte auto's (onder ± € 15.000) weegt het voordeel vaak niet op tegen de moeite en vaste kosten (leges, transport, APK). Neem in uw vergelijking altijd het bruto-BPM-tarief van het toelatingsjaar mee — dat doet deze calculator voor u.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" onclick="faqToggle(this)">8 · Export of total loss binnen 3 jaar? BPM-teruggave mogelijk</button>
+          <div class="faq-a">Wordt een auto binnen 3 jaar na de Nederlandse tenaamstelling weer geëxporteerd of gaat hij door schade verloren (total loss), dan kan een deel van de betaalde BPM worden teruggevraagd. Dat loopt via een aparte procedure bij de Belastingdienst met dezelfde afschrijvingssystematiek. Laat dit door een specialist berekenen en indienen — APEXclusive wijst u graag de weg.</div>
+        </div>
+      </div>
+
+      <div class="k-card" id="kn-methodes">
+        <h4>De drie rekenmethodes naast elkaar</h4>
+        <table class="wb-table ken-tab">
+          <thead><tr><th>Methode</th><th>Kosten</th><th>Wanneer vaak voordelig</th><th>Wanneer niet</th></tr></thead>
+          <tbody>
+            <tr><td>Forfaitaire afschrijvingstabel</td><td>Gratis</td><td>Jonge, snel afschrijvende auto's (premium 0–3 jr)</td><td>Auto's die minder snel afschrijven dan de tabel</td></tr>
+            <tr><td>Erkende koerslijst (DAT, Schwacke, EurotaxGlass)</td><td>± € 25–50</td><td>Populaire modellen, langzame afschrijvers</td><td>Zware schade of sterk afwijkende uitvoering</td></tr>
+            <tr><td>Taxatierapport (RDW-erkend)</td><td>± € 150–300</td><td>Schade, hoge km-stand, bijzondere/schaarse uitvoeringen</td><td>Standaardauto's zonder bijzonderheden</td></tr>
+          </tbody>
+        </table>
+        <p class="ken-noot">U mag de voordeligste methode kiezen — de Belastingdienst toetst de uitkomst. APEXclusive laat via erkende partners gratis doorrekenen welke methode voor uw auto het laagste bedrag oplevert.</p>
+      </div>
+
+      <div class="k-card" id="kn-valkuilen">
+        <h4>Valkuilen bij de BPM-aangifte <span class="k-sub">(fouten kosten geld: naheffing + belastingrente)</span></h4>
+        <ul class="ken-list">
+          <li><strong>Verkeerde meetnorm of CO₂-waarde</strong> ingevuld (NEDC/WLTP door elkaar) — of de forfaitaire waarde accepteren terwijl de echte waarde wél vindbaar is.</li>
+          <li><strong>Verkeerd jaar van eerste toelating</strong>: de datum uit het buitenlandse kentekenbewijs telt, niet de aankoopdatum of het bouwjaar.</li>
+          <li><strong>Kilometerstand onder de 3.000 km</strong> bij een “gebruikte” auto → geen afschrijving mogelijk (tip 4).</li>
+          <li><strong>Alleen de afschrijvingstabel gebruiken</strong> terwijl koerslijst/taxatie lager uitkomt (tip 2).</li>
+          <li><strong>PHEV/EV-misverstanden</strong>: oude nultarieven en vrijstellingen toepassen op auto's van ná 2024/2025 (tip 6).</li>
+          <li><strong>Geen bewijsstukken bewaard</strong>: aankoopfactuur, buitenlands kentekenbewijs, CoC en betalingsbewijs — onmisbaar bij bezwaar of naheffing.</li>
+          <li><strong>Zelf rommelig aangeven</strong> terwijl één fout al duurder is dan de begeleiding door een specialist.</li>
+        </ul>
+      </div>
+
+      <div class="k-card" id="kn-stappen">
+        <h4>Stappenplan: van buitenlandse occasion naar Nederlands kenteken</h4>
+        <ol class="ken-stappen">
+          <li><strong>Auto gevonden?</strong> Noteer merk/model, datum eerste toelating, CO₂ (NEDC/WLTP), massa rijklaar en kilometerstand — of vul simpelweg het kenteken in via onze RDW-snelfill hierboven.</li>
+          <li><strong>Bereken de BPM</strong> met deze calculator (toelatingsjaar + aangiftejaar) en de wegenbelasting per provincie.</li>
+          <li><strong>Check de autohistorie</strong> (APK, NAP-tellerstand, terugroepacties, WAM) via onze gratis <a href="https://kentekencheck.apexclusive.nl" target="_blank" rel="noopener">Kentekencheck</a> — óók voor Duitse auto's vóór aankoop.</li>
+          <li><strong>Onderhandel en koop</strong> (of laat ons dat doen via onze Duitse dealernetwerken).</li>
+          <li><strong>Laat de laagste grondslag bepalen</strong>: forfaitair, koerslijst of taxatierapport door een RDW-erkend taxateur uit ons netwerk.</li>
+          <li><strong>BPM-aangifte &amp; betaling</strong> (via de Douane/Belastingdienst, binnen 14 dagen na registratieplicht) — APEXclusive stelt de aangifte op en bewaakt de termijnen.</li>
+          <li><strong>Registratie bij de RDW</strong>: identificatie, kentekenbewijs, tenaamstelling en recyclingbijdrage (2026: ± € 144) — wij plannen de afspraak.</li>
+          <li><strong>Kentekenplaten, verzekering en eerste APK</strong> regelen; daarna kunt u rijden.</li>
+        </ol>
+      </div>
+    </div>

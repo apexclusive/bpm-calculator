@@ -1,0 +1,13 @@
+  <div class="rdw-bar" id="rdw-bar">
+    <div class="rdw-head">
+      <div class="rdw-title">Al een Nederlands kenteken? <span>Laat de gegevens automatisch invullen via RDW Open Data</span></div>
+    </div>
+    <div class="rdw-row">
+      <input class="rdw-inp" id="rdw-kent" inputmode="text" autocomplete="off" spellcheck="false" placeholder="bijv. NH-713-T" aria-label="Kenteken">
+      <button class="rdw-btn" id="rdw-btn" type="button">Kenteken ophalen</button>
+      <button class="rdw-ex" id="voorbeeld-btn" type="button">Voorbeeld: NH-713-T</button>
+    </div>
+    <div class="rdw-status" id="rdw-status"></div>
+    <div class="rdw-note">Werkt alleen voor Nederlandse kentekens · buitenlandse auto: gebruik de tabbladen hieronder. Net als onze <a href="https://kentekencheck.apexclusive.nl" target="_blank" rel="noopener">gratis Kentekencheck</a>, die ook APK-historie, NAP-tellerstand, terugroepacties en een voertuigscore toont. Tip: druk op <strong>/</strong> om direct het kentekenveld te focussen.</div>
+  </div>
+  <div class="calc-fout" id="calc-fout" style="display:none"></div>

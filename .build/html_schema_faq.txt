@@ -1,0 +1,40 @@
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Hoe weet ik of mijn auto onder NEDC of WLTP valt?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Vóór 1 september 2018 is de CO2-waarde altijd NEDC. Tussen 1 september 2018 en 30 juni 2020 zijn beide waarden geregistreerd: voor de BPM over het toelatingsjaar is NEDC bepalend, voor een herberekening met de huidige tarieven is WLTP vereist. Vanaf 1 juli 2020 is alleen WLTP van toepassing." }
+            },
+            {
+              "@type": "Question",
+              "name": "Waarom zie ik twee bedragen (toelatingsjaar en huidig jaar)?",
+              "acceptedAnswer": { "@type": "Answer", "text": "De BPM bij import wordt berekend met het tarief van het toelatingsjaar. Heeft de auto een WLTP-waarde, dan mag ook een tweede berekening met de tarieven van het jaar van aangifte worden gemaakt; u betaalt de laagste van de twee. De tool toont beide en markeert de gunstigste." }
+            },
+            {
+              "@type": "Question",
+              "name": "Wordt de BPM lager naarmate de auto ouder wordt?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Ja. Over de resterende BPM geldt de forfaitaire afschrijvingstabel van de Belastingdienst: na 1 jaar resteert 87,25%, na 2 jaar 76,5%, en zo verder tot 10% na 10 jaar of ouder (minimum 10%)." }
+            },
+            {
+              "@type": "Question",
+              "name": "Geldt er een vaste BPM voor elektrische auto's?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Sinds 1 januari 2025 geldt voor emissievrije personenauto's een vaste BPM-voet van 667 euro (2025) en 687 euro (2026), zonder leeftijdskorting. Auto's die vóór 2025 voor het eerst zijn toegelaten vallen onder het oude nultarief van 0 euro." }
+            },
+            {
+              "@type": "Question",
+              "name": "Hoe zit het met plug-in hybrides (PHEV) en de wegenbelasting?",
+              "acceptedAnswer": { "@type": "Answer", "text": "PHEV's tot 50 g/km hadden t/m 2024 een eigen BPM-tarief zonder vaste voet; dat is per 1 januari 2025 beëindigd. Ook de MRB-vrijstelling voor plug-in hybrides is beëindigd: sinds 2026 betalen zij het volle wegenbelastingtarief. Alleen volledig elektrische auto's krijgen in 2026 tot en met 2028 30% korting op de wegenbelasting." }
+            },
+            {
+              "@type": "Question",
+              "name": "Kan de auto ook via een koerslijst of taxatie worden afgeschreven?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Ja. De wet kent drie afschrijvingsmethoden: de forfaitaire tabel, een erkende koerslijst of een taxatierapport van een RDW-erkend taxateur. Bij forse afwijkingen kan een taxatie lager uitpakken dan de forfaitaire tabel. APEXclusive coördineert taxaties via erkende partners." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is deze berekening bindend voor de Belastingdienst?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Nee. Dit is een indicatieve berekening op basis van de forfaitaire afschrijvingstabel en de actuele wettelijke tarieven. De Belastingdienst stelt bij de aangifte uiteindelijk zelf de verschuldigde BPM vast." }
+            }
+          ]
+        }

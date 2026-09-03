@@ -1,0 +1,4 @@
+    <div id="uitkomst-noot" class="uitkomst-noot" style="display:none"></div>
+    <div id="result-acties" class="result-acties"></div>
+    <div id="lead-cta-row" class="lead-cta-row" style="display:none"></div>
+    <div id="recent-wrap" class="recent-wrap" style="display:none"></div>

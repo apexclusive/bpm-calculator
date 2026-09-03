@@ -1,0 +1,41 @@
+    <!-- MAANDLASTEN MODULE -->
+    <div class="addons-wrap" id="addons-wrap" style="display:none">
+      <div class="maandlasten" id="maandlasten" style="display:none">
+        <div class="section-lbl">Wat kost deze auto u per maand? (indicatie 2026)</div>
+        <div class="ml-grid">
+          <div class="ml-box ml-wb-box">
+            <div class="ml-lbl">Wegenbelasting (provincie naar keuze)</div>
+            <div class="ml-val ml-wb">—</div>
+            <div class="ml-sub ml-wb-m">—</div>
+          </div>
+          <div class="ml-box ml-bs-box">
+            <div class="ml-lbl">Brandstof</div>
+            <div class="ml-val ml-bs">—</div>
+            <div class="ml-sub ml-bs-sub">—</div>
+          </div>
+          <div class="ml-box ml-tot-box">
+            <div class="ml-lbl">Totaal (excl. verzekering &amp; onderhoud)</div>
+            <div class="ml-val ml-tot">—</div>
+            <div class="ml-sub">o.b.v. uw invoer · <a href="https://kentekencheck.apexclusive.nl" target="_blank" rel="noopener">volledige kosten via Kentekencheck ↗</a></div>
+          </div>
+        </div>
+        <div class="ml-ctrl">
+          <label>Provincie
+            <select class="ml-prov">
+              <option value="GRONINGEN">Groningen</option><option value="FRIESLAND">Friesland</option>
+              <option value="DRENTHE">Drenthe</option><option value="OVERIJSSEL">Overijssel</option>
+              <option value="FLEVOLAND">Flevoland</option><option value="GELDERLAND">Gelderland</option>
+              <option value="UTRECHT">Utrecht</option><option value="NOORD HOLLAND">Noord-Holland</option>
+              <option value="ZUID HOLLAND">Zuid-Holland</option><option value="ZEELAND">Zeeland</option>
+              <option value="NOORD BRABANT">Noord-Brabant</option>
+              <option value="LIMBURG" selected>Limburg ★</option>
+            </select>
+          </label>
+          <label class="ml-km-lbl">Kilometers per jaar
+            <input type="range" class="ml-km" min="5000" max="40000" step="1000" value="15000">
+            <span class="ml-km-val">15.000</span>
+          </label>
+        </div>
+        <div class="wb-note">Wegenbelasting = rijksdeel 2026 (massa rijklaar + brandstoftoeslag) × provinciale opcenten 2026; EV 30% korting 2026–2028, PHEV vol tarief. De <a href="https://www.belastingdienst.nl/wps/wcm/connect/nl/auto-en-vervoer/content/hulpmiddel-motorrijtuigenbelasting-berekenen" target="_blank" rel="noopener">Belastingdienst-rekenhulp ↗</a> geeft de definitieve aanslag. Brandstof o.b.v. richtprijzen 2026 (benzine € 1,90/L · diesel € 1,70/L · thuis laden € 0,30/kWh) en CO₂/verbruik — dezelfde uitgangspunten als onze Kentekencheck.</div>
+      </div>
+    </div>

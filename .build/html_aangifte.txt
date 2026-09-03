@@ -1,0 +1,29 @@
+    <!-- AANGIFTE-CTA: onze connecties voor de perfecte BPM-aangifte -->
+    <div class="aangifte-cta" id="aangifte-cta">
+      <div class="ac-main">
+        <p class="ey c tri-in" style="margin-bottom:.6rem"><span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>De perfecte BPM-aangifte<span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span></p>
+        <h3>Wij kennen de routes naar de <em>laagst mogelijke, veilige</em> BPM.</h3>
+        <p class="ac-txt">APEXclusive heeft een netwerk van RDW-erkende taxateurs, koerslijstspecialisten en import/registratie-partners. Wij bepalen eerst welke van de drie wettelijke grondslagen voor úw auto het laagste bedrag oplevert — daarna stellen wij de aangifte op, bewaken de termijnen en regelen de registratie. Eén aanspreekpunt, van aankoop tot kenteken.</p>
+        <div class="ac-steps">
+          <div class="ac-step"><span>1</span><div><strong>Grondslag-advies</strong><small>Forfaitaire tabel, koerslijst of taxatierapport — gratis doorrekening via erkende partners</small></div></div>
+          <div class="ac-step"><span>2</span><div><strong>Aangifte &amp; betaling</strong><small>Correcte aangifte bij de Douane/Belastingdienst, binnen de wettelijke termijnen</small></div></div>
+          <div class="ac-step"><span>3</span><div><strong>Registratie &amp; afhandeling</strong><small>RDW-keuring/identificatie, kenteken, platen, verzekering — volledig gecoördineerd</small></div></div>
+        </div>
+        <div class="ac-btns">
+          <a class="btn" href="https://wa.me/31624735939?text=Beste%20Martijn%2C%20ik%20wil%20een%20vrijblijvende%20BPM-aangifte%2Ftaxatie%20laten%20doorrekenen%20voor%20een%20importauto." target="_blank" rel="noopener"><span>Direct WhatsApp — gratis check</span></a>
+          <a class="btn gh" href="https://apexclusive.nl/#contact"><span>Vrijblijvend gesprek</span></a>
+          <a class="btn gh" href="https://apexclusive.nl/#import"><span>Meer over importbegeleiding</span></a>
+        </div>
+      </div>
+      <aside class="ac-side">
+        <div class="ac-side-title">Waarom via ons netwerk?</div>
+        <ul class="ac-side-list">
+          <li>RDW-erkende taxateurs &amp; erkende koerslijsten</li>
+          <li>Altijd toelatingsjaar én aangiftejaar doorberekend</li>
+          <li>Termijnbewaking tegen naheffing en rente</li>
+          <li>Één vast aanspreekpunt (ook per WhatsApp)</li>
+          <li>Vrijblijvend: u weet vóóraf exact wat de aangifte kost</li>
+        </ul>
+        <div class="ac-side-noot">Geen calculator kan de definitieve aanslag garanderen — een zorgvuldig opgestelde aangifte wél het verschil maken. Dat is ons vak.</div>
+      </aside>
+    </div>
