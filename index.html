@@ -830,6 +830,22 @@ header .brand{font-size:1.08rem}
 .vd-verdict strong{font-size:.95rem;display:block;margin-bottom:.15rem;letter-spacing:.02em}
 @media(max-width:760px){.vd-grid{grid-template-columns:1fr}}
 :root[data-theme="light"] .vd-out{background:#faf8f3}
+.lead-form{background:linear-gradient(135deg,rgba(var(--sv),.07),rgba(var(--sv),.015) 60%),var(--ink2);border:1px solid rgba(var(--sv),.28);border-top:none;padding:1.5rem 1.6rem 1.6rem}
+.lf-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;flex-wrap:wrap;margin-bottom:1.1rem}
+.lf-title{font-family:var(--sf);font-size:clamp(1.15rem,2.2vw,1.45rem);color:var(--tx);line-height:1.2;margin-bottom:.35rem}
+.lf-sub{font-size:.76rem;color:rgba(var(--sv),.6);line-height:1.65;font-weight:300;max-width:62ch}
+.lf-badge{font-family:var(--lb);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ok);border:1px solid rgba(0,146,70,.4);padding:.4rem .7rem;white-space:nowrap}
+.lf-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1rem}
+.lf-grid .full{grid-column:1/-1}
+.lf-grid .field-lbl{display:block;margin-bottom:.35rem}
+.lf-grid .fi{width:100%}
+.lf-grid textarea.fi{resize:vertical;min-height:2.6rem;font-family:var(--ss)}
+.lf-actions{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:.2rem}
+.lf-privacy{font-size:.62rem;color:rgba(var(--sv),.4);line-height:1.5;flex-basis:100%;margin-top:.2rem}
+.lf-err{font-family:var(--lb);font-size:.6rem;letter-spacing:.06em;color:var(--bad);border:1px solid rgba(206,43,55,.35);padding:.6rem .8rem;background:rgba(206,43,55,.06)}
+.fi.is-err{border-bottom-color:var(--bad)!important}
+@media(max-width:640px){.lf-grid{grid-template-columns:1fr}}
+:root[data-theme="light"] .lead-form{background:linear-gradient(135deg,rgba(156,95,40,.08),transparent 60%),#fff}
 /* Lead-rij (na resultaat-acties) */
 .lead-cta-row{background:var(--ink2);border:1px solid var(--ln);border-top:none;padding:1.1rem 1.5rem 1.3rem}
 .lead-lbl{font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(var(--sv),.45);margin-bottom:.5rem}
@@ -879,12 +895,19 @@ header .brand{font-size:1.08rem}
 @media(max-width:900px){.terug-cta{flex-direction:column;align-items:flex-start}}
 
 .ml-letop{background:rgba(var(--am),.06)}
+.btw-alert{display:flex;gap:.9rem;align-items:flex-start;margin:0 1.6rem 1.4rem;padding:1rem 1.15rem;background:rgba(206,43,55,.07);border:1px solid rgba(206,43,55,.4);font-size:.76rem;line-height:1.7;color:var(--tx);font-weight:300}
+.btw-alert svg{width:20px;height:20px;flex-shrink:0;fill:none;stroke:var(--bad);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:.15rem}
+.btw-alert strong{color:var(--bad);font-weight:500}
+.btw-alert b{font-weight:500}
+.btw-alert a{color:var(--pt-s);font-family:var(--lb);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;border-bottom:1px solid rgba(var(--sv),.3)}
+:root[data-theme="light"] .btw-alert{background:rgba(192,32,48,.05)}
+:root[data-theme="light"] .btw-alert a{color:var(--brand-copper)}
 /* Afdruk: alleen de tool + resultaat, compact & leesbaar */
 @media print{
   @page{margin:12mm 10mm}
   body{background:#fff!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .page-hero,.page-hero-inner{display:none!important}
-  .rdw-bar,.method-tabs,.form-card,.addons-wrap,.recent-wrap,.kennis-wrap,.faq-wrap,.terug-cta,.aangifte-cta,.exit-overlay,.sticky-cta,.taxatie-box,.other-tools,.cta-wrap,.disclaimer,.voordeel-wrap,.trust-strip{display:none!important}
+  .rdw-bar,.method-tabs,.form-card,.addons-wrap,.recent-wrap,.kennis-wrap,.faq-wrap,.terug-cta,.aangifte-cta,.exit-overlay,.sticky-cta,.taxatie-box,.other-tools,.cta-wrap,.disclaimer,.voordeel-wrap,.trust-strip,.lead-form,.btw-alert{display:none!important}
   .wrap{max-width:100%!important;padding:0!important}
   .result-wrap{display:block!important}
   .dual-results{grid-template-columns:1fr 1fr!important}
@@ -1064,6 +1087,12 @@ header .brand{font-size:1.08rem}
             <label class="field-lbl" for="auto-massa">Massa rijklaar (kg) <span class="opt">— optioneel</span></label>
             <input class="fi" type="number" id="auto-massa" placeholder="bijv. 2272" min="500" max="5000" step="10">
           </div>
+          <div class="field">
+            <label class="field-lbl" for="auto-km">Kilometerstand <span class="opt">— optioneel</span>
+              <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">Onder 6.000 km én jonger dan 6 maanden geldt de auto voor de btw als "nieuw": dan is in Nederland 21% btw verschuldigd. Onder 3.000 km past de Belastingdienst geen BPM-afschrijving toe.</span></span>
+            </label>
+            <input class="fi" type="number" id="auto-km" inputmode="numeric" placeholder="bijv. 24500" min="0" max="999999" step="100">
+          </div>
 
           <!-- CO₂ SECTIE — dynamisch op basis van datum -->
           <div class="field full" id="co2-section-auto">
@@ -1144,6 +1173,12 @@ header .brand{font-size:1.08rem}
             <label class="field-lbl" for="man-kw">Vermogen (kW) <span class="opt">— optioneel</span></label>
             <input class="fi" type="number" id="man-kw" placeholder="bijv. 478" min="20" max="1500" step="1">
           </div>
+          <div class="field">
+            <label class="field-lbl" for="man-km">Kilometerstand <span class="opt">— optioneel</span>
+              <span class="tooltip-wrap"><span class="tt-btn">?</span><span class="tt-popup">Onder 6.000 km én jonger dan 6 maanden geldt de auto voor de btw als "nieuw": dan is in Nederland 21% btw verschuldigd. Onder 3.000 km past de Belastingdienst geen BPM-afschrijving toe.</span></span>
+            </label>
+            <input class="fi" type="number" id="man-km" inputmode="numeric" placeholder="bijv. 24500" min="0" max="999999" step="100">
+          </div>
 
           <!-- CO₂ SECTIE handmatig -->
           <div class="field full" id="co2-section-man">
@@ -1216,6 +1251,28 @@ header .brand{font-size:1.08rem}
     <div id="uitkomst-noot" class="uitkomst-noot" style="display:none"></div>
     <div id="result-acties" class="result-acties"></div>
     <div id="lead-cta-row" class="lead-cta-row" style="display:none"></div>
+    <div class="lead-form" id="lead-form" style="display:none">
+      <div class="lf-head">
+        <div>
+          <div class="lf-title">Gratis second opinion op deze berekening</div>
+          <div class="lf-sub">Een BPM-specialist kijkt binnen 24 uur naar uw auto: klopt de CO₂-waarde, loont een taxatie, en welke route is fiscaal het slimst. Vrijblijvend.</div>
+        </div>
+        <div class="lf-badge">Reactie &lt; 24 u</div>
+      </div>
+      <form class="lf-grid" id="lf-form" novalidate>
+        <div class="field"><label class="field-lbl" for="lf-naam">Naam</label><input class="fi" id="lf-naam" name="naam" autocomplete="name" required placeholder="Uw naam"></div>
+        <div class="field"><label class="field-lbl" for="lf-tel">Telefoon / WhatsApp</label><input class="fi" id="lf-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="06 …"></div>
+        <div class="field"><label class="field-lbl" for="lf-mail">E-mail</label><input class="fi" id="lf-mail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="naam@voorbeeld.nl"></div>
+        <div class="field"><label class="field-lbl" for="lf-link">Link naar de advertentie <span class="opt">— optioneel</span></label><input class="fi" id="lf-link" name="link" type="url" inputmode="url" placeholder="https://…"></div>
+        <div class="field full"><label class="field-lbl" for="lf-msg">Uw situatie <span class="opt">— optioneel</span></label><textarea class="fi" id="lf-msg" name="msg" rows="2" placeholder="Bijv. auto staat in Duitsland, koop over 2 weken, twijfel over WLTP-waarde"></textarea></div>
+        <div class="lf-actions full">
+          <button type="submit" class="btn lf-wa"><span>Verstuur via WhatsApp</span></button>
+          <button type="button" class="btn gh lf-email" id="lf-email-btn"><span>Verstuur per e-mail</span></button>
+          <span class="lf-privacy">Uw gegevens gaan rechtstreeks naar APEXclusive (Maastricht) en worden nergens opgeslagen.</span>
+        </div>
+        <div class="lf-err full" id="lf-err" role="alert" style="display:none"></div>
+      </form>
+    </div>
     <div id="recent-wrap" class="recent-wrap" style="display:none"></div>
     <div class="co2-info" id="co2-info">
       <div class="co2-card"><div class="co2-lbl">CO₂-uitstoot</div><div class="co2-val" id="ci-co2">—</div><div class="co2-sub" id="ci-methode">—</div><div class="co2-bar-track"><div class="co2-bar-fill" id="ci-bar" style="width:0%"></div></div></div>
@@ -3533,6 +3590,7 @@ function vulResultaatActies(voertuig, uitkomst, bedrag, toelJ, mPos, bs, co2n, c
   if(datum) qs+='&dt='+datum.getFullYear()+'-'+String(datum.getMonth()+1).padStart(2,'0')+'-'+String(datum.getDate()).padStart(2,'0');
   if(co2w) qs+='&w='+co2w;
   if(co2n) qs+='&n='+co2n;
+  try{ const kmv=parseInt((document.getElementById(isAuto?'auto-km':'man-km')||{}).value)||0; if(kmv) qs+='&km='+kmv; }catch(e){}
   if(!isAuto){ qs+='&cat2='; }
   const url=location.pathname+qs;
   try{ history.replaceState(null,'',qs); }catch(e){}
@@ -3543,7 +3601,7 @@ function vulResultaatActies(voertuig, uitkomst, bedrag, toelJ, mPos, bs, co2n, c
     '<button class="btn gh ra-btn" type="button" onclick="window.print()">Print / PDF</button>'+
     '<button class="btn gh ra-btn" type="button" onclick="delenWhatsApp(\''+samenvatting.replace(/'/g,"\\'")+'\')">Deel via WhatsApp</button>';
   window.__laatsteUrl=url;
-  window.__leadInfo={voertuig:voertuig||merkLabel||'mijn auto',bedrag:fE(bedrag),toelJ:toelJ};
+  window.__leadInfo={voertuig:voertuig||merkLabel||'mijn auto',bedrag:fE(bedrag),toelJ:toelJ,url:location.origin+url};
   if(typeof vulLeadActies==='function') vulLeadActies(window.__leadInfo);
 }
 function kopieerTekst(t){
@@ -3663,6 +3721,7 @@ function laadVanUrl(){
       const cat=p.get('cat'); if(cat){ const el=document.getElementById('man-cat'); el.value=parseInt(cat)||''; updateSlider('man'); }
       const massa=p.get('massa'); if(massa) document.getElementById('man-massa').value=parseInt(massa)||'';
       const kw=p.get('kw'); const kwEl=document.getElementById('man-kw'); if(kw&&kwEl) kwEl.value=parseInt(kw)||'';
+      const kmq=p.get('km'); if(kmq){ const e1=document.getElementById('man-km'); if(e1) e1.value=parseInt(kmq)||''; }
     }
     if(dt){
       const panel=(t==='man')?'man':'auto';
@@ -3765,7 +3824,27 @@ function buildLeadTeksten(info){
   }
   return {wa:wa,mailSubj:subj,mail:mail, nul:nul};
 }
+function leadFormSetup(info){
+  const f=document.getElementById('lead-form'), form=document.getElementById('lf-form'); if(!f||!form) return;
+  f.style.display=''; f.__info=info;
+  if(form.__bound) return; form.__bound=true;
+  const err=document.getElementById('lf-err');
+  const val=id=>(document.getElementById(id)||{}).value||'';
+  const build=()=>{
+    const i=f.__info||{}; const n=val('lf-naam').trim(), t=val('lf-tel').trim(), m=val('lf-mail').trim(), l=val('lf-link').trim(), msg=val('lf-msg').trim();
+    ['lf-naam','lf-tel','lf-mail'].forEach(id=>document.getElementById(id).classList.remove('is-err'));
+    if(!n){ document.getElementById('lf-naam').classList.add('is-err'); err.textContent='Vul uw naam in.'; err.style.display=''; return null; }
+    if(!t&&!m){ document.getElementById('lf-tel').classList.add('is-err'); document.getElementById('lf-mail').classList.add('is-err'); err.textContent='Vul een telefoonnummer of e-mailadres in zodat we kunnen reageren.'; err.style.display=''; return null; }
+    if(m&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)){ document.getElementById('lf-mail').classList.add('is-err'); err.textContent='Controleer het e-mailadres.'; err.style.display=''; return null; }
+    err.style.display='none';
+    const regels=['Second opinion BPM-berekening','Naam: '+n, t?'Telefoon: '+t:'', m?'E-mail: '+m:'', 'Voertuig: '+(i.voertuig||'-')+(i.toelJ?' (eerste toelating '+i.toelJ+')':''), 'BPM-indicatie: '+(i.bedrag||'-'), l?'Advertentie: '+l:'', msg?'Situatie: '+msg:'', i.url?'Berekening: '+i.url:''].filter(Boolean);
+    return regels.join('\n');
+  };
+  form.addEventListener('submit',function(e){ e.preventDefault(); const b=build(); if(!b) return; try{track('bpm_lead',{kanaal:'form_whatsapp'});}catch(x){} window.open(waLink(b),'_blank','noopener'); });
+  document.getElementById('lf-email-btn').addEventListener('click',function(){ const b=build(); if(!b) return; try{track('bpm_lead',{kanaal:'form_mail'});}catch(x){} location.href=mailLink('Second opinion BPM-berekening — '+((f.__info||{}).voertuig||'auto'), b); });
+}
 function vulLeadActies(info){
+  try{ leadFormSetup(info); }catch(e){}
   const row=document.getElementById('lead-cta-row');
   if(!row) return;
   const t=buildLeadTeksten(info);
@@ -4060,6 +4139,16 @@ function doCalc(){
     }
   }
 
+  /* ===== <3.000 km: Belastingdienst past geen afschrijving toe → volledige bruto ===== */
+  try{
+    const kmEl0=document.getElementById(isAuto?'auto-km':'man-km');
+    const km0=kmEl0?parseInt(kmEl0.value)||0:0;
+    if(km0>0 && km0<3000 && !uitkomst.oldtimer && !uitkomst.evFlat && uitkomst.bruto>uitkomst.bedrag){
+      uitkomst.bedrag=Math.round(uitkomst.bruto);
+      uitkomst.label='Geen afschrijving (< 3.000 km · nieuw voor de BPM)';
+      uitkomst.kmNieuw=true;
+    }
+  }catch(e){}
   /* ===== Hoofdkaarten ===== */
   const bedragFinal=uitkomst.bedrag;
   document.getElementById('r-bpm').textContent=fE(bedragFinal);
@@ -4262,6 +4351,23 @@ function doCalc(){
     methodInfo.textContent='RDW-leges zijn de officiële tarieven 2026 (mrWheelson/RDW). De werkelijke BPM kan lager uitvallen bij een erkende taxatie (koerslijst of taxatierapport) — juist bij jongere, exclusieve auto\'s vaak duizenden euro\'s. APEXclusive regelt taxatie, aangifte en registratie via erkende partners.'+(jongeAuto?' Let op (Belastingdienst): is de auto ≤ 6 maanden geleden in gebruik genomen of heeft hij ≤ 6.000 km gereden, dan is bij import uit een EU-land mogelijk ook btw verschuldigd — wij rekenen dat in de totaalplaatjes graag voor u door.':'');
     if(jongeAuto) methodInfo.classList.add('ml-letop');
     betalenWrap.appendChild(methodInfo);
+    /* BTW-check: 'nieuw voor de btw' (≤6 mnd én <6.000 km) of <3.000 km (geen BPM-afschrijving) */
+    try{
+      const kmEl=document.getElementById(isAuto?'auto-km':'man-km');
+      const kmSt=kmEl?parseInt(kmEl.value)||0:0;
+      const oud=betalenWrap.querySelector('.btw-alert'); if(oud) oud.remove();
+      let msg='';
+      if(kmSt>0 && kmSt<3000){
+        msg='<strong>Let op: minder dan 3.000 km.</strong> De Belastingdienst beschouwt de auto dan als nieuw voor de BPM: <b>geen afschrijving</b>, de berekening hierboven toont daarom de volledige bruto-BPM'+(jongeAuto?' én er is 21% btw verschuldigd in Nederland (nieuw vervoermiddel: jonger dan 6 maanden of minder dan 6.000 km).':'.')+' Laat dit vóór aankoop checken.';
+      } else if(jongeAuto || (kmSt>0 && kmSt<6000)){
+        msg='<strong>Let op: mogelijk "nieuw vervoermiddel" voor de btw.</strong> Jonger dan 6 maanden of minder dan 6.000 km → de Nederlandse Belastingdienst heft <b>21% btw</b> over de aankoopprijs; buitenlandse btw moet u terugvragen bij de verkoper. Dit kan tienduizenden euro\'s schelen — wij regelen de juiste route.';
+      }
+      if(msg){
+        const d=document.createElement('div'); d.className='btw-alert';
+        d.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><div>'+msg+' <a href="'+waLink('Beste Martijn, ik overweeg een jonge import ('+(voertuig||'auto')+', '+(kmSt?kmSt.toLocaleString('nl-NL')+' km, ':'')+'eerste toelating '+toelJ+'). Kunt u checken hoe het zit met btw en BPM-afschrijving?')+'" target="_blank" rel="noopener">Check via WhatsApp →</a></div>';
+        betalenWrap.appendChild(d); try{track('bpm_btw_alert',{km:kmSt,mnd:mPos});}catch(e){}
+      }
+    }catch(e){}
   } else {
     betalenWrap.style.display='none';
   }
