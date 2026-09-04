@@ -846,6 +846,25 @@ header .brand{font-size:1.08rem}
 .fi.is-err{border-bottom-color:var(--bad)!important}
 @media(max-width:640px){.lf-grid{grid-template-columns:1fr}}
 :root[data-theme="light"] .lead-form{background:linear-gradient(135deg,rgba(156,95,40,.08),transparent 60%),#fff}
+.waarom-wrap{background:var(--ink2);border:1px solid var(--ln);padding:1.75rem 1.75rem 1.5rem;margin-top:2px}
+.wr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.wr-item{background:rgba(var(--sv),.03);border:1px solid rgba(var(--sv),.1);padding:1.1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.45rem}
+.wr-item svg{width:22px;height:22px;fill:none;stroke:var(--pt-s);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:.2rem}
+.wr-item b{font-family:var(--lb);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tx);font-weight:500}
+.wr-item span{font-size:.75rem;color:rgba(var(--sv),.6);line-height:1.7;font-weight:300}
+.wr-foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:1rem;font-family:var(--lb);font-size:.56rem;letter-spacing:.08em;color:rgba(var(--sv),.45)}
+@media(max-width:900px){.wr-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.wr-grid{grid-template-columns:1fr}}
+:root[data-theme="light"] .wr-item{background:#faf8f3}
+:root[data-theme="light"] .wr-item svg{stroke:var(--brand-copper)}
+.quick-starts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45rem;margin:1rem auto 0;max-width:560px}
+@media(max-width:560px){.quick-starts{grid-template-columns:1fr 1fr}}
+.qs{display:flex;flex-direction:column;align-items:flex-start;gap:.1rem;padding:.6rem .95rem;border:1px solid rgba(var(--sv),.18);background:rgba(var(--sv),.03);text-decoration:none;transition:.2s}
+.qs b{font-family:var(--lb);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);font-weight:500}
+.qs span{font-size:.62rem;color:rgba(var(--sv),.5);font-weight:300}
+.qs:hover{border-color:var(--pt-s);background:rgba(var(--sv),.07);transform:translateY(-1px)}
+:root[data-theme="light"] .qs{background:#fff}
+:root[data-theme="light"] .qs:hover{border-color:var(--brand-copper)}
 /* Lead-rij (na resultaat-acties) */
 .lead-cta-row{background:var(--ink2);border:1px solid var(--ln);border-top:none;padding:1.1rem 1.5rem 1.3rem}
 .lead-lbl{font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(var(--sv),.45);margin-bottom:.5rem}
@@ -907,7 +926,7 @@ header .brand{font-size:1.08rem}
   @page{margin:12mm 10mm}
   body{background:#fff!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .page-hero,.page-hero-inner{display:none!important}
-  .rdw-bar,.method-tabs,.form-card,.addons-wrap,.recent-wrap,.kennis-wrap,.faq-wrap,.terug-cta,.aangifte-cta,.exit-overlay,.sticky-cta,.taxatie-box,.other-tools,.cta-wrap,.disclaimer,.voordeel-wrap,.trust-strip,.lead-form,.btw-alert{display:none!important}
+  .rdw-bar,.method-tabs,.form-card,.addons-wrap,.recent-wrap,.kennis-wrap,.faq-wrap,.terug-cta,.aangifte-cta,.exit-overlay,.sticky-cta,.taxatie-box,.other-tools,.cta-wrap,.disclaimer,.voordeel-wrap,.trust-strip,.lead-form,.btw-alert,.waarom-wrap{display:none!important}
   .wrap{max-width:100%!important;padding:0!important}
   .result-wrap{display:block!important}
   .dual-results{grid-template-columns:1fr 1fr!important}
@@ -952,7 +971,7 @@ header .brand{font-size:1.08rem}
       <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
     </p>
     <h1>BPM Calculator<br><em>NEDC &amp; WLTP berekening</em></h1>
-    <p>Bereken direct de resterende BPM bij import vanuit Europa. Automatische NEDC/WLTP-bepaling op basis van datum eerste toelating. Twee berekeningen: op toelatingsjaar én op huidig jaar.</p>
+    <p>Bereken in 30 seconden de resterende BPM bij import uit Duitsland, België of elders in Europa — met de officiële tarieven van het toelatingsjaar én van 2026, zodat u nooit te veel aangeeft. Inclusief importkosten, btw-check en wegenbelasting.</p>
     <div class="wltp-hero-note">⚡ Na 1 juli 2020 altijd WLTP · Vóór sept. 2018 altijd NEDC · Tussenperiode: beide mogelijk</div>
       <div class="trust-strip" aria-label="Betrouwbaarheid">
         <div class="trust-item"><b>2015–2026</b><span>alle officiële BPM-tabellen</span></div>
@@ -1212,6 +1231,15 @@ header .brand{font-size:1.08rem}
   <div class="empty-state" id="empty-state">
     <div class="empty-tri"><span></span><span></span><span></span></div>
     <div class="empty-title">Vul de gegevens in om te berekenen.</div>
+    <div class="empty-sub" style="margin-top:.4rem">Of start met een veelgevraagde import:</div>
+    <div class="quick-starts" id="quick-starts">
+      <a class="qs" href="?t=auto&m=lamborghini&mo=urus&u=2&dt=2023-03-15"><b>Urus Performante</b><span>2023 · Duitsland</span></a>
+      <a class="qs" href="?t=auto&m=porsche&mo=911&u=2&dt=2025-01-20"><b>911 Carrera S</b><span>2025 · jonge import</span></a>
+      <a class="qs" href="?t=auto&m=mercedes&mo=g-klasse&u=1&dt=2022-06-10"><b>G 500</b><span>2022 · V8</span></a>
+      <a class="qs" href="?t=auto&m=audi&mo=rs6&u=0&dt=2021-09-01"><b>RS6 Avant</b><span>2021 · 600 pk</span></a>
+      <a class="qs" href="?t=auto&m=bmw&mo=m3&u=2&dt=2024-02-01"><b>M3 Touring</b><span>2024 · xDrive</span></a>
+      <a class="qs" href="?t=auto&m=porsche&mo=cayenne&u=2&dt=2020-11-05"><b>Cayenne S</b><span>2020 · WLTP</span></a>
+    </div>
   </div>
 
   <div class="result-wrap" id="result-wrap" aria-live="polite">
@@ -1568,6 +1596,21 @@ header .brand{font-size:1.08rem}
       <div class="tc-btns">
         <a class="btn" href="https://wa.me/31624735939?text=Beste%20Martijn%2C%20ik%20heb%20een%20auto%20binnen%203%20jaar%20na%20tenaamstelling%20ge%C3%ABxporteerd%20of%20total%20loss%20gehad%20en%20wil%20weten%20of%20ik%20(een%20deel%20van)%20de%20BPM%20kan%20terugvragen." target="_blank" rel="noopener"><span>Check uw teruggaaf via WhatsApp</span></a>
         <a class="btn gh" href="mailto:info@apexclusive.nl?subject=Vraag%3A%20BPM-teruggave%20bij%20export%20of%20total%20loss&body=Hallo%20APEXclusive%2C%0A%0AIk%20wil%20graag%20weten%20of%20ik%20BPM%20kan%20terugvragen%20na%20export%20of%20total%20loss.%0A%0AMet%20vriendelijke%20groet%2C">Vraag per e-mail</a>
+      </div>
+    </div>
+
+    <!-- WAAROM APEXCLUSIVE -->
+    <div class="waarom-wrap" id="waarom">
+      <h2 class="section-lbl">Waarom importeurs van exclusieve auto's met APEXclusive werken</h2>
+      <div class="wr-grid">
+        <div class="wr-item"><svg viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><b>Onafhankelijk</b><span>Wij verkopen geen auto's en verdienen niets aan de verkoper. Ons advies dient alleen uw aankoop.</span></div>
+        <div class="wr-item"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9l6-5 6 5v10"/><path d="M10 19v-5h4v5"/></svg><b>RDW-erkende partners</b><span>Taxateurs en keuringsstations waarmee we structureel samenwerken — korte lijnen, geen verrassingen.</span></div>
+        <div class="wr-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>Snel en compleet</b><span>Van koopcheck tot kenteken op de auto: taxatie, aangifte, keuring, tenaamstelling en verzekering — één aanspreekpunt.</span></div>
+        <div class="wr-item"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg><b>Vaak lager dan forfaitair</b><span>Bij exclusieve auto's wijkt de werkelijke waarde vaak af van de tabel — een goede taxatie verdient zichzelf meestal terug.</span></div>
+      </div>
+      <div class="wr-foot">
+        <span>Maastricht · actief in heel Nederland, België en Duitsland · reactie binnen 24 uur</span>
+        <a class="btn gh" href="https://apexclusive.nl/#import"><span>Zo werkt import met ons</span></a>
       </div>
     </div>
 
@@ -3940,8 +3983,14 @@ document.addEventListener('DOMContentLoaded',function(){
     }
   });
   window.addEventListener('scroll',function(){ window.requestAnimationFrame?requestAnimationFrame(stickyScrollHide):stickyScrollHide(); },{passive:true});
+  if('serviceWorker' in navigator && location.protocol==='https:'){ window.addEventListener('load',function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); }); }
+  // Enter in een invoerveld van de tool = berekenen
+  document.querySelectorAll('#panel-auto input, #panel-manual input').forEach(function(el){
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter' && el.type!=='range'){ e.preventDefault(); if(typeof doCalc==='function') doCalc(); } });
+  });
   const vbtn=document.getElementById('voorbeeld-btn');
   if(vbtn) vbtn.addEventListener('click',voorbeeldBerekening);
+  try{ laadVanUrl(); }catch(e){}
 });
 
 function doCalc(){

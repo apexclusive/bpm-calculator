@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /sw.js
 
 Sitemap: https://bpm.apexclusive.nl/sitemap.xml
