@@ -128,3 +128,12 @@ Sterke UX-details: tooltips bij velden, kalender met maand-sneltab, "Opnieuw beg
 ---
 
 *Bijlage: rekenvoorbeelden uit §5 zijn gegenereerd door de rekenfuncties rechtstreeks uit de pagina te extraheren en in Node uit te voeren (peildatum 3-9-2026, exacte maandentelling en rest-% van de tool). Geen wijzigingen aan de pagina zelf aangebracht.*
+
+---
+
+## Changelog 4-9-2026 (branch arena/01a06dae)
+
+- **Data (P0)**: PHEV CO₂-waarden gecorrigeerd naar officiële WLTP-gewogen fabrieksopgaven: Revuelto 51→276, 296 GTB 79→149, 296 GTS 79→153, SF90 Stradale 78→154, SF90 Spider 78→160, SF90 XX 78→228/232, Artura 129/131→108, BMW XM 82/79→33/43.
+- **Conversie**: taxatie-blok toont nu concreet besparingsvoorbeeld (10–20% extra afschrijving) o.b.v. de eigen uitkomst; nieuw "Timing van de aangifte"-blok (BPM nu / +1 / +3 / +6 mnd); "Overig"-merk schakelt direct naar handmatige invoer; alle 6 zustertools gelinkt.
+- **SEO/techniek**: H2-structuur, JSON-LD @graph (WebApplication, Organization, Service, BreadcrumbList, HowTo), robots.txt, sitemap.xml, web-manifest + iconen, hreflang, preconnect fonts, robots/geo-meta.
+- **UI**: licht/donker thema-schakelaar (header van Kentekencheck), trust-strip in hero, SVG-iconen i.p.v. emoji in kostenblok, contrast-overrides voor het lichte thema.
