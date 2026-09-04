@@ -10,10 +10,11 @@
 <meta property="og:title" content="BPM Calculator 2026 — resterende BPM bij import | APEXclusive">
 <meta property="og:description" content="Bereken de resterende BPM bij auto-import: officiële tarieven 2026, NEDC/WLTP-bepaling, afschrijving en wegenbelasting. Gratis, zonder registratie.">
 <meta property="og:url" content="https://bpm.apexclusive.nl/">
-<meta property="og:image" content="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1600,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg">
-<meta property="og:image:alt" content="APEXclusive automotive advisory">
+<meta property="og:image" content="https://bpm.apexclusive.nl/og-share.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BPM Calculator — resterende BPM bij import berekenen | APEXclusive">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1600,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg">
+<meta name="twitter:image" content="https://bpm.apexclusive.nl/og-share.png">
 <link rel="canonical" href="https://bpm.apexclusive.nl/">
 <link rel="alternate" hreflang="nl-NL" href="https://bpm.apexclusive.nl/">
 <link rel="alternate" hreflang="x-default" href="https://bpm.apexclusive.nl/">
@@ -812,6 +813,23 @@ header .brand{font-size:1.08rem}
 .ts-cell.now .ts-diff{color:rgba(var(--sv),.45)}
 @media(max-width:700px){.ts-grid{grid-template-columns:1fr 1fr}}
 :root[data-theme="light"] .ts-cell{background:#faf8f3}
+.voordeel-wrap{background:var(--ink2);border:1px solid var(--ln);border-top:none;padding:1.3rem 1.6rem 1.5rem}
+.vd-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.vd-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:1.4rem}
+.vd-in .field-lbl{display:block;margin-bottom:.4rem}
+.vd-in .fi{width:100%}
+.vd-hint{font-size:.68rem;color:rgba(var(--sv),.5);line-height:1.6;margin-top:.7rem;font-weight:300}
+.vd-out{background:rgba(var(--sv),.03);border:1px solid rgba(var(--sv),.12);padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.35rem}
+.vd-row{display:flex;justify-content:space-between;gap:1rem;font-size:.78rem;color:rgba(var(--sv),.6);font-weight:300}
+.vd-row b{font-weight:400;color:var(--tx);font-family:var(--lb);letter-spacing:.04em}
+.vd-tot{border-top:1px solid rgba(var(--sv),.15);padding-top:.5rem;margin-top:.25rem;color:var(--tx)}
+.vd-tot b{font-family:var(--sf);font-size:1.25rem;letter-spacing:0}
+.vd-verdict{margin-top:.6rem;padding:.75rem .9rem;border:1px solid rgba(var(--sv),.15);font-family:var(--lb);font-size:.62rem;letter-spacing:.06em;line-height:1.6;color:rgba(var(--sv),.55)}
+.vd-verdict.win{border-color:rgba(0,146,70,.4);background:rgba(0,146,70,.07);color:var(--ok)}
+.vd-verdict.lose{border-color:rgba(206,43,55,.35);background:rgba(206,43,55,.06);color:var(--bad)}
+.vd-verdict strong{font-size:.95rem;display:block;margin-bottom:.15rem;letter-spacing:.02em}
+@media(max-width:760px){.vd-grid{grid-template-columns:1fr}}
+:root[data-theme="light"] .vd-out{background:#faf8f3}
 /* Lead-rij (na resultaat-acties) */
 .lead-cta-row{background:var(--ink2);border:1px solid var(--ln);border-top:none;padding:1.1rem 1.5rem 1.3rem}
 .lead-lbl{font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(var(--sv),.45);margin-bottom:.5rem}
@@ -866,7 +884,7 @@ header .brand{font-size:1.08rem}
   @page{margin:12mm 10mm}
   body{background:#fff!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .page-hero,.page-hero-inner{display:none!important}
-  .rdw-bar,.method-tabs,.form-card,.addons-wrap,.recent-wrap,.kennis-wrap,.faq-wrap,.terug-cta,.aangifte-cta,.exit-overlay,.sticky-cta,.taxatie-box,.other-tools,.cta-wrap,.disclaimer{display:none!important}
+  .rdw-bar,.method-tabs,.form-card,.addons-wrap,.recent-wrap,.kennis-wrap,.faq-wrap,.terug-cta,.aangifte-cta,.exit-overlay,.sticky-cta,.taxatie-box,.other-tools,.cta-wrap,.disclaimer,.voordeel-wrap,.trust-strip{display:none!important}
   .wrap{max-width:100%!important;padding:0!important}
   .result-wrap{display:block!important}
   .dual-results{grid-template-columns:1fr 1fr!important}
@@ -1161,7 +1179,7 @@ header .brand{font-size:1.08rem}
     <div class="empty-title">Vul de gegevens in om te berekenen.</div>
   </div>
 
-  <div class="result-wrap" id="result-wrap">
+  <div class="result-wrap" id="result-wrap" aria-live="polite">
 
     <!-- TE BETALEN BPM — PROMINENT BLOK -->
     <div class="betalen-wrap" id="betalen-wrap" style="display:none">
@@ -1206,6 +1224,29 @@ header .brand{font-size:1.08rem}
     </div>
     <div class="chart-section"><h2 class="section-lbl">Afschrijvingsverloop BPM over tijd — uw voertuig gemarkeerd (▲)</h2><div class="chart-canvas-wrap"><canvas id="bpm-chart" class="chart-canvas"></canvas></div></div>
     <div class="timing-strip" id="timing-strip" style="display:none"></div>
+    <div class="voordeel-wrap" id="voordeel-wrap" style="display:none">
+      <div class="vd-head">
+        <h2 class="section-lbl" style="margin:0">Loont importeren? — vergelijk met de Nederlandse vraagprijs</h2>
+        <span class="ts-note">Alle bedragen incl. BPM · indicatie</span>
+      </div>
+      <div class="vd-grid">
+        <div class="vd-in">
+          <label class="field-lbl" for="vd-buiten">Aankoopprijs buitenland (€)</label>
+          <input class="fi" type="number" id="vd-buiten" inputmode="numeric" placeholder="bijv. 78500" min="0" step="100">
+          <label class="field-lbl" for="vd-nl" style="margin-top:.8rem">Vergelijkbare auto in Nederland (€)</label>
+          <input class="fi" type="number" id="vd-nl" inputmode="numeric" placeholder="bijv. 96900" min="0" step="100">
+          <p class="vd-hint">Tip: zoek dezelfde uitvoering/bouwjaar/km op Autoscout24 of Marktplaats. Bij aankoop bij een handelaar in de EU: vraag om een netto-exportprijs (zonder buitenlandse btw) als u btw-plichtig bent.</p>
+        </div>
+        <div class="vd-out" id="vd-out">
+          <div class="vd-row"><span>Aankoopprijs buitenland</span><b id="vd-o-buiten">—</b></div>
+          <div class="vd-row"><span>Resterende BPM</span><b id="vd-o-bpm">—</b></div>
+          <div class="vd-row"><span>RDW · APK · platen</span><b id="vd-o-rdw">—</b></div>
+          <div class="vd-row"><span>Transport (gemiddeld)</span><b id="vd-o-tr">—</b></div>
+          <div class="vd-row vd-tot"><span>Totaal importprijs</span><b id="vd-o-tot">—</b></div>
+          <div class="vd-verdict" id="vd-verdict">Vul beide prijzen in om het voordeel te zien.</div>
+        </div>
+      </div>
+    </div>
     <div class="table-section"><h2 class="section-lbl">Forfaitaire afschrijvingstabel (officieel Belastingdienst / RDW)</h2><div id="bpm-table-wrap"></div></div>
     <div class="detail-section">
       <h2 class="section-lbl">Invoer &amp; Berekening</h2>
@@ -3010,6 +3051,24 @@ function co2KL(c,bs){
   return{k:'G',s:'Extreem hoog verbruik',col:'#CE2B37',w:100};
 }
 
+/* ══ Import-voordeel: buitenlandse prijs + kosten vs. NL vraagprijs ══ */
+function renderVoordeel(){
+  const k=window.__kosten; if(!k) return;
+  const bu=parseFloat((document.getElementById('vd-buiten')||{}).value)||0;
+  const nl=parseFloat((document.getElementById('vd-nl')||{}).value)||0;
+  const set=(id,v)=>{const e=document.getElementById(id); if(e) e.textContent=v;};
+  set('vd-o-buiten',bu?fE(bu):'—'); set('vd-o-bpm',fE(k.bpm)); set('vd-o-rdw',fE(k.rdw)); set('vd-o-tr','± '+fE(k.tr));
+  const tot=bu+k.bpm+k.rdw+k.tr; set('vd-o-tot',bu?fE(tot):'—');
+  const v=document.getElementById('vd-verdict'); if(!v) return;
+  v.className='vd-verdict';
+  if(!bu||!nl){ v.textContent='Vul beide prijzen in om het voordeel te zien.'; return; }
+  const d=nl-tot, pct=Math.round(d/nl*100);
+  if(d>500){ v.classList.add('win'); v.innerHTML='<strong>Import voordeliger: '+fE(d)+' ('+pct+'%)</strong>Exclusief eventuele buitenlandse btw-verrekening, garantie en reistijd. Wij checken graag of de auto écht is wat hij lijkt (historie, schade, km) vóór u koopt.'; try{track('bpm_voordeel',{res:'win',d:Math.round(d)});}catch(e){} }
+  else if(d<-500){ v.classList.add('lose'); v.innerHTML='<strong>Nederlandse auto goedkoper: '+fE(-d)+'</strong>Importeren loont hier niet — tenzij de buitenlandse auto beter is uitgerust, jonger is of minder km heeft. Een taxatie kan de BPM nog drukken.'; }
+  else { v.innerHTML='<strong>Ongeveer gelijk</strong>Het verschil zit dan in uitvoering, historie en garantie. Laat ons meekijken voordat u beslist.'; }
+}
+document.addEventListener('DOMContentLoaded',function(){ ['vd-buiten','vd-nl'].forEach(id=>{ const e=document.getElementById(id); if(e) e.addEventListener('input',renderVoordeel); }); });
+
 /* ══ Timing-inzicht: wat scheelt later aangeven (forfaitaire tabel) ══ */
 function renderTiming(mPos,bruto,nuBedrag){
   const el=document.getElementById('timing-strip'); if(!el) return;
@@ -4194,6 +4253,8 @@ function doCalc(){
         '<div class="betalen-kost-sub">Eerste APK (± € 85) en kentekenplaten (± € 40). Aangifte/afhandeling: via APEXclusive op offerte.</div>'+
       '</div>';
     betalenTotaal.textContent=fE(totaalLaag)+' – '+fE(totaalHoog);
+    window.__kosten={bpm:bedragFinal,rdw:rdwTotaal+apk+platen,tr:Math.round((transportLaag+transportHoog)/2)};
+    try{ const vw=document.getElementById('voordeel-wrap'); if(vw){ vw.style.display=''; renderVoordeel(); } }catch(e){}
     const bestaand=betalenWrap.querySelector('.betalen-methode-info');
     if(bestaand) bestaand.remove();
     const methodInfo=document.createElement('div');

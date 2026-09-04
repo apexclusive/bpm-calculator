@@ -137,3 +137,4 @@ Sterke UX-details: tooltips bij velden, kalender met maand-sneltab, "Opnieuw beg
 - **Conversie**: taxatie-blok toont nu concreet besparingsvoorbeeld (10–20% extra afschrijving) o.b.v. de eigen uitkomst; nieuw "Timing van de aangifte"-blok (BPM nu / +1 / +3 / +6 mnd); "Overig"-merk schakelt direct naar handmatige invoer; alle 6 zustertools gelinkt.
 - **SEO/techniek**: H2-structuur, JSON-LD @graph (WebApplication, Organization, Service, BreadcrumbList, HowTo), robots.txt, sitemap.xml, web-manifest + iconen, hreflang, preconnect fonts, robots/geo-meta.
 - **UI**: licht/donker thema-schakelaar (header van Kentekencheck), trust-strip in hero, SVG-iconen i.p.v. emoji in kostenblok, contrast-overrides voor het lichte thema.
+- **Ronde 2**: "Loont importeren?"-module (buitenlandse prijs + BPM + RDW + transport vs. NL-vraagprijs, met verdict + lead-haak), eigen branded OG/share-afbeelding (og-share.png), aria-live op resultaat, noscript-fallback, print-uitsluitingen.
