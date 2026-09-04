@@ -128,3 +128,17 @@ Sterke UX-details: tooltips bij velden, kalender met maand-sneltab, "Opnieuw beg
 ---
 
 *Bijlage: rekenvoorbeelden uit §5 zijn gegenereerd door de rekenfuncties rechtstreeks uit de pagina te extraheren en in Node uit te voeren (peildatum 3-9-2026, exacte maandentelling en rest-% van de tool). Geen wijzigingen aan de pagina zelf aangebracht.*
+
+---
+
+## Changelog 4-9-2026 (branch arena/01a06dae)
+
+- **Data (P0)**: PHEV CO₂-waarden gecorrigeerd naar officiële WLTP-gewogen fabrieksopgaven: Revuelto 51→276, 296 GTB 79→149, 296 GTS 79→153, SF90 Stradale 78→154, SF90 Spider 78→160, SF90 XX 78→228/232, Artura 129/131→108, BMW XM 82/79→33/43.
+- **Conversie**: taxatie-blok toont nu concreet besparingsvoorbeeld (10–20% extra afschrijving) o.b.v. de eigen uitkomst; nieuw "Timing van de aangifte"-blok (BPM nu / +1 / +3 / +6 mnd); "Overig"-merk schakelt direct naar handmatige invoer; alle 6 zustertools gelinkt.
+- **SEO/techniek**: H2-structuur, JSON-LD @graph (WebApplication, Organization, Service, BreadcrumbList, HowTo), robots.txt, sitemap.xml, web-manifest + iconen, hreflang, preconnect fonts, robots/geo-meta.
+- **UI**: licht/donker thema-schakelaar (header van Kentekencheck), trust-strip in hero, SVG-iconen i.p.v. emoji in kostenblok, contrast-overrides voor het lichte thema.
+- **Ronde 2**: "Loont importeren?"-module (buitenlandse prijs + BPM + RDW + transport vs. NL-vraagprijs, met verdict + lead-haak), eigen branded OG/share-afbeelding (og-share.png), aria-live op resultaat, noscript-fallback, print-uitsluitingen.
+- **Ronde 3**: kilometerstand-veld (beide tabs, ook in deep-link `km=`); < 3.000 km → geen afschrijving (volledige bruto, conform BD) + rode btw-/BPM-waarschuwing; ≤ 6 mnd of < 6.000 km → "nieuw vervoermiddel"-waarschuwing (21% btw) met WhatsApp-haak; inline lead-formulier (naam/tel/mail/advertentie-link/situatie → WhatsApp of e-mail met alle rekengegevens, validatie, geen opslag).
+- **Ronde 4**: bugfix — `laadVanUrl()` werd nooit aangeroepen (deelbare links/"Kopieer link"/historie werkten niet) → nu wél; quick-start chips (6 veelgevraagde imports, één klik = resultaat); "Waarom APEXclusive"-blok (4 USP's, geen verzonnen cijfers); service worker (offline app-shell, zelfde patroon als Kentekencheck); Enter = berekenen; hero-copy met concrete belofte.
+- **Ronde 5**: meetbaarheid compleet (`bpm_result` funnel-event, `bpm_share` per kanaal, outbound naar álle apexclusive-tools, `dataLayer` vooraf geïnitialiseerd zodat events vóór GTM-load niet verloren gaan); CTA's op het winst-moment in de voordeel-module (WhatsApp/mail met alle cijfers voorgevuld; bij "NL goedkoper" → zoekopdracht-CTA); "Volgende stappen"-blok (kentekencheck → waarde → lening → verzekering) voor cross-sell; native deelblad op mobiel; skip-link + anker voor toegankelijkheid; print-uitsluitingen.
+- **Ronde 6**: mobiel-first fixes — horizontale scroll op telefoons verholpen (afschrijvingstabel, methodes- en tarieventabel nu scrollbaar in eigen container; pagina exact viewport-breed); hero op mobiel compacter (eyebrow, padding, tekstgrootte) met primaire CTA "Bereken mijn BPM" + "Import laten regelen" boven de vouw; hero-CTA's ook op desktop.

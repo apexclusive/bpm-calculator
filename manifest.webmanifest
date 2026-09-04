@@ -1,0 +1,21 @@
+{
+  "name": "BPM Calculator — APEXclusive",
+  "short_name": "BPM Calculator",
+  "description": "Bereken de resterende BPM bij auto-import: officiële tarieven, NEDC/WLTP, afschrijving per maand, importkosten en wegenbelasting per provincie.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0e0e",
+  "theme_color": "#0b0e0e",
+  "lang": "nl-NL",
+  "dir": "ltr",
+  "categories": ["finance", "utilities", "automotive"],
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
