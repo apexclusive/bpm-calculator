@@ -824,6 +824,8 @@ header .brand{font-size:1.08rem}
 .vd-row b{font-weight:400;color:var(--tx);font-family:var(--lb);letter-spacing:.04em}
 .vd-tot{border-top:1px solid rgba(var(--sv),.15);padding-top:.5rem;margin-top:.25rem;color:var(--tx)}
 .vd-tot b{font-family:var(--sf);font-size:1.25rem;letter-spacing:0}
+.vd-cta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+.vd-cta .btn{font-size:.58rem;padding:.6rem 1rem}
 .vd-verdict{margin-top:.6rem;padding:.75rem .9rem;border:1px solid rgba(var(--sv),.15);font-family:var(--lb);font-size:.62rem;letter-spacing:.06em;line-height:1.6;color:rgba(var(--sv),.55)}
 .vd-verdict.win{border-color:rgba(0,146,70,.4);background:rgba(0,146,70,.07);color:var(--ok)}
 .vd-verdict.lose{border-color:rgba(206,43,55,.35);background:rgba(206,43,55,.06);color:var(--bad)}
@@ -865,6 +867,19 @@ header .brand{font-size:1.08rem}
 .qs:hover{border-color:var(--pt-s);background:rgba(var(--sv),.07);transform:translateY(-1px)}
 :root[data-theme="light"] .qs{background:#fff}
 :root[data-theme="light"] .qs:hover{border-color:var(--brand-copper)}
+.next-steps{margin-top:2px;padding:1.3rem 1.65rem 1.5rem;background:var(--ink2);border:1px solid var(--ln)}
+.ns-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:.9rem}
+.ns-item{display:flex;flex-direction:column;gap:.3rem;padding:1rem 1.05rem;border:1px solid rgba(var(--sv),.12);background:rgba(var(--sv),.025);text-decoration:none;transition:.2s}
+.ns-item:hover{border-color:var(--pt-s);background:rgba(var(--sv),.06);transform:translateY(-1px)}
+.ns-n{font-family:var(--lb);font-size:.56rem;letter-spacing:.2em;color:rgba(var(--am),.7)}
+.ns-item b{font-family:var(--lb);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);font-weight:500}
+.ns-item span:last-child{font-size:.72rem;line-height:1.55;color:rgba(var(--sv),.55);font-weight:300}
+:root[data-theme="light"] .ns-item{background:#fff}
+:root[data-theme="light"] .ns-n{color:var(--brand-copper)}
+@media(max-width:820px){.ns-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.ns-grid{grid-template-columns:1fr}}
+.skip-link{position:absolute;left:-999px;top:0;z-index:9999;background:var(--pt-s);color:#0b0e0e;padding:.6rem 1rem;font-family:var(--lb);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase}
+.skip-link:focus{left:.5rem;top:.5rem}
 /* Lead-rij (na resultaat-acties) */
 .lead-cta-row{background:var(--ink2);border:1px solid var(--ln);border-top:none;padding:1.1rem 1.5rem 1.3rem}
 .lead-lbl{font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(var(--sv),.45);margin-bottom:.5rem}
@@ -926,7 +941,7 @@ header .brand{font-size:1.08rem}
   @page{margin:12mm 10mm}
   body{background:#fff!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .page-hero,.page-hero-inner{display:none!important}
-  .rdw-bar,.method-tabs,.form-card,.addons-wrap,.recent-wrap,.kennis-wrap,.faq-wrap,.terug-cta,.aangifte-cta,.exit-overlay,.sticky-cta,.taxatie-box,.other-tools,.cta-wrap,.disclaimer,.voordeel-wrap,.trust-strip,.lead-form,.btw-alert,.waarom-wrap{display:none!important}
+  .rdw-bar,.method-tabs,.form-card,.addons-wrap,.recent-wrap,.kennis-wrap,.faq-wrap,.terug-cta,.aangifte-cta,.exit-overlay,.sticky-cta,.taxatie-box,.other-tools,.cta-wrap,.disclaimer,.voordeel-wrap,.trust-strip,.lead-form,.btw-alert,.waarom-wrap,.next-steps,.vd-cta,.quick-starts,.skip-link{display:none!important}
   .wrap{max-width:100%!important;padding:0!important}
   .result-wrap{display:block!important}
   .dual-results{grid-template-columns:1fr 1fr!important}
@@ -943,6 +958,7 @@ header .brand{font-size:1.08rem}
 
 </head>
 <body>
+<a class="skip-link" href="#calc-anchor">Direct naar de calculator</a>
 
 <header class="topbar">
   <a href="https://apexclusive.nl" class="brand wordmark" aria-label="APEXclusive home">
@@ -985,7 +1001,7 @@ header .brand{font-size:1.08rem}
 <div class="tri-div"></div>
 
 <div class="wrap">
-  <div class="rdw-bar" id="rdw-bar">
+  <div class="rdw-bar" id="rdw-bar"><span id="calc-anchor" tabindex="-1"></span>
     <div class="rdw-head">
       <div class="rdw-title">Al een Nederlands kenteken? <span>Laat de gegevens automatisch invullen via RDW Open Data</span></div>
     </div>
@@ -1330,6 +1346,15 @@ header .brand{font-size:1.08rem}
           <div class="vd-row vd-tot"><span>Totaal importprijs</span><b id="vd-o-tot">—</b></div>
           <div class="vd-verdict" id="vd-verdict">Vul beide prijzen in om het voordeel te zien.</div>
         </div>
+      </div>
+    </div>
+    <div class="next-steps" id="next-steps">
+      <h2 class="section-lbl">Volgende stappen na de BPM</h2>
+      <div class="ns-grid">
+        <a class="ns-item" href="https://kentekencheck.apexclusive.nl" target="_blank" rel="noopener"><span class="ns-n">01</span><b>Check de historie</b><span>Kenteken, km-stand, schade en terugroepacties vóór u betaalt.</span></a>
+        <a class="ns-item" href="https://waarde.apexclusive.nl" target="_blank" rel="noopener"><span class="ns-n">02</span><b>Toets de dagwaarde</b><span>Weet wat de auto in Nederland waard is — en of een taxatie de BPM drukt.</span></a>
+        <a class="ns-item" href="https://lening.apexclusive.nl" target="_blank" rel="noopener"><span class="ns-n">03</span><b>Reken de financiering</b><span>Maandlast voor aankoop + BPM + kosten in één overzicht.</span></a>
+        <a class="ns-item" href="https://verzekering.apexclusive.nl" target="_blank" rel="noopener"><span class="ns-n">04</span><b>Regel de verzekering</b><span>Import- en exclusieve auto's verzekeren zonder verrassingen.</span></a>
       </div>
     </div>
     <div class="table-section"><h2 class="section-lbl">Forfaitaire afschrijvingstabel (officieel Belastingdienst / RDW)</h2><div id="bpm-table-wrap"></div></div>
@@ -3163,8 +3188,13 @@ function renderVoordeel(){
   v.className='vd-verdict';
   if(!bu||!nl){ v.textContent='Vul beide prijzen in om het voordeel te zien.'; return; }
   const d=nl-tot, pct=Math.round(d/nl*100);
-  if(d>500){ v.classList.add('win'); v.innerHTML='<strong>Import voordeliger: '+fE(d)+' ('+pct+'%)</strong>Exclusief eventuele buitenlandse btw-verrekening, garantie en reistijd. Wij checken graag of de auto écht is wat hij lijkt (historie, schade, km) vóór u koopt.'; try{track('bpm_voordeel',{res:'win',d:Math.round(d)});}catch(e){} }
-  else if(d<-500){ v.classList.add('lose'); v.innerHTML='<strong>Nederlandse auto goedkoper: '+fE(-d)+'</strong>Importeren loont hier niet — tenzij de buitenlandse auto beter is uitgerust, jonger is of minder km heeft. Een taxatie kan de BPM nog drukken.'; }
+  const li=window.__leadInfo||{};
+  const ctaWin=function(){
+    const txt='Beste Martijn, ik overweeg een '+(li.voertuig||'auto')+' te importeren. Aankoopprijs buitenland '+fE(bu)+', vergelijkbaar in NL '+fE(nl)+' — volgens jullie calculator ± '+fE(d)+' voordeel (BPM '+(li.bedrag||'')+'). Kunnen jullie de auto en het import-traject voor mij checken? '+(li.url||'');
+    return '<div class="vd-cta"><a class="btn" href="'+waLink(txt)+'" target="_blank" rel="noopener" data-lead="voordeel_wa">Laat ons de auto checken</a><a class="btn gh" href="'+mailLink('Importcheck: '+(li.voertuig||'auto')+' — voordeel '+fE(d),txt)+'" data-lead="voordeel_mail">Mail de cijfers</a></div>';
+  };
+  if(d>500){ v.classList.add('win'); v.innerHTML='<strong>Import voordeliger: '+fE(d)+' ('+pct+'%)</strong>Exclusief eventuele buitenlandse btw-verrekening, garantie en reistijd. Wij checken de auto (historie, schade, km, papieren) en regelen desgewenst transport, keuring en aangifte — vóór u koopt.'+ctaWin(); try{track('bpm_voordeel',{res:'win',d:Math.round(d)});}catch(e){} }
+  else if(d<-500){ v.classList.add('lose'); v.innerHTML='<strong>Nederlandse auto goedkoper: '+fE(-d)+'</strong>Importeren loont hier niet — tenzij de buitenlandse auto beter is uitgerust, jonger is of minder km heeft. Een taxatie kan de BPM nog drukken; wij zoeken ook gericht in DE/BE naar een scherper geprijsd exemplaar.<div class="vd-cta"><a class="btn gh" href="'+waLink('Beste Martijn, ik zoek een '+(li.voertuig||'auto')+' — de NL-prijs ('+fE(nl)+') is nu lager dan import ('+fE(tot)+'). Kunnen jullie een scherper geprijsd exemplaar in DE/BE zoeken? '+(li.url||''))+'" target="_blank" rel="noopener">Laat ons zoeken</a></div>'; try{track('bpm_voordeel',{res:'lose',d:Math.round(d)});}catch(e){} }
   else { v.innerHTML='<strong>Ongeveer gelijk</strong>Het verschil zit dan in uitvoering, historie en garantie. Laat ons meekijken voordat u beslist.'; }
 }
 document.addEventListener('DOMContentLoaded',function(){ ['vd-buiten','vd-nl'].forEach(id=>{ const e=document.getElementById(id); if(e) e.addEventListener('input',renderVoordeel); }); });
@@ -3641,8 +3671,9 @@ function vulResultaatActies(voertuig, uitkomst, bedrag, toelJ, mPos, bs, co2n, c
     '<span class="ra-lbl">Deel of bewaar deze berekening:</span>'+
     '<button class="btn gh ra-btn" type="button" onclick="kopieerTekst(\''+samenvatting.replace(/'/g,"\\'")+'\')">Kopieer samenvatting</button>'+
     '<button class="btn gh ra-btn" type="button" onclick="kopieerLink()">Kopieer link</button>'+
-    '<button class="btn gh ra-btn" type="button" onclick="window.print()">Print / PDF</button>'+
-    '<button class="btn gh ra-btn" type="button" onclick="delenWhatsApp(\''+samenvatting.replace(/'/g,"\\'")+'\')">Deel via WhatsApp</button>';
+    '<button class="btn gh ra-btn" type="button" onclick="try{track(\'bpm_share\',{kanaal:\'print\'})}catch(e){};window.print()">Print / PDF</button>'+
+    '<button class="btn gh ra-btn" type="button" onclick="delenWhatsApp(\''+samenvatting.replace(/'/g,"\\'")+'\')">Deel via WhatsApp</button>'+
+    (navigator.share?'<button class="btn gh ra-btn" type="button" onclick="deelNatief(\''+samenvatting.replace(/'/g,"\\'")+'\')">Delen…</button>':'');
   window.__laatsteUrl=url;
   window.__leadInfo={voertuig:voertuig||merkLabel||'mijn auto',bedrag:fE(bedrag),toelJ:toelJ,url:location.origin+url};
   if(typeof vulLeadActies==='function') vulLeadActies(window.__leadInfo);
@@ -3654,9 +3685,17 @@ function kopieerTekst(t){
 }
 function kopieerLink(){
   const url=window.__laatsteUrl||location.href;
+  try{track('bpm_share',{kanaal:'link'});}catch(e){}
   kopieerTekst(location.origin+url);
 }
+/* Native deelblad (mobiel) — valt terug op WhatsApp */
+function deelNatief(t){
+  const url=location.origin+(window.__laatsteUrl||location.pathname);
+  if(navigator.share){ try{track('bpm_share',{kanaal:'native'});}catch(e){} navigator.share({title:'BPM-indicatie · APEXclusive',text:t,url:url}).catch(function(){}); }
+  else delenWhatsApp(t);
+}
 function delenWhatsApp(t){
+  try{track('bpm_share',{kanaal:'whatsapp'});}catch(e){}
   window.open('https://wa.me/?text='+encodeURIComponent(t+' — '+location.href),'_blank');
 }
 /* --- 3. Maandlasten-module --- */
@@ -3947,6 +3986,7 @@ function voorbeeldBerekening(){
   rdwZoek();
 }
 /* Conversie-/analytics-events (GA4/GTM-ready: stuurt alleen als window.dataLayer bestaat) */
+window.dataLayer=window.dataLayer||[]; // GTM/GA4 leest deze na laden alsnog uit
 function track(ev, params){
   try{
     if(window.dataLayer&&window.dataLayer.push){ window.dataLayer.push(Object.assign({event:ev},params||{})); }
@@ -3965,6 +4005,8 @@ document.addEventListener('DOMContentLoaded',function(){
     else if(h.indexOf('kentekencheck.apexclusive')>-1) track('bpm_outbound',{naar:'kentekencheck'});
     else if(h.indexOf('vergelijk.apexclusive')>-1) track('bpm_outbound',{naar:'vergelijk'});
     else if(h.indexOf('belastingdienst.nl')>-1) track('bpm_outbound',{naar:'belastingdienst'});
+    else if(h.indexOf('.apexclusive.nl')>-1){ const mm=h.match(/\/\/([a-z0-9-]+)\.apexclusive\.nl/); track('bpm_outbound',{naar:mm?mm[1]:'apexclusive'}); }
+    else if(h.indexOf('apexclusive.nl')>-1) track('bpm_outbound',{naar:'homepage'});
   });
   const esc=function(e){ if(e.key==='Escape') exitModal(false); };
   document.addEventListener('keydown',esc);
@@ -4440,6 +4482,7 @@ function doCalc(){
   vulResultaatActies(voertuig, uitkomst, bedragFinal, toelJ, mPos, bs, co2n, co2w, cat, massa, kw, merkLabel);
   renderMaandlasten(bs, uitkomst.oldtimer?0:massa, uitkomst); // oldtimer: geen standaard-WB-tarieven
   try{ bewaarBerekening(window.__laatsteUrl||'', voertuig||'BPM-berekening', fE(bedragFinal), uitkomst.label||''); }catch(e){}
+  try{ track('bpm_result',{tab:currentTab,bedrag:Math.round(bedragFinal),mnd:mPos,bs:bs||'',methode:(uitkomst.label||'').slice(0,40)}); }catch(e){}
   setTimeout(()=>resu.scrollIntoView({behavior:'smooth',block:'start'}),80);
 }
 
