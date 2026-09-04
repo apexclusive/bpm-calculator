@@ -550,7 +550,10 @@ select.fi:disabled{opacity:.35;cursor:not-allowed}
 .chart-canvas-wrap{position:relative;height:175px;margin-bottom:.5rem}
 .chart-canvas{width:100%;height:100%}
 .table-section{background:var(--ink2);border:1px solid var(--ln);border-top:none;padding:1.75rem;margin-bottom:2px}
+#bpm-table-wrap,.tab-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:560px){.tab-scroll .ken-tab td,.tab-scroll .ken-tab th{min-width:130px}#kn-tarieven-body{overflow-x:auto}}
 .bpm-table{width:100%;border-collapse:collapse}
+@media(max-width:480px){.bpm-table td,.bpm-table th{padding:.5rem .45rem;font-size:.7rem;white-space:nowrap}.bpm-table th{font-size:.46rem;letter-spacing:.12em}}
 .bpm-table th{font-family:var(--lb);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(var(--sv),.22);padding:.62rem .85rem;text-align:left;border-bottom:1px solid var(--ln);font-weight:400}
 .bpm-table td{font-size:.8rem;color:rgba(var(--sv),.55);padding:.62rem .85rem;border-bottom:1px solid rgba(var(--sv),.04);font-weight:300;vertical-align:middle}
 .bpm-table tr:last-child td{border-bottom:none}
@@ -768,6 +771,11 @@ html{scrollbar-color:rgba(var(--sv),.35) var(--ink)!important}
 /* wltp-banner-noot in hero: zilver i.p.v. amber (matcht .hero-note van zuster-tools) */
 .wltp-hero-note{background:rgba(var(--sv),.04)!important;border:1px solid rgba(var(--sv),.18)!important;color:rgba(var(--sv2),.65)!important;border-radius:0!important;letter-spacing:.12em!important}
 /* hero-points chips (zelfde component als Kentekencheck) */
+.hero-cta{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.5rem}
+.hero-cta .hc-main{background:var(--pt);color:#0b0e0e}
+.hero-cta .hc-main:hover{background:var(--pt-s);border-color:var(--pt-s);color:#0b0e0e}
+:root[data-theme="light"] .hero-cta .hc-main{background:var(--brand-copper);border-color:var(--brand-copper);color:#fff}
+@media(max-width:640px){.hero-cta .btn{flex:1 1 100%;padding:.95rem 1rem}.hero-points{display:none}}
 .hero-points{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.4rem;justify-content:flex-start}
 .hero-points span{font-family:var(--lb);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;padding:.4rem .7rem;border:1px solid rgba(var(--sv),.16);background:rgba(var(--wv),.025);color:rgba(var(--sv),.62);border-radius:0}
 .trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:1.6rem;max-width:880px;border:1px solid rgba(var(--sv),.14);background:rgba(var(--sv),.04)}
@@ -995,6 +1003,7 @@ header .brand{font-size:1.08rem}
         <div class="trust-item"><b>RDW</b><span>open data · kenteken-snelfill</span></div>
         <div class="trust-item"><b>€ 0</b><span>gratis · geen account · geen tracking</span></div>
       </div>
+      <div class="hero-cta"><a class="btn hc-main" href="#calc-anchor">Bereken mijn BPM</a><a class="btn gh" href="https://wa.me/31624735939?text=Beste%20Martijn%2C%20ik%20overweeg%20een%20auto%20te%20importeren%20en%20wil%20graag%20weten%20wat%20jullie%20voor%20mij%20kunnen%20doen." target="_blank" rel="noopener">Import laten regelen</a></div>
       <div class="hero-points"><span>Officiële Belastingdienst-tarieven</span><span>NEDC &amp; WLTP automatisch</span><span>Importkosten &amp; wegenbelasting</span><span>Taxatie-check op besparing</span></div>
   </div>
 </div>
@@ -1572,14 +1581,14 @@ header .brand{font-size:1.08rem}
 
       <div class="k-card" id="kn-methodes">
         <h4>De drie rekenmethodes naast elkaar</h4>
-        <table class="wb-table ken-tab">
+        <div class="tab-scroll"><table class="wb-table ken-tab">
           <thead><tr><th>Methode</th><th>Kosten</th><th>Wanneer vaak voordelig</th><th>Wanneer niet</th></tr></thead>
           <tbody>
             <tr><td>Forfaitaire afschrijvingstabel</td><td>Gratis</td><td>Jonge, snel afschrijvende auto's (premium 0–3 jr)</td><td>Auto's die minder snel afschrijven dan de tabel</td></tr>
             <tr><td>Erkende koerslijst (DAT, Schwacke, EurotaxGlass)</td><td>± € 25–50</td><td>Populaire modellen, langzame afschrijvers</td><td>Zware schade of sterk afwijkende uitvoering</td></tr>
             <tr><td>Taxatierapport (RDW-erkend)</td><td>± € 150–300</td><td>Schade, hoge km-stand, bijzondere/schaarse uitvoeringen</td><td>Standaardauto's zonder bijzonderheden</td></tr>
           </tbody>
-        </table>
+        </table></div>
         <p class="ken-noot">U mag de voordeligste methode kiezen — de Belastingdienst toetst de uitkomst. APEXclusive laat via erkende partners gratis doorrekenen welke methode voor uw auto het laagste bedrag oplevert.</p>
       </div>
 
